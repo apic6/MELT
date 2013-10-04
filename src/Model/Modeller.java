@@ -8,7 +8,13 @@ package Model;
  *
  * @author mbaxkak4
  */
-public class ModelClass {
+public class Modeller {
+    
+    public Modeller(){     //constructor
     
     
+    }
+   
+    public void setValue(){
+    System.out.println("it Works");}
 }

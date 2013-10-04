@@ -4,9 +4,10 @@
  */
 package Init;
 
-import Viewer.ViewerClass;
-import Controller.ControlClass;
-import Model.ModelClass;
+
+import Controller.Controller;
+import Model.Modeller;
+import Viewer.Viewer;
 
 
 /**
@@ -18,9 +19,9 @@ public class InitClass {
     public static void main(String[] args) {
         // TODO code application logic here
         //MODEL-VIEW-CONTROLLER-INITIALIZATION HERE
-     ControlClass control=new ControlClass();
-     ViewerClass view=new ViewerClass();
-     ModelClass model=new ModelClass();
+     Modeller model=new Modeller();
+     Viewer view=new Viewer(model);
+     Controller control=new Controller(view,model);
      
      view.setVisible(true);
         
