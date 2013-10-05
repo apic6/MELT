@@ -1,15 +1,18 @@
+package Model;
+
 import 	java.util.ArrayList;
 
 public class QuestionPaper {
-	int PaperID;
-  ArrayList<Question> QuestionList;
-  int TimeLimit;
-  ArrayList<Integer>  EligibleStudents;
-  ArrayList<Integer>  EligibleSetters;
+    int PaperID;
+    ArrayList<Section> SectionList;
+    // ArrayList<Question> QuestionList;
+    ArrayList<Integer>  EligibleStudents;
+    ArrayList<Integer>  EligibleSetters;
   
   QuestionPaper (int GivenPaperID, int CreatorID) {
   	PaperID = GivenPaperID;
-  	QuestionList = new ArrayList<Question>();
+        SectionList = new ArrayList<Section>();
+  	// QuestionList = new ArrayList<Question>();
   	EligibleStudents = new ArrayList<Integer>();
   	EligibleSetters = new ArrayList<Integer>();
   	EligibleSetters.add(CreatorID);
@@ -19,9 +22,7 @@ public class QuestionPaper {
    *	Modifying Question Paper
    */
    
-	void SetTimeLimit ( int GivenTimeLimit) {
-		TimeLimit = GivenTimeLimit;
-	}
+	
 	
 	void AddEligibleStudents(int ID) {
 		EligibleStudents.add(ID);
@@ -43,25 +44,7 @@ public class QuestionPaper {
 		}
 	}    
   
-  void AddQuestion(int position, Question Q) {
-  	QuestionList.add (position, Q);
-  }
   
-  void RemoveQuestion (int position) {
-  	QuestionList.remove(position);
-  }
-  
-  void MoveQuestionUp (int QuestionToMove) {
-  	if (QuestionToMove <= 0) return;
-  	if (QuestionToMove >= GetNumberOfQuestions() ) return;
-  	
-  	QuestionList.add(QuestionToMove-1, GetQuestion(QuestionToMove));
-  	QuestionList.remove(QuestionToMove +1 );
-  }
-  
-  void MoveQuestionDown (int QuestionToMove) {
-  	MoveQuestionUp(QuestionToMove+1);
-  }
   
   /*
    *	Reading/Using Question Paper
@@ -71,6 +54,7 @@ public class QuestionPaper {
   	return PaperID;
   }
   
+  /*
   int GetNumberOfQuestions() {
   	return QuestionList.size();
   }
@@ -82,31 +66,14 @@ public class QuestionPaper {
 	int GetTimeLimit () {
 		return TimeLimit;
 	}
-	
+	*/
 	boolean IsStudentEligible ( int StudentID) {
 		for ( int ID : EligibleStudents) {
 			if ( StudentID == ID ) return true;
 		}
 		return false;
 	}
-	
-	int GetMark () {
-		int Mark = 0;
-		for (Question Q : QuestionList ) {
-			if (Q.IsCorrect() )
-				Mark+= Q.GetMarkValue();
-		}
-		return Mark;
-	}
-	
-	int GetTotalMark () {
-		int TotalMark = 0;
-		for (Question Q : QuestionList ) {
-			TotalMark+= Q.GetMarkValue();
-		}
-		return TotalMark;
-	}
-	
+	/*
 	void SubmitAnswers () {
 		int totalMark = 0;
 		for ( Question Q : QuestionList ) {
@@ -114,8 +81,8 @@ public class QuestionPaper {
 				totalMark += Q.GetMarkValue();
 			}
 		}
-		/*
-			 "submit mark"
-		 */
-	}
+		
+		//"submit mark"
+		 
+	}*/
 }

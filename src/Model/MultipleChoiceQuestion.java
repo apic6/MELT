@@ -1,3 +1,5 @@
+package Model;
+
 public class MultipleChoiceQuestion implements Question {
   String comments; 
   int MarkValue;

@@ -1,3 +1,5 @@
+package Model;
+
 public class FITBQuestion implements Question {
   String comments;
   int MarkValue;

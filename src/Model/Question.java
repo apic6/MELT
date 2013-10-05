@@ -1,7 +1,5 @@
+package Model;
+
 public interface Question {  
-  String GetComments();
-	 
-	int GetMarkValue();
-	
-	boolean IsCorrect();
+    String GetComments();
 }
