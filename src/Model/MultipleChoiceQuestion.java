@@ -42,4 +42,19 @@ public class MultipleChoiceQuestion implements Question {
     int GetChosenAnswer() {
         return ChosenAnswer;
     }
+    
+    @Override
+    public String toXML() {
+        String XML = "<Question type=\"MCQ\">\n";
+        
+        XML += "<Instructions>" + Instructions + "</Instructions>\n";
+        XML += "<QuestionText>" + Question + "</QuestionText>\n";
+        for (int i = 0; i<Answers.length; i++) {
+            XML += "<Answer>" + Answers[i] + "</Answer>\n";
+        }
+        
+        XML += "</Question>\n";
+        
+        return XML;
+    }
 }

@@ -27,4 +27,15 @@ public class FITBQuestion implements Question {
     String GetChosenAnswer() {
         return ChosenAnswer;
     }
+    
+    @Override
+    public String toXML() {
+        String XML = "<Question type=\"FITBQ\">\n";
+        
+        XML += "<Instructions>" + Instructions + "</Instructions>\n";
+        XML += "<QuestionText>" + Question + "</QuestionText>\n";        
+        XML += "</Question>\n";
+        
+        return XML;
+    }    
 }

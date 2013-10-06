@@ -10,21 +10,21 @@ public class QuestionPaper {
     String Instructions;
     ArrayList<Section> SectionList;
     ArrayList<Integer> EligibleStudents;
-    ArrayList<Integer> EligibleSetters;
+    ArrayList<Integer> EliglbeTeachers;
 
     QuestionPaper(int GivenPaperID, int CreatorID) {
         PaperID = GivenPaperID;
         SectionList = new ArrayList<>();
         EligibleStudents = new ArrayList<>();
-        EligibleSetters = new ArrayList<>();
-        EligibleSetters.add(CreatorID);
+        EliglbeTeachers = new ArrayList<>();
+        EliglbeTeachers.add(CreatorID);
     }
 
     QuestionPaper(int GivenPaperID) {
         PaperID = GivenPaperID;
         SectionList = new ArrayList<>();
         EligibleStudents = new ArrayList<>();
-        EligibleSetters = new ArrayList<>();
+        EliglbeTeachers = new ArrayList<>();
     }
     
     /*
@@ -41,12 +41,12 @@ public class QuestionPaper {
     }
 
     void AddEligibleSetter(int ID) {
-        EligibleSetters.add(ID);
+        EliglbeTeachers.add(ID);
     }
 
     void AddEligibleSetters(int[] IDs) {
         for (int ID : IDs) {
-            EligibleSetters.add(ID);
+            EliglbeTeachers.add(ID);
         }
     }
     
@@ -126,4 +126,32 @@ public class QuestionPaper {
          * 
          */
     }
+    
+    String toXML() {
+        String XML = "<QuestionPaper id=\"" + PaperID + "\">\n";
+        
+        XML += "<Title>" + Title + "</Title>\n";
+        XML += "<Description>" + Description + "</Description>\n";
+        XML += "<Instructions>" + Instructions + "</Instructions>\n";
+        
+        // eligible students
+        for (int i = 0; i<EligibleStudents.size(); i++) {
+            XML += "<EligibleStudent>" + EligibleStudents.get(i) + "</EligibleStudent>\n";
+        }
+        
+        // eligible teachers
+        for (int i = 0; i<EliglbeTeachers.size(); i++) {
+            XML += "<EliglbeTeacher>" + EliglbeTeachers.get(i) + "</EliglbeTeacher>\n";
+        }
+        
+        // sections       
+        for (int i = 0; i<SectionList.size(); i++) {
+            XML += SectionList.get(i).toXML();
+        }
+        
+        XML += "</QuestionPaper>\n";
+        
+        return XML;
+    }       
+    
 }
