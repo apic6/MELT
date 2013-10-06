@@ -23,7 +23,14 @@ public class Viewer extends JFrame {
 //     private JButton    testButton = new JButton("test");
 //     private JButton    testButton2 = new JButton("test2");
      
-     
+  
+    
+    
+    
+    
+    
+    
+    
      public Viewer (Modeller model) {      //constructor
          
         //JPanel content = new JPanel();
@@ -34,11 +41,24 @@ public class Viewer extends JFrame {
         //this.setContentPane(content);
         //this.pack();
        // this.setTitle("testing");
-         
-        Welcome welcome=new Welcome();
-        welcome.setVisible(true);
+         Welcome wel=new Welcome(this);
+         setContentPane(wel);
+         pack();
+         setVisible(true);
+       // Welcome welcome=new Welcome();
+        //welcome.setVisible(true);
      
 }
+  
+     
+     
+    public void guiChanger(JPanel NewPanel){
+             setContentPane(NewPanel);
+             pack();
+             setVisible(true);}
+     
+     
+     
      
      public void addListener(ActionListener mal) {
 //        testButton.addActionListener(mal);
