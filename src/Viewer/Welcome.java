@@ -20,7 +20,7 @@ public class Welcome extends JPanel{
     }
 
     private javax.swing.JButton studentButton;
-    private javax.swing.JButton teacherButton;
+    public static  javax.swing.JButton teacherButton;
     private javax.swing.JLabel welcomeLogo;
     private java.awt.Label welcomeLabel;
     
@@ -31,7 +31,7 @@ public class Welcome extends JPanel{
 
         welcomeLabel = new java.awt.Label();
         studentButton = new javax.swing.JButton();
-        teacherButton = new javax.swing.JButton();
+        teacherButton = new javax.swing.JButton();//teacherButton.setActionCommnad("teacherButton");
         welcomeLogo = new javax.swing.JLabel(new ImageIcon("images/uom-logo.jpg"));
 
 

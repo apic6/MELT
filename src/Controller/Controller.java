@@ -23,6 +23,7 @@ public class Controller {
     
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
+        
         view.addListener(new ViewerEventListener());
         amodel=model;
         aview=view;
@@ -36,9 +37,9 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
-                case "test":{amodel.setValue();}
+                case "test":{}
                     break;
-                case "test2":{System.out.println("yeahhhh");}
+                case "teacherButton":{System.out.println("yeahhhh");}
                     break;
             }
                
