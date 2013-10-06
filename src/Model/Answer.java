@@ -19,6 +19,11 @@ public class Answer {
 class MCQAnswer extends Answer {
     int answer;
     
+    MCQAnswer(int id, int answer) {
+        this.id = id;
+        this.answer = answer;
+    }
+    
     public int getAnswer() {
         return answer;
     }
@@ -26,6 +31,11 @@ class MCQAnswer extends Answer {
 
 class FITBAnswer extends Answer {
     String answer;
+    
+    FITBAnswer(int id, String answer) {
+        this.id = id;
+        this.answer = answer;
+    }
     
     public String getAnswer() {
         return answer;

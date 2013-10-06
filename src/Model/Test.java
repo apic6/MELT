@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  */
 public class Test {
     public static void main(String argv[]) {
+        /*
         Modeller model = new Modeller();
         model.loadPapers("src/Papers2.xml");
         try {
@@ -21,5 +22,19 @@ public class Test {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
+        StudentSubmission submission = new StudentSubmission();
+        SubmissionSection submSection2 = new SubmissionSection(2);
+        SubmissionSection submSection1 = new SubmissionSection(1);        
+        
+        submission.addSection(submSection2);
+        submission.addSection(submSection1);
+        for (int i = 0; i<submission.getSize(); i++) {
+            System.out.println("ID: " + submission.getSection(i).getID());
+        }
+        submission.normalise();
+        for (int i = 0; i<submission.getSize(); i++) {
+            System.out.println("ID: " + submission.getSection(i).getID());
+        }        
     }
 }
