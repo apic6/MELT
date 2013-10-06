@@ -29,7 +29,7 @@ public class QuestionPaperLoader {
     QuestionPaperLoader() {
         try {
             QuestionPapers = new ArrayList<>();
-            XmlFile = new File("Papers.xml");
+            XmlFile = new File("src/Papers.xml");
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(XmlFile);
