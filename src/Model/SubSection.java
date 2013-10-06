@@ -77,4 +77,20 @@ public class SubSection {
     void MoveQuestionDown (int QuestionToMove) {
           MoveQuestionUp(QuestionToMove+1);
     }
+    
+    String toXML() {
+        String XML = "<SubSection>\n";
+        
+        XML += "<Title>" + Title + "</Title>\n";
+        XML += "<Description>" + Description + "</Description>\n";
+        XML += "<Instructions>" + Instructions + "</Instructions>\n";
+        
+        for (int i = 0; i<QuestionList.size(); i++) {
+            XML += QuestionList.get(i).toXML();
+        }
+        
+        XML += "</SubSection>\n";
+        
+        return XML;
+    }
 }

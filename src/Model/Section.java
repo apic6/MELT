@@ -94,4 +94,21 @@ public class Section {
     void MoveSubSectionDown (int SubSectionToMove) {
         MoveSubSectionUp(SubSectionToMove+1);
     }
+    
+    String toXML() {
+        String XML = "<Section id=\"" + ID + "\">\n";
+        
+        XML += "<Title>" + Title + "</Title>\n";
+        XML += "<Description>" + Description + "</Description>\n";
+        XML += "<Instructions>" + Instructions + "</Instructions>\n";
+        XML += "<TimeLimit>" + TimeLimit + "</TimeLimit>\n";
+        
+        for (int i = 0; i<SubSectionList.size(); i++) {
+            XML += SubSectionList.get(i).toXML();
+        }
+        
+        XML += "</Section>\n";
+        
+        return XML;
+    }    
 }
