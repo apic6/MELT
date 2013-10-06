@@ -9,7 +9,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
+import Model.*;
 /**
  *
  * @author Daniel
@@ -17,9 +17,9 @@ import javax.swing.JTextArea;
 public class TestPreview extends JPanel{
     JLabel title;
     JTextArea description;
-    public TestPreview(){
-        title = new JLabel("TEST of test");
-        description = new JTextArea("this test is a test");
+    public TestPreview(QuestionPaper paper){
+        title = new JLabel(paper.GetTitle());
+        description = new JTextArea(paper.GetDescription());
         
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();

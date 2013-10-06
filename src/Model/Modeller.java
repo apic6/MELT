@@ -25,7 +25,7 @@ public class Modeller {
     }
     
     // loads all papers into model
-    void loadPapers(String filename) {
+    public void loadPapers(String filename) {
         QuestionPaperLoader loader = new QuestionPaperLoader(filename);
         
         loader.ReadPapers();
@@ -54,7 +54,7 @@ public class Modeller {
         }
     }
     
-    ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
+    public ArrayList<QuestionPaper>  getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
         for (int i = 0; i<questionPapers.size(); i++) {
             if (questionPapers.get(i).IsStudentEligible(studentID)) {

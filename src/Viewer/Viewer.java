@@ -41,7 +41,7 @@ public class Viewer extends JFrame {
         //this.setContentPane(content);
         //this.pack();
        // this.setTitle("testing");
-         Welcome wel=new Welcome(this);
+         Welcome wel=new Welcome(this,model);
          setContentPane(wel);
          pack();
          setVisible(true);

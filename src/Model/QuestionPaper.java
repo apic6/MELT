@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class QuestionPaper {
 
-    int PaperID;
-    String Title;
-    String Description;
-    String Instructions;
+    private int PaperID;
+    private String Title;
+    private String Description;
+    private String Instructions;
     ArrayList<Section> SectionList;
     ArrayList<Integer> EligibleStudents;
     ArrayList<Integer> EliglbeTeachers;
@@ -65,15 +65,15 @@ public class QuestionPaper {
     /*
      *	Reading/Using Question Paper
      */
-    int GetPaperID() {
+    public int GetPaperID() {
         return PaperID;
     }
     
-    String GetTitle(){
+    public String GetTitle(){
         return Title;
     }
     
-    String GetDescription(){
+    public String GetDescription(){
         return Description;
     }
     

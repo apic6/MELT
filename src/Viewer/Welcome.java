@@ -1,5 +1,6 @@
 package Viewer;
 
+import Model.Modeller;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -10,9 +11,11 @@ import javax.swing.*;
 public class Welcome extends JPanel{
     
     public JFrame mainFrame;
-    public Welcome(JFrame frame) {
+    public Modeller model;
+    public Welcome(JFrame frame,Modeller model) {
         initComponents();
         mainFrame = frame;
+        this.model = model;
         
     }
 
@@ -42,7 +45,7 @@ public class Welcome extends JPanel{
         studentButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new Student());
+                  ((Viewer)mainFrame).guiChanger(new Student(mainFrame,model));
             }
         });
 

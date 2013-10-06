@@ -1,8 +1,12 @@
 package Viewer;
 
+import Model.Modeller;
+import Model.QuestionPaper;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -11,7 +15,12 @@ import javax.swing.border.TitledBorder;
  * @author Daniel
  */
 public class Student extends JPanel{
-    public Student(){
+    
+    public JFrame mainFrame;
+    public Modeller amodel;
+    public Student(JFrame frame,Modeller model){
+        amodel = model;
+        mainFrame = frame;
         initComponents();
     }
     
@@ -50,14 +59,12 @@ public class Student extends JPanel{
         c1.fill = GridBagConstraints.HORIZONTAL;
         c1.weightx = 1.0;
         c1.weighty = 0;
-        c1.gridy = 0;
-        leftPanel.add(new TestPreview(),c1);
-        c1.gridy = 1;
-        leftPanel.add(new TestPreview(),c1);
-        c1.gridy = 2;
-        c1.weighty = 1.0;
-        c1.anchor = GridBagConstraints.NORTH;
-        leftPanel.add(new TestPreview(),c1);
+        amodel.loadPapers("src/Papers.xml");
+        ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
+        for(int i=0;i<papers.size();++i){
+            c1.gridy = i;
+        leftPanel.add(new TestPreview(papers.get(i)),c1);
+        }
         
         rightPanel.setLayout(new GridBagLayout());
         GridBagConstraints c2 = new GridBagConstraints();
@@ -65,13 +72,13 @@ public class Student extends JPanel{
         c2.weightx = 1.0;
         c2.weighty = 0;
         c2.gridy = 0;
-        rightPanel.add(new TestPreview(),c2);
+//        rightPanel.add(new TestPreview(),c2);
         c2.gridy = 1;
-        rightPanel.add(new TestPreview(),c2);
+//        rightPanel.add(new TestPreview(),c2);
         c2.gridy = 2;
         c2.weighty = 1.0;
         c2.anchor = GridBagConstraints.NORTH;
-        rightPanel.add(new TestPreview(),c2);
+//        rightPanel.add(new TestPreview(),c2);
         
     }
     
