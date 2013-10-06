@@ -37,6 +37,8 @@ public class Viewer extends JFrame {
         this.pack();
         
         this.setTitle("testing");
+        Welcome welcome=new Welcome();
+        welcome.setVisible(true);
      
 }
      
