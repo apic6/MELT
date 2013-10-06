@@ -31,7 +31,8 @@ public class Welcome extends JPanel{
 
         welcomeLabel = new java.awt.Label();
         studentButton = new javax.swing.JButton();
-        teacherButton = new javax.swing.JButton();//teacherButton.setActionCommnad("teacherButton");
+        teacherButton = new javax.swing.JButton();
+        teacherButton.setActionCommand("teacherButton"); //test
         welcomeLogo = new javax.swing.JLabel(new ImageIcon("images/uom-logo.jpg"));
 
 
