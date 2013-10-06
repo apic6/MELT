@@ -1,51 +1,45 @@
 package Model;
 
 public class MultipleChoiceQuestion implements Question {
-  String comments; 
-  int MarkValue;
-	String Question;
-	String[] Answers;
-	int CorrectAnswer;
-	int ChosenAnswer;
+    String Instructions; 
+    int MarkValue;
+    String Question;
+    String[] Answers;
+    int ChosenAnswer;
 	
-	MultipleChoiceQuestion(String GivenQuestion, String[] GivenAnswers, 
-																						int GivenCorrectAnswer) {
-		Question = GivenQuestion;
-		
-		int ArraySize = GivenAnswers.length;
-		Answers = new String[ArraySize];
-		for (int i = 0; i<ArraySize; i++) {
-			Answers[i] = GivenAnswers[i];
-		}
-		
-		CorrectAnswer = GivenCorrectAnswer;
-	}
+    MultipleChoiceQuestion(String Question, String[] Answers, String Instructions) {
+        this.Question = Question;
+        this.Instructions = Instructions;
+
+        int ArraySize = Answers.length;
+        this.Answers = new String[ArraySize];
+        for (int i = 0; i<ArraySize; i++) {
+                this.Answers[i] = Answers[i];
+        }
+    }
 	
-	public String GetComments() {
-		return comments;
-	}
+    @Override
+    public String GetInstructions() {
+        return Instructions;
+    }
 	
-	String GetQuestion() {
-		return Question;
-	}
-	
-	int GetNumberOfQuestions() {
-	  return Answers.length;
-	}
-	
-	String GetAnswer(int ID) {
-		return Answers[ID];
-	}
-	
-	void SetAnswer ( int chosenAnswer ) {
-	  ChosenAnswer = chosenAnswer;
-	}
-	
-	public int GetMarkValue() {
-		return MarkValue;
-	}
-	
-	public boolean IsCorrect() {
-		return CorrectAnswer == ChosenAnswer;
-	}
+    String GetQuestion() {
+        return Question;
+    }
+
+    int GetNumberOfAnswers() {
+        return Answers.length;
+    }
+
+    String GetAnswer(int ID) {
+        return Answers[ID];
+    }
+    
+    void SetAnswer(int ChosenAnswer) {
+        this.ChosenAnswer = ChosenAnswer;
+    }
+    
+    int GetChosenAnswer() {
+        return ChosenAnswer;
+    }
 }

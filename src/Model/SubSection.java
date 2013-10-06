@@ -11,7 +11,7 @@ import 	java.util.ArrayList;
  * @author Jamie
  */
 public class SubSection {
-    
+   
     String Title;
     String Description;
     String Instructions;
