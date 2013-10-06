@@ -4,9 +4,11 @@ public class FITBQuestion implements Question {
 
     String Instructions;
     String Question;
+    String ChosenAnswer;
 
-    FITBQuestion(String GivenQuestion) {
-        Question = GivenQuestion;
+    FITBQuestion(String Question, String Instructions) {
+        this.Question = Question;
+        this.Instructions = Instructions;
     }
 
     @Override
@@ -16,5 +18,13 @@ public class FITBQuestion implements Question {
 
     String GetQuestion() {
         return Question;
+    }
+
+    void SetAnswer(String ChosenAnswer) {
+        this.ChosenAnswer = ChosenAnswer;
+    }
+
+    String GetChosenAnswer() {
+        return ChosenAnswer;
     }
 }

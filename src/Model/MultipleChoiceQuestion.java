@@ -5,6 +5,7 @@ public class MultipleChoiceQuestion implements Question {
     int MarkValue;
     String Question;
     String[] Answers;
+    int ChosenAnswer;
 	
     MultipleChoiceQuestion(String Question, String[] Answers, String Instructions) {
         this.Question = Question;
@@ -32,5 +33,13 @@ public class MultipleChoiceQuestion implements Question {
 
     String GetAnswer(int ID) {
         return Answers[ID];
+    }
+    
+    void SetAnswer(int ChosenAnswer) {
+        this.ChosenAnswer = ChosenAnswer;
+    }
+    
+    int GetChosenAnswer() {
+        return ChosenAnswer;
     }
 }

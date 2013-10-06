@@ -91,7 +91,7 @@ public class Section {
         SubSectionList.remove(SubSectionToMove +1 );
     }
 
-    void MoveQuestionDown (int SubSectionToMove) {
+    void MoveSubSectionDown (int SubSectionToMove) {
         MoveSubSectionUp(SubSectionToMove+1);
     }
 }
