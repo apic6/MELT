@@ -23,7 +23,7 @@ public class Test {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
         */
-        StudentSubmission submission = new StudentSubmission();
+        StudentSubmission submission = new StudentSubmission(1, 10111);
         SubmissionSection submSection2 = new SubmissionSection(2);
         SubmissionSection submSection1 = new SubmissionSection(1);        
         

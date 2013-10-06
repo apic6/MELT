@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  */
 public class Modeller {
     ArrayList<QuestionPaper> questionPapers;
+    QuestionPaper viewingPaper;
     
     public Modeller() {     //constructor
         

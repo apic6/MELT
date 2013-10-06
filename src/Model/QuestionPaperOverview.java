@@ -1,3 +1,5 @@
+/*
+
 package Model;
 
 import java.util.ArrayList	;
@@ -11,9 +13,7 @@ public class QuestionPaperOverview {
 	QuestionPaperOverview (int ID, boolean IsSetter) {
 		UserID = ID;
 		Setter = IsSetter;
-		/*
-		 *	Get all papers from storage and assign them to the listss
-		 */
+		// Get all papers from storage and assign them to the listss
 	}
 	
 	boolean isSetter() {
@@ -21,3 +21,5 @@ public class QuestionPaperOverview {
 	}
 	
 }
+
+*/

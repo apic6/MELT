@@ -10,12 +10,13 @@ package Model;
  * @author mbgm8je3
  */
 public class MarkingAnswer {
-    int id;
     int mark;
+   
+    String toXML() {
+        return "Error";
+    }    
     
-    int getID() {
-        return id;
-    }
+
 }
 class MCQMarkingAnswer extends MarkingAnswer {
     int answer;
@@ -40,6 +41,16 @@ class MCQMarkingAnswer extends MarkingAnswer {
     int getMark() {
         return mark;
     }
+    
+    @Override
+    public String toXML() {
+        String XML = "";
+        XML += "<MCQAnswer>\n";
+        XML += "<Mark>" + mark + "</Mark>\n";
+        XML += "<Answer>" + answer + "</Answer>\n";
+        XML += "</MCQAnswer>\n";
+        return XML;         
+    }        
 }
 
 class FITBMarkingAnswer extends MarkingAnswer {
@@ -65,4 +76,14 @@ class FITBMarkingAnswer extends MarkingAnswer {
     int getMark() {
         return mark;
     }    
+    
+    @Override
+    public String toXML() {
+        String XML = "";
+        XML += "<FITBAnswer>\n";
+        XML += "<Mark>" + mark + "</Mark>\n";
+        XML += "<Answer>" + answer + "</Answer>\n";
+        XML += "</FITBAnswer>\n";
+        return XML;                
+    }        
 }

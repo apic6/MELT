@@ -15,17 +15,9 @@ public class Answer {
     int getID() {
         return id;
     }
-}
-class MCQAnswer extends Answer {
-    int answer;
     
-    MCQAnswer(int id, int answer) {
-        this.id = id;
-        this.answer = answer;
-    }
-    
-    public int getAnswer() {
-        return answer;
+    String toXML() {
+        return "Error";
     }
 }
 
@@ -39,5 +31,38 @@ class FITBAnswer extends Answer {
     
     public String getAnswer() {
         return answer;
+    }
+    
+    @Override
+    public String toXML() {
+        String XML = "";
+        XML += "<FITBAnswer>\n";
+        XML += "<AnswerID>" + id + "</AnswerID>\n";
+        XML += "<Answer>" + answer + "</Answer>\n";
+        XML += "</FITBAnswer>\n";
+        return XML;                
+    }    
+}
+
+class MCQAnswer extends Answer {
+    int answer;
+    
+    MCQAnswer(int id, int answer) {
+        this.id = id;
+        this.answer = answer;
+    }
+    
+    public int getAnswer() {
+        return answer;
+    }
+    
+    @Override
+    public String toXML() {
+        String XML = "";
+        XML += "<MCQAnswer>\n";
+        XML += "<AnswerID>" + id + "</AnswerID>\n";
+        XML += "<Answer>" + answer + "</Answer>\n";
+        XML += "</MCQAnswer>\n";
+        return XML;         
     }
 }

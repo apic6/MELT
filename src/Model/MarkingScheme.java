@@ -28,6 +28,16 @@ class MarkingSubSection {
     MarkingAnswer getAnswer(int id) {
         return answerList.get(id);
     }    
+    
+    String toXML() {
+        String XML = "";
+        XML += "<MarkingSubSection>\n";
+        for (int i = 0; i<answerList.size(); i++) {
+            XML += answerList.get(i).toXML() + "\n";
+        }
+        XML += "</MarkingSubSection>\n";
+        return XML;        
+    }    
 }
 
 class MarkingSection {
@@ -48,11 +58,26 @@ class MarkingSection {
     MarkingSubSection getSubSection(int id) {
         return subSectionList.get(id);
     }
+    
+    String toXML() {
+        String XML = "";
+        XML += "<MarkingSection>\n";
+        for (int i = 0; i<subSectionList.size(); i++) {
+            XML += subSectionList.get(i).toXML() + "\n";
+        }
+        XML += "</MarkingSection>\n";
+        return XML;        
+    }        
 }
 
 public class MarkingScheme {
     int paperID;
     ArrayList<MarkingSection> sectionList;
+    
+    MarkingScheme(int id) {
+        this.paperID = id;
+        sectionList = new ArrayList<>();
+    }
     
     int getPaperID() {
         return paperID;
@@ -69,6 +94,16 @@ public class MarkingScheme {
     MarkingSection getSection(int id) {
         return sectionList.get(id);
     }
+    
+    String toXML() {
+        String XML = "";
+        XML += "<MarkingScheme id=\"" + paperID + "\">\n";
+        for (int i = 0; i<sectionList.size(); i++) {
+            XML += sectionList.get(i).toXML() + "\n";
+        }
+        XML += "</MarkingScheme>\n";
+        return XML;
+    }    
 }
 
 
