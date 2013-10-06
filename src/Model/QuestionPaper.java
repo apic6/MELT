@@ -141,7 +141,7 @@ public class QuestionPaper {
         
         // eligible teachers
         for (int i = 0; i<EliglbeTeachers.size(); i++) {
-            XML += "<EliglbeTeacher>" + EliglbeTeachers.get(i) + "</EliglbeTeacher>\n";
+            XML += "<EligibleTeacher>" + EliglbeTeachers.get(i) + "</EligibleTeacher>\n";
         }
         
         // sections       
