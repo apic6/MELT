@@ -24,8 +24,8 @@ public class Modeller {
     }
     
     // loads all papers into model
-    void loadPapers() {
-        QuestionPaperLoader loader = new QuestionPaperLoader();
+    void loadPapers(String filename) {
+        QuestionPaperLoader loader = new QuestionPaperLoader(filename);
         
         loader.ReadPapers();
         

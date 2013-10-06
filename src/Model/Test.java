@@ -15,9 +15,9 @@ import java.util.logging.Logger;
 public class Test {
     public static void main(String argv[]) {
         Modeller model = new Modeller();
-        model.loadPapers();
+        model.loadPapers("src/Papers2.xml");
         try {
-            model.savePapers("papers2");
+            model.savePapers("src/Papers3.xml");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }

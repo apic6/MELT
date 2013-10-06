@@ -26,10 +26,10 @@ public class QuestionPaperLoader {
     DocumentBuilder dBuilder;
     Document doc;
 
-    QuestionPaperLoader() {
+    QuestionPaperLoader(String filename) {
         try {
             QuestionPapers = new ArrayList<>();
-            XmlFile = new File("src/Papers.xml");
+            XmlFile = new File(filename);
             dbFactory = DocumentBuilderFactory.newInstance();
             dBuilder = dbFactory.newDocumentBuilder();
             doc = dBuilder.parse(XmlFile);
@@ -59,6 +59,7 @@ public class QuestionPaperLoader {
             }
             // eligible teachers
             for (int j = 0; j < QPElement.getElementsByTagName("EligibleTeacher").getLength(); j++) {
+                System.out.println("I read teacher");
                 paper.AddEligibleSetter(Integer.parseInt(QPElement.getElementsByTagName("EligibleTeacher").item(j).getTextContent().toString()));
             }
             
