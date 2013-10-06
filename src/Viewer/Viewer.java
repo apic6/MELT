@@ -26,17 +26,15 @@ public class Viewer extends JFrame {
      
      public Viewer (Modeller model) {      //constructor
          
-        JPanel content = new JPanel();
-        content.setSize(400,400);
-        
-        content.add(new JLabel("Input"));
-        
-        content.add(testButton);
-        content.add(testButton2);
-        this.setContentPane(content);
-        this.pack();
-        
-        this.setTitle("testing");
+        //JPanel content = new JPanel();
+        //content.setSize(400,400);
+        //content.add(new JLabel("Input"));
+        //content.add(testButton);
+       // content.add(testButton2);
+        //this.setContentPane(content);
+        //this.pack();
+       // this.setTitle("testing");
+         
         Welcome welcome=new Welcome();
         welcome.setVisible(true);
      
