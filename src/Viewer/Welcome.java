@@ -13,11 +13,14 @@ import javax.swing.*;
  */
 public class Welcome extends JFrame{
     
+    public JFrame mainFrame;
     public Welcome() {
         initComponents();
+        setContentPane(welcomePanel);
+        mainFrame = this;
     }
 
-    
+    private javax.swing.JPanel welcomePanel;
     private javax.swing.JButton studentButton;
     private javax.swing.JButton teacherButton;
     private javax.swing.JLabel welcomeLogo;
@@ -30,6 +33,7 @@ public class Welcome extends JFrame{
      */
     private void initComponents() {
 
+        welcomePanel = new JPanel();
         welcomeLabel = new java.awt.Label();
         studentButton = new javax.swing.JButton();
         teacherButton = new javax.swing.JButton();
@@ -46,7 +50,9 @@ public class Welcome extends JFrame{
         studentButton.setToolTipText("");
         studentButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
+                mainFrame.setContentPane(new Student());
+                mainFrame.pack();
+                mainFrame.setVisible(true);
             }
         });
 
@@ -54,8 +60,7 @@ public class Welcome extends JFrame{
 
         welcomeLogo.setText("");
         
-        Container mainPane = getContentPane();
-        mainPane.setLayout(new GridBagLayout());
+        welcomePanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = GridBagConstraints.RELATIVE;
@@ -63,7 +68,7 @@ public class Welcome extends JFrame{
         c.gridy = 0;
         c.ipady = 50;
         c.weighty = 0;
-        mainPane.add(welcomeLogo,c);
+        welcomePanel.add(welcomeLogo,c);
         
         GridBagConstraints c1 = new GridBagConstraints();
         c1.fill = GridBagConstraints.HORIZONTAL;
@@ -75,7 +80,7 @@ public class Welcome extends JFrame{
         c1.ipadx = 80;
         c1.anchor = GridBagConstraints.CENTER;
         c1.gridwidth = GridBagConstraints.REMAINDER;
-        mainPane.add(welcomeLabel,c1);
+        welcomePanel.add(welcomeLabel,c1);
         
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.EAST;
@@ -85,11 +90,11 @@ public class Welcome extends JFrame{
         c2.ipady = 20;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
-        mainPane.add(studentButton, c2);
+        welcomePanel.add(studentButton, c2);
         c2.insets = new Insets(50, 20, 30, 0);
         c2.anchor = GridBagConstraints.WEST;
         c2.gridx = 1;
-        mainPane.add(teacherButton,c2);
+        welcomePanel.add(teacherButton,c2);
         
 //        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 //        getContentPane().setLayout(layout);
@@ -120,7 +125,7 @@ public class Welcome extends JFrame{
 //                    .addComponent(teacherButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
 //                .addGap(104, 104, 104))
 //        );
-
+        add(welcomePanel);
         pack();
     }// </editor-fold>                        
 

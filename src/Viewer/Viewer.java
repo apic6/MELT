@@ -19,9 +19,9 @@ import javax.swing.JPanel;
  * @author mbaxkak4
  */
 public class Viewer extends JFrame {
-    
-     private JButton    testButton = new JButton("test");
-     private JButton    testButton2 = new JButton("test2");
+//    
+//     private JButton    testButton = new JButton("test");
+//     private JButton    testButton2 = new JButton("test2");
      
      
      public Viewer (Modeller model) {      //constructor
@@ -41,8 +41,8 @@ public class Viewer extends JFrame {
 }
      
      public void addListener(ActionListener mal) {
-        testButton.addActionListener(mal);
-        testButton2.addActionListener(mal);
+//        testButton.addActionListener(mal);
+//        testButton2.addActionListener(mal);
     }
      
     

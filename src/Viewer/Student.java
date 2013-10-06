@@ -20,12 +20,12 @@ import javax.swing.border.TitledBorder;
  *
  * @author Daniel
  */
-public class Student extends JFrame{
+public class Student extends JPanel{
     public Student(){
         initComponents();
     }
     
-    private Container mainPanel;
+//    private Container mainPanel;
     private JPanel leftPanel;
     private JPanel rightPanel;
     private JLabel mainLabel;
@@ -38,9 +38,9 @@ public class Student extends JFrame{
     private JMenuItem menuItem2;
     
     private void initComponents() {
-        setTitle("Welcome!");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainPanel = getContentPane();
+//        setTitle("Welcome!");
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        mainPanel = getContentPane();
         leftPanel = new JPanel();
         rightPanel = new JPanel();
         mainLabel = new JLabel();
@@ -52,7 +52,7 @@ public class Student extends JFrame{
         menuItem1 = new JMenuItem();
         menuItem2 = new JMenuItem();
         
-        mainPanel.setLayout(new GridBagLayout());
+        setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         
         c.weightx = 0.5;
@@ -63,7 +63,7 @@ public class Student extends JFrame{
         c.ipady = 10;
         c.insets = new Insets(10, 10, 0, 0);
         leftPanel.setBorder(new TitledBorder("My avaliable tests"));
-        mainPanel.add(leftPanel,c);
+        add(leftPanel,c);
         
         c.weightx = 0.5;
         c.fill = GridBagConstraints.BOTH;
@@ -73,7 +73,7 @@ public class Student extends JFrame{
         c.ipady = 10;
         c.insets = new Insets(10, 0, 0, 10);
         rightPanel.setBorder(new TitledBorder("My previous taken tests"));
-        mainPanel.add(rightPanel,c);
+        add(rightPanel,c);
         
         menu1.setText("File");
         menu1.add(menuItem1);
@@ -110,15 +110,8 @@ public class Student extends JFrame{
         c2.gridy = 2;
         rightPanel.add(new TestPreview(),c2);
         
-        setJMenuBar(menuBar);
-        pack();
+//        setJMenuBar(menuBar);
+//        pack();
     }
     
-    public static void main(String[] args){
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new Student().setVisible(true);
-            }
-        });
-    }
 }
