@@ -54,6 +54,16 @@ public class Modeller {
         }
     }
     
+    ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
+        ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
+        for (int i = 0; i<questionPapers.size(); i++) {
+            if (questionPapers.get(i).IsStudentEligible(studentID)) {
+                eligiblePapers.add(questionPapers.get(i));
+            }
+        }
+        return eligiblePapers;
+    }
+    
     // get number of papers
     int getNumberOfPapers() {
         return questionPapers.size();
