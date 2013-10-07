@@ -41,7 +41,7 @@ public class Viewer extends JFrame {
      
      public void addListener(ActionListener mal) {
          (Welcome.teacherButton).addActionListener(mal);
-//      
+         (LoginScreen.loginButton).addActionListener(mal);
     }
      
     
