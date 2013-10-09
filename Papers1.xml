@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<QuestionPaper id="0001">
+	<Title>Paper 1</Title>
+	<Description>Paper for xyz</Description>
+	<Instructions> 1. Do X
+2. Profit</Instructions>
+	<EligibleStudent>12301230</EligibleStudent>
+	<EligibleStudent>12301230</EligibleStudent>
+	<EligibleStudent>12301230</EligibleStudent>
+	<EligibleStudent>12301230</EligibleStudent>
+	<EligibleTeacher>19230513</EligibleTeacher>
+	<Section id="000101"> 
+		<Title>Section 1 - Grammar</Title>
+		<Description>Desc</Description>
+		<Instructions>Instr</Instructions>
+		<TimeLimit>12312</TimeLimit>
+		<SubSection>
+			<Title>Subsection1</Title>
+			<Description>asd</Description>
+			<Instructions>asd</Instructions>
+			
+			<Question type="MCQ"> 
+				<Instructions>Instructions</Instructions>
+				<QuestionText>Q</QuestionText>
+				<Answer>answer 1</Answer>
+				<Answer>answer 2</Answer>
+				<Answer>answer 3</Answer>
+				<Answer>answer 4</Answer>
+			</Question>
+		</SubSection>
+		<SubSection>
+			<Title></Title>
+			<Description></Description>
+			<Instructions></Instructions>
+			
+			<Question type="FITBQ"> 
+				<Instructions>Instructions</Instructions>
+				<QuestionText>Q</QuestionText>
+			</Question>			
+		</SubSection>
+	</Section>
+	<Section id="000102"> 
+		<Title>Section 1 - Grammar</Title>
+		<Description>Desc</Description>
+		<Instructions>Instr</Instructions>
+		<TimeLimit>12312</TimeLimit>
+		<SubSection>
+			<Title>Subsection1</Title>
+			<Description>asd</Description>
+			<Instructions>asd</Instructions>			
+		</SubSection>
+	</Section>	
+</QuestionPaper>

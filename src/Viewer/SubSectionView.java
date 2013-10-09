@@ -4,39 +4,27 @@
  */
 package Viewer;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.KeyEvent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import Model.*;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.PopupMenu;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 
 /**
  *
  * @author mbgm8je3
  */
-public class SubSectionView extends JFrame {
+public class SubSectionView extends JScrollPane {
     Question[] questions;
     QuestionView[] questionViews;
+    // int height;
     
     public SubSectionView(SubSection subSection) {
         JPanel questionsPanel = new JPanel();
         questionsPanel.setLayout(new BoxLayout(questionsPanel, BoxLayout.Y_AXIS));
+        
+        // height = 0;  
         
         questions = new Question[subSection.GetNumberOfQuestions()];
         questionViews = new QuestionView[questions.length];
@@ -45,27 +33,12 @@ public class SubSectionView extends JFrame {
             questions[i] = subSection.GetQuestion(i);
             questionViews[i] = new QuestionView(questions[i]);
             questionsPanel.add(questionViews[i]);
+            // height += questionViews[i].getHeight();
         }
         
-        JScrollPane scrollPane = new JScrollPane(questionsPanel);        
-        questionsPanel.setPreferredSize(new Dimension(700, 1000));
-        add(scrollPane);
-        // add(questionsPanel);
-        this.setSize(new Dimension(700, 1000)); 
+        setViewportView(questionsPanel);
+        // questionsPanel.setPreferredSize(new Dimension(650, 1000));
+        this.setSize(new Dimension(650, 600)); 
         
     }
-    
-    public static void main(String argv[]) {
-        Modeller model = new Modeller();
-        model.loadPapers("src/Papers.xml");
-        ArrayList<QuestionPaper> papers = model.getPapersByStudentID(12301230);
-        QuestionPaper paper = papers.get(0);
-        Section section = paper.GetSection(0);
-        SubSection subSection = section.GetSubSection(0);
-        // QuestionView view = new QuestionView(question);
-        // view.setVisible(true);
-        
-        new SubSectionView(subSection).setVisible(true);
-        
-    }    
 }
