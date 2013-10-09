@@ -12,7 +12,7 @@ public class QuestionPaper {
     private ArrayList<Integer> EligibleStudents;
     private ArrayList<Integer> EliglbeTeachers;
 
-    QuestionPaper(int GivenPaperID, int CreatorID) {
+    public QuestionPaper(int GivenPaperID, int CreatorID) {
         PaperID = GivenPaperID;
         SectionList = new ArrayList<>();
         EligibleStudents = new ArrayList<>();
@@ -20,7 +20,7 @@ public class QuestionPaper {
         EliglbeTeachers.add(CreatorID);
     }
 
-    QuestionPaper(int GivenPaperID) {
+    public QuestionPaper(int GivenPaperID) {
         PaperID = GivenPaperID;
         SectionList = new ArrayList<>();
         EligibleStudents = new ArrayList<>();
@@ -102,6 +102,10 @@ public class QuestionPaper {
     
     public void AddSection(int position, Section S) {
   	SectionList.add (position, S);
+    }
+    
+    public void AddSection(Section S) {
+  	SectionList.add (S);
     }
 
     public void RemoveSection (int position) {

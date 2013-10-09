@@ -5,9 +5,13 @@
 package Viewer;
 
 import Model.Modeller;
+import Model.QuestionPaper;
+import Model.Section;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -22,11 +26,14 @@ public class TestWizard extends JPanel{
     public JFrame mainFrame;
     public Modeller model;
     public JTabbedPane tabs;
-    
+    public QuestionPaper paper;
+    ArrayList<TestSection> sectionList;
     public TestWizard(JFrame frame,Modeller model,JTabbedPane tabs){
         this.model = model;
         mainFrame = frame;
         this.tabs = tabs;
+        sectionList = new ArrayList();
+        paper = new QuestionPaper(123456);
         initComponents();
     
 }
@@ -38,6 +45,7 @@ public class TestWizard extends JPanel{
         con.gridy = 0;
         con.weightx = 1.0;
         con.weighty = 1.0;
+        con.gridwidth = GridBagConstraints.REMAINDER;
         con.fill = GridBagConstraints.BOTH;
         if(tabs!=null){
             add(tabs,con);
@@ -52,13 +60,14 @@ public class TestWizard extends JPanel{
         c.gridy = 0;
         c.weightx = 1.0;
         c.weighty = 1.0;
+        c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.BOTH;
-        tab1.add(new TestSection(mainFrame,model),c);
+        
+        tab1.add(new TestSection(mainFrame,model,paper,sectionList),c);
         tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
         add(tabs,con);
         }
         
-        final JTabbedPane tabs_copy = tabs;
         JButton addSection = new JButton("addSection");
         addSection.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -72,14 +81,32 @@ public class TestWizard extends JPanel{
             c2.weightx = 1.0;
             c2.weighty = 1.0;
             c2.fill = GridBagConstraints.BOTH;
-            tab3.add(new TestSection(mainFrame,model),c2);
-            tabs_copy.addTab("section"+ (tabs_copy.getTabCount()+1),tab3);
-                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,model,tabs_copy));
+            tab3.add(new TestSection(mainFrame,model,paper,sectionList),c2);
+            tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
+            tabs.revalidate();
             }
         });
+        con.gridx = 0;
         con.gridy = 1;
         con.weighty = 0;
+        con.gridwidth = 1;
         add(addSection,con);
+        
+        JButton submit = new JButton("finish");
+        submit.addActionListener(new java.awt.event.ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(int i = 0; i < sectionList.size(); i++){
+                    sectionList.get(i).section.SetTitle(sectionList.get(i).getTitle());
+                    sectionList.get(i).section.SetDescription(sectionList.get(i).getDescription());
+                    sectionList.get(i).section.SetInstructions(sectionList.get(i).getInstruction());
+                }
+                System.out.print(paper.toXML());
+            }
+    });
+        con.gridx = 1;
+        add(submit,con);
     }
 
 }

@@ -20,8 +20,11 @@ public class Section {
 
     private ArrayList<SubSection> SubSectionList;
     
+    public Section(){
+        SubSectionList = new ArrayList();
+    }
     
-    Section (int ID, String Title, String Description, String Instructions, int TimeLimit) {
+    public Section (int ID, String Title, String Description, String Instructions, int TimeLimit) {
         this.ID = ID;
         this.Title = Title;
         this.Description = Description;
@@ -77,6 +80,10 @@ public class Section {
     
     public void AddSubSection(int position, SubSection S) {
   	SubSectionList.add (position, S);
+    }
+    
+    public void AddSubSection(SubSection S) {
+  	SubSectionList.add (S);
     }
 
     public void RemoveSubSection (int position) {

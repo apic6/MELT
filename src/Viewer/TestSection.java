@@ -5,11 +5,14 @@
 package Viewer;
 
 import Model.Modeller;
+import Model.QuestionPaper;
+import Model.Section;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,10 +34,13 @@ public class TestSection extends JPanel{
     private JTextArea description;
     private JTextArea instruction;
     private JTabbedPane subsections;
-    
-    public TestSection(JFrame frame,Modeller model){
+    public Section section;
+    public TestSection(JFrame frame,Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList){
         this.model = model;
         mainFrame = frame;
+        section = new Section();
+        sectionList.add(this);
+        paper.AddSection(section);
         initComponents();
     }
 
@@ -83,7 +89,7 @@ public class TestSection extends JPanel{
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
         con.gridwidth = GridBagConstraints.REMAINDER;
-        JPanel subsection1 = new Subsection();
+        JPanel subsection1 = new Subsection(section);
         subsection1.setPreferredSize(new Dimension(200,200));
         subsections.addTab("subsection1",subsection1);
         add(subsections,con);
@@ -94,7 +100,7 @@ public class TestSection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel subsection = new Subsection();
+                JPanel subsection = new Subsection(section);
                 subsections.addTab("subsection2",subsection );
                 subsections.revalidate();
             }
@@ -102,5 +108,17 @@ public class TestSection extends JPanel{
         con.gridy = 4;
         con.weighty = 0;
         add(addSubsection,con);
+    }
+    
+    public String getTitle(){
+        return this.title.getText();
+    }
+
+    public String getDescription() {
+        return this.description.getText();
+    }
+    
+    public String getInstruction(){
+        return this.instruction.getText();
     }
 }

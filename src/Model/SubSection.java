@@ -18,7 +18,11 @@ public class SubSection {
     
     ArrayList<Question> QuestionList;
     
-    SubSection (String Title, String Description, String Instructions) {
+    public SubSection(){
+        QuestionList = new ArrayList();
+    }
+    
+    public SubSection (String Title, String Description, String Instructions) {
         this.Title = Title;
         this.Description = Description;
         this.Instructions = Instructions;
@@ -61,7 +65,10 @@ public class SubSection {
     public void AddQuestion(int position, Question Q) {
   	QuestionList.add (position, Q);
     }
-
+    
+    public void AddQuestion(Question Q) {
+  	QuestionList.add (Q);
+    }
     public void RemoveQuestion (int position) {
           QuestionList.remove(position);
     }
