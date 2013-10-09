@@ -135,8 +135,7 @@ public class TeacherView extends JPanel {
         @Override
         public void actionPerformed(ActionEvent evt){
             TestPreviewer tp=new TestPreviewer(amodel,j);
-            
-            //tp.setVisible(true);
+        
         }
     }
      private class  EditListener implements ActionListener{

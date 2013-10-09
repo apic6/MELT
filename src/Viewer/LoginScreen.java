@@ -25,6 +25,7 @@ public class LoginScreen extends JPanel {
      private static JTextField userIDText = new JTextField(20);
      private static JPasswordField passwordText = new JPasswordField(20);
      private Modeller amodel;
+     
      public LoginScreen (JFrame frame,Modeller model) {    //might not even need the frame
      mainFrame=frame;
      initComponents();
