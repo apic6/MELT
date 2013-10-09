@@ -108,8 +108,8 @@ public class QuestionPaperLoader {
                                             answers, 
                                             QElement.getElementsByTagName("Instructions").item(0).getTextContent());
                         } else if (QElement.getAttribute("type").toString().equals("FITBQ") ) {
-                            question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(l).getTextContent(), 
-                                            QElement.getElementsByTagName("Instructions").item(l).getTextContent());
+                            question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(), 
+                                            QElement.getElementsByTagName("Instructions").item(0).getTextContent());
                         } else {
                             System.out.println("ERROR");
                         }

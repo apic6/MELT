@@ -7,7 +7,7 @@ public class MultipleChoiceQuestion implements Question {
     private String[] Answers;
     private int ChosenAnswer;
 	
-    MultipleChoiceQuestion(String Question, String[] Answers, String Instructions) {
+    public MultipleChoiceQuestion(String Question, String[] Answers, String Instructions) {
         this.Question = Question;
         this.Instructions = Instructions;
 

@@ -4,11 +4,14 @@
  */
 package Viewer;
 
+import Model.MultipleChoiceQuestion;
+import Model.SubSection;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -25,13 +28,22 @@ public class QuestionCreater extends JFrame{
     JTabbedPane questionType;
     JPanel MCQ;
     JPanel FIBQ;
-    JFrame frame;
+    JPanel mainPane;
     JPanel answerPanel;
+    JTextArea title;
+    ArrayList<JTextArea> answerAreas;
+    GridBagConstraints gbc_parent;
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints apc = new GridBagConstraints();
-    public QuestionCreater(){
+    
+    MultipleChoiceQuestion question;
+    SubSection subSection;
+    public QuestionCreater(JPanel mainPane,GridBagConstraints gbc_parent,SubSection subSection){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame = this;
+        this.mainPane = mainPane;
+        this.gbc_parent = gbc_parent;
+        answerAreas = new ArrayList();
+        this.subSection = subSection;
         initComponents();
     }
     
@@ -48,7 +60,7 @@ public class QuestionCreater extends JFrame{
         
         gbc.gridx = 1;
         gbc.weightx = 0.7;
-        JTextArea title = new JTextArea(1,20);
+        title = new JTextArea(1,20);
         MCQ.add(title,gbc);
         
         JButton addAnswer = new JButton("add answer");
@@ -69,6 +81,23 @@ public class QuestionCreater extends JFrame{
         gbc.gridy = 2;
         gbc.weighty = 0;
         MCQ.add(submit,gbc);
+        
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gbc_parent.gridy++;
+                JLabel question_des = new JLabel(title.getText());
+                mainPane.add(question_des,gbc_parent);
+                String[] answers = new String[10];
+                for(int i =0; i< answerAreas.size();++i){
+                    answers[i] = answerAreas.get(i).getText();
+                }
+                question = new MultipleChoiceQuestion(title.getText(),answers,null);
+                subSection.AddQuestion(question);
+                mainPane.revalidate();
+            }
+        
+        });
         
         answerPanel.setLayout(new GridBagLayout());
         apc.gridx = 0;
@@ -104,13 +133,13 @@ public class QuestionCreater extends JFrame{
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
             JTextArea answer = new JTextArea(1,20);
+            answerAreas.add(answer);
             gbc.gridx = 1;
             gbc.weightx = 0.7;
             tempPanel.add(answer,gbc);
             JCheckBox isRight = new JCheckBox("right answer");
             gbc.gridx = 2;
             tempPanel.add(isRight,gbc);
-            
             return tempPanel;
         }
     
