@@ -51,7 +51,6 @@ public class Welcome extends JPanel{
         });
         
         teacherButton.setText("I am a Teacher");
-
         teacherButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
