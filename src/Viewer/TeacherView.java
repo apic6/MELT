@@ -105,6 +105,7 @@ public class TeacherView extends JPanel {
         //c2.gridwidth = GridBagConstraints.REMAINDER;
         c2.gridy = 2;
         amodel.loadPapers("src/Papers.xml");
+        
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
         
         for(int i=0;i<papers.size();++i){
@@ -134,6 +135,7 @@ public class TeacherView extends JPanel {
         @Override
         public void actionPerformed(ActionEvent evt){
             TestPreviewer tp=new TestPreviewer(amodel,j);
+            
             //tp.setVisible(true);
         }
     }
