@@ -16,7 +16,8 @@ public class FITBQuestion implements Question {
         return Instructions;
     }
 
-    public String GetQuestion() {
+    @Override
+    public String getQuestion() {
         return Question;
     }
 

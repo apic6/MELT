@@ -8,8 +8,8 @@ import Model.Modeller;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 /**
@@ -19,6 +19,9 @@ import javax.swing.JTextArea;
 public class TestSection extends JPanel{
     public JFrame mainFrame;
     public Modeller model;
+    private JLabel title_label;
+    private JLabel description_label;
+    private JLabel instruction_label;
     private JTextArea title;
     private JTextArea description;
     private JTextArea instruction;
@@ -35,21 +38,27 @@ public class TestSection extends JPanel{
         setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
         
-        con.fill = GridBagConstraints.HORIZONTAL;
         con.gridx = 0;
         con.gridy = 0;
-        con.weightx = 1.0;
+        con.weightx = 0.3;
         con.anchor = GridBagConstraints.NORTHWEST;
-        title = new JTextArea("title");
-        add(title,con);
+        title_label = new JLabel("title:  ");
+        add(title_label,con);
+        con.gridx = 1;
+        con.weightx = 0.7;
+        title = new JTextArea(1,10);
+        add(title, con);
         
-        description = new JTextArea("description");
+        description_label = new JLabel("description:  ");
+        con.gridx = 0;
         con.gridy = 1;
-        add(description,con);
+        add(description_label,con);
         
-        instruction = new JTextArea("instruction");
+        instruction_label = new JLabel("instruction:  ");
         con.gridy = 2;
-        add(instruction,con);
+        con.weighty = 1.0;
+        add(instruction_label,con);
+        
         
     }
 }
