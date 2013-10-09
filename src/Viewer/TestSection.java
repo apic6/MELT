@@ -5,11 +5,16 @@
 package Viewer;
 
 import Model.Modeller;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 /**
@@ -25,7 +30,7 @@ public class TestSection extends JPanel{
     private JTextArea title;
     private JTextArea description;
     private JTextArea instruction;
-    
+    private JTabbedPane subsections;
     
     public TestSection(JFrame frame,Modeller model){
         this.model = model;
@@ -46,19 +51,56 @@ public class TestSection extends JPanel{
         add(title_label,con);
         con.gridx = 1;
         con.weightx = 0.7;
+        con.insets = new Insets(10,0,10,0);
         title = new JTextArea(1,10);
         add(title, con);
         
         description_label = new JLabel("description:  ");
         con.gridx = 0;
         con.gridy = 1;
+        con.weightx = 0.3;
         add(description_label,con);
+        con.gridx = 1;
+        con.weightx = 0.7;
+        description = new JTextArea(1,10);
+        add(description, con);
         
         instruction_label = new JLabel("instruction:  ");
+        con.gridx = 0;
         con.gridy = 2;
-        con.weighty = 1.0;
+        con.weighty = 0;
+        con.weightx = 0.3;
         add(instruction_label,con);
+        con.gridx = 1;
+        con.weightx = 0.7;
+        instruction = new JTextArea(1,10);
+        add(instruction, con);
         
+        subsections = new JTabbedPane();
+        con.gridx = 0;
+        con.weighty = 1.0;
+        con.gridy = 3;
+        con.weightx = 1.0;
+        con.fill = GridBagConstraints.BOTH;
+        con.gridwidth = GridBagConstraints.REMAINDER;
+        JPanel subsection1 = new Subsection();
+        subsection1.setPreferredSize(new Dimension(200,200));
+        subsections.addTab("subsection1",subsection1);
+        add(subsections,con);
         
+        JButton addSubsection = new JButton("Add Subsection");
+        
+        addSubsection.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel subsection = new Subsection();
+                subsections.addTab("subsection2",subsection );
+                subsections.revalidate();
+            }
+        });
+        con.gridy = 4;
+        con.weighty = 0;
+        add(addSubsection,con);
     }
 }
