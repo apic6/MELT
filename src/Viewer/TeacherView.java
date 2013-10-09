@@ -12,6 +12,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,7 +26,7 @@ import javax.swing.JPanel;
  */
 public class TeacherView extends JPanel {
     
-   
+    private int j;
     public JFrame mainFrame;
     public Modeller amodel;
     public TeacherView(JFrame frame,Modeller model){
@@ -49,13 +51,16 @@ public class TeacherView extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         
+       
         
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.gridy = 0;
         c.ipady = 50;
-        c.weighty = 0;
+        c.ipadx = 30;
+        c.insets = new Insets(20,20,20,20);
+        c.weighty = 10;
         createTest.setText("Create a New Test");
         createTest.setPreferredSize(new Dimension(200, 40));
         createTest.addActionListener(new java.awt.event.ActionListener() {
@@ -88,36 +93,60 @@ public class TeacherView extends JPanel {
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.SOUTH;
         c2.gridx = GridBagConstraints.RELATIVE;
-        c2.gridx = 0;
-        c2.gridy = 10;
+        
+        //c2.gridx = 0;
+        //c2.gridy = 0;
         c2.ipadx = 20;
         c2.ipady = 20;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
         c2.insets = new Insets(50, 20, 30, 0);
         c2.anchor = GridBagConstraints.SOUTH;
-        c2.gridx = 1;
+        //c2.gridwidth = GridBagConstraints.REMAINDER;
+        c2.gridy = 2;
         amodel.loadPapers("src/Papers.xml");
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
-        for(int i=0;i<papers.size();++i){
-           // c2.gridy = i;
-        this.add(new TestPreview(papers.get(i)),c2);
-        JButton editTest=new JButton("Edit");
-        this.add(editTest,c2);
-        JButton previewTest=new JButton("Preview");
-        this.add(previewTest,c2);
         
+        for(int i=0;i<papers.size();++i){
+            j=i;
+            c2.gridy=c2.gridy+i;
+            c2.gridx = i;
+            this.add(new PaperPreviewer(papers.get(i)),c2);
+            
+            c2.gridx=i+1;
+            JButton editButton=new JButton("Edit Test");
+            editButton.addActionListener(new EditListener());
+            this.add(editButton,c2);
+            
+            c2.gridx=i+2;
+            JButton previewButton=new JButton("Preview Test");
+            previewButton.addActionListener(new PreviewListener());
+            this.add(previewButton,c2);
+           
         }
         
+     
     
-    
-       
-    
-    
-    
-    
-    
+      }
+
+    private class  PreviewListener implements ActionListener{
+        
+        @Override
+        public void actionPerformed(ActionEvent evt){
+            TestPreviewer tp=new TestPreviewer(amodel,j);
+            //tp.setVisible(true);
+        }
+    }
+     private class  EditListener implements ActionListener{
+        
+        @Override
+        public void actionPerformed(ActionEvent evt){
+          //  TestPreviewer tp=new TestPreviewer(amodel,j);
+            //tp.setVisible(true);
+        }
     }
     
     
+
+
 }
