@@ -43,8 +43,13 @@ public class Controller {
                 String pass= LoginScreen.getPassword();
                 }
                     break;
-                case "I am a Teacher":{System.out.println("yeahhhh");}
+                case "SaveTest":{
+                }
                     break;
+                case "ValidateTest":{
+                }
+                    break;
+                
             }
                
         }}

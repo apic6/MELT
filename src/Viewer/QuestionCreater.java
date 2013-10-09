@@ -7,6 +7,7 @@ package Viewer;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -29,6 +30,7 @@ public class QuestionCreater extends JFrame{
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagConstraints apc = new GridBagConstraints();
     public QuestionCreater(){
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame = this;
         initComponents();
     }
