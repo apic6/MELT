@@ -55,7 +55,7 @@ public class Welcome extends JPanel{
         teacherButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,model));
+                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,model,null));
             }
         });
         
