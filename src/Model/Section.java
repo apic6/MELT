@@ -31,59 +31,59 @@ public class Section {
         SubSectionList = new ArrayList<>();
     }
     
-    void SetTitle ( String Title) {
+    public void SetTitle ( String Title) {
         this.Title = Title;
     }
     
-    void SetDescription ( String Description) {
+    public void SetDescription ( String Description) {
         this.Description = Description;
     }
     
-    void SetInstructions ( String Instructions ) {
+    public void SetInstructions ( String Instructions ) {
         this.Instructions = Instructions;
     }
     
-    void SetTimeLimit ( int TimeLimit) {
+    public void SetTimeLimit ( int TimeLimit) {
         this.TimeLimit = TimeLimit;
     }
     
-    int GetID(){
+    public int GetID(){
         return ID;
     }
     
-    String GetTitle(){
+    public String GetTitle(){
         return Title;
     }
     
-    String GetDescription(){
+    public String GetDescription(){
         return Description;
     }
     
-    String GetInstructions() {
+    public String GetInstructions() {
         return Instructions;
     }
     
-    int GetTimeLimit(){
+    public int GetTimeLimit(){
         return TimeLimit;
     }
     
-    int GetNumberOfSubSections() {
+    public int GetNumberOfSubSections() {
         return SubSectionList.size();
     }
     
-    SubSection GetSubSection(int ID) {
+    public SubSection GetSubSection(int ID) {
         return SubSectionList.get(ID);
     }
     
-    void AddSubSection(int position, SubSection S) {
+    public void AddSubSection(int position, SubSection S) {
   	SubSectionList.add (position, S);
     }
 
-    void RemoveSubSection (int position) {
+    public void RemoveSubSection (int position) {
         SubSectionList.remove(position);
     }
 
-    void MoveSubSectionUp (int SubSectionToMove) {
+    public void MoveSubSectionUp (int SubSectionToMove) {
         if (SubSectionToMove <= 0) return;
         if (SubSectionToMove >= SubSectionList.size()) return;
 
@@ -91,11 +91,11 @@ public class Section {
         SubSectionList.remove(SubSectionToMove +1 );
     }
 
-    void MoveSubSectionDown (int SubSectionToMove) {
+    public void MoveSubSectionDown (int SubSectionToMove) {
         MoveSubSectionUp(SubSectionToMove+1);
     }
     
-    String toXML() {
+    public String toXML() {
         String XML = "<Section id=\"" + ID + "\">\n";
         
         XML += "<Title>" + Title + "</Title>\n";

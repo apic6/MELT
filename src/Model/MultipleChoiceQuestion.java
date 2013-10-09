@@ -19,27 +19,28 @@ public class MultipleChoiceQuestion implements Question {
     }
 	
     @Override
-    public String GetInstructions() {
+    public String getInstructions() {
         return Instructions;
     }
 	
-    String GetQuestion() {
+    @Override
+    public String getQuestion() {
         return Question;
     }
 
-    int GetNumberOfAnswers() {
+    public int GetNumberOfAnswers() {
         return Answers.length;
     }
 
-    String GetAnswer(int ID) {
+    public String GetAnswer(int ID) {
         return Answers[ID];
     }
     
-    void SetAnswer(int ChosenAnswer) {
+    public void SetAnswer(int ChosenAnswer) {
         this.ChosenAnswer = ChosenAnswer;
     }
     
-    int GetChosenAnswer() {
+    public int GetChosenAnswer() {
         return ChosenAnswer;
     }
     

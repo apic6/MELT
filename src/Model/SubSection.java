@@ -26,47 +26,47 @@ public class SubSection {
         QuestionList = new ArrayList<>();
     }
     
-    void SetTitle ( String Title) {
+    public void SetTitle ( String Title) {
         this.Title = Title;
     }
     
-    void SetDescription ( String Description) {
+    public void SetDescription ( String Description) {
         this.Description = Description;
     }
     
-    void SetInstructions ( String Instructions ) {
+    public void SetInstructions ( String Instructions ) {
         this.Instructions = Instructions;
     }
     
-    String GetTitle(){
+    public String GetTitle(){
         return Title;
     }
     
-    String GetDescription(){
+    public String GetDescription(){
         return Description;
     }
     
-    String GetInstructions() {
+    public String GetInstructions() {
         return Instructions;
     }
     
-    Question GetQuestion(int ID) {
+    public Question GetQuestion(int ID) {
         return QuestionList.get(ID);
     }
     
-    int GetNumberOfQuestions(){
+    public int GetNumberOfQuestions(){
         return QuestionList.size();
     }
     
-    void AddQuestion(int position, Question Q) {
+    public void AddQuestion(int position, Question Q) {
   	QuestionList.add (position, Q);
     }
 
-    void RemoveQuestion (int position) {
+    public void RemoveQuestion (int position) {
           QuestionList.remove(position);
     }
 
-    void MoveQuestionUp (int QuestionToMove) {
+    public void MoveQuestionUp (int QuestionToMove) {
           if (QuestionToMove <= 0) return;
           if (QuestionToMove >= GetNumberOfQuestions() ) return;
 
@@ -74,7 +74,7 @@ public class SubSection {
           QuestionList.remove(QuestionToMove +1 );
     }
 
-    void MoveQuestionDown (int QuestionToMove) {
+    public void MoveQuestionDown (int QuestionToMove) {
           MoveQuestionUp(QuestionToMove+1);
     }
     

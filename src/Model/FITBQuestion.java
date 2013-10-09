@@ -12,11 +12,12 @@ public class FITBQuestion implements Question {
     }
 
     @Override
-    public String GetInstructions() {
+    public String getInstructions() {
         return Instructions;
     }
 
-    String GetQuestion() {
+    @Override
+    public String getQuestion() {
         return Question;
     }
 
