@@ -1,11 +1,11 @@
 package Model;
 
 public class MultipleChoiceQuestion implements Question {
-    String Instructions; 
-    int MarkValue;
-    String Question;
-    String[] Answers;
-    int ChosenAnswer;
+    private String Instructions; 
+    private int MarkValue;
+    private String Question;
+    private String[] Answers;
+    private int ChosenAnswer;
 	
     MultipleChoiceQuestion(String Question, String[] Answers, String Instructions) {
         this.Question = Question;
@@ -23,8 +23,7 @@ public class MultipleChoiceQuestion implements Question {
         return Instructions;
     }
 	
-    @Override
-    public String getQuestion() {
+    public String GetQuestion() {
         return Question;
     }
 
