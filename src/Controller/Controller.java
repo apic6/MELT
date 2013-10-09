@@ -9,6 +9,7 @@ package Controller;
  * @author mbaxkak4
  */
 import Model.Modeller;
+import Viewer.LoginScreen;
 import Viewer.Viewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,10 +24,11 @@ public class Controller {
     
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
+        
         view.addListener(new ViewerEventListener());
         amodel=model;
         aview=view;
-    
+        
     }
     
 
@@ -36,9 +38,12 @@ public class Controller {
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
-                case "test":{amodel.setValue();}
+                case "login":{
+                String username = LoginScreen.getUsername();
+                String pass= LoginScreen.getPassword();
+                }
                     break;
-                case "test2":{System.out.println("yeahhhh");}
+                case "I am a Teacher":{System.out.println("yeahhhh");}
                     break;
             }
                
