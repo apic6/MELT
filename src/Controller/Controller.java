@@ -46,7 +46,8 @@ public class Controller {
                 case "SaveTest":{
                 }
                     break;
-                case "SubmitTest":{}
+                case "ValidateTest":{
+                }
                     break;
                 
             }
