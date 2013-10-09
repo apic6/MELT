@@ -14,10 +14,10 @@ import Model.*;
  *
  * @author Daniel
  */
-public class TestPreview extends JPanel{
+public class PaperPreviewer extends JPanel{
     JLabel title;
     JTextArea description;
-    public TestPreview(QuestionPaper paper){
+    public PaperPreviewer(QuestionPaper paper){
         title = new JLabel(paper.GetTitle());
         description = new JTextArea(paper.GetDescription());
         

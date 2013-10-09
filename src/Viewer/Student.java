@@ -68,9 +68,9 @@ public class Student extends JPanel{
         c2.weightx = 1.0;
         c2.weighty = 0;
         c2.gridy = 0;
-//        rightPanel.add(new TestPreview(),c2);
+//        rightPanel.add(new PaperPreviewer(),c2);
         c2.gridy = 1;
-//        rightPanel.add(new TestPreview(),c2);
+//        rightPanel.add(new PaperPreviewer(),c2);
         c2.gridy = 2;
         c2.weighty = 1.0;
         c2.anchor = GridBagConstraints.NORTH;
@@ -78,9 +78,9 @@ public class Student extends JPanel{
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
         for(int i=0;i<papers.size();++i){
             c1.gridy = i;
-        leftPanel.add(new TestPreview(papers.get(i)),c2);
+        leftPanel.add(new PaperPreviewer(papers.get(i)),c2);
         }
-//        rightPanel.add(new TestPreview(),c2);
+//        rightPanel.add(new PaperPreviewer(),c2);
         
     }
     
