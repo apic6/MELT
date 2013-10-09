@@ -61,7 +61,7 @@ public class TeacherView extends JPanel {
         createTest.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel));
+                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel,null));
             }
         });
         this.add(createTest,c);
