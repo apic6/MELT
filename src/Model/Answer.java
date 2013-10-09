@@ -10,21 +10,21 @@ package Model;
  * @author mbgm8je3
  */
 public class Answer {
-    protected int id;
+    int id;
     
-    public int getID() {
+    int getID() {
         return id;
     }
     
-    public String toXML() {
+    String toXML() {
         return "Error";
     }
 }
 
 class FITBAnswer extends Answer {
-    private String answer;
+    String answer;
     
-    public FITBAnswer(int id, String answer) {
+    FITBAnswer(int id, String answer) {
         this.id = id;
         this.answer = answer;
     }

@@ -78,7 +78,7 @@ public class SubSection {
           MoveQuestionUp(QuestionToMove+1);
     }
     
-    public String toXML() {
+    String toXML() {
         String XML = "<SubSection>\n";
         
         XML += "<Title>" + Title + "</Title>\n";

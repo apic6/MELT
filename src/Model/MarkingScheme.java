@@ -17,19 +17,19 @@ class MarkingSubSection {
         answerList = new ArrayList<>();
     }
     
-    public void addAnswer(MarkingAnswer answer) {
+    void addAnswer(MarkingAnswer answer) {
         answerList.add(answer);
     }
     
-    public int getSize() {
+    int getSize() {
         return answerList.size();
     }
     
-    public MarkingAnswer getAnswer(int id) {
+    MarkingAnswer getAnswer(int id) {
         return answerList.get(id);
     }    
     
-    public String toXML() {
+    String toXML() {
         String XML = "";
         XML += "<MarkingSubSection>\n";
         for (int i = 0; i<answerList.size(); i++) {
@@ -47,19 +47,19 @@ class MarkingSection {
         subSectionList = new ArrayList<>();
     }
     
-    public void addSubSection(MarkingSubSection subSection) {
+    void addSubSection(MarkingSubSection subSection) {
         subSectionList.add(subSection);
     }
     
-    public int getSize() {
+    int getSize() {
         return subSectionList.size();
     }
     
-    public MarkingSubSection getSubSection(int id) {
+    MarkingSubSection getSubSection(int id) {
         return subSectionList.get(id);
     }
     
-    public String toXML() {
+    String toXML() {
         String XML = "";
         XML += "<MarkingSection>\n";
         for (int i = 0; i<subSectionList.size(); i++) {
@@ -79,23 +79,23 @@ public class MarkingScheme {
         sectionList = new ArrayList<>();
     }
     
-    public int getPaperID() {
+    int getPaperID() {
         return paperID;
     }
     
-    public void addSubSection(MarkingSection section) {
+    void addSubSection(MarkingSection section) {
         sectionList.add(section);
     }
     
-    public int getSize() {
+    int getSize() {
         return sectionList.size();
     }
     
-    public MarkingSection getSection(int id) {
+    MarkingSection getSection(int id) {
         return sectionList.get(id);
     }
     
-    public String toXML() {
+    String toXML() {
         String XML = "";
         XML += "<MarkingScheme id=\"" + paperID + "\">\n";
         for (int i = 0; i<sectionList.size(); i++) {

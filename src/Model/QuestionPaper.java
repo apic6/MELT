@@ -8,9 +8,9 @@ public class QuestionPaper {
     private String Title;
     private String Description;
     private String Instructions;
-    private ArrayList<Section> SectionList;
-    private ArrayList<Integer> EligibleStudents;
-    private ArrayList<Integer> EliglbeTeachers;
+    ArrayList<Section> SectionList;
+    ArrayList<Integer> EligibleStudents;
+    ArrayList<Integer> EliglbeTeachers;
 
     QuestionPaper(int GivenPaperID, int CreatorID) {
         PaperID = GivenPaperID;
