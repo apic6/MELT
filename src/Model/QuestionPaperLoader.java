@@ -90,7 +90,9 @@ public class QuestionPaperLoader {
                     // Add Questions
                     NodeList QuestionList = SSElement.getElementsByTagName("Question");
                     
+                    System.out.println("Length: " + QuestionList.getLength());
                     for (int l = 0; l < QuestionList.getLength(); l++) {
+                        System.out.println("Question: " + l);
                         Node QuestionNode = QuestionList.item(l);
                         Element QElement = (Element) QuestionNode;
                         
@@ -102,9 +104,9 @@ public class QuestionPaperLoader {
                             for (int m = 0; m<answers.length; m++) {
                                 answers[m] = QElement.getElementsByTagName("Answer").item(m).getTextContent();
                             }
-                            question = new MultipleChoiceQuestion(QElement.getElementsByTagName("QuestionText").item(l).getTextContent(), 
+                            question = new MultipleChoiceQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(), 
                                             answers, 
-                                            QElement.getElementsByTagName("Instructions").item(l).getTextContent());
+                                            QElement.getElementsByTagName("Instructions").item(0).getTextContent());
                         } else if (QElement.getAttribute("type").toString().equals("FITBQ") ) {
                             question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(l).getTextContent(), 
                                             QElement.getElementsByTagName("Instructions").item(l).getTextContent());
