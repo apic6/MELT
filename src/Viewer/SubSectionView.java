@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.PopupMenu;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -50,7 +51,8 @@ public class SubSectionView extends JFrame {
         questionsPanel.setPreferredSize(new Dimension(700, 1000));
         add(scrollPane);
         // add(questionsPanel);
-        this.setSize(new Dimension(700, 1000));    
+        this.setSize(new Dimension(700, 1000)); 
+        
     }
     
     public static void main(String argv[]) {
@@ -62,6 +64,7 @@ public class SubSectionView extends JFrame {
         SubSection subSection = section.GetSubSection(0);
         // QuestionView view = new QuestionView(question);
         // view.setVisible(true);
+        
         new SubSectionView(subSection).setVisible(true);
         
     }    

@@ -6,6 +6,8 @@ package Viewer;
 
 import Model.Modeller;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -23,7 +25,9 @@ public class Viewer extends JFrame {
      public Viewer (Modeller model) {      //constructor
          
          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-       
+         this.setSize(new Dimension(500,500));
+         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
          Welcome wel=new Welcome(this,model);
          setContentPane(wel);
          pack();
