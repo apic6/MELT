@@ -5,13 +5,16 @@
 package Viewer;
 
 import Model.Modeller;
-import static Viewer.Welcome.teacherButton;
+import Model.QuestionPaper;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Label;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -20,19 +23,32 @@ import javax.swing.JPanel;
  */
 public class TeacherView extends JPanel {
     
-    private JButton createTest;
+   
     public JFrame mainFrame;
     public Modeller amodel;
     public TeacherView(JFrame frame,Modeller model){
-        amodel = model;
+        
         mainFrame = frame;
+        amodel = model;
         initComponents();
+        
     }
-   
-    public void initComponents()  {
     
+    
+       private JButton createTest;
+       private java.awt.Label previousLabel;
+   
+    private void initComponents()  {
+        
+        previousLabel=new Label();
+        createTest=new JButton() ;
+        
+        
+        
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        
+        
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -40,13 +56,16 @@ public class TeacherView extends JPanel {
         c.ipady = 50;
         c.weighty = 0;
         createTest.setText("Create a New Test");
-        createTest.setPreferredSize(new Dimension(25, 25));
+        createTest.setPreferredSize(new Dimension(200, 40));
         createTest.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                   ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel));
             }
         });
+        add(createTest,c);
+        
+        
         
         
         GridBagConstraints c1 = new GridBagConstraints();
@@ -59,7 +78,11 @@ public class TeacherView extends JPanel {
         c1.ipadx = 80;
         c1.anchor = GridBagConstraints.CENTER;
         c1.gridwidth = GridBagConstraints.REMAINDER;
-        //add(welcomeLabel,c1);
+        previousLabel.setAlignment(java.awt.Label.CENTER);
+        previousLabel.setBackground(new java.awt.Color(237, 230, 230));
+        previousLabel.setFont(new java.awt.Font("Monospaced", 3, 16)); // NOI18N
+        previousLabel.setText("List of older English Language tests ");
+        add(previousLabel,c1);
         
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.EAST;
@@ -69,10 +92,15 @@ public class TeacherView extends JPanel {
         c2.ipady = 20;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
-        //add(studentButton, c2);
         c2.insets = new Insets(50, 20, 30, 0);
         c2.anchor = GridBagConstraints.WEST;
         c2.gridx = 1;
+        amodel.loadPapers("src/Papers.xml");
+        ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
+        for(int i=0;i<papers.size();++i){
+            c1.gridy = i;
+        this.add(new TestPreview(papers.get(i)),c1);
+        }
         //add(teacherButton,c2);
     
     
