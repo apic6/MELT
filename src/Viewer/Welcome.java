@@ -49,7 +49,7 @@ public class Welcome extends JPanel{
                   ((Viewer)mainFrame).guiChanger(new Student(mainFrame,model));
             }
         });
-
+        
         teacherButton.setText("I am a Teacher");
         teacherButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
@@ -58,6 +58,13 @@ public class Welcome extends JPanel{
             }
         });
 
+        teacherButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,model));
+            }
+        });
+        
         welcomeLogo.setText("");
         
         setLayout(new GridBagLayout());

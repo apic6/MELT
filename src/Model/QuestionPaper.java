@@ -8,9 +8,9 @@ public class QuestionPaper {
     private String Title;
     private String Description;
     private String Instructions;
-    ArrayList<Section> SectionList;
-    ArrayList<Integer> EligibleStudents;
-    ArrayList<Integer> EliglbeTeachers;
+    private ArrayList<Section> SectionList;
+    private ArrayList<Integer> EligibleStudents;
+    private ArrayList<Integer> EliglbeTeachers;
 
     QuestionPaper(int GivenPaperID, int CreatorID) {
         PaperID = GivenPaperID;
@@ -30,35 +30,35 @@ public class QuestionPaper {
     /*
      *	Modifying Question Paper
      */
-    void AddEligibleStudent(int ID) {
+    public void AddEligibleStudent(int ID) {
         EligibleStudents.add(ID);
     }
 
-    void AddEligibleStudents(int[] IDs) {
+    public void AddEligibleStudents(int[] IDs) {
         for (int ID : IDs) {
             EligibleStudents.add(ID);
         }
     }
 
-    void AddEligibleSetter(int ID) {
+    public void AddEligibleSetter(int ID) {
         EliglbeTeachers.add(ID);
     }
 
-    void AddEligibleSetters(int[] IDs) {
+    public void AddEligibleSetters(int[] IDs) {
         for (int ID : IDs) {
             EliglbeTeachers.add(ID);
         }
     }
     
-    void SetTitle ( String Title) {
+    public void SetTitle ( String Title) {
         this.Title = Title;
     }
     
-    void SetDescription ( String Description) {
+    public void SetDescription ( String Description) {
         this.Description = Description;
     }
     
-    void SetInstructions ( String Instructions ) {
+    public void SetInstructions ( String Instructions ) {
         this.Instructions = Instructions;
     }
 
@@ -77,13 +77,13 @@ public class QuestionPaper {
         return Description;
     }
     
-    String GetInstructions() {
+    public String GetInstructions() {
         return Instructions;
     }
     
     
 
-    boolean IsStudentEligible(int StudentID) {
+    public boolean IsStudentEligible(int StudentID) {
         for (int ID : EligibleStudents) {
             if (StudentID == ID) {
                 return true;
@@ -92,23 +92,23 @@ public class QuestionPaper {
         return false;
     }
     
-    int GetNumberOfSections() {
+    public int GetNumberOfSections() {
         return SectionList.size();
     }
     
-    Section GetSection(int ID) {
+    public Section GetSection(int ID) {
         return SectionList.get(ID);
     }
     
-    void AddSection(int position, Section S) {
+    public void AddSection(int position, Section S) {
   	SectionList.add (position, S);
     }
 
-    void RemoveSection (int position) {
+    public void RemoveSection (int position) {
         SectionList.remove(position);
     }
 
-    void MoveSectionUp (int SectionToMove) {
+    public void MoveSectionUp (int SectionToMove) {
         if (SectionToMove <= 0) return;
         if (SectionToMove >= SectionList.size()) return;
 
@@ -116,18 +116,18 @@ public class QuestionPaper {
         SectionList.remove(SectionToMove +1 );
     }
 
-    void MoveSectionDown (int SectionToMove) {
+    public void MoveSectionDown (int SectionToMove) {
         MoveSectionUp(SectionToMove+1);
     }
     
     // produces an XML for students submission
-    void CreateSubmissionDocument() {
+    public void CreateSubmissionDocument() {
         /* 
          * 
          */
     }
     
-    String toXML() {
+    public String toXML() {
         String XML = "<QuestionPaper id=\"" + PaperID + "\">\n";
         
         XML += "<Title>" + Title + "</Title>\n";
