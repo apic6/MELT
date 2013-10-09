@@ -6,6 +6,7 @@ package Viewer;
 
 import Model.Modeller;
 import Model.QuestionPaper;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -63,7 +64,7 @@ public class TeacherView extends JPanel {
                   ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel));
             }
         });
-        add(createTest,c);
+        this.add(createTest,c);
         
         
         
@@ -79,32 +80,38 @@ public class TeacherView extends JPanel {
         c1.anchor = GridBagConstraints.CENTER;
         c1.gridwidth = GridBagConstraints.REMAINDER;
         previousLabel.setAlignment(java.awt.Label.CENTER);
-        previousLabel.setBackground(new java.awt.Color(237, 230, 230));
+        previousLabel.setBackground(new java.awt.Color(245, 245, 245));
         previousLabel.setFont(new java.awt.Font("Monospaced", 3, 16)); // NOI18N
         previousLabel.setText("List of older English Language tests ");
-        add(previousLabel,c1);
+        this.add(previousLabel,c1);
         
         GridBagConstraints c2 = new GridBagConstraints();
-        c2.anchor = GridBagConstraints.EAST;
+        c2.anchor = GridBagConstraints.SOUTH;
+        c2.gridx = GridBagConstraints.RELATIVE;
         c2.gridx = 0;
-        c2.gridy = 2;
+        c2.gridy = 10;
         c2.ipadx = 20;
         c2.ipady = 20;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
         c2.insets = new Insets(50, 20, 30, 0);
-        c2.anchor = GridBagConstraints.WEST;
+        c2.anchor = GridBagConstraints.SOUTH;
         c2.gridx = 1;
         amodel.loadPapers("src/Papers.xml");
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
         for(int i=0;i<papers.size();++i){
-            c1.gridy = i;
-        this.add(new TestPreview(papers.get(i)),c1);
+           // c2.gridy = i;
+        this.add(new TestPreview(papers.get(i)),c2);
+        JButton editTest=new JButton("Edit");
+        this.add(editTest,c2);
+        JButton previewTest=new JButton("Preview");
+        this.add(previewTest,c2);
+        
         }
-        //add(teacherButton,c2);
+        
     
     
-    
+       
     
     
     

@@ -22,15 +22,15 @@ public class TestPreview extends JPanel{
         description = new JTextArea(paper.GetDescription());
         
         setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.weightx = 0.3;
-        add(title,c);
+        GridBagConstraints c5 = new GridBagConstraints();
+        c5.fill = GridBagConstraints.HORIZONTAL;
+        c5.gridx = 0;
+        c5.weightx = 0.3;
+        add(title,c5);
         
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.weightx = 0.7;
-        add(description,c);
+        c5.fill = GridBagConstraints.HORIZONTAL;
+        c5.gridx = 1;
+        c5.weightx = 0.7;
+        add(description,c5);
     }
 }

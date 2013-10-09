@@ -59,14 +59,10 @@ public class Student extends JPanel{
         c1.fill = GridBagConstraints.HORIZONTAL;
         c1.weightx = 1.0;
         c1.weighty = 0;
-        amodel.loadPapers("src/Papers.xml");
-        ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
-        for(int i=0;i<papers.size();++i){
-            c1.gridy = i;
-        leftPanel.add(new TestPreview(papers.get(i)),c1);
-        }
         
-        rightPanel.setLayout(new GridBagLayout());
+        
+        
+        leftPanel.setLayout(new GridBagLayout());
         GridBagConstraints c2 = new GridBagConstraints();
         c2.fill = GridBagConstraints.HORIZONTAL;
         c2.weightx = 1.0;
@@ -78,6 +74,12 @@ public class Student extends JPanel{
         c2.gridy = 2;
         c2.weighty = 1.0;
         c2.anchor = GridBagConstraints.NORTH;
+        amodel.loadPapers("src/Papers.xml");
+        ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
+        for(int i=0;i<papers.size();++i){
+            c1.gridy = i;
+        leftPanel.add(new TestPreview(papers.get(i)),c2);
+        }
 //        rightPanel.add(new TestPreview(),c2);
         
     }

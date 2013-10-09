@@ -5,6 +5,7 @@
 package Viewer;
 
 import Model.Modeller;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ public class Viewer extends JFrame {
      public Viewer (Modeller model) {      //constructor
          
          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+       
          Welcome wel=new Welcome(this,model);
          setContentPane(wel);
          pack();
