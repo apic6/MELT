@@ -9,15 +9,15 @@ package Model;
  * @author mbgm8je3
  */
 public class Marker {
-    int mark;
-    int totalMark;
+    private int mark;
+    private int totalMark;
     
     Marker() {
         mark = 0;
         totalMark = 0;
     }
     
-    boolean markTest(StudentSubmission submission, MarkingScheme markingScheme) {
+    public boolean markTest(StudentSubmission submission, MarkingScheme markingScheme) {
         mark = 0;
         totalMark = 0;
         if (submission.getPaperID() == markingScheme.getPaperID()) {
@@ -61,11 +61,11 @@ public class Marker {
         } else return false;
     }
     
-    int getMark() {
+    public int getMark() {
         return mark;
     }
     
-    int getTotalMark() {
+    public int getTotalMark() {
         return totalMark;
     }
 }

@@ -12,13 +12,13 @@ import 	java.util.ArrayList;
  */
 public class Section {
 
-    int TimeLimit;
-    int ID;
-    String Title;
-    String Description;
-    String Instructions;
+    private int TimeLimit;
+    private int ID;
+    private String Title;
+    private String Description;
+    private String Instructions;
 
-    ArrayList<SubSection> SubSectionList;
+    private ArrayList<SubSection> SubSectionList;
     
     
     Section (int ID, String Title, String Description, String Instructions, int TimeLimit) {

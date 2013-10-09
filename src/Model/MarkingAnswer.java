@@ -26,19 +26,19 @@ class MCQMarkingAnswer extends MarkingAnswer {
         this.mark = mark;
     }
     
-    void setAnswer(int answer) {
+    public void setAnswer(int answer) {
         this.answer = answer;
     }
     
-    void setMark(int mark) {
+    public void setMark(int mark) {
         this.mark = mark;
     }
     
-    int getAnswer() {
+    public int getAnswer() {
         return answer;
     }
     
-    int getMark() {
+    public int getMark() {
         return mark;
     }
     
@@ -61,19 +61,19 @@ class FITBMarkingAnswer extends MarkingAnswer {
         this.mark = mark;
     }
     
-    void setAnswer(String answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
     
-    void setMark(int mark) {
+    public void setMark(int mark) {
         this.mark = mark;
     }    
     
-    String getAnswer() {
+    public String getAnswer() {
         return answer;
     }
     
-    int getMark() {
+    public int getMark() {
         return mark;
     }    
     
