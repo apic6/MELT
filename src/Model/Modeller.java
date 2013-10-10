@@ -19,11 +19,20 @@ import java.util.logging.Logger;
 public class Modeller {
 
     ArrayList<QuestionPaper> questionPapers;
+    ArrayList<StudentSubmission> submissions;
+    ArrayList<MarkingScheme> markingSchemes;
+    
     QuestionPaper viewingPaper;
 
     public Modeller() {     //constructor
     }
 
+    public void init() {
+        loadPapers();
+        // loadSubmissions();
+        // loadMarkingSchemes();
+    }
+    
     public void loadPapers() {
         loadPapers("src/Papers.xml");
     }
@@ -83,7 +92,7 @@ public class Modeller {
     }
 
     // add a paper to the model
-    void addPaper(QuestionPaper paper) {
+    public void addPaper(QuestionPaper paper) {
         questionPapers.add(paper);
     }
 
@@ -113,4 +122,13 @@ public class Modeller {
     public void setValue() {
         System.out.println("it Works");
     }
-}
+
+    /*
+    private void loadSubmissions() {
+        SubmissionLoader loader = new SubmissionLoader();
+        
+        loader.loadSubmissions();
+
+        submissions = loader.getSubmissions();        
+    } */
+}   

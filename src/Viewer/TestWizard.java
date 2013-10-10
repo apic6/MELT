@@ -11,7 +11,10 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -109,6 +112,12 @@ public class TestWizard extends JPanel{
                     sectionList.get(i).section.SetInstructions(sectionList.get(i).getInstruction());
                 }
                 System.out.print(paper.toXML(model));
+                model.addPaper(paper);
+                try {
+                    model.savePapers("src/PapersTest.xml");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(TestWizard.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
     });
         con.gridx = 1;
