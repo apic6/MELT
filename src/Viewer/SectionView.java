@@ -9,14 +9,14 @@ import Model.QuestionPaper;
 import Model.Section;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 /**
  *
  * @author mbgm8je3
  */
-public class SectionView  extends JFrame {
+public class SectionView  extends JPanel {
     SubSectionView[] subSectionViews;
     
     public SectionView(Section section) {
