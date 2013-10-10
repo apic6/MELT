@@ -54,7 +54,7 @@ public class Modeller {
     public void savePapers(String filename) throws FileNotFoundException {
         String xmlString = "";
         if (filename == null) {
-            filename = "Papers2.xml";
+            filename = "papers/Papers3.xml";
         }
         for (int i = 0; i < questionPapers.size(); i++) {
             xmlString += questionPapers.get(i).toXML(this);

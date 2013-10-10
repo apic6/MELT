@@ -32,7 +32,8 @@ public class Viewer extends JFrame {
          setContentPane(wel);
          pack();
          setVisible(true);
-      
+        // Popup pop=new Popup("kjasdla");
+        // pop.setVisiblr()
 }
   
      
