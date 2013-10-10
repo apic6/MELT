@@ -108,7 +108,7 @@ public class TestWizard extends JPanel{
                     sectionList.get(i).section.SetDescription(sectionList.get(i).getDescription());
                     sectionList.get(i).section.SetInstructions(sectionList.get(i).getInstruction());
                 }
-                System.out.print(paper.toXML(model));
+               // System.out.print(paper.toXML(model));
             }
     });
         con.gridx = 1;
@@ -116,7 +116,7 @@ public class TestWizard extends JPanel{
     }
     
     public static  QuestionPaper getQuestionPaper(){
-    QuestionPaper qp=new QuestionPaper(123456);
+    QuestionPaper qp;
     qp=paper;
     return paper;
     }

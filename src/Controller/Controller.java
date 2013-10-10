@@ -52,12 +52,13 @@ public class Controller {
                 }
                     break;
                 case "finish":{
-                  QuestionPaper  p=new QuestionPaper(123456);
+                  QuestionPaper  p;
                   p=TestWizard.getQuestionPaper();
-                  System.out.println("yihaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAA");
-                  System.out.println(p.toXML(amodel));
+                  //System.out.println("yihaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAA");
+                  //System.out.println(p.toXML(amodel));
                 try {
-                    amodel.savePapers("paper57.xml");
+                    amodel.addPaper(p);
+                    amodel.savePapers(null);
                     } catch (FileNotFoundException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                                                         }
