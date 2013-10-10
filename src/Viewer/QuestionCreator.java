@@ -90,14 +90,11 @@ public class QuestionCreator extends JFrame{
                 mainPane.add(question_des,gbc_parent);
                 String[] answers = new String[10];
                 
-                System.out.println("Number of answers: " + answerAreas.size());
-                
                 for(int i =0; i< answerAreas.size();++i){
                     answers[i] = answerAreas.get(i).getText();
                 }
                 question = new MultipleChoiceQuestion(title.getText(),answers,null);
                 subSection.AddQuestion(question);
-                System.out.println("Number of answers: " + question.GetNumberOfAnswers());
                 mainPane.revalidate();
             }
         

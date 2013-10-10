@@ -50,8 +50,10 @@ public class MultipleChoiceQuestion implements Question {
         
         XML += "<Instructions>" + Instructions + "</Instructions>\n";
         XML += "<QuestionText>" + Question + "</QuestionText>\n";
+        System.out.println("Number of answers:" + Answers.length);
         for (int i = 0; i<Answers.length; i++) {
-            XML += "<Answer>" + Answers[i] + "</Answer>\n";
+            if (Answers[i] != null)
+                XML += "<Answer>" + Answers[i] + "</Answer>\n";
         }
         
         XML += "</Question>\n";
