@@ -27,8 +27,10 @@ import javax.swing.JPanel;
 public class TeacherView extends JPanel {
     
     private int j;
-    public JFrame mainFrame;
-    public Modeller amodel;
+    private QuestionPaper paper;
+    private JFrame mainFrame;
+    private Modeller amodel;
+    
     public TeacherView(JFrame frame,Modeller model){
         
         mainFrame = frame;
@@ -134,7 +136,7 @@ public class TeacherView extends JPanel {
         
         @Override
         public void actionPerformed(ActionEvent evt){
-            TestPreviewer tp=new TestPreviewer(amodel,j);
+            TestPreviewer tp=new TestPreviewer(amodel,paper);
         
         }
     }

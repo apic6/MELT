@@ -24,7 +24,7 @@ import javax.swing.JTextArea;
  *
  * @author Daniel
  */
-public class QuestionCreater extends JFrame{
+public class QuestionCreator extends JFrame{
     JTabbedPane questionType;
     JPanel MCQ;
     JPanel FIBQ;
@@ -38,7 +38,7 @@ public class QuestionCreater extends JFrame{
     
     MultipleChoiceQuestion question;
     SubSection subSection;
-    public QuestionCreater(JPanel mainPane,GridBagConstraints gbc_parent,SubSection subSection){
+    public QuestionCreator(JPanel mainPane,GridBagConstraints gbc_parent,SubSection subSection){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.mainPane = mainPane;
         this.gbc_parent = gbc_parent;
