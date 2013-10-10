@@ -29,10 +29,9 @@ public class TestWizard extends JPanel{
     public static QuestionPaper paper;
     public static JButton submit=new JButton("finish");
     ArrayList<TestSection> sectionList;
-    public TestWizard(JFrame frame,Modeller model,JTabbedPane tabs){
+    public TestWizard(JFrame frame,Modeller model){
         this.model = model;
         mainFrame = frame;
-        this.tabs = tabs;
         sectionList = new ArrayList();
         paper = new QuestionPaper(123456);
         initComponents();
@@ -49,10 +48,6 @@ public class TestWizard extends JPanel{
         con.weighty = 1.0;
         con.gridwidth = GridBagConstraints.REMAINDER;
         con.fill = GridBagConstraints.BOTH;
-        if(tabs!=null){
-            add(tabs,con);
-        }
-        else{
         tabs = new JTabbedPane();
         JPanel tab1 = new JPanel();
         tab1.setLayout(new GridBagLayout());
@@ -68,7 +63,6 @@ public class TestWizard extends JPanel{
         tab1.add(new TestSection(mainFrame,model,paper,sectionList),c);
         tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
         add(tabs,con);
-        }
         
         JButton addSection = new JButton("addSection");
         addSection.addActionListener(new java.awt.event.ActionListener() {
