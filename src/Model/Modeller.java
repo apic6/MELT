@@ -34,7 +34,7 @@ public class Modeller {
     }
     
     // saves papers
-    void savePapers(String filename) throws FileNotFoundException {
+   public  void savePapers(String filename) throws FileNotFoundException {
         String xmlString = "";
         if (filename == null) {
             filename = "Papers2.xml";

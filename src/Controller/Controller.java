@@ -9,10 +9,15 @@ package Controller;
  * @author mbaxkak4
  */
 import Model.Modeller;
+import Model.QuestionPaper;
 import Viewer.LoginScreen;
+import Viewer.TestWizard;
 import Viewer.Viewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,10 +48,19 @@ public class Controller {
                 String pass= LoginScreen.getPassword();
                 }
                     break;
-                case "SaveTest":{
+                case "submit":{
                 }
                     break;
-                case "ValidateTest":{
+                case "finish":{
+                  QuestionPaper  p=new QuestionPaper(123456);
+                  p=TestWizard.getQuestionPaper();
+                  System.out.println("yihaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAA");
+                  System.out.println(p.toXML());
+                try {
+                    amodel.savePapers("paper56.xml");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 }
                     break;
                 
