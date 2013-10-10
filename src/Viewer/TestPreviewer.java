@@ -23,8 +23,9 @@ import javax.swing.JScrollPane;
 public final class TestPreviewer extends JFrame{
          private Modeller amodel;
          private int paperNo;
-     public TestPreviewer (Modeller model,int j) {      //constructor
-         paperNo=j;
+         private QuestionPaper qpaper;
+     public TestPreviewer (Modeller model,QuestionPaper paper) {      //constructor
+         this.qpaper=paper;
          amodel=model;
          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
          initComponents(paperNo);

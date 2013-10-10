@@ -57,10 +57,10 @@ public class Controller {
                   System.out.println("yihaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAA");
                   System.out.println(p.toXML(amodel));
                 try {
-                    amodel.savePapers("paper56.xml");
-                } catch (FileNotFoundException ex) {
+                    amodel.savePapers("paper57.xml");
+                    } catch (FileNotFoundException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                                                        }
                 }
                     break;
                 

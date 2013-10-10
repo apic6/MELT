@@ -42,7 +42,7 @@ public class Subsection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                (new QuestionCreater(mainPane,gbc,subSection)).setVisible(true);
+                (new QuestionCreator(mainPane,gbc,subSection)).setVisible(true);
             }
             
         });

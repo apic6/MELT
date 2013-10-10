@@ -39,7 +39,7 @@ public class Welcome extends JPanel{
         welcomeLabel.setAlignment(java.awt.Label.CENTER);
         welcomeLabel.setBackground(new java.awt.Color(237, 230, 230));
         welcomeLabel.setFont(new java.awt.Font("Monospaced", 3, 18)); // NOI18N
-        welcomeLabel.setText("Welcome to the English Language online Examination");
+        welcomeLabel.setText("Welcome to Mancunia English Language Testing");
 
         studentButton.setText("I am a Student");
         studentButton.setToolTipText("");

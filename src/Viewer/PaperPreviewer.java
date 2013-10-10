@@ -18,6 +18,7 @@ public class PaperPreviewer extends JPanel{
     JLabel title;
     JTextArea description;
     public PaperPreviewer(QuestionPaper paper){
+        
         title = new JLabel(paper.GetTitle());
         description = new JTextArea(paper.GetDescription());
         
