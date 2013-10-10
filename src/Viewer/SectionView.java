@@ -9,6 +9,7 @@ import Model.QuestionPaper;
 import Model.Section;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -47,7 +48,10 @@ public class SectionView  extends JPanel {
         QuestionPaper paper = papers.get(0);
         Section section = paper.GetSection(0);
         
-        new SectionView(section).setVisible(true);
+        JFrame frame = new JFrame();
         
+        frame.add(new SectionView(section));
+        
+        frame.setVisible(true);
     }    
 }

@@ -101,11 +101,14 @@ public class TestWizard extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 for(int i = 0; i < sectionList.size(); i++){
+                    paper.SetTitle(("Test test"));
+                    paper.SetDescription("Test Description");
+                    paper.SetInstructions("Test instructions");
                     sectionList.get(i).section.SetTitle(sectionList.get(i).getTitle());
                     sectionList.get(i).section.SetDescription(sectionList.get(i).getDescription());
                     sectionList.get(i).section.SetInstructions(sectionList.get(i).getInstruction());
                 }
-                System.out.print(paper.toXML());
+                System.out.print(paper.toXML(model));
             }
     });
         con.gridx = 1;

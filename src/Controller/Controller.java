@@ -55,7 +55,7 @@ public class Controller {
                   QuestionPaper  p=new QuestionPaper(123456);
                   p=TestWizard.getQuestionPaper();
                   System.out.println("yihaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAA");
-                  System.out.println(p.toXML());
+                  System.out.println(p.toXML(amodel));
                 try {
                     amodel.savePapers("paper56.xml");
                 } catch (FileNotFoundException ex) {
