@@ -46,7 +46,7 @@ public class Welcome extends JPanel{
         studentButton.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new Student(mainFrame,model));
+                  ((Viewer)mainFrame).guiChanger(new LoginScreen(mainFrame,model));
             }
         });
         

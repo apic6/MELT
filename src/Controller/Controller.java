@@ -45,7 +45,7 @@ public class Controller {
             switch (e.getActionCommand()) {
                 case "login":{
                 String username = LoginScreen.getUsername();
-                String pass= LoginScreen.getPassword();
+                String pass= LoginScreen.getPass();
                 }
                     break;
                 case "submit":{

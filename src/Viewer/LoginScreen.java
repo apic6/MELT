@@ -7,6 +7,7 @@ package Viewer;
 import Model.Modeller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -54,26 +55,46 @@ public class LoginScreen extends JPanel {
 		this.add(passwordText);
 
 		
+                
+                final JLabel accessDen=new JLabel("Wrong Password!Please try again or contact the teaching staff.");
+                
 		loginButton.setBounds(10, 80, 80, 25);
 		this.add(loginButton);
-		
+		loginButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent Ev){
+                    String pass=(passwordText.getText()).toString();
+                if( "English".equals(pass)){
+                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel));   
+                                } 
+                else {
+                          
+                        }
+                }
+                });
+                
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.setBounds(180, 80, 80, 25);
 		this.add(cancelButton);
                 cancelButton.addActionListener(new ActionListener(){
                  @Override
                  public void actionPerformed(ActionEvent e) {
+                     
                      ((Viewer)mainFrame).guiChanger(new Welcome(mainFrame,amodel));
                         }
                        });
-     }
+                 JLabel label=new JLabel("Hint:English");
+                  label.setBounds(10,120,80,25);
+                  this.add(label);
+ 
+ }
  
 
 public static String getUsername(){
 String login=userIDText.getText();
     return login; 
 }
-public static String getPassword(){
+public static String getPass(){
 char[] pass=passwordText.getPassword();
  return pass.toString();
 }
