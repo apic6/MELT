@@ -20,53 +20,48 @@ import javax.swing.JScrollPane;
  *
  * @author mbaxkak4
  */
-public final class TestPreviewer extends JFrame{
-         private Modeller amodel;
-         private int paperNo;
-         private QuestionPaper qpaper;
-     public TestPreviewer (Modeller model,QuestionPaper paper) {      //constructor
-         this.qpaper=paper;
-         amodel=model;
-         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-         initComponents(paperNo);
-         setVisible(true);
-      
-}
-    
-     void initComponents(int j){
+public final class TestPreviewer extends JFrame {
+
+    private Modeller amodel;
+    private int paperNo;
+    private QuestionPaper qpaper;
+
+    public TestPreviewer(Modeller model, QuestionPaper paper) {      //constructor
+        this.qpaper = paper;
+        amodel = model;
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        initComponents(paperNo);
+        setVisible(true);
+
+    }
+
+    void initComponents(int j) {
         Question[] questions;
         QuestionView[] questionViews;
-         
+
         JPanel questionsPanel = new JPanel();
         questionsPanel.setLayout(new BoxLayout(questionsPanel, BoxLayout.Y_AXIS));
-        
-        
+
+
         amodel.loadPapers("src/Papers.xml");
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
-        
+
         QuestionPaper paper = papers.get(0);
         Section section = paper.GetSection(0);
         SubSection subSection = section.GetSubSection(0);
         questions = new Question[subSection.GetNumberOfQuestions()];
         questionViews = new QuestionView[questions.length];
-        
-        for (int i=0; i<subSection.GetNumberOfQuestions(); i++) {
+
+        for (int i = 0; i < subSection.GetNumberOfQuestions(); i++) {
             questions[i] = subSection.GetQuestion(i);
             questionViews[i] = new QuestionView(questions[i]);
             questionsPanel.add(questionViews[i]);
         }
-        
-        JScrollPane scrollPane = new JScrollPane(questionsPanel);        
+
+        JScrollPane scrollPane = new JScrollPane(questionsPanel);
         questionsPanel.setPreferredSize(new Dimension(700, 1000));
         add(scrollPane);
         // add(questionsPanel);
-        this.setSize(new Dimension(700, 1000));   
-        
-        // new SubSectionView(subSection).setVisible(true);
-     
-     
-     
-     }
-     
-     
+        this.setSize(new Dimension(700, 1000));
+    }
 }
