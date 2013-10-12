@@ -21,7 +21,6 @@ public class Modeller {
     ArrayList<QuestionPaper> questionPapers;
     ArrayList<StudentSubmission> submissions;
     ArrayList<MarkingScheme> markingSchemes;
-    
     QuestionPaper viewingPaper;
 
     public Modeller() {     //constructor
@@ -29,10 +28,10 @@ public class Modeller {
 
     public void init() {
         loadPapers();
-        // loadSubmissions();
+        loadSubmissions();
         // loadMarkingSchemes();
     }
-    
+
     public void loadPapers() {
         loadPapers("src/Papers.xml");
     }
@@ -47,7 +46,7 @@ public class Modeller {
     }
 
     public int getNextID() {
-        return questionPapers.get(getNumberOfPapers()-1).GetPaperID() + 1;
+        return questionPapers.get(getNumberOfPapers() - 1).GetPaperID() + 1;
     }
 
     // saves papers
@@ -60,7 +59,7 @@ public class Modeller {
             xmlString += questionPapers.get(i).toXML(this);
         }
         xmlString += "</QuestionPapers>";
-        
+
         PrintWriter writer;
         try {
             writer = new PrintWriter(filename, "UTF-8");
@@ -124,12 +123,11 @@ public class Modeller {
         System.out.println("it Works");
     }
 
-    /*
     private void loadSubmissions() {
         SubmissionLoader loader = new SubmissionLoader();
-        
+
         loader.loadSubmissions();
 
-        submissions = loader.getSubmissions();        
-    } */
-}   
+        submissions = loader.getSubmissions();
+    }
+}
