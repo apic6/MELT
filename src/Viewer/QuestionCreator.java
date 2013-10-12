@@ -30,7 +30,7 @@ public class QuestionCreator extends JFrame{
     JPanel FIBQ;
     JPanel mainPane;
     JPanel answerPanel;
-    JTextArea title;
+    public static JTextArea title;
     ArrayList<JTextArea> answerAreas;
     GridBagConstraints gbc_parent;
     GridBagConstraints gbc = new GridBagConstraints();

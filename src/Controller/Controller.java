@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -30,7 +32,7 @@ public class Controller {
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
         
-        view.addListener(new ViewerEventListener());
+        view.addListener(new ViewerEventListener(),new ViewerDocumentListener());
         amodel=model;
         aview=view;
         
@@ -68,6 +70,29 @@ public class Controller {
             }
                
         }}
+ 
+ class ViewerDocumentListener implements DocumentListener {
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+           updateModel(); 
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+           updateModel();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+           updateModel(); 
+        }
+ 
+        private void updateModel(){
+            //
+            System.out.println("it works");
+        }
+ }
 
 
 

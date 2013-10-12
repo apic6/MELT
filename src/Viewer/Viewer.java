@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -30,10 +31,8 @@ public class Viewer extends JFrame {
          this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
          Welcome wel=new Welcome(this,model);
          setContentPane(wel);
-         //pack();
          setVisible(true);
-        // Popup pop=new Popup("kjasdla");
-        // pop.setVisiblr()
+      
 }
   
      
@@ -46,10 +45,12 @@ public class Viewer extends JFrame {
      
      
      
-     public void addListener(ActionListener mal) {
+     public void addListener(ActionListener mal,DocumentListener doc) {
          //(Welcome.teacherButton).addActionListener(mal);
          //(LoginScreen.loginButton).addActionListener(mal);
          (TestWizard.submit).addActionListener(mal);
+       //  (QuestionCreator.title).getDocument().addDocumentListener(doc);
+         (LoginScreen.userIDText).getDocument().addDocumentListener(doc);
     }
      
     

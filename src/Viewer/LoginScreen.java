@@ -23,7 +23,7 @@ public class LoginScreen extends JPanel {
     
      public JFrame mainFrame;
      public static JButton loginButton=new JButton("login");
-     private static JTextField userIDText = new JTextField(20);
+     public static JTextField userIDText = new JTextField(20);
      private static JPasswordField passwordText = new JPasswordField(20);
      private Modeller amodel;
      
