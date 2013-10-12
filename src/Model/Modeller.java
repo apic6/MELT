@@ -52,14 +52,15 @@ public class Modeller {
 
     // saves papers
     public void savePapers(String filename) throws FileNotFoundException {
-        String xmlString = "";
+        String xmlString = "<QuestionPapers>";
         if (filename == null) {
             filename = "papers/Papers3.xml";
         }
         for (int i = 0; i < questionPapers.size(); i++) {
             xmlString += questionPapers.get(i).toXML(this);
         }
-
+        xmlString += "</QuestionPapers>";
+        
         PrintWriter writer;
         try {
             writer = new PrintWriter(filename, "UTF-8");
