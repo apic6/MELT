@@ -74,7 +74,6 @@ public class PaperEditor extends JPanel{
         gbc2.fill = GridBagConstraints.HORIZONTAL;
         gbc2.gridx = 0;
         gbc2.gridy = 0;
-        
         for(Section one : sections){
             JLabel sec_title = new JLabel(one.GetTitle());
             sections_panel.add(sec_title,gbc2);
@@ -83,6 +82,6 @@ public class PaperEditor extends JPanel{
         
         gbc.gridx = 0;
         gbc.gridy++;
-        add(sections_panel);
+        add(sections_panel,gbc);
     }
 }

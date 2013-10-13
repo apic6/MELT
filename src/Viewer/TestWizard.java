@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -29,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -49,6 +51,7 @@ public class TestWizard extends JPanel{
     private JPanel answerPanel;
     GridBagConstraints apc = new GridBagConstraints();
     private JPanel FIBQ;
+    final JPanel questionCreator = new JPanel() ;
     public TestWizard(JFrame frame,Modeller model){
         this.model = model;
         mainFrame = frame;
@@ -61,7 +64,7 @@ public class TestWizard extends JPanel{
 }
 
     private void initComponents() {
-        
+        setBorder(new TitledBorder("New QuestionPaper"));
         setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
         con.gridx = 0;
@@ -127,17 +130,42 @@ public class TestWizard extends JPanel{
                // System.out.print(paper.toXML(model));
             }
     });
+//        con.gridx = 1;
+//        add(submit,con);
+        JPanel rightPanel = new JPanel();
+        rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
-        add(submit,con);
-        
-        final JPanel questionCreator = new JPanel() ;
-        
         con.gridy = 0;
         con.weightx = 1.0;
         con.weighty = 1.0;
-        con.gridx = 1 ;
-        con.gridwidth = GridBagConstraints.REMAINDER;
-        add(questionCreator, con) ;
+        add(rightPanel,con);
+        
+        rightPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc_right = new GridBagConstraints();
+        gbc_right.fill = GridBagConstraints.HORIZONTAL;
+        gbc_right.anchor = GridBagConstraints.NORTH ;
+        gbc_right.insets = new Insets(10,0,0,0) ;
+        gbc_right.gridx = 0;
+        gbc_right.gridy = 0;
+        gbc_right.weighty = 0.2;
+        rightPanel.add(new PaperEditor(paper),gbc_right);
+        
+        
+        //final JPanel questionCreator = new JPanel() ;
+        
+//        con.fill = GridBagConstraints.HORIZONTAL;
+//        con.gridy = 0;
+//        con.weightx = 1.0;
+//        con.weighty = 0;
+//        con.gridx = 1 ;
+//        con.gridwidth = GridBagConstraints.REMAINDER;
+//        add(new PaperEditor(paper), con) ;
+//        
+//        con.gridy = 1;
+//        con.weighty = 1.0;
+//        con.gridheight = GridBagConstraints.REMAINDER;
+//        add(questionCreator,con);
+        
         questionCreator.setLayout(new GridBagLayout());
         final GridBagConstraints c3 = new GridBagConstraints();
         
@@ -203,12 +231,20 @@ public class TestWizard extends JPanel{
        
         //this.setPreferredSize(new Dimension(500,500));
         
+        gbc_right.weighty = 0.8;
+        gbc_right.gridy = 1;
+        rightPanel.add(questionCreator,gbc_right);
+        questionCreator.setVisible(false);
     }
     
     public static  QuestionPaper getQuestionPaper(){
     QuestionPaper qp;
     qp=paper;
     return paper;
+    }
+ 
+    public void questionCreatorSetVinsible (){
+        questionCreator.setVisible(true);
     }
 public JPanel addAnswer(int num){
             JPanel tempPanel = new JPanel();
@@ -225,7 +261,9 @@ public JPanel addAnswer(int num){
             tempPanel.add(answer,gbc);
             JCheckBox isRight = new JCheckBox("right answer");
             gbc.gridx = 2;
-            tempPanel.add(isRight,gbc);
+            tempPanel.add(isRight,gbc); 
             return tempPanel;
+            
+            
         }
 }
