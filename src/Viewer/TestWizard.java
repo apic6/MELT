@@ -46,6 +46,7 @@ public class TestWizard extends JPanel{
     ArrayList<TestSection> sectionList;
     private JTabbedPane questionType;
     private JPanel MCQ;
+    private JPanel rightPanel = new JPanel();
     SubSection subSection;
     MultipleChoiceQuestion question;
     private JPanel answerPanel;
@@ -89,7 +90,7 @@ public class TestWizard extends JPanel{
         c.fill = GridBagConstraints.BOTH;
         
         tab1.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c);
-        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
+        tabs.addTab("Section"+ (tabs.getTabCount()+1), tab1);
         
         add(tabs,con);
         
@@ -136,7 +137,7 @@ public class TestWizard extends JPanel{
     });
 //        con.gridx = 1;
 //        add(submit,con);
-        JPanel rightPanel = new JPanel();
+        
         rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
@@ -153,7 +154,7 @@ public class TestWizard extends JPanel{
         gbc_right.gridy = 0;
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper),gbc_right);
-        
+        tabs.addFocusListener(new Foc());
         
         //final JPanel questionCreator = new JPanel() ;
         
@@ -277,7 +278,7 @@ class Foc implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
-         System.out.println("JHASKHGDKJHAJSD");
+         rightPanel.setBorder(new TitledBorder("Section information"));
         }
 
         @Override
