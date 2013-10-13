@@ -111,8 +111,10 @@ public class QuestionPaperLoader {
                                     answers,
                                     QElement.getElementsByTagName("Instructions").item(0).getTextContent());
                         } else if (QElement.getAttribute("type").toString().equals("FITBQ")) {
+                            // TODO
+                            String[] strings = {"1", "2"};
                             question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
-                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent());
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), strings);
                         } else {
                             System.out.println("ERROR");
                         }

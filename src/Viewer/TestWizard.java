@@ -14,6 +14,7 @@ import static Viewer.QuestionCreator.title;
 import static Viewer.TestWizard.paper;
 import static Viewer.TestWizard.submit;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,6 +22,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -33,6 +37,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.TabbedPaneUI;
 
 /**
  *
@@ -69,6 +74,8 @@ public class TestWizard extends JPanel{
 }
 
     private void initComponents() {
+        final JPanel rightPanel = new JPanel();
+        
         setBorder(new TitledBorder("New QuestionPaper"));
         setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
@@ -109,9 +116,22 @@ public class TestWizard extends JPanel{
             c2.weightx = 1.0;
             c2.weighty = 1.0;
             c2.fill = GridBagConstraints.BOTH;
-            tab3.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c2);
+            tab3.add(new TestSection(rightPanel,paper,sectionList,wizard),c2);
+            
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
             tabs.revalidate();
+            }
+        });
+        
+        tabs.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int tabNr = ((TabbedPaneUI)tabs.getUI()).tabForCoordinate(tabs, e.getX(), e.getY());
+                System.out.print(tabNr);
+                rightPanel.removeAll();
+                rightPanel.add(new SectionEditor(paper.getSection(tabNr)));
+                rightPanel.revalidate();
             }
         });
         con.gridx = 0;
@@ -139,7 +159,6 @@ public class TestWizard extends JPanel{
     });
 //        con.gridx = 1;
 //        add(submit,con);
-        final JPanel rightPanel = new JPanel();
         rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
@@ -156,19 +175,19 @@ public class TestWizard extends JPanel{
         gbc_right.gridy = 0;
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper),gbc_right);
-        tabs.addFocusListener(new Foc());
-        
-        ChangeListener changeListener = new ChangeListener() {
-          public void stateChanged(ChangeEvent changeEvent) {
-            JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
-            int index = sourceTabbedPane.getSelectedIndex();
-            rightPanel.removeAll();
-            rightPanel.add(new SectionEditor(paper.getSection(index)),new GridBagConstraints());
-            
-          }
-        };
-    
-        tabs.addChangeListener(changeListener);
+//        tabs.addFocusListener(new Foc());
+//        
+//        ChangeListener changeListener = new ChangeListener() {
+//          public void stateChanged(ChangeEvent changeEvent) {
+//            JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+//            int index = sourceTabbedPane.getSelectedIndex();
+//            rightPanel.removeAll();
+//            rightPanel.add(new SectionEditor(paper.getSection(index)),new GridBagConstraints());
+//            rightPanel.revalidate();
+//          }
+//        };
+//    
+//        tabs.addChangeListener(changeListener);
         
         //final JPanel questionCreator = new JPanel() ;
         
