@@ -100,6 +100,10 @@ public class QuestionPaper {
         return SectionList.get(ID);
     }
     
+    public ArrayList<Section> getSectionList(){
+        return SectionList;
+    }
+    
     public void AddSection(int position, Section S) {
   	SectionList.add (position, S);
     }

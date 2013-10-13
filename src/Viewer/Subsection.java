@@ -9,10 +9,14 @@ import Model.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -24,6 +28,7 @@ public class Subsection extends JPanel{
     public SubSection subSection;
     GridBagConstraints gbc = new GridBagConstraints();
     Section section;
+    private DefaultListModel listModel;
     Subsection(Section section){
         this.section = section;
         mainPane = this;
@@ -36,7 +41,36 @@ public class Subsection extends JPanel{
         setLayout(new GridBagLayout());
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START ;      
+        gbc.weightx = 1 ;
+        gbc.weighty = 1 ;
         
+        JList questionList = new JList() ;
+        questionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        questionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        //questionList.setVisibleRowCount(-1) ;
+        
+        listModel = new DefaultListModel();
+        listModel.addElement("New question");
+        listModel.addElement("asdsadsadasd");
+        listModel.addElement("xcvcxvcxvcxvxc");
+        listModel.addElement("asdsadsadasd");
+        listModel.addElement("xcvcxvcxvcxvxc");
+        listModel.addElement("asdsadsadasd");
+        listModel.addElement("xcvcxvcxvcxvxc");
+        listModel.addElement("asdsadsadasd");
+        listModel.addElement("xcvcxvcxvcxvxc");
+        listModel.addElement("asdsadsadasd");
+        listModel.addElement("xcvcxvcxvcxvxc");
+        listModel.addElement("asdsadsadasd");
+        listModel.addElement("xcvcxvcxvcxvxc");
+        
+        questionList = new JList(listModel) ;
+        
+        JScrollPane listScroller = new JScrollPane(questionList);
+        add(listScroller, gbc) ;
+        
+        gbc.gridy = 1 ;
         createQuestion = new JButton("Add Question");
         createQuestion.addActionListener(new java.awt.event.ActionListener() {
 
