@@ -75,6 +75,7 @@ public class TestWizard extends JPanel{
         con.fill = GridBagConstraints.BOTH;
         tabs = new JTabbedPane();
         JPanel tab1 = new JPanel();
+        
         tab1.setLayout(new GridBagLayout());
         tab1.setPreferredSize(new Dimension(500,500));
         GridBagConstraints c = new GridBagConstraints();
@@ -86,7 +87,8 @@ public class TestWizard extends JPanel{
         c.fill = GridBagConstraints.BOTH;
         
         tab1.add(new TestSection(mainFrame,model,paper,sectionList),c);
-        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);        
+        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
+        
         add(tabs,con);
         
         JButton addSection = new JButton("addSection");
@@ -266,4 +268,18 @@ public JPanel addAnswer(int num){
             
             
         }
+
+
+class Foc implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+         System.out.println("JHASKHGDKJHAJSD");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+        }
+    }
 }
