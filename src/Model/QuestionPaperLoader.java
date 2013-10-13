@@ -44,7 +44,7 @@ public class QuestionPaperLoader {
     }
 
     // returns an integer showing the number of papers read
-    int ReadPapers() {
+    int readPapers() {
         NodeList PaperList = doc.getElementsByTagName("QuestionPaper");
 
         for (int i = 0; i < PaperList.getLength(); i++) {
@@ -52,18 +52,18 @@ public class QuestionPaperLoader {
             Element QPElement = (Element) QuestionPaperNode;
 
             QuestionPaper paper = new QuestionPaper(Integer.parseInt(QPElement.getAttribute("id")));
-            paper.SetTitle(QPElement.getElementsByTagName("Title").item(0).getTextContent());
-            paper.SetDescription(QPElement.getElementsByTagName("Description").item(0).getTextContent());
-            paper.SetInstructions(QPElement.getElementsByTagName("Instructions").item(0).getTextContent());
+            paper.setTitle(QPElement.getElementsByTagName("Title").item(0).getTextContent());
+            paper.setDescription(QPElement.getElementsByTagName("Description").item(0).getTextContent());
+            paper.setInstructions(QPElement.getElementsByTagName("Instructions").item(0).getTextContent());
 
             // Eligible students
             for (int j = 0; j < QPElement.getElementsByTagName("EligibleStudent").getLength(); j++) {
-                paper.AddEligibleStudent(Integer.parseInt(QPElement.getElementsByTagName("EligibleStudent").item(j).getTextContent().toString()));
+                paper.addEligibleStudent(Integer.parseInt(QPElement.getElementsByTagName("EligibleStudent").item(j).getTextContent().toString()));
             }
             // eligible teachers
             for (int j = 0; j < QPElement.getElementsByTagName("EligibleTeacher").getLength(); j++) {
                 System.out.println("I read teacher");
-                paper.AddEligibleSetter(Integer.parseInt(QPElement.getElementsByTagName("EligibleTeacher").item(j).getTextContent().toString()));
+                paper.addEligibleSetter(Integer.parseInt(QPElement.getElementsByTagName("EligibleTeacher").item(j).getTextContent().toString()));
             }
 
             // Sections
@@ -117,13 +117,13 @@ public class QuestionPaperLoader {
                             System.out.println("ERROR");
                         }
 
-                        subSection.AddQuestion(l, question);
+                        subSection.addQuestion(l, question);
                     }
                     // Add SubSection to Section
                     section.AddSubSection(k, subSection);
                 }
 
-                paper.AddSection(j, section);
+                paper.addSection(j, section);
             }
 
             // process papers

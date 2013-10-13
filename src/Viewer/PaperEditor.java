@@ -30,9 +30,9 @@ public class PaperEditor extends JPanel{
     private JPanel sections_panel = new JPanel();
     private ArrayList<Section> sections;
     public PaperEditor(QuestionPaper paper){
-        title.setText(paper.GetTitle());
-        description.setText(paper.GetDescription());
-        instruction.setText(paper.GetInstructions());
+        title.setText(paper.getTitle());
+        description.setText(paper.getDescription());
+        instruction.setText(paper.getInstructions());
         sections = paper.getSectionList();
         
         initComponents();

@@ -26,11 +26,11 @@ public class SubSectionView extends JScrollPane {
         
         // height = 0;  
         
-        questions = new Question[subSection.GetNumberOfQuestions()];
+        questions = new Question[subSection.getNumberOfQuestions()];
         questionViews = new QuestionView[questions.length];
         
-        for (int i=0; i<subSection.GetNumberOfQuestions(); i++) {
-            questions[i] = subSection.GetQuestion(i);
+        for (int i=0; i<subSection.getNumberOfQuestions(); i++) {
+            questions[i] = subSection.getQuestion(i);
             questionViews[i] = new QuestionView(questions[i]);
             questionsPanel.add(questionViews[i]);
             // height += questionViews[i].getHeight();

@@ -40,13 +40,13 @@ public class Modeller {
     public void loadPapers(String filename) {
         QuestionPaperLoader loader = new QuestionPaperLoader(filename);
 
-        loader.ReadPapers();
+        loader.readPapers();
 
         questionPapers = loader.getQuestionPapers();
     }
 
     public int getNextID() {
-        return questionPapers.get(getNumberOfPapers() - 1).GetPaperID() + 1;
+        return questionPapers.get(getNumberOfPapers() - 1).getPaperID() + 1;
     }
 
     // saves papers
@@ -116,7 +116,7 @@ public class Modeller {
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
         for (int i = 0; i < questionPapers.size(); i++) {
-            if (questionPapers.get(i).IsStudentEligible(studentID)) {
+            if (questionPapers.get(i).isStudentEligible(studentID)) {
                 eligiblePapers.add(questionPapers.get(i));
             }
         }

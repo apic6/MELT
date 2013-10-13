@@ -23,27 +23,27 @@ public class QuestionPaperTaker {
         this.paper = paper;
         this.studentID = studentID;
         
-        submission = new StudentSubmission(paper.GetPaperID(), studentID);
+        submission = new StudentSubmission(paper.getPaperID(), studentID);
         // each section
-        for (int i = 0; i<paper.GetNumberOfSections(); i++) {
-            Section section = paper.GetSection(i);
+        for (int i = 0; i<paper.getNumberOfSections(); i++) {
+            Section section = paper.getSection(i);
             SubmissionSection submSection = new SubmissionSection(i);
             submission.addSection(submSection);
             // each subsection
-            for (int j = 0; j<section.GetNumberOfSubSections(); j++) {
-                SubSection subSection = section.GetSubSection(j);
+            for (int j = 0; j<section.getNumberOfSubSections(); j++) {
+                SubSection subSection = section.getSubSection(j);
                 SubmissionSubSection submSubSection = new SubmissionSubSection(j);
                 submSection.addSubSection(submSubSection);
             } // subsections
         } // sections
     }
     
-    void AnswerQuestion(int sectionID, int subSectionID, int questionID, int answer) {
+    void answerQuestion(int sectionID, int subSectionID, int questionID, int answer) {
         MCQAnswer mcqAnswer = new MCQAnswer(questionID, answer);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(mcqAnswer);
     }
     
-    void AnswerQuestion(int sectionID, int subSectionID, int questionID, String answer) {
+    void answerQuestion(int sectionID, int subSectionID, int questionID, String answer) {
         FITBAnswer fitbAnswer = new FITBAnswer(questionID, answer);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(fitbAnswer);
     }
