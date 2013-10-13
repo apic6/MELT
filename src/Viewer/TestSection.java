@@ -77,11 +77,19 @@ public class TestSection extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 int tabNr = ((TabbedPaneUI)subsections.getUI()).tabForCoordinate(subsections, e.getX(), e.getY());
-                System.out.print(tabNr);
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                gbc.weighty = 1.0;
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.anchor = GridBagConstraints.NORTH;
                 rightPanel.removeAll();
-                rightPanel.setBorder(new TitledBorder("Section information"));
-                rightPanel.add(new SubsectionEditor(section.getSubSection(tabNr)));
                 rightPanel.revalidate();
+                rightPanel.setLayout(new GridBagLayout());
+                rightPanel.setBorder(new TitledBorder("SubSection information"));
+                rightPanel.add(new SubsectionEditor(section.getSubSection(tabNr)),gbc);
+                rightPanel.revalidate();
+                rightPanel.repaint();
             }
         });
         

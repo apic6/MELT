@@ -130,8 +130,19 @@ public class TestWizard extends JPanel{
                 int tabNr = ((TabbedPaneUI)tabs.getUI()).tabForCoordinate(tabs, e.getX(), e.getY());
                 System.out.print(tabNr);
                 rightPanel.removeAll();
-                rightPanel.add(new SectionEditor(paper.getSection(tabNr)));
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                gbc.weighty = 1.0;
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.anchor = GridBagConstraints.NORTH;
+                rightPanel.removeAll();
                 rightPanel.revalidate();
+                rightPanel.setLayout(new GridBagLayout());
+                rightPanel.setBorder(new TitledBorder("Section informtion"));
+                rightPanel.add(new SectionEditor(paper.getSection(tabNr)),gbc);
+                rightPanel.revalidate();
+                rightPanel.repaint();
             }
         });
         con.gridx = 0;
@@ -204,76 +215,76 @@ public class TestWizard extends JPanel{
 //        con.gridheight = GridBagConstraints.REMAINDER;
 //        add(questionCreator,con);
         
-        questionCreator.setLayout(new GridBagLayout());
-        final GridBagConstraints c3 = new GridBagConstraints();
-        
-        //questionCreator.setBackground(Color.red);
-        
-        questionType = new JTabbedPane();
-        MCQ = new JPanel();
-        MCQ.setLayout(new GridBagLayout());
-        c3.fill = GridBagConstraints.BOTH;
-        c3.weightx = 0.3;
-        c3.gridx = 0;
-        c3.gridy = 0;
-        JLabel title_label = new JLabel("title:  ");
-        MCQ.add(title_label,c3);
-        
-        questionCreator.add(MCQ, c3) ;
-        
-        c3.gridx = 1;
-        c3.weightx = 0.7;
-        title = new JTextArea(1,20);
-        MCQ.add(title,c3);
-        
-        JButton addAnswer = new JButton("add answer");
-        c3.gridx = 2;
-        c3.weightx = 0;
-        MCQ.add(addAnswer,c3);
-        
-        answerPanel = new JPanel();
-        c3.gridx = 0;
-        c3.gridwidth = GridBagConstraints.REMAINDER;
-        c3.gridy = 1;
-        c3.weighty = 1.0;
-        c3.weightx = 1.0;
-        MCQ.add(answerPanel,c3);
-        
-        JButton submit = new JButton("submit");
-        c3.gridx = 0;
-        c3.gridy = 2;
-        c3.weighty = 0.2;
-        c3.ipady = 20 ;
-        MCQ.add(submit,c3);
-        
-        answerPanel.setLayout(new GridBagLayout());
-        apc.gridx = 0;
-        apc.gridy = -1;
-        
-        addAnswer.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                apc.gridy++;
-                apc.weightx = 1.0;
-                answerPanel.add(addAnswer(apc.gridy+1),apc);
-                answerPanel.revalidate();
-            }
-        
-        });
-        questionType.addTab("MCQ",MCQ);
-        
-        FIBQ = new JPanel();
-        questionType.addTab("FIBQ",FIBQ);
-        questionType.setPreferredSize(questionCreator.getSize());
-        questionCreator.add(questionType, c3);
-       
-        //this.setPreferredSize(new Dimension(500,500));
-        
-        gbc_right.weighty = 0.8;
-        gbc_right.gridy = 1;
-        gbc_right.fill = GridBagConstraints.BOTH ;
-        rightPanel.add(questionCreator,gbc_right);
-        questionCreator.setVisible(false);
+//        questionCreator.setLayout(new GridBagLayout());
+//        final GridBagConstraints c3 = new GridBagConstraints();
+//        
+//        //questionCreator.setBackground(Color.red);
+//        
+//        questionType = new JTabbedPane();
+//        MCQ = new JPanel();
+//        MCQ.setLayout(new GridBagLayout());
+//        c3.fill = GridBagConstraints.BOTH;
+//        c3.weightx = 0.3;
+//        c3.gridx = 0;
+//        c3.gridy = 0;
+//        JLabel title_label = new JLabel("title:  ");
+//        MCQ.add(title_label,c3);
+//        
+//        questionCreator.add(MCQ, c3) ;
+//        
+//        c3.gridx = 1;
+//        c3.weightx = 0.7;
+//        title = new JTextArea(1,20);
+//        MCQ.add(title,c3);
+//        
+//        JButton addAnswer = new JButton("add answer");
+//        c3.gridx = 2;
+//        c3.weightx = 0;
+//        MCQ.add(addAnswer,c3);
+//        
+//        answerPanel = new JPanel();
+//        c3.gridx = 0;
+//        c3.gridwidth = GridBagConstraints.REMAINDER;
+//        c3.gridy = 1;
+//        c3.weighty = 1.0;
+//        c3.weightx = 1.0;
+//        MCQ.add(answerPanel,c3);
+//        
+//        JButton submit = new JButton("submit");
+//        c3.gridx = 0;
+//        c3.gridy = 2;
+//        c3.weighty = 0.2;
+//        c3.ipady = 20 ;
+//        MCQ.add(submit,c3);
+//        
+//        answerPanel.setLayout(new GridBagLayout());
+//        apc.gridx = 0;
+//        apc.gridy = -1;
+//        
+//        addAnswer.addActionListener(new java.awt.event.ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                apc.gridy++;
+//                apc.weightx = 1.0;
+//                answerPanel.add(addAnswer(apc.gridy+1),apc);
+//                answerPanel.revalidate();
+//            }
+//        
+//        });
+//        questionType.addTab("MCQ",MCQ);
+//        
+//        FIBQ = new JPanel();
+//        questionType.addTab("FIBQ",FIBQ);
+//        questionType.setPreferredSize(questionCreator.getSize());
+//        questionCreator.add(questionType, c3);
+//       
+//        //this.setPreferredSize(new Dimension(500,500));
+//        
+//        gbc_right.weighty = 0.8;
+//        gbc_right.gridy = 1;
+//        gbc_right.fill = GridBagConstraints.BOTH ;
+//        rightPanel.add(questionCreator,gbc_right);
+//        questionCreator.setVisible(false);
     }
     
     public static  QuestionPaper getQuestionPaper(){

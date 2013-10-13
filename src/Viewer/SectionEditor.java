@@ -39,6 +39,7 @@ public class SectionEditor extends JPanel{
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTH;
         gbc.weightx = 0.3;
         gbc.weighty = 0.3;
         gbc.gridx = 0;
