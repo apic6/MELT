@@ -33,7 +33,9 @@ public class Viewer extends JFrame {
          Welcome wel=new Welcome(this,model);
          setContentPane(wel);
          setVisible(true);
-         
+         //FIBQPanel fibtest=new FIBQPanel(this,model);
+        // setContentPane(fibtest);
+         //setVisible(true);
 }
   
      
