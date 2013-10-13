@@ -44,7 +44,7 @@ public class Subsection extends JPanel{
         gbc.anchor = GridBagConstraints.FIRST_LINE_START ;      
         gbc.weightx = 1 ;
         gbc.weighty = 1 ;
-        
+        gbc.fill = GridBagConstraints.BOTH ;
         JList questionList = new JList() ;
         questionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         questionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -71,6 +71,7 @@ public class Subsection extends JPanel{
         add(listScroller, gbc) ;
         
         gbc.gridy = 1 ;
+        /*
         createQuestion = new JButton("Add Question");
         createQuestion.addActionListener(new java.awt.event.ActionListener() {
 
@@ -82,6 +83,7 @@ public class Subsection extends JPanel{
         });
         
         add(createQuestion,gbc);
+        * */
     }
     
     
