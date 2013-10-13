@@ -32,23 +32,23 @@ class QuestionPanel extends JPanel {
 
     public QuestionPanel(String question, String[] answers) {
         GridBagLayout layout = new GridBagLayout();
-        
+
         GridBagConstraints con = new GridBagConstraints();
-        
+
         //con.ipadx = 10;
         //con.ipady = 10;
-        
-        con.anchor =  GridBagConstraints.LINE_START;
+
+        con.anchor = GridBagConstraints.LINE_START;
         con.insets = new Insets(5, 5, 5, 5);
         con.weightx = 1;
-        
+
         con.gridx = 0;
         con.gridy = 0;
-        
+
         con.fill = GridBagConstraints.VERTICAL;
-        
+
         layout.setConstraints(this, con);
-        
+
         // this.setBackground(new Color(255, 0, 0));
         this.setLayout(layout);
 
@@ -57,24 +57,24 @@ class QuestionPanel extends JPanel {
         this.add(questionLabel, con);
 
         this.answers = answers;
-        
+
         Border b = new LineBorder(new Color(0, 0, 0));
         this.setBorder(b);
 
         for (int i = 0; i < answers.length; i++) {
             JRadioButton radio = new JRadioButton(answers[i]);
-            con.gridy = i+1;
+            con.gridy = i + 1;
             this.add(radio, con);
         }
     }
-    
+
     @Override
     public Dimension getPreferredSize() {
         Dimension d = new Dimension(550, 100);
         // System.out.println(super.getHeight());
         // d.height = super.getHeight();
         return d;
-    }    
+    }
 }
 
 public class LeftPanel extends JTabbedPane {
@@ -109,18 +109,80 @@ public class LeftPanel extends JTabbedPane {
         Modeller model = new Modeller();
         model.loadPapers();
         QuestionPaper paper = model.getPaper(0);
-        
+
         JFrame frame = new JFrame();
         frame.setLayout(new GridLayout(1, 0));
         frame.setPreferredSize(new Dimension(1200, 800));
-        
+
         frame.add(new LeftPanel());
+
+        RightPanel panel = new RightPanel(paper);
+
+
         //frame.add(new RightPanel(paper));
         //frame.add(new RightPanel(paper.getSection(0)));
         //frame.add(new RightPanel(paper.getSection(0).getSubSection(0)));
-        frame.add(new RightPanel(paper.getSection(0).getSubSection(1).getQuestion(0)));
+        //frame.add(new RightPanel(paper.getSection(0).getSubSection(1).getQuestion(0)));
+
+        frame.add(panel);
+
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        while (true) {
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
+            frame.remove(panel);
+            panel = new RightPanel(paper.getSection(0));
+            System.out.println("Section");
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
+            frame.remove(panel);
+            panel = new RightPanel(paper.getSection(0).getSubSection(0));
+            System.out.println("SubSection");
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
+            frame.remove(panel);
+            panel = new RightPanel(paper.getSection(0).getSubSection(0).getQuestion(0));
+            System.out.println("Question");
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+            
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+
+            frame.remove(panel);
+            panel = new RightPanel(paper);
+            System.out.println("Paper");
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();            
+        }
     }
 }
