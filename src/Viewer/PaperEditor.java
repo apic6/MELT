@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -76,9 +77,17 @@ public class PaperEditor extends JPanel{
         gbc2.fill = GridBagConstraints.HORIZONTAL;
         gbc2.gridx = 0;
         gbc2.gridy = 0;
+        int section_num = 0;
         for(Section one : sections){
+            JLabel sec_label = new JLabel("Section "+ (++section_num));
+            sections_panel.add(sec_label,gbc2);
+            gbc2.gridx = 1;
             JLabel sec_title = new JLabel(one.GetTitle());
             sections_panel.add(sec_title,gbc2);
+            gbc2.gridx = 2;
+            JButton edit_section = new JButton("Edit");
+            sections_panel.add(edit_section,gbc2);
+            gbc2.gridx = 0;
             gbc2.gridy++;
         }
         

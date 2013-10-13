@@ -31,6 +31,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -76,20 +78,20 @@ public class TestWizard extends JPanel{
         
         con.fill = GridBagConstraints.BOTH;
         tabs = new JTabbedPane();
-        JPanel tab1 = new JPanel();
-        
-        tab1.setLayout(new GridBagLayout());
-        tab1.setPreferredSize(new Dimension(500,500));
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.fill = GridBagConstraints.BOTH;
-        
-        tab1.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c);
-        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
+//        JPanel tab1 = new JPanel();
+//        
+//        tab1.setLayout(new GridBagLayout());
+//        tab1.setPreferredSize(new Dimension(500,500));
+//        GridBagConstraints c = new GridBagConstraints();
+//        c.gridx = 0;
+//        c.gridy = 0;
+//        c.weightx = 1.0;
+//        c.weighty = 1.0;
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.fill = GridBagConstraints.BOTH;
+//        
+//        tab1.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c);
+//        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
         
         add(tabs,con);
         
@@ -136,7 +138,7 @@ public class TestWizard extends JPanel{
     });
 //        con.gridx = 1;
 //        add(submit,con);
-        JPanel rightPanel = new JPanel();
+        final JPanel rightPanel = new JPanel();
         rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
@@ -154,6 +156,18 @@ public class TestWizard extends JPanel{
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper),gbc_right);
         
+        
+        ChangeListener changeListener = new ChangeListener() {
+          public void stateChanged(ChangeEvent changeEvent) {
+            JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+            int index = sourceTabbedPane.getSelectedIndex();
+            rightPanel.removeAll();
+            rightPanel.add(new SectionEditor(paper.GetSection(index)),new GridBagConstraints());
+            
+          }
+        };
+    
+        tabs.addChangeListener(changeListener);
         
         //final JPanel questionCreator = new JPanel() ;
         
