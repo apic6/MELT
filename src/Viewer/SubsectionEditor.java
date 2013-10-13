@@ -24,9 +24,9 @@ public class SubsectionEditor extends JPanel{
     private JTextArea instruction = new JTextArea(3,30);
     
     public SubsectionEditor(SubSection subSection){
-        title.setText(subSection.GetTitle());
-        description.setText(subSection.GetDescription());
-        instruction.setText(subSection.GetInstructions());
+        title.setText(subSection.getTitle());
+        description.setText(subSection.getDescription());
+        instruction.setText(subSection.getInstructions());
         initComponents();
     }
 

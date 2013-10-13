@@ -27,10 +27,10 @@ public class SectionEditor extends JPanel{
     private JTextArea timeLimit = new JTextArea(1,10);
     
     public SectionEditor (Section section){
-        title.setText(section.GetTitle());
-        description.setText(section.GetDescription());
-        instruction.setText(section.GetInstructions());
-        timeLimit.setText(String.valueOf(section.GetTimeLimit()));
+        title.setText(section.getTitle());
+        description.setText(section.getDescription());
+        instruction.setText(section.getInstructions());
+        timeLimit.setText(String.valueOf(section.getTimeLimit()));
         initComponents();
     }
 

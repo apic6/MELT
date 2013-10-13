@@ -30,59 +30,59 @@ public class SubSection {
         QuestionList = new ArrayList<>();
     }
     
-    public void SetTitle ( String Title) {
+    public void setTitle ( String Title) {
         this.Title = Title;
     }
     
-    public void SetDescription ( String Description) {
+    public void setDescription ( String Description) {
         this.Description = Description;
     }
     
-    public void SetInstructions ( String Instructions ) {
+    public void setInstructions ( String Instructions ) {
         this.Instructions = Instructions;
     }
     
-    public String GetTitle(){
+    public String getTitle(){
         return Title;
     }
     
-    public String GetDescription(){
+    public String getDescription(){
         return Description;
     }
     
-    public String GetInstructions() {
+    public String getInstructions() {
         return Instructions;
     }
     
-    public Question GetQuestion(int ID) {
+    public Question getQuestion(int ID) {
         return QuestionList.get(ID);
     }
     
-    public int GetNumberOfQuestions(){
+    public int getNumberOfQuestions(){
         return QuestionList.size();
     }
     
-    public void AddQuestion(int position, Question Q) {
+    public void addQuestion(int position, Question Q) {
   	QuestionList.add (position, Q);
     }
     
-    public void AddQuestion(Question Q) {
+    public void addQuestion(Question Q) {
   	QuestionList.add (Q);
     }
-    public void RemoveQuestion (int position) {
+    public void removeQuestion (int position) {
           QuestionList.remove(position);
     }
 
-    public void MoveQuestionUp (int QuestionToMove) {
+    public void moveQuestionUp (int QuestionToMove) {
           if (QuestionToMove <= 0) return;
-          if (QuestionToMove >= GetNumberOfQuestions() ) return;
+          if (QuestionToMove >= getNumberOfQuestions() ) return;
 
-          QuestionList.add(QuestionToMove-1, GetQuestion(QuestionToMove));
+          QuestionList.add(QuestionToMove-1, getQuestion(QuestionToMove));
           QuestionList.remove(QuestionToMove +1 );
     }
 
-    public void MoveQuestionDown (int QuestionToMove) {
-          MoveQuestionUp(QuestionToMove+1);
+    public void moveQuestionDown (int QuestionToMove) {
+          moveQuestionUp(QuestionToMove+1);
     }
     
     public String toXML() {

@@ -30,60 +30,60 @@ public class QuestionPaper {
     /*
      *	Modifying Question Paper
      */
-    public void AddEligibleStudent(int ID) {
+    public void addEligibleStudent(int ID) {
         EligibleStudents.add(ID);
     }
 
-    public void AddEligibleStudents(int[] IDs) {
+    public void addEligibleStudents(int[] IDs) {
         for (int ID : IDs) {
             EligibleStudents.add(ID);
         }
     }
 
-    public void AddEligibleSetter(int ID) {
+    public void addEligibleSetter(int ID) {
         EliglbeTeachers.add(ID);
     }
 
-    public void AddEligibleSetters(int[] IDs) {
+    public void addEligibleSetters(int[] IDs) {
         for (int ID : IDs) {
             EliglbeTeachers.add(ID);
         }
     }
     
-    public void SetTitle ( String Title) {
+    public void setTitle ( String Title) {
         this.Title = Title;
     }
     
-    public void SetDescription ( String Description) {
+    public void setDescription ( String Description) {
         this.Description = Description;
     }
     
-    public void SetInstructions ( String Instructions ) {
+    public void setInstructions ( String Instructions ) {
         this.Instructions = Instructions;
     }
 
     /*
      *	Reading/Using Question Paper
      */
-    public int GetPaperID() {
+    public int getPaperID() {
         return PaperID;
     }
     
-    public String GetTitle(){
+    public String getTitle(){
         return Title;
     }
     
-    public String GetDescription(){
+    public String getDescription(){
         return Description;
     }
     
-    public String GetInstructions() {
+    public String getInstructions() {
         return Instructions;
     }
     
     
 
-    public boolean IsStudentEligible(int StudentID) {
+    public boolean isStudentEligible(int StudentID) {
         for (int ID : EligibleStudents) {
             if (StudentID == ID) {
                 return true;
@@ -92,11 +92,11 @@ public class QuestionPaper {
         return false;
     }
     
-    public int GetNumberOfSections() {
+    public int getNumberOfSections() {
         return SectionList.size();
     }
     
-    public Section GetSection(int ID) {
+    public Section getSection(int ID) {
         return SectionList.get(ID);
     }
     
@@ -104,32 +104,32 @@ public class QuestionPaper {
         return SectionList;
     }
     
-    public void AddSection(int position, Section S) {
+    public void addSection(int position, Section S) {
   	SectionList.add (position, S);
     }
     
-    public void AddSection(Section S) {
+    public void addSection(Section S) {
   	SectionList.add (S);
     }
 
-    public void RemoveSection (int position) {
+    public void removeSection (int position) {
         SectionList.remove(position);
     }
 
-    public void MoveSectionUp (int SectionToMove) {
+    public void moveSectionUp (int SectionToMove) {
         if (SectionToMove <= 0) return;
         if (SectionToMove >= SectionList.size()) return;
 
-        SectionList.add(SectionToMove-1, GetSection(SectionToMove));
+        SectionList.add(SectionToMove-1, getSection(SectionToMove));
         SectionList.remove(SectionToMove +1 );
     }
 
-    public void MoveSectionDown (int SectionToMove) {
-        MoveSectionUp(SectionToMove+1);
+    public void moveSectionDown (int SectionToMove) {
+        moveSectionUp(SectionToMove+1);
     }
     
     // produces an XML for students submission
-    public void CreateSubmissionDocument() {
+    public void createSubmissionDocument() {
         /* 
          * 
          */

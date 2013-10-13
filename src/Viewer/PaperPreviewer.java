@@ -19,8 +19,8 @@ public class PaperPreviewer extends JPanel{
     JTextArea description;
     public PaperPreviewer(QuestionPaper paper){
         
-        title = new JLabel(paper.GetTitle());
-        description = new JTextArea(paper.GetDescription());
+        title = new JLabel(paper.getTitle());
+        description = new JTextArea(paper.getDescription());
         
         setLayout(new GridBagLayout());
         GridBagConstraints c5 = new GridBagConstraints();
