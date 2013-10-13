@@ -27,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -59,7 +60,7 @@ public class TestWizard extends JPanel{
 }
 
     private void initComponents() {
-        
+        setBorder(new TitledBorder("New QuestionPaper"));
         setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
         con.gridx = 0;
@@ -128,6 +129,7 @@ public class TestWizard extends JPanel{
 //        con.gridx = 1;
 //        add(submit,con);
         JPanel rightPanel = new JPanel();
+        rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
         con.weightx = 1.0;
@@ -225,7 +227,7 @@ public class TestWizard extends JPanel{
         
         gbc_right.weighty = 0.8;
         gbc_right.gridy = 1;
-        rightPanel.add(questionCreator,gbc_right);
+//        rightPanel.add(questionCreator,gbc_right);
         
     }
     
