@@ -82,7 +82,7 @@ public class PaperEditor extends JPanel{
             JLabel sec_label = new JLabel("Section "+ (++section_num));
             sections_panel.add(sec_label,gbc2);
             gbc2.gridx = 1;
-            JLabel sec_title = new JLabel(one.GetTitle());
+            JLabel sec_title = new JLabel(one.getTitle());
             sections_panel.add(sec_title,gbc2);
             gbc2.gridx = 2;
             JButton edit_section = new JButton("Edit");

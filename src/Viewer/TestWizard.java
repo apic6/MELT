@@ -163,7 +163,7 @@ public class TestWizard extends JPanel{
             JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
             int index = sourceTabbedPane.getSelectedIndex();
             rightPanel.removeAll();
-            rightPanel.add(new SectionEditor(paper.GetSection(index)),new GridBagConstraints());
+            rightPanel.add(new SectionEditor(paper.getSection(index)),new GridBagConstraints());
             
           }
         };
