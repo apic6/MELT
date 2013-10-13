@@ -125,17 +125,39 @@ public class TestWizard extends JPanel{
                // System.out.print(paper.toXML(model));
             }
     });
+//        con.gridx = 1;
+//        add(submit,con);
+        JPanel rightPanel = new JPanel();
         con.gridx = 1;
-        add(submit,con);
-        
-        final JPanel questionCreator = new JPanel() ;
-        
         con.gridy = 0;
         con.weightx = 1.0;
         con.weighty = 1.0;
-        con.gridx = 1 ;
-        con.gridwidth = GridBagConstraints.REMAINDER;
-        add(questionCreator, con) ;
+        add(rightPanel,con);
+        
+        rightPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc_right = new GridBagConstraints();
+        gbc_right.fill = GridBagConstraints.BOTH;
+        gbc_right.gridx = 0;
+        gbc_right.gridy = 0;
+        gbc_right.weighty = 0.2;
+        rightPanel.add(new PaperEditor(paper),gbc_right);
+        
+        
+        final JPanel questionCreator = new JPanel() ;
+        
+//        con.fill = GridBagConstraints.HORIZONTAL;
+//        con.gridy = 0;
+//        con.weightx = 1.0;
+//        con.weighty = 0;
+//        con.gridx = 1 ;
+//        con.gridwidth = GridBagConstraints.REMAINDER;
+//        add(new PaperEditor(paper), con) ;
+//        
+//        con.gridy = 1;
+//        con.weighty = 1.0;
+//        con.gridheight = GridBagConstraints.REMAINDER;
+//        add(questionCreator,con);
+        
         questionCreator.setLayout(new GridBagLayout());
         final GridBagConstraints c3 = new GridBagConstraints();
         
@@ -200,6 +222,10 @@ public class TestWizard extends JPanel{
         questionCreator.add(questionType, c3);
        
         //this.setPreferredSize(new Dimension(500,500));
+        
+        gbc_right.weighty = 0.8;
+        gbc_right.gridy = 1;
+        rightPanel.add(questionCreator,gbc_right);
         
     }
     

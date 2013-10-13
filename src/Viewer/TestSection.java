@@ -53,39 +53,39 @@ public class TestSection extends JPanel{
         con.gridy = 0;
         con.weightx = 0.3;
         con.anchor = GridBagConstraints.NORTHWEST;
-        title_label = new JLabel("title:  ");
-        add(title_label,con);
-        con.gridx = 1;
-        con.weightx = 0.7;
-        con.insets = new Insets(10,0,10,0);
-        title = new JTextArea(1,10);
-        add(title, con);
-        
-        description_label = new JLabel("description:  ");
-        con.gridx = 0;
-        con.gridy = 1;
-        con.weightx = 0.3;
-        add(description_label,con);
-        con.gridx = 1;
-        con.weightx = 0.7;
-        description = new JTextArea(1,10);
-        add(description, con);
-        
-        instruction_label = new JLabel("instruction:  ");
-        con.gridx = 0;
-        con.gridy = 2;
-        con.weighty = 0;
-        con.weightx = 0.3;
-        add(instruction_label,con);
-        con.gridx = 1;
-        con.weightx = 0.7;
-        instruction = new JTextArea(1,10);
-        add(instruction, con);
+//        title_label = new JLabel("title:  ");
+//        add(title_label,con);
+//        con.gridx = 1;
+//        con.weightx = 0.7;
+//        con.insets = new Insets(10,0,10,0);
+//        title = new JTextArea(1,10);
+//        add(title, con);
+//        
+//        description_label = new JLabel("description:  ");
+//        con.gridx = 0;
+//        con.gridy = 1;
+//        con.weightx = 0.3;
+//        add(description_label,con);
+//        con.gridx = 1;
+//        con.weightx = 0.7;
+//        description = new JTextArea(1,10);
+//        add(description, con);
+//        
+//        instruction_label = new JLabel("instruction:  ");
+//        con.gridx = 0;
+//        con.gridy = 2;
+//        con.weighty = 0;
+//        con.weightx = 0.3;
+//        add(instruction_label,con);
+//        con.gridx = 1;
+//        con.weightx = 0.7;
+//        instruction = new JTextArea(1,10);
+//        add(instruction, con);
         
         subsections = new JTabbedPane();
         con.gridx = 0;
         con.weighty = 1.0;
-        con.gridy = 3;
+        con.gridy = 0;
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
         con.gridwidth = GridBagConstraints.REMAINDER;
@@ -105,7 +105,7 @@ public class TestSection extends JPanel{
                 subsections.revalidate();
             }
         });
-        con.gridy = 4;
+        con.gridy = 1;
         con.weighty = 0;
         add(addSubsection,con);
     }
