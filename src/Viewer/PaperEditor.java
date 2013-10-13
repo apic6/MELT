@@ -8,6 +8,7 @@ import Model.QuestionPaper;
 import Model.Section;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -45,6 +46,7 @@ public class PaperEditor extends JPanel{
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(title_label,gbc);
+        gbc.insets = new Insets(5,0,0,0) ;
         
         gbc.weightx = 0.7;
         gbc.gridx = 1;
