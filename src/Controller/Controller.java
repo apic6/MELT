@@ -60,6 +60,11 @@ public class Controller {
                   p=TestWizard.getQuestionPaper();
               
                 try {
+                 //   if (amodel.contains(p)) {
+                       // remove p
+                        //        add p
+                                        
+                    
                     amodel.addPaper(p);
                     amodel.savePapers(null);
                     } catch (FileNotFoundException ex) {
