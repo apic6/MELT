@@ -21,6 +21,7 @@ import javax.swing.border.TitledBorder;
  */
 public class Student extends JPanel{
     public String ID;
+    public int intID;
     public JFrame mainFrame;
     public Modeller amodel;
     
@@ -28,6 +29,7 @@ public class Student extends JPanel{
         amodel = model;
         mainFrame = frame;
         ID=studentID;
+        intID=Integer.parseInt(ID);
         initComponents();
     }
    
@@ -91,7 +93,7 @@ public class Student extends JPanel{
         c1.weightx = 1.0 ;
         c1.weighty = 1.0 ;
         amodel.loadPapers("src/Papers2.xml");
-        ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
+        ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(intID);
         for(int i=0;i<papers.size();++i){
             c1.gridy = i;
             leftPanel.add(new PaperPreviewer(papers.get(i)),c1);
