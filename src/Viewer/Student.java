@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +42,7 @@ public class Student extends JPanel{
         mainFrame.setTitle(ID);  
         mainFrame.setPreferredSize(new Dimension(700,500));
         mainFrame.setMinimumSize(mainFrame.getPreferredSize());
-        //mainFrame.setMinimumSize();
+        
         
         leftPanel = new JPanel();
         rightPanel = new JPanel();
@@ -52,8 +53,7 @@ public class Student extends JPanel{
         
         leftPanel.setMinimumSize(dimensionH);
         rightPanel.setMinimumSize(dimensionH);
-        //rightPanel.setAlignmentX(dimensionH.width);
-        //leftPanel.setMaximumSize(dimensionH);
+       
         
         
         setLayout(new GridBagLayout()) ; 
@@ -75,10 +75,9 @@ public class Student extends JPanel{
         c.gridwidth = GridBagConstraints.REMAINDER ;
         add(rightPanel, c) ;
         
-        //leftPanel.setBackground(Color.red);
-      //  rightPanel.setBackground(Color.blue);
+
         
-        leftPanel.setLayout(new GridBagLayout());
+        leftPanel.setLayout(new GridLayout(20,0));
         leftPanel.setBorder(new TitledBorder("My avaliable tests"));
         rightPanel.setBorder(new TitledBorder("My previous taken tests"));
         
@@ -87,24 +86,27 @@ public class Student extends JPanel{
         
         
         GridBagConstraints c1 = new GridBagConstraints();
-        c1.gridx = 0 ;
-        c1.gridy = 0 ;
-        c1.fill = GridBagConstraints.BOTH ;
-        c1.weightx = 1.0 ;
-        c1.weighty = 1.0 ;
+    
+       c1.fill = GridBagConstraints.BOTH ;
+       c1.weightx = 0.5 ;
+       c1.weighty = 0.5 ;
         amodel.loadPapers("src/Papers.xml");
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(intID);
         for(int i=0;i<papers.size();++i){
+           
             c1.gridy = i;
-            c1.gridx = 0;
+          
+            c1.gridx = 1;
+            
             leftPanel.add(new PaperPreviewer(papers.get(i)),c1);
-            c1.gridx=1;
-            c1.gridy=i;
+          
+            c1.gridx=2;
+          //  c1.gridy=i;
             c1.fill = GridBagConstraints.HORIZONTAL;
             c1.weighty = 0.1;   //request any extra vertical space
-            c1.insets = new Insets(5,0,0,0);  //top padding
-            c1.gridwidth = 1;   //2 columns wide
-            c1.weightx=1;
+           
+            //c1.gridwidth = 1;   //2 columns wide
+            //c1.weightx=0.1;
             JButton startButton=new JButton("Start this Test");
             
             startButton.setPreferredSize(new Dimension(50, 50));
@@ -112,7 +114,7 @@ public class Student extends JPanel{
             leftPanel.add(startButton,c1);
         }
         
-        
+       
         
         
     }
