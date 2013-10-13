@@ -47,13 +47,13 @@ public final class TestPreviewer extends JFrame {
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
 
         QuestionPaper paper = papers.get(0);
-        Section section = paper.GetSection(0);
-        SubSection subSection = section.GetSubSection(0);
-        questions = new Question[subSection.GetNumberOfQuestions()];
+        Section section = paper.getSection(0);
+        SubSection subSection = section.getSubSection(0);
+        questions = new Question[subSection.getNumberOfQuestions()];
         questionViews = new QuestionView[questions.length];
 
-        for (int i = 0; i < subSection.GetNumberOfQuestions(); i++) {
-            questions[i] = subSection.GetQuestion(i);
+        for (int i = 0; i < subSection.getNumberOfQuestions(); i++) {
+            questions[i] = subSection.getQuestion(i);
             questionViews[i] = new QuestionView(questions[i]);
             questionsPanel.add(questionViews[i]);
         }

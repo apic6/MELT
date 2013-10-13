@@ -31,6 +31,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -46,6 +48,7 @@ public class TestWizard extends JPanel{
     ArrayList<TestSection> sectionList;
     private JTabbedPane questionType;
     private JPanel MCQ;
+    private JPanel rightPanel = new JPanel();
     SubSection subSection;
     MultipleChoiceQuestion question;
     private JPanel answerPanel;
@@ -76,20 +79,20 @@ public class TestWizard extends JPanel{
         
         con.fill = GridBagConstraints.BOTH;
         tabs = new JTabbedPane();
-        JPanel tab1 = new JPanel();
-        
-        tab1.setLayout(new GridBagLayout());
-        tab1.setPreferredSize(new Dimension(500,500));
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.fill = GridBagConstraints.BOTH;
-        
-        tab1.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c);
-        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
+//        JPanel tab1 = new JPanel();
+//        
+//        tab1.setLayout(new GridBagLayout());
+//        tab1.setPreferredSize(new Dimension(500,500));
+//        GridBagConstraints c = new GridBagConstraints();
+//        c.gridx = 0;
+//        c.gridy = 0;
+//        c.weightx = 1.0;
+//        c.weighty = 1.0;
+//        c.gridwidth = GridBagConstraints.REMAINDER;
+//        c.fill = GridBagConstraints.BOTH;
+//        
+//        tab1.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c);
+//        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
         
         add(tabs,con);
         
@@ -124,19 +127,19 @@ public class TestWizard extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 for(int i = 0; i < sectionList.size(); i++){
-                    paper.SetTitle(("Test test"));
-                    paper.SetDescription("Test Description");
-                    paper.SetInstructions("Test instructions");
-                    sectionList.get(i).section.SetTitle(sectionList.get(i).getTitle());
-                    sectionList.get(i).section.SetDescription(sectionList.get(i).getDescription());
-                    sectionList.get(i).section.SetInstructions(sectionList.get(i).getInstruction());
+                    paper.setTitle(("Test test"));
+                    paper.setDescription("Test Description");
+                    paper.setInstructions("Test instructions");
+                    sectionList.get(i).section.setTitle(sectionList.get(i).getTitle());
+                    sectionList.get(i).section.setDescription(sectionList.get(i).getDescription());
+                    sectionList.get(i).section.setInstructions(sectionList.get(i).getInstruction());
                 }
                // System.out.print(paper.toXML(model));
             }
     });
 //        con.gridx = 1;
 //        add(submit,con);
-        JPanel rightPanel = new JPanel();
+        final JPanel rightPanel = new JPanel();
         rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
@@ -153,7 +156,19 @@ public class TestWizard extends JPanel{
         gbc_right.gridy = 0;
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper),gbc_right);
+        tabs.addFocusListener(new Foc());
         
+        ChangeListener changeListener = new ChangeListener() {
+          public void stateChanged(ChangeEvent changeEvent) {
+            JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+            int index = sourceTabbedPane.getSelectedIndex();
+            rightPanel.removeAll();
+            rightPanel.add(new SectionEditor(paper.getSection(index)),new GridBagConstraints());
+            
+          }
+        };
+    
+        tabs.addChangeListener(changeListener);
         
         //final JPanel questionCreator = new JPanel() ;
         
@@ -277,7 +292,7 @@ class Foc implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
-         System.out.println("JHASKHGDKJHAJSD");
+         rightPanel.setBorder(new TitledBorder("Section information"));
         }
 
         @Override

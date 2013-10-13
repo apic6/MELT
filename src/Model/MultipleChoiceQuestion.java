@@ -28,19 +28,19 @@ public class MultipleChoiceQuestion implements Question {
         return Question;
     }
 
-    public int GetNumberOfAnswers() {
+    public int getNumberOfAnswers() {
         return Answers.length;
     }
 
-    public String GetAnswer(int ID) {
+    public String getAnswer(int ID) {
         return Answers[ID];
     }
     
-    public void SetAnswer(int ChosenAnswer) {
+    public void setAnswer(int ChosenAnswer) {
         this.ChosenAnswer = ChosenAnswer;
     }
     
-    public int GetChosenAnswer() {
+    public int getChosenAnswer() {
         return ChosenAnswer;
     }
     

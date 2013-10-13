@@ -43,7 +43,7 @@ public class TestSection extends JPanel{
         mainFrame = frame;
         section = new Section();
         sectionList.add(this);
-        paper.AddSection(section);
+        paper.addSection(section);
         this.wizard = wizard;
         initComponents();
     }
@@ -131,7 +131,8 @@ public class TestSection extends JPanel{
         @Override
         public void focusGained(FocusEvent e) {
          wizard.questionCreatorSetVinsible();
-       
+         
+         
         }
 
         @Override

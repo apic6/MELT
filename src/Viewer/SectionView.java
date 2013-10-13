@@ -28,8 +28,8 @@ public class SectionView  extends JPanel {
         // questions = new Question[subSection.GetNumberOfQuestions()];
         // questionViews = new QuestionView[questions.length];
         
-        for (int i=0; i<section.GetNumberOfSubSections(); i++) {
-            tabbedPane.addTab(section.GetSubSection(i).GetTitle(),new SubSectionView(section.GetSubSection(i)));
+        for (int i=0; i<section.getNumberOfSubSections(); i++) {
+            tabbedPane.addTab(section.getSubSection(i).getTitle(),new SubSectionView(section.getSubSection(i)));
         }
         
         // JScrollPane scrollPane = new JScrollPane(questionsPanel);        
@@ -46,7 +46,7 @@ public class SectionView  extends JPanel {
         model.loadPapers("src/Papers.xml");
         ArrayList<QuestionPaper> papers = model.getPapersByStudentID(12301230);
         QuestionPaper paper = papers.get(0);
-        Section section = paper.GetSection(0);
+        Section section = paper.getSection(0);
         
         JFrame frame = new JFrame();
         

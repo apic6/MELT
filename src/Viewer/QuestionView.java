@@ -65,12 +65,12 @@ public class QuestionView extends JPanel {
         } else if (question instanceof MultipleChoiceQuestion) { // MCQ
             MultipleChoiceQuestion mcqQuestion = (MultipleChoiceQuestion) question;
             group = new ButtonGroup();
-            answerOption = new JRadioButton[mcqQuestion.GetNumberOfAnswers()];
+            answerOption = new JRadioButton[mcqQuestion.getNumberOfAnswers()];
 
-            for (int i = 0; i < mcqQuestion.GetNumberOfAnswers(); i++) {
-                answerOption[i] = new JRadioButton(mcqQuestion.GetAnswer(i));
+            for (int i = 0; i < mcqQuestion.getNumberOfAnswers(); i++) {
+                answerOption[i] = new JRadioButton(mcqQuestion.getAnswer(i));
                 answerOption[i].setMnemonic(KeyEvent.VK_B);
-                answerOption[i].setActionCommand(((MultipleChoiceQuestion) question).GetAnswer(i));
+                answerOption[i].setActionCommand(((MultipleChoiceQuestion) question).getAnswer(i));
                 group.add(answerOption[i]);
                 leftPanel.add(this.answerOption[i]);
             } // for each answer

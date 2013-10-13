@@ -94,7 +94,7 @@ public class QuestionCreator extends JFrame{
                     answers[i] = answerAreas.get(i).getText();
                 }
                 question = new MultipleChoiceQuestion(title.getText(),answers,null);
-                subSection.AddQuestion(question);
+                subSection.addQuestion(question);
                 mainPane.revalidate();
             }
         
