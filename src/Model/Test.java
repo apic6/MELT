@@ -25,8 +25,8 @@ public class Test {
         */
         Modeller model = new Modeller();
         
-        model.init();
+        model.loadSubmissions();
         
-        model.saveSubmissions("submissions/Submissions2.xml");
+        model.saveSubmissions("submissions/Submissions3.xml");
     }
 }
