@@ -29,7 +29,7 @@ public class Modeller {
     public void init() {
         loadPapers();
         loadSubmissions();
-        // loadMarkingSchemes();
+        loadMarkingSchemes();
     }
 
     public void loadPapers() {
@@ -129,5 +129,13 @@ public class Modeller {
         loader.loadSubmissions();
 
         submissions = loader.getSubmissions();
+    }
+
+    private void loadMarkingSchemes() {
+        MarkingSchemeLoader loader = new MarkingSchemeLoader();
+
+        loader.loadMarkingSchemes();
+
+        markingSchemes = loader.getMarkingSchemes();
     }
 }

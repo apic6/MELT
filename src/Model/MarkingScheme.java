@@ -83,7 +83,7 @@ public class MarkingScheme {
         return paperID;
     }
     
-    public void addSubSection(MarkingSection section) {
+    public void addSection(MarkingSection section) {
         sectionList.add(section);
     }
     
