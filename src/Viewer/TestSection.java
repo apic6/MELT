@@ -131,6 +131,7 @@ public class TestSection extends JPanel{
         @Override
         public void focusGained(FocusEvent e) {
          wizard.questionCreatorSetVinsible();
+       
         }
 
         @Override
