@@ -33,7 +33,7 @@ public class Modeller {
     }
 
     public void loadPapers() {
-        loadPapers("src/Papers.xml");
+        loadPapers("papers/Papers.xml");
     }
 
     // loads all papers into model
@@ -124,12 +124,12 @@ public class Modeller {
     }
 
     // get number of papers
-    int getNumberOfPapers() {
+    public int getNumberOfPapers() {
         return questionPapers.size();
     }
 
     // retrieve a paper
-    QuestionPaper getPaper(int index) {
+    public QuestionPaper getPaper(int index) {
         return questionPapers.get(index);
     }
 
@@ -139,12 +139,12 @@ public class Modeller {
     }
 
     // remove a paper from the model
-    void removePaper(int index) {
+    public void removePaper(int index) {
         questionPapers.remove(index);
     }
 
     // moves a paper up in a list
-    void movePaperUp(int index) {
+    public void movePaperUp(int index) {
         if (index <= 0) {
             return;
         }
@@ -157,7 +157,7 @@ public class Modeller {
     }
 
     // moves a paper down in a list
-    void MovePaperDown(int index) {
+    public void MovePaperDown(int index) {
         movePaperUp(index + 1);
     }
     

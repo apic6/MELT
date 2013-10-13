@@ -48,6 +48,7 @@ public class TestWizard extends JPanel{
     ArrayList<TestSection> sectionList;
     private JTabbedPane questionType;
     private JPanel MCQ;
+    private JPanel rightPanel = new JPanel();
     SubSection subSection;
     MultipleChoiceQuestion question;
     private JPanel answerPanel;
@@ -155,7 +156,7 @@ public class TestWizard extends JPanel{
         gbc_right.gridy = 0;
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper),gbc_right);
-        
+        tabs.addFocusListener(new Foc());
         
         ChangeListener changeListener = new ChangeListener() {
           public void stateChanged(ChangeEvent changeEvent) {
@@ -291,7 +292,7 @@ class Foc implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
-         System.out.println("JHASKHGDKJHAJSD");
+         rightPanel.setBorder(new TitledBorder("Section information"));
         }
 
         @Override
