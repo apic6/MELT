@@ -30,6 +30,7 @@ public class Subsection extends JPanel{
     GridBagConstraints gbc = new GridBagConstraints();
     Section section;
     private DefaultListModel listModel;
+    private JList questionList = new JList() ;
     Subsection(Section section){
         this.section = section;
         mainPane = this;
@@ -46,7 +47,7 @@ public class Subsection extends JPanel{
         gbc.weightx = 1 ;
         gbc.weighty = 1 ;
         gbc.fill = GridBagConstraints.BOTH ;
-        JList questionList = new JList() ;
+        //JList questionList = new JList() ;
         questionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         questionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         //questionList.setVisibleRowCount(-1) ;
@@ -67,7 +68,7 @@ public class Subsection extends JPanel{
         listModel.addElement("xcvcxvcxvcxvxc");
         
         questionList = new JList(listModel) ;
-        
+        questionList.setSelectedIndex(0);
         JScrollPane listScroller = new JScrollPane(questionList);
         add(listScroller, gbc) ;
         
@@ -86,6 +87,6 @@ public class Subsection extends JPanel{
         add(createQuestion,gbc);
         * */
     }
-    
+   
     
 }

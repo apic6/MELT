@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import Viewer.TestWizard;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 /**
  *
  * @author mbaxkmt6
@@ -38,6 +40,7 @@ public class TestSection extends JPanel{
     private JTabbedPane subsections;
     public Section section;
     private TestWizard wizard;
+    
     public TestSection(JFrame frame,Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
         this.model = model;
         mainFrame = frame;
@@ -45,6 +48,7 @@ public class TestSection extends JPanel{
         sectionList.add(this);
         paper.AddSection(section);
         this.wizard = wizard;
+        
         initComponents();
     }
 
@@ -99,6 +103,7 @@ public class TestSection extends JPanel{
         add(subsections,con);
         subsections.addFocusListener(new Foc());
         
+        
         JButton addSubsection = new JButton("Add Subsection");
         
         addSubsection.addActionListener(new java.awt.event.ActionListener() {
@@ -131,8 +136,7 @@ public class TestSection extends JPanel{
         @Override
         public void focusGained(FocusEvent e) {
          wizard.questionCreatorSetVinsible();
-         
-         
+       
         }
 
         @Override

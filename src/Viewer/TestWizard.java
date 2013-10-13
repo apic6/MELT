@@ -31,6 +31,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -155,7 +157,15 @@ public class TestWizard extends JPanel{
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper),gbc_right);
         tabs.addFocusListener(new Foc());
-        
+        ChangeListener changeListener = new ChangeListener() {
+                @Override
+               public void stateChanged(ChangeEvent changeEvent) {
+        JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+        int index = sourceTabbedPane.getSelectedIndex();
+        System.out.println("Tab changed to: " + sourceTabbedPane.getTitleAt(index));
+      }
+    };
+        tabs.addChangeListener(changeListener);
         //final JPanel questionCreator = new JPanel() ;
         
 //        con.fill = GridBagConstraints.HORIZONTAL;
@@ -279,6 +289,7 @@ class Foc implements FocusListener {
         @Override
         public void focusGained(FocusEvent e) {
          rightPanel.setBorder(new TitledBorder("Section information"));
+         
         }
 
         @Override
