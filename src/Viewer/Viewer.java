@@ -48,7 +48,7 @@ public class Viewer extends JFrame {
      
      public void addListener(ActionListener mal,DocumentListener doc,FocusListener foc) {
           //(Welcome.teacherButton).addActionListener(mal);
-          (LoginScreen.loginButton).addFocusListener(foc);
+         // (LoginScreen.loginButton).addFocusListener(foc);
          (TestWizard.submit).addActionListener(mal);
           //  (QuestionCreator.title).getDocument().addDocumentListener(doc);
          (LoginScreen.userIDText).addFocusListener(foc);

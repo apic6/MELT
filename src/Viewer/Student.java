@@ -93,6 +93,7 @@ public class Student extends JPanel{
         c1.weightx = 1.0 ;
         c1.weighty = 1.0 ;
         amodel.loadPapers("src/Papers2.xml");
+        
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(intID);
         for(int i=0;i<papers.size();++i){
             c1.gridy = i;
