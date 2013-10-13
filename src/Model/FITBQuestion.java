@@ -5,15 +5,25 @@ public class FITBQuestion implements Question {
     private String Instructions;
     private String Question;
     private String ChosenAnswer;
+    private String[] answers;
 
-    FITBQuestion(String Question, String Instructions) {
+    FITBQuestion(String Question, String Instructions, String[] answers) {
         this.Question = Question;
         this.Instructions = Instructions;
+        this.answers = answers;
     }
 
     @Override
     public String getInstructions() {
         return Instructions;
+    }
+    
+    public int getNumberOfAnswers() {
+        return answers.length;
+    }
+    
+    public String getAnswer(int i) {
+        return answers[i];
     }
 
     @Override
