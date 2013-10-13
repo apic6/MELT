@@ -52,11 +52,13 @@ public class TestWizard extends JPanel{
     GridBagConstraints apc = new GridBagConstraints();
     private JPanel FIBQ;
     final JPanel questionCreator = new JPanel() ;
+    public TestWizard wizard;
     public TestWizard(JFrame frame,Modeller model){
         this.model = model;
         mainFrame = frame;
         sectionList = new ArrayList();
         paper = new QuestionPaper(123456);
+        wizard = this;
         initComponents();
         
         answerAreas = new ArrayList();
@@ -86,7 +88,7 @@ public class TestWizard extends JPanel{
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.BOTH;
         
-        tab1.add(new TestSection(mainFrame,model,paper,sectionList),c);
+        tab1.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c);
         tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
         
         add(tabs,con);
@@ -104,7 +106,7 @@ public class TestWizard extends JPanel{
             c2.weightx = 1.0;
             c2.weighty = 1.0;
             c2.fill = GridBagConstraints.BOTH;
-            tab3.add(new TestSection(mainFrame,model,paper,sectionList),c2);
+            tab3.add(new TestSection(mainFrame,model,paper,sectionList,wizard),c2);
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
             tabs.revalidate();
             }
@@ -235,6 +237,7 @@ public class TestWizard extends JPanel{
         
         gbc_right.weighty = 0.8;
         gbc_right.gridy = 1;
+        gbc_right.fill = GridBagConstraints.BOTH ;
         rightPanel.add(questionCreator,gbc_right);
         questionCreator.setVisible(false);
     }

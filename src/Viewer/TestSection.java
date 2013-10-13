@@ -12,6 +12,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-
+import Viewer.TestWizard;
 /**
  *
  * @author mbaxkmt6
@@ -35,12 +37,14 @@ public class TestSection extends JPanel{
     private JTextArea instruction;
     private JTabbedPane subsections;
     public Section section;
-    public TestSection(JFrame frame,Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList){
+    private TestWizard wizard;
+    public TestSection(JFrame frame,Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
         this.model = model;
         mainFrame = frame;
         section = new Section();
         sectionList.add(this);
         paper.AddSection(section);
+        this.wizard = wizard;
         initComponents();
     }
 
@@ -93,6 +97,7 @@ public class TestSection extends JPanel{
         subsection1.setPreferredSize(new Dimension(200,200));
         subsections.addTab("subsection1",subsection1);
         add(subsections,con);
+        subsections.addFocusListener(new Foc());
         
         JButton addSubsection = new JButton("Add Subsection");
         
@@ -121,4 +126,18 @@ public class TestSection extends JPanel{
     public String getInstruction(){
         return this.instruction.getText();
     }
+    class Foc implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+         wizard.questionCreatorSetVinsible();
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            
+        }
+    }
 }
+
+
