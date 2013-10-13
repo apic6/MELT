@@ -15,6 +15,8 @@ import Viewer.TestWizard;
 import Viewer.Viewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +34,7 @@ public class Controller {
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
         
-        view.addListener(new ViewerEventListener(),new ViewerDocumentListener());
+        view.addListener(new ViewerEventListener(),new ViewerDocumentListener(),new ViewerFocusListener());
         amodel=model;
         aview=view;
         
@@ -94,6 +96,18 @@ public class Controller {
         }
  }
 
+class ViewerFocusListener implements FocusListener {
 
+        @Override
+        public void focusGained(FocusEvent e) {
+            //
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            System.out.println("it works big time");
+        }
+
+}
 
 }

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,12 +46,13 @@ public class Viewer extends JFrame {
      
      
      
-     public void addListener(ActionListener mal,DocumentListener doc) {
+     public void addListener(ActionListener mal,DocumentListener doc,FocusListener foc) {
          //(Welcome.teacherButton).addActionListener(mal);
          //(LoginScreen.loginButton).addActionListener(mal);
          (TestWizard.submit).addActionListener(mal);
        //  (QuestionCreator.title).getDocument().addDocumentListener(doc);
-         (LoginScreen.userIDText).getDocument().addDocumentListener(doc);
+         (LoginScreen.userIDText).addFocusListener(foc);
+         
     }
      
     
