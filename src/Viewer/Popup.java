@@ -28,7 +28,7 @@ public class Popup extends JDialog {
     void initComponents(){
       JFrame frame=new JFrame();
       JPanel panel=new JPanel();
-      
+      frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       JOptionPane.showMessageDialog(frame,
         message);
      

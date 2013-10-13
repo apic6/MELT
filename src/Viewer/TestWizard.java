@@ -18,6 +18,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -81,7 +83,7 @@ public class TestWizard extends JPanel{
         c.fill = GridBagConstraints.BOTH;
         
         tab1.add(new TestSection(mainFrame,model,paper,sectionList),c);
-        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);
+        tabs.addTab("section"+ (tabs.getTabCount()+1), tab1);        
         add(tabs,con);
         
         JButton addSection = new JButton("addSection");

@@ -99,7 +99,7 @@ class ViewerFocusListener implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
-            //
+            System.out.println("works");
         }
 
         @Override
