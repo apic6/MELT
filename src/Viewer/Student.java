@@ -20,12 +20,14 @@ import javax.swing.border.TitledBorder;
  * @author Daniel
  */
 public class Student extends JPanel{
-    
+    public String ID;
     public JFrame mainFrame;
     public Modeller amodel;
-    public Student(JFrame frame,Modeller model){
+    
+    public Student(JFrame frame,Modeller model,String studentID){
         amodel = model;
         mainFrame = frame;
+        ID=studentID;
         initComponents();
     }
    
@@ -34,7 +36,7 @@ public class Student extends JPanel{
     
     private void initComponents() {
        
-            
+        mainFrame.setTitle(ID);  
         mainFrame.setPreferredSize(new Dimension(700,500));
         mainFrame.setMinimumSize(mainFrame.getPreferredSize());
         //mainFrame.setMinimumSize();
@@ -88,7 +90,7 @@ public class Student extends JPanel{
         c1.fill = GridBagConstraints.BOTH ;
         c1.weightx = 1.0 ;
         c1.weighty = 1.0 ;
-        amodel.loadPapers("src/Papers.xml");
+        amodel.loadPapers("src/Papers2.xml");
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
         for(int i=0;i<papers.size();++i){
             c1.gridy = i;

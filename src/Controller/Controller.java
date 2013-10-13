@@ -58,8 +58,7 @@ public class Controller {
                 case "finish":{
                   QuestionPaper  p;
                   p=TestWizard.getQuestionPaper();
-                  //System.out.println("yihaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAA");
-                  //System.out.println(p.toXML(amodel));
+              
                 try {
                     amodel.addPaper(p);
                     amodel.savePapers(null);

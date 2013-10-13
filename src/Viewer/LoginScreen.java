@@ -65,7 +65,7 @@ public class LoginScreen extends JPanel {
                 public void actionPerformed(ActionEvent Ev){
                     String pass=(passwordText.getText()).toString();
                 if( "English".equals(pass)){
-                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel));   
+                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel,userIDText.getText()));   
                                 } 
                 else {
                           
