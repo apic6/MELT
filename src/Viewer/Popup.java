@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * @author mbaxkak4
  */
 public class Popup extends JDialog {
-       private String message;
+    private String message;
     public Popup (String message)
 
     {    
@@ -30,7 +30,7 @@ public class Popup extends JDialog {
       JPanel panel=new JPanel();
       
       JOptionPane.showMessageDialog(frame,
-          "Eggs are not supposed to be green.");
+        message);
      
       setVisible(true);
          
