@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author Jamie
  */
 public class Test {
-    public static void main(String argv[]) {
+    public static void main(String argv[]) throws FileNotFoundException {
         /*
         Modeller model = new Modeller();
         model.loadPapers("src/Papers2.xml");
@@ -23,18 +23,10 @@ public class Test {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
         */
-        StudentSubmission submission = new StudentSubmission(1, 10111);
-        SubmissionSection submSection2 = new SubmissionSection(2);
-        SubmissionSection submSection1 = new SubmissionSection(1);        
+        Modeller model = new Modeller();
         
-        submission.addSection(submSection2);
-        submission.addSection(submSection1);
-        for (int i = 0; i<submission.getSize(); i++) {
-            System.out.println("ID: " + submission.getSection(i).getID());
-        }
-        submission.normalise();
-        for (int i = 0; i<submission.getSize(); i++) {
-            System.out.println("ID: " + submission.getSection(i).getID());
-        }        
+        model.init();
+        
+        model.saveSubmissions("submissions/Submissions2.xml");
     }
 }

@@ -70,7 +70,49 @@ public class Modeller {
             Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void saveSubmissions(String filename) throws FileNotFoundException {
+        String xmlString = "<Submissions>";
+        if (filename == null) {
+            filename = "submissions/Submissions.xml";
+        }
+        for (int i = 0; i < submissions.size(); i++) {
+            xmlString += submissions.get(i).toXML();
+        }
+        xmlString += "</Submissions>";
 
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(filename, "UTF-8");
+            writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            writer.println(xmlString);
+            writer.close();
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void saveMarkingSchemes(String filename) throws FileNotFoundException {
+        String xmlString = "<MarkingSchemes>";
+        if (filename == null) {
+            filename = "markingSchemes/MarkingSchemes.xml";
+        }
+        for (int i = 0; i < markingSchemes.size(); i++) {
+            xmlString += markingSchemes.get(i).toXML();
+        }
+        xmlString += "</MarkingSchemes>";
+
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(filename, "UTF-8");
+            writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            writer.println(xmlString);
+            writer.close();
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
         for (int i = 0; i < questionPapers.size(); i++) {
@@ -115,8 +157,28 @@ public class Modeller {
     }
 
     // moves a paper down in a list
-    void MoveSubSectionDown(int index) {
+    void MovePaperDown(int index) {
         movePaperUp(index + 1);
+    }
+    
+        // get number of papers
+    int getNumberOfSubmission() {
+        return submissions.size();
+    }
+
+    // retrieve a paper
+    StudentSubmission getSubmission(int index) {
+        return submissions.get(index);
+    }
+
+    // add a paper to the model
+    public void addSubmission(StudentSubmission submission) {
+        submissions.add(submission);
+    }
+
+    // remove a paper from the model
+    void removeSubmission(int index) {
+        submissions.remove(index);
     }
 
     public void setValue() {
