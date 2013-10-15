@@ -10,6 +10,7 @@ import Model.SubSection;
 import static Viewer.QuestionCreator.title;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -59,6 +60,7 @@ public class SubsectionEditor extends JPanel{
         gbc.weighty = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.insets = new Insets(10,5,5,10);
         add(title_label,gbc);
         
         gbc.weightx = 0.7;
@@ -94,6 +96,7 @@ public class SubsectionEditor extends JPanel{
             MCQ = new JPanel();
             MCQ.setLayout(new GridBagLayout());
             c3.fill = GridBagConstraints.BOTH;
+            c3.insets = new Insets(10,5,5,10);
             c3.weightx = 0.3;
             c3.gridx = 0;
             c3.gridy = 0;
@@ -107,22 +110,33 @@ public class SubsectionEditor extends JPanel{
             title = new JTextArea(1,20);
             MCQ.add(title,c3);
 
+            JLabel mark_label = new JLabel("marks");
+            c3.gridy = 1;
+            c3.gridx = 0;
+            c3.weightx = 0.5;
+            MCQ.add(mark_label,c3);
+            
+            JTextArea markArea = new JTextArea(1,5);
+            c3.gridx = 1;
+            c3.weightx = 0.3;
+            MCQ.add(markArea,c3);
+            
             JButton addAnswer = new JButton("add answer");
             c3.gridx = 2;
-            c3.weightx = 0;
+            c3.weightx = 0.2;
             MCQ.add(addAnswer,c3);
 
             answerPanel = new JPanel();
             c3.gridx = 0;
             c3.gridwidth = GridBagConstraints.REMAINDER;
-            c3.gridy = 1;
+            c3.gridy = 2;
             c3.weighty = 1.0;
             c3.weightx = 1.0;
             MCQ.add(answerPanel,c3);
 
             JButton submit = new JButton("submit");
             c3.gridx = 0;
-            c3.gridy = 2;
+            c3.gridy = 3;
             c3.weighty = 0.2;
             c3.ipady = 20 ;
             MCQ.add(submit,c3);
@@ -146,7 +160,7 @@ public class SubsectionEditor extends JPanel{
             FIBQ = new JPanel();
             questionType.addTab("FIBQ",FIBQ);
 //            questionType.setPreferredSize(questionCreator.getSize());
-            questionCreator.add(questionType, c3);
+            questionCreator.add(questionType);
 
         gbc.weighty = 1.0;
         gbc.gridx = 0;
@@ -156,7 +170,7 @@ public class SubsectionEditor extends JPanel{
     }
         public JPanel addAnswer(int num){
             JPanel tempPanel = new JPanel();
-            JLabel answer_label = new JLabel("answer"+num);
+            JLabel answer_label = new JLabel("answer"+num+":  ");
             tempPanel.setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;

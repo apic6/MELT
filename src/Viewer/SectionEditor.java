@@ -7,6 +7,7 @@ package Viewer;
 import Model.Section;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -44,6 +45,7 @@ public class SectionEditor extends JPanel{
         gbc.weighty = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.insets = new Insets(10,5,5,10);
         add(title_label,gbc);
         
         gbc.weightx = 0.7;

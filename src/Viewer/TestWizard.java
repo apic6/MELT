@@ -109,7 +109,7 @@ public class TestWizard extends JPanel{
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JPanel tab3 = new JPanel();
             tab3.setLayout(new GridBagLayout());
-            tab3.setPreferredSize(new Dimension(500,500));
+//            tab3.setPreferredSize(new Dimension(500,500));
             GridBagConstraints c2 = new GridBagConstraints();
             c2.gridx = 0;
             c2.gridy = 0;

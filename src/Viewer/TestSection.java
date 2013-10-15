@@ -100,7 +100,7 @@ public class TestSection extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JPanel subsection = new Subsection(section);
-                subsections.addTab("subsection2",subsection );
+                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
                 subsections.revalidate();
             }
         });
