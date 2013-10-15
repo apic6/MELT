@@ -100,7 +100,7 @@ public class SubsectionEditor extends JPanel{
             JLabel title_label = new JLabel("title:  ");
             MCQ.add(title_label,c3);
 
-            questionCreator.add(MCQ, c3) ;
+//            questionType.add(MCQ, c3) ;
 
             c3.gridx = 1;
             c3.weightx = 0.7;
@@ -145,16 +145,13 @@ public class SubsectionEditor extends JPanel{
 
             FIBQ = new JPanel();
             questionType.addTab("FIBQ",FIBQ);
-            questionType.setPreferredSize(questionCreator.getSize());
+//            questionType.setPreferredSize(questionCreator.getSize());
             questionCreator.add(questionType, c3);
-
-            //this.setPreferredSize(new Dimension(500,500));
 
         gbc.weighty = 1.0;
         gbc.gridx = 0;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.gridy = 3;
-//        gbc.fill = GridBagConstraints.BOTH ;
         add(questionCreator,gbc);
     }
         public JPanel addAnswer(int num){
