@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.border.TitledBorder;
 /**
  *
  * @author Daniel
@@ -88,6 +89,7 @@ public class SubsectionEditor extends JPanel{
         add(instruction,gbc);
         
             questionCreator.setLayout(new GridBagLayout());
+            questionCreator.setBorder(new TitledBorder("Create New Question"));
             final GridBagConstraints c3 = new GridBagConstraints();
 
             //questionCreator.setBackground(Color.red);
