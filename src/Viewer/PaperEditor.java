@@ -127,7 +127,7 @@ public class PaperEditor extends JPanel{
     });
         
         JPanel sectionPanel = new JPanel();
-        sectionPanel.setBorder(new TitledBorder("SubSections"));
+        sectionPanel.setBorder(new TitledBorder("Sections"));
         gbc.gridy++;
         add(sectionPanel,gbc);
             
@@ -139,7 +139,7 @@ public class PaperEditor extends JPanel{
             gbc3.gridy = 0;
             
             for(int i = 0; i < paper.getNumberOfSections(); ++i){
-                JLabel subTitleLabel = new JLabel("SubSection"+(i+1)+":  "+paper.getSectionList().get(i).getTitle());
+                JLabel subTitleLabel = new JLabel("Section"+(i+1)+":  "+paper.getSectionList().get(i).getTitle());
                 sectionPanel.add(subTitleLabel,gbc3);
                 JButton moveUp = new JButton("UP");
                 final int pos = i;

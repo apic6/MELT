@@ -183,31 +183,12 @@ public class SectionEditor extends JPanel{
       add(moreTime,gbc);
       gbc.gridx++;
       add(lessTime,gbc);
-        
-        JPanel positionPanel = new JPanel();
-        positionPanel.setBorder(new TitledBorder("Position"));
-        gbc.gridy++;
-        gbc.gridx = 0;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        add(positionPanel,gbc);
-        
-            JButton positionUp = new JButton("Up");
-            JButton positionDown = new JButton("Down");
-            positionPanel.setLayout(new GridBagLayout());
-            GridBagConstraints gbc2 = new GridBagConstraints();
-            gbc2.gridx = 0;
-            gbc2.gridy = 0;
-            gbc2.insets = new Insets(10,10,10,10);
-            gbc2.ipadx = 10;
-            gbc2.ipady = 10;
-            gbc2.fill = GridBagConstraints.BOTH;
-            positionPanel.add(positionUp,gbc2);
-            gbc2.gridx = 1;
-            positionPanel.add(positionDown,gbc2);
             
         JPanel subsectionPanel = new JPanel();
         subsectionPanel.setBorder(new TitledBorder("SubSections"));
         gbc.gridy++;
+        gbc.gridx = 0;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         add(subsectionPanel,gbc);
             
             subsectionPanel.setLayout(new GridBagLayout());
