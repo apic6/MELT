@@ -106,7 +106,7 @@ class ViewerFocusListener implements FocusListener {
                  QuestionPaper  p;
                  p=TestWizard.getQuestionPaper();
                //  System.out.println(p.getPaperID());
-                 amodel.loadPapers();
+                     amodel.loadPapers();
                  
                 try {
                     // p.getPaperID();
