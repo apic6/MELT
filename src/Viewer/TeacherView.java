@@ -47,7 +47,7 @@ public class TeacherView extends JPanel {
         
         previousLabel=new Label();
         createTest=new JButton() ;
-        
+        final TeacherView tView=this;
         
         
         setLayout(new GridBagLayout());
@@ -118,13 +118,32 @@ public class TeacherView extends JPanel {
             this.add(new PaperPreviewer(papers.get(i)),c2);
             
             c2.gridx=1;
-            JButton editButton=new JButton("Edit Test");
-            editButton.addActionListener(new EditListener());
+            JButton editButton=new JButton("Preview Test");
+            editButton.addActionListener(new ActionListener(){
+              @Override
+           public void actionPerformed(ActionEvent evt){
+           mainFrame.setContentPane(new PaperView(paper, mainFrame, null,tView));
+           mainFrame.setVisible(true);
+        
+        }
+            
+            });
             this.add(editButton,c2);
             
             c2.gridx=2;
-            JButton previewButton=new JButton("Preview Test");
-            previewButton.addActionListener(new PreviewListener());
+            JButton previewButton=new JButton("Edit Test");
+            previewButton.addActionListener(new ActionListener(){
+              
+            @Override
+            public void actionPerformed(ActionEvent evt){
+            mainFrame.setContentPane(new TestWizard(mainFrame,amodel,paper));
+            mainFrame.setVisible(true);
+                //TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
+            
+        }
+            
+            
+            });
             this.add(previewButton,c2);
            
         }
@@ -133,22 +152,8 @@ public class TeacherView extends JPanel {
     
       }
 
-    private class  PreviewListener implements ActionListener{
-        
-        @Override
-        public void actionPerformed(ActionEvent evt){
-            TestPreviewer tp=new TestPreviewer(amodel,paper);
-        
-        }
-    }
-     private class  EditListener implements ActionListener {
-        
-        @Override
-        public void actionPerformed(ActionEvent evt){
-            TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
-        }
-    }
-    
+   
+  
     
 
 

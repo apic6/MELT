@@ -87,7 +87,8 @@ public class PaperView extends JPanel {
     QuestionPaper paper;
     SectionPanel[] sPanels;
 
-    public PaperView(QuestionPaper paper, final JFrame mainFrame, final Student studentView) {
+    public PaperView(QuestionPaper paper, final JFrame mainFrame, final Student studentView,final TeacherView teacherView) {
+       
         this.paper = paper;
         sPanels = new SectionPanel[paper.getNumberOfSections()];
 
@@ -107,8 +108,12 @@ public class PaperView extends JPanel {
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(teacherView==null) {
                 mainFrame.setContentPane(studentView);
+                mainFrame.setVisible(true);}
+                else{mainFrame.setContentPane(teacherView);
                 mainFrame.setVisible(true);
+                }
                 //mainFrame.pack();
             }
         });
