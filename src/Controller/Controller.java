@@ -30,15 +30,15 @@ import javax.swing.event.DocumentListener;
  */
 public class Controller {
      private Modeller amodel;
-     private Viewer aview;
-     private ArrayList<QuestionPaper> questionPapers;
+    // private Viewer aview;
+     //private ArrayList<QuestionPaper> questionPapers;
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
         
         view.addListener(new ViewerEventListener(),new ViewerDocumentListener(),new ViewerFocusListener());
         amodel=model;
-        aview=view;
-        //questionPapers=amodel.getPapers();
+       // aview=view;
+       
     }
     
 

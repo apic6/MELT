@@ -67,7 +67,7 @@ public class TestSection extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 int tabNr = ((TabbedPaneUI)subsections.getUI()).tabForCoordinate(subsections, e.getX(), e.getY());
-                if(tabNr > 0)
+                if(tabNr > -1)
                 wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(tabNr),wizard));
                 else
                 wizard.repainRightPanel("QuestionPaper information", new PaperEditor(paper,wizard));
