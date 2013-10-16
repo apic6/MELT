@@ -104,7 +104,8 @@ public class QuestionPaper {
     }
 
     public Section getSection(int ID) {
-        return sectionList.get(ID);
+        if(sectionList.isEmpty()){return null;}
+        else{return sectionList.get(ID);}
     }
 
     public ArrayList<Section> getSectionList() {
