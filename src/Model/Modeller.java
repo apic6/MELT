@@ -112,6 +112,11 @@ public class Modeller {
         }
     } */
     
+    public ArrayList<QuestionPaper> getPapers(){
+    loadPapers();
+    return questionPapers;}
+    
+    
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
         for (int i = 0; i < questionPapers.size(); i++) {

@@ -34,12 +34,14 @@ public class PaperEditor extends JPanel{
     private JPanel sections_panel = new JPanel();
     private ArrayList<Section> sections;
     private QuestionPaper paper;
-    public PaperEditor(QuestionPaper paper){
+    private TestWizard wizard;
+    public PaperEditor(QuestionPaper paper, TestWizard wizard){
         title.setText(paper.getTitle());
         description.setText(paper.getDescription());
         instruction.setText(paper.getInstructions());
         sections = paper.getSectionList();
         this.paper = paper;
+        this.wizard = wizard;
         initComponents();
     }
 
@@ -145,8 +147,10 @@ public class PaperEditor extends JPanel{
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(pos>0)
+                        if(pos>0){
                         paper.getSectionList().add(pos-1,paper.getSectionList().remove(pos));
+                        wizard.repainRightPanel("SubSection information", new PaperEditor(paper,wizard));
+                        }
                     }
                 });
                 JButton moveDown = new JButton("DOWN");
@@ -154,8 +158,10 @@ public class PaperEditor extends JPanel{
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(pos<(paper.getNumberOfSections()-1))
+                        if(pos<(paper.getNumberOfSections()-1)){
                         paper.getSectionList().add(pos+1,paper.getSectionList().remove(pos));
+                        wizard.repainRightPanel("SubSection information", new PaperEditor(paper,wizard));
+                        }
                     }
                 });
                 gbc3.gridx++;
