@@ -18,7 +18,6 @@ import static org.junit.Assert.*;
 public class FITBQuestionTest {
 
     private static FITBQuestion instance;
-    private static String[] answers;
     private static String[] possibleAnswers;
 
     public FITBQuestionTest() {
