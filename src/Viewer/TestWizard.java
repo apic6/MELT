@@ -119,17 +119,9 @@ public class TestWizard extends JPanel{
             tab3.add(new TestSection(rightPanel,paper,sectionList,wizard),c2);
             
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
+            tabs.setSelectedIndex(tabs.getTabCount()-1);
             tabs.revalidate();
-            }
-        });
-        
-        tabs.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int tabNr = ((TabbedPaneUI)tabs.getUI()).tabForCoordinate(tabs, e.getX(), e.getY());
-                System.out.print(tabNr);
-                rightPanel.removeAll();
+            rightPanel.removeAll();
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.gridx = 0;
                 gbc.gridy = 0;
@@ -140,7 +132,34 @@ public class TestWizard extends JPanel{
                 rightPanel.revalidate();
                 rightPanel.setLayout(new GridBagLayout());
                 rightPanel.setBorder(new TitledBorder("Section informtion"));
-                rightPanel.add(new SectionEditor(paper.getSection(tabNr)),gbc);
+                rightPanel.add(new SectionEditor(paper.getSection(paper.getNumberOfSections()-1)),gbc);
+                rightPanel.revalidate();
+                rightPanel.repaint();
+            }
+        });
+        
+        tabs.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int tabNr = ((TabbedPaneUI)tabs.getUI()).tabForCoordinate(tabs, e.getX(), e.getY());
+                rightPanel.removeAll();
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                gbc.weighty = 1.0;
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.anchor = GridBagConstraints.NORTH;
+                rightPanel.removeAll();
+                rightPanel.revalidate();
+                rightPanel.setLayout(new GridBagLayout());
+                if(tabNr > -1){
+                    rightPanel.setBorder(new TitledBorder("Section informtion"));
+                    rightPanel.add(new SectionEditor(paper.getSection(tabNr)),gbc);}
+                else{
+                    rightPanel.setBorder(new TitledBorder("QuestionPaper informtion"));
+                    rightPanel.add(new PaperEditor(paper),gbc);
+                }
                 rightPanel.revalidate();
                 rightPanel.repaint();
             }

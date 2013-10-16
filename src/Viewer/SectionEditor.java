@@ -5,6 +5,7 @@
 package Viewer;
 
 import Model.Section;
+import Model.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -28,12 +29,14 @@ public class SectionEditor extends JPanel{
     private JTextArea instruction = new JTextArea(3,30);
     private JLabel time_label = new JLabel("time limit:");
     private JTextArea timeLimit = new JTextArea(1,10);
+    private Section section;
     
     public SectionEditor (Section section){
         title.setText(section.getTitle());
         description.setText(section.getDescription());
         instruction.setText(section.getInstructions());
         timeLimit.setText(String.valueOf(section.getTimeLimit()));
+        this.section = section;
         initComponents();
     }
 
@@ -106,6 +109,27 @@ public class SectionEditor extends JPanel{
         subsectionPanel.setBorder(new TitledBorder("SubSections"));
         gbc.gridy++;
         add(subsectionPanel,gbc);
+            
+            subsectionPanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc3 = new GridBagConstraints();
+            gbc3.fill = GridBagConstraints.HORIZONTAL;
+            gbc3.insets = new Insets(10,10,10,10);
+            gbc3.gridx = 0;
+            gbc3.gridy = 0;
+            
+            for(int i = 0; i < section.getNumberOfSubSections(); ++i){
+                JLabel subTitleLabel = new JLabel("SubSection"+(i+1)+":  "+section.getSubSections().get(i).getTitle());
+                subsectionPanel.add(subTitleLabel,gbc3);
+                JButton moveUp = new JButton("UP");
+                JButton moveDown = new JButton("DOWN");
+                gbc3.gridx++;
+                subsectionPanel.add(moveUp,gbc3);
+                gbc3.gridx++;
+                subsectionPanel.add(moveDown,gbc3);
+                
+                gbc3.gridy++;
+                gbc3.gridx = 0;
+            }
         
             
     }

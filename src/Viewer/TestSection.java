@@ -86,8 +86,13 @@ public class TestSection extends JPanel{
                 rightPanel.removeAll();
                 rightPanel.revalidate();
                 rightPanel.setLayout(new GridBagLayout());
-                rightPanel.setBorder(new TitledBorder("SubSection information"));
-                rightPanel.add(new SubsectionEditor(section.getSubSection(tabNr)),gbc);
+                if(tabNr > -1){
+                    rightPanel.setBorder(new TitledBorder("SubSection information"));
+                    rightPanel.add(new SubsectionEditor(section.getSubSection(tabNr)),gbc);}
+                else{
+                    rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
+                    rightPanel.add(new PaperEditor(paper),gbc);
+                    }
                 rightPanel.revalidate();
                 rightPanel.repaint();
             }
@@ -101,7 +106,21 @@ public class TestSection extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 JPanel subsection = new Subsection(section);
                 subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
+                subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.gridx = 0;
+                gbc.gridy = 0;
+                gbc.weighty = 1.0;
+                gbc.fill = GridBagConstraints.HORIZONTAL;
+                gbc.anchor = GridBagConstraints.NORTH;
+                rightPanel.removeAll();
+                rightPanel.revalidate();
+                rightPanel.setLayout(new GridBagLayout());
+                rightPanel.setBorder(new TitledBorder("SubSection information"));
+                rightPanel.add(new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1)),gbc);
+                rightPanel.revalidate();
+                rightPanel.repaint();
             }
         });
         con.gridy = 1;
