@@ -139,20 +139,7 @@ public class TestSection extends JPanel{
     public String getInstruction(){
         return this.instruction.getText();
     }
-    class Foc implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-         wizard.questionCreatorSetVinsible();
-         
-         
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            
-        }
-    }
+    
 }
 
 
