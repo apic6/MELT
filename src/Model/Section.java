@@ -78,6 +78,10 @@ public class Section {
         return SubSectionList.get(ID);
     }
     
+    public ArrayList<SubSection> getSubSections(){
+        return SubSectionList;
+    }
+    
     public void AddSubSection(int position, SubSection S) {
   	SubSectionList.add (position, S);
     }
