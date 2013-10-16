@@ -43,7 +43,7 @@ public final class TestPreviewer extends JFrame {
         questionsPanel.setLayout(new BoxLayout(questionsPanel, BoxLayout.Y_AXIS));
 
 
-        amodel.loadPapers("src/Papers.xml");
+        amodel.loadPapers("papers/Papers.xml");
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
 
         QuestionPaper paper = papers.get(0);

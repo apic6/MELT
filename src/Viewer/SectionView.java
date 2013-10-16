@@ -29,11 +29,10 @@ public class SectionView extends JPanel {
     JFrame mainFrame;
     SubSectionView[] subSectionViews;
 
-    public SectionView(Section section, JFrame frame, QuestionPaper paper) {
+    public SectionView(Section section, JFrame frame, final PaperView pView) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
         
-        sourcePaper = paper;
         mainFrame = frame;
 
         con.gridx = 0;
@@ -68,7 +67,7 @@ public class SectionView extends JPanel {
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.setContentPane(new PaperView(sourcePaper, mainFrame));
+                mainFrame.setContentPane(pView);
                 mainFrame.setVisible(true);
                 mainFrame.pack();
             }
@@ -79,7 +78,7 @@ public class SectionView extends JPanel {
         add(tabbedPane, con);
     }
 
-    public static void main(String argv[]) {
+    /* public static void main(String argv[]) {
         Modeller model = new Modeller();
         model.loadPapers("papers/Papers.xml");
         ArrayList<QuestionPaper> papers = model.getPapersByStudentID(12301230);
@@ -94,5 +93,5 @@ public class SectionView extends JPanel {
         frame.pack();
 
         frame.setVisible(true);
-    }
+    } */
 }

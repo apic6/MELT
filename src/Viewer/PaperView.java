@@ -29,7 +29,7 @@ import javax.swing.JTabbedPane;
  */
 class SectionPanel extends JPanel {
 
-    SectionPanel(final Section section, final JFrame mainFrame, final QuestionPaper paper) {
+    SectionPanel(final Section section, final JFrame mainFrame, final PaperView pView) {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         GridBagLayout mainLayout = new GridBagLayout();
         setLayout(mainLayout);
@@ -46,18 +46,19 @@ class SectionPanel extends JPanel {
         JLabel instructions = new JLabel("Instructions: " + section.getInstructions());
         JLabel timeLimit = new JLabel("Time Limit: " + section.getTimeLimit());
         JButton takeTest = new JButton("Take Section");
+        
         takeTest.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.setContentPane(new SectionView(section, mainFrame, paper));
+                mainFrame.setContentPane(new SectionView(section, mainFrame, pView));
                 mainFrame.setVisible(true);
                 mainFrame.pack();
                 /*
                  * mainFrame.removeAll();
-                mainFrame.add(new SectionView(section));
-                mainFrame.revalidate();
-                mainFrame.repaint();
-                mainFrame.pack(); */
+                 mainFrame.add(new SectionView(section));
+                 mainFrame.revalidate();
+                 mainFrame.repaint();
+                 mainFrame.pack(); */
             }
         });
 
@@ -80,23 +81,39 @@ public class PaperView extends JPanel {
     QuestionPaper paper;
     SectionPanel[] sPanels;
 
-    public PaperView(QuestionPaper paper, JFrame mainFrame) {
+    public PaperView(QuestionPaper paper, final JFrame mainFrame, final Student studentView) {
         this.paper = paper;
         sPanels = new SectionPanel[paper.getNumberOfSections()];
 
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        GridLayout layout = new GridLayout(0, 1, 10, 10);
+        GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
+        
+        GridBagConstraints con = new GridBagConstraints();
 
-        // questionsPanel.setLayout(new BoxLayout(questionsPanel, BoxLayout.Y_AXIS));
+        con.gridx = 0;
+        con.gridy = 0;
+        con.fill = GridBagConstraints.HORIZONTAL;
+        
+        con.ipady = 5;
 
-        // questions = new Question[subSection.GetNumberOfQuestions()];
-        // questionViews = new QuestionView[questions.length];
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.setContentPane(studentView);
+                mainFrame.setVisible(true);
+                mainFrame.pack();
+            }
+        });
 
-        System.out.println("Number of sections: " + paper.getNumberOfSections());
+
+        this.add(back, con);
+        con.gridy ++;
         for (int i = 0; i < paper.getNumberOfSections(); i++) {
-            sPanels[i] = new SectionPanel(paper.getSection(i), mainFrame, paper);
-            this.add(sPanels[i]);
+            sPanels[i] = new SectionPanel(paper.getSection(i), mainFrame, this);
+            this.add(sPanels[i], con);
+            con.gridy ++;
         }
 
         // JScrollPane scrollPane = new JScrollPane(questionsPanel);        
@@ -107,7 +124,7 @@ public class PaperView extends JPanel {
         // pack();
     }
 
-    public static void main(String argv[]) {
+    /* public static void main(String argv[]) {
         Modeller model = new Modeller();
         model.loadPapers("papers/Papers.xml");
         ArrayList<QuestionPaper> papers = model.getPapersByStudentID(12301230);
@@ -119,5 +136,5 @@ public class PaperView extends JPanel {
 
         frame.pack();
         frame.setVisible(true);
-    }
+    } */
 }

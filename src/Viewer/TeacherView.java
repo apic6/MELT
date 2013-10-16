@@ -107,7 +107,7 @@ public class TeacherView extends JPanel {
         //c2.gridwidth = GridBagConstraints.REMAINDER;
         c2.gridy = 2;
         
-        amodel.loadPapers("src/Papers2.xml");
+        amodel.loadPapers("papers/Papers.xml");
         
         ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(12301230);
         
