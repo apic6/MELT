@@ -69,7 +69,7 @@ public class SectionView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 mainFrame.setContentPane(pView);
                 mainFrame.setVisible(true);
-                mainFrame.pack();
+               // mainFrame.pack();
             }
         });
 
@@ -94,4 +94,13 @@ public class SectionView extends JPanel {
 
         frame.setVisible(true);
     } */
+public void addListener(ActionListener mal){
+
+
 }
+
+}
+
+
+
+

@@ -74,6 +74,12 @@ class SectionPanel extends JPanel {
 
         setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
     }
+    
+    
+public void addListener(ActionListener mal){
+
+
+}
 }
 
 public class PaperView extends JPanel {
@@ -137,4 +143,10 @@ public class PaperView extends JPanel {
         frame.pack();
         frame.setVisible(true);
     } */
+
+public void addListener(ActionListener mal){
+
+
+}
+
 }
