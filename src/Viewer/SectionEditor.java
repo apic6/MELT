@@ -34,13 +34,15 @@ public class SectionEditor extends JPanel{
     private JLabel time_label = new JLabel("time limit:");
     private JTextArea timeLimit = new JTextArea(1,10);
     private Section section;
+    private TestWizard wizard; 
     
-    public SectionEditor (Section section){
+    public SectionEditor (Section section,TestWizard wizard){
         title.setText(section.getTitle());
         description.setText(section.getDescription());
         instruction.setText(section.getInstructions());
         timeLimit.setText(String.valueOf(section.getTimeLimit()));
         this.section = section;
+        this.wizard = wizard;
         initComponents();
     }
 
@@ -226,6 +228,7 @@ public class SectionEditor extends JPanel{
                     public void actionPerformed(ActionEvent e) {
                         if(pos>0)
                         section.getSubSections().add(pos-1,section.getSubSections().remove(pos));
+                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard));
                     }
                 });
                 JButton moveDown = new JButton("DOWN");
@@ -235,6 +238,7 @@ public class SectionEditor extends JPanel{
                     public void actionPerformed(ActionEvent e) {
                         if(pos<(section.getNumberOfSubSections()-1))
                         section.getSubSections().add(pos+1,section.getSubSections().remove(pos));
+                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard));
                     }
                 });
                 gbc3.gridx++;
