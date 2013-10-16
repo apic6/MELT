@@ -44,7 +44,7 @@ public class QuestionPaperLoader {
     }
 
     // returns an integer showing the number of papers read
-    int ReadPapers() {
+    int readPapers() {
         NodeList PaperList = doc.getElementsByTagName("QuestionPaper");
 
         for (int i = 0; i < PaperList.getLength(); i++) {
@@ -52,18 +52,17 @@ public class QuestionPaperLoader {
             Element QPElement = (Element) QuestionPaperNode;
 
             QuestionPaper paper = new QuestionPaper(Integer.parseInt(QPElement.getAttribute("id")));
-            paper.SetTitle(QPElement.getElementsByTagName("Title").item(0).getTextContent());
-            paper.SetDescription(QPElement.getElementsByTagName("Description").item(0).getTextContent());
-            paper.SetInstructions(QPElement.getElementsByTagName("Instructions").item(0).getTextContent());
+            paper.setTitle(QPElement.getElementsByTagName("Title").item(0).getTextContent());
+            paper.setDescription(QPElement.getElementsByTagName("Description").item(0).getTextContent());
+            paper.setInstructions(QPElement.getElementsByTagName("Instructions").item(0).getTextContent());
 
             // Eligible students
             for (int j = 0; j < QPElement.getElementsByTagName("EligibleStudent").getLength(); j++) {
-                paper.AddEligibleStudent(Integer.parseInt(QPElement.getElementsByTagName("EligibleStudent").item(j).getTextContent().toString()));
+                paper.addEligibleStudent(Integer.parseInt(QPElement.getElementsByTagName("EligibleStudent").item(j).getTextContent().toString()));
             }
             // eligible teachers
             for (int j = 0; j < QPElement.getElementsByTagName("EligibleTeacher").getLength(); j++) {
-                System.out.println("I read teacher");
-                paper.AddEligibleSetter(Integer.parseInt(QPElement.getElementsByTagName("EligibleTeacher").item(j).getTextContent().toString()));
+                paper.addEligibleSetter(Integer.parseInt(QPElement.getElementsByTagName("EligibleTeacher").item(j).getTextContent().toString()));
             }
 
             // Sections
@@ -93,37 +92,45 @@ public class QuestionPaperLoader {
                     // Add Questions
                     NodeList QuestionList = SSElement.getElementsByTagName("Question");
 
-                    System.out.println("Length: " + QuestionList.getLength());
                     for (int l = 0; l < QuestionList.getLength(); l++) {
-                        System.out.println("Question: " + l);
                         Node QuestionNode = QuestionList.item(l);
                         Element QElement = (Element) QuestionNode;
 
                         Question question = null;
 
-                        System.out.print("Entry " + l + " ");
                         if (QElement.getAttribute("type").toString().equals("MCQ")) {
                             String[] answers = new String[QElement.getElementsByTagName("Answer").getLength()];
+                            int[] possibleAnswers = new int[QElement.getElementsByTagName("PossibleAnswer").getLength()];
                             for (int m = 0; m < answers.length; m++) {
                                 answers[m] = QElement.getElementsByTagName("Answer").item(m).getTextContent();
                             }
+                            for (int m = 0; m < possibleAnswers.length; m++) {
+                                possibleAnswers[m] = Integer.parseInt(QElement.getElementsByTagName("PossibleAnswer").item(m).getTextContent());
+                            }
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());
                             question = new MultipleChoiceQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
                                     answers,
-                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent());
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), possibleAnswers, mark);
                         } else if (QElement.getAttribute("type").toString().equals("FITBQ")) {
+                            // TODO
+                            String[] possibleAnswers = new String[QElement.getElementsByTagName("PossibleAnswer").getLength()];
+                            for (int m = 0; m < possibleAnswers.length; m++) {
+                                possibleAnswers[m] = QElement.getElementsByTagName("PossibleAnswer").item(m).getTextContent();
+                            }              
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());                            
                             question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
-                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent());
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), possibleAnswers, mark);
                         } else {
                             System.out.println("ERROR");
                         }
 
-                        subSection.AddQuestion(l, question);
+                        subSection.addQuestion(l, question);
                     }
                     // Add SubSection to Section
                     section.AddSubSection(k, subSection);
                 }
 
-                paper.AddSection(j, section);
+                paper.addSection(j, section);
             }
 
             // process papers

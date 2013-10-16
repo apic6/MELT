@@ -4,33 +4,26 @@
  */
 package Viewer;
 
-import Model.Modeller;
 import Model.QuestionPaper;
 import Model.Section;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-import Viewer.TestWizard;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import static Viewer.TestWizard.paper;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.plaf.TabbedPaneUI;
 /**
  *
  * @author mbaxkmt6
  */
 public class TestSection extends JPanel{
-    public JFrame mainFrame;
-    public Modeller model;
     private JLabel title_label;
     private JLabel description_label;
     private JLabel instruction_label;
@@ -40,15 +33,13 @@ public class TestSection extends JPanel{
     private JTabbedPane subsections;
     public Section section;
     private TestWizard wizard;
-    
-    public TestSection(JFrame frame,Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
-        this.model = model;
-        mainFrame = frame;
+    private JPanel rightPanel;
+    public TestSection(JPanel rightPanel,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
         section = new Section();
         sectionList.add(this);
-        paper.AddSection(section);
+        paper.addSection(section);
         this.wizard = wizard;
-        
+        this.rightPanel = rightPanel;
         initComponents();
     }
 
@@ -61,34 +52,6 @@ public class TestSection extends JPanel{
         con.gridy = 0;
         con.weightx = 0.3;
         con.anchor = GridBagConstraints.NORTHWEST;
-//        title_label = new JLabel("title:  ");
-//        add(title_label,con);
-//        con.gridx = 1;
-//        con.weightx = 0.7;
-//        con.insets = new Insets(10,0,10,0);
-//        title = new JTextArea(1,10);
-//        add(title, con);
-//        
-//        description_label = new JLabel("description:  ");
-//        con.gridx = 0;
-//        con.gridy = 1;
-//        con.weightx = 0.3;
-//        add(description_label,con);
-//        con.gridx = 1;
-//        con.weightx = 0.7;
-//        description = new JTextArea(1,10);
-//        add(description, con);
-//        
-//        instruction_label = new JLabel("instruction:  ");
-//        con.gridx = 0;
-//        con.gridy = 2;
-//        con.weighty = 0;
-//        con.weightx = 0.3;
-//        add(instruction_label,con);
-//        con.gridx = 1;
-//        con.weightx = 0.7;
-//        instruction = new JTextArea(1,10);
-//        add(instruction, con);
         
         subsections = new JTabbedPane();
         con.gridx = 0;
@@ -97,11 +60,19 @@ public class TestSection extends JPanel{
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
         con.gridwidth = GridBagConstraints.REMAINDER;
-        JPanel subsection1 = new Subsection(section);
-        subsection1.setPreferredSize(new Dimension(200,200));
-        subsections.addTab("subsection1",subsection1);
         add(subsections,con);
-        subsections.addFocusListener(new Foc());
+        
+        subsections.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int tabNr = ((TabbedPaneUI)subsections.getUI()).tabForCoordinate(subsections, e.getX(), e.getY());
+                if(tabNr > -1)
+                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(tabNr),wizard));
+                else
+                wizard.repainRightPanel("QuestionPaper information", new PaperEditor(paper,wizard));
+            }
+        });
         
         
         JButton addSubsection = new JButton("Add Subsection");
@@ -111,8 +82,10 @@ public class TestSection extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JPanel subsection = new Subsection(section);
-                subsections.addTab("subsection2",subsection );
+                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
+                subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();
+                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard));
             }
         });
         con.gridy = 1;
@@ -131,19 +104,7 @@ public class TestSection extends JPanel{
     public String getInstruction(){
         return this.instruction.getText();
     }
-    class Foc implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-         wizard.questionCreatorSetVinsible();
-       
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            
-        }
-    }
+    
 }
 
 

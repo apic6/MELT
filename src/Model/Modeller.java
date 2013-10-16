@@ -29,7 +29,6 @@ public class Modeller {
     public void init() {
         loadPapers();
         loadSubmissions();
-        // loadMarkingSchemes();
     }
 
     public void loadPapers() {
@@ -40,20 +39,20 @@ public class Modeller {
     public void loadPapers(String filename) {
         QuestionPaperLoader loader = new QuestionPaperLoader(filename);
 
-        loader.ReadPapers();
+        loader.readPapers();
 
         questionPapers = loader.getQuestionPapers();
     }
 
     public int getNextID() {
-        return questionPapers.get(getNumberOfPapers() - 1).GetPaperID() + 1;
+        return questionPapers.get(getNumberOfPapers() - 1).getPaperID() + 1;
     }
 
     // saves papers
     public void savePapers(String filename) throws FileNotFoundException {
         String xmlString = "<QuestionPapers>";
         if (filename == null) {
-            filename = "papers/Papers3.xml";
+            filename = "papers/Papers.xml";
         }
         for (int i = 0; i < questionPapers.size(); i++) {
             xmlString += questionPapers.get(i).toXML(this);
@@ -92,7 +91,7 @@ public class Modeller {
         }
     }
 
-    public void saveMarkingSchemes(String filename) throws FileNotFoundException {
+    /* public void saveMarkingSchemes(String filename) throws FileNotFoundException {
         String xmlString = "<MarkingSchemes>";
         if (filename == null) {
             filename = "markingSchemes/MarkingSchemes.xml";
@@ -111,12 +110,17 @@ public class Modeller {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    } */
+    
+    public ArrayList<QuestionPaper> getPapers(){
+    loadPapers();
+    return questionPapers;}
+    
     
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
         for (int i = 0; i < questionPapers.size(); i++) {
-            if (questionPapers.get(i).IsStudentEligible(studentID)) {
+            if (questionPapers.get(i).isStudentEligible(studentID)) {
                 eligiblePapers.add(questionPapers.get(i));
             }
         }
@@ -179,10 +183,6 @@ public class Modeller {
     // remove a paper from the model
     void removeSubmission(int index) {
         submissions.remove(index);
-    }
-
-    public void setValue() {
-        System.out.println("it Works");
     }
 
     public void loadSubmissions() {

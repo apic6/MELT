@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.event.DocumentEvent;
@@ -29,15 +30,15 @@ import javax.swing.event.DocumentListener;
  */
 public class Controller {
      private Modeller amodel;
-     private Viewer aview;
-    
+    // private Viewer aview;
+     //private ArrayList<QuestionPaper> questionPapers;
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
         
         view.addListener(new ViewerEventListener(),new ViewerDocumentListener(),new ViewerFocusListener());
         amodel=model;
-        aview=view;
-        
+       // aview=view;
+       
     }
     
 
@@ -50,9 +51,6 @@ public class Controller {
                 case "login":{
                 String username = LoginScreen.getUsername();
                 String pass= LoginScreen.getPass();
-                }
-                    break;
-                case "submit":{
                 }
                     break;
                 case "finish":{
@@ -91,7 +89,7 @@ public class Controller {
  
         private void updateModel(){
             //
-            System.out.println("it works");
+           // System.out.println("it works");
         }
  }
 
@@ -99,12 +97,30 @@ class ViewerFocusListener implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
-            System.out.println("works");
+            //System.out.println("works");
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            System.out.println("it works big time");
+                 QuestionPaper  p;
+                 p=TestWizard.getQuestionPaper();
+              
+                try {
+                    p.getPaperID();
+                    if(amodel.getPaper(p.getPaperID())!=null){
+                    amodel.removePaper(p.getPaperID());
+                    amodel.addPaper(p);
+                    }
+                    else {
+                    amodel.addPaper(p);
+                    }
+                                        
+                    
+                    amodel.addPaper(p);
+                    amodel.savePapers(null);
+                    } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                                        }
         }
 
 }

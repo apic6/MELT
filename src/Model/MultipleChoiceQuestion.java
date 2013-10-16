@@ -1,63 +1,78 @@
 package Model;
 
 public class MultipleChoiceQuestion implements Question {
-    private String Instructions; 
-    private int MarkValue;
-    private String Question;
-    private String[] Answers;
-    private int ChosenAnswer;
-	
-    public MultipleChoiceQuestion(String Question, String[] Answers, String Instructions) {
-        this.Question = Question;
-        this.Instructions = Instructions;
+
+    private String instructions;
+    private int mark;
+    private String question;
+    private String[] answers;
+    private int[] possibleAnswers;
+
+    public MultipleChoiceQuestion(String Question, String[] Answers, String Instructions, int[] possibleAnswers, int mark) {
+        this.question = Question;
+        this.instructions = Instructions;
 
         int ArraySize = Answers.length;
-        this.Answers = new String[ArraySize];
-        for (int i = 0; i<ArraySize; i++) {
-                this.Answers[i] = Answers[i];
+        this.answers = new String[ArraySize];
+        for (int i = 0; i < ArraySize; i++) {
+            this.answers[i] = Answers[i];
         }
+
+        this.possibleAnswers = possibleAnswers;
+        this.mark = mark;
     }
-	
+
     @Override
     public String getInstructions() {
-        return Instructions;
+        return instructions;
     }
-	
+
     @Override
     public String getQuestion() {
-        return Question;
+        return question;
     }
 
-    public int GetNumberOfAnswers() {
-        return Answers.length;
+    public int getNumberOfAnswers() {
+        return answers.length;
     }
 
-    public String GetAnswer(int ID) {
-        return Answers[ID];
+    public String getAnswer(int ID) {
+        return answers[ID];
     }
-    
-    public void SetAnswer(int ChosenAnswer) {
-        this.ChosenAnswer = ChosenAnswer;
+
+    public int getNumberOfPossibleAnswers() {
+        return possibleAnswers.length;
     }
-    
-    public int GetChosenAnswer() {
-        return ChosenAnswer;
+
+    public int getPossibleAnswer(int i) {
+        return possibleAnswers[i];
     }
-    
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
     @Override
     public String toXML() {
         String XML = "<Question type=\"MCQ\">\n";
-        
-        XML += "<Instructions>" + Instructions + "</Instructions>\n";
-        XML += "<QuestionText>" + Question + "</QuestionText>\n";
-        System.out.println("Number of answers:" + Answers.length);
-        for (int i = 0; i<Answers.length; i++) {
-            if (Answers[i] != null)
-                XML += "<Answer>" + Answers[i] + "</Answer>\n";
+
+        XML += "<Instructions>" + instructions + "</Instructions>\n";
+        XML += "<QuestionText>" + question + "</QuestionText>\n";
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i] != null) {
+                XML += "<Answer>" + answers[i] + "</Answer>\n";
+            }
         }
-        
+        for (int i = 0; i < possibleAnswers.length; i++) {
+            XML += "<PossibleAnswer>" + possibleAnswers[i] + "</PossibleAnswer>\n";
+        }
+        XML += "<Mark>" + mark + "</Mark>\n";
         XML += "</Question>\n";
-        
+
         return XML;
     }
 }

@@ -34,23 +34,23 @@ public class QuestionView extends JPanel {
     public QuestionView(Question question) {
         // left panel represents the question+answer
         JPanel leftPanel = new JPanel() {
-            @Override 
+            @Override
             public Dimension getPreferredSize() {
                 Dimension d = super.getPreferredSize();
-                d.width = 575;
-                return d;                
+                d.width = 975;
+                return d;
             }
         };
+        
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
         FlowLayout mainLayout = new FlowLayout(FlowLayout.LEFT);
         setLayout(mainLayout);
 
-        this.question = new JLabel("<html>"+ question.getQuestion() + "</html>", 0);
+        this.question = new JLabel("<html>" + question.getQuestion() + "</html>", 0);
         this.question.setHorizontalTextPosition(SwingConstants.LEFT);
         this.question.setHorizontalAlignment(SwingConstants.LEFT);
         leftPanel.setAlignmentX(LEFT_ALIGNMENT);
-        // this.question.setSize(575, this.question.getHeight());
         leftPanel.add(this.question);
 
         JLabel spacing = new JLabel("\n");
@@ -65,12 +65,12 @@ public class QuestionView extends JPanel {
         } else if (question instanceof MultipleChoiceQuestion) { // MCQ
             MultipleChoiceQuestion mcqQuestion = (MultipleChoiceQuestion) question;
             group = new ButtonGroup();
-            answerOption = new JRadioButton[mcqQuestion.GetNumberOfAnswers()];
+            answerOption = new JRadioButton[mcqQuestion.getNumberOfAnswers()];
 
-            for (int i = 0; i < mcqQuestion.GetNumberOfAnswers(); i++) {
-                answerOption[i] = new JRadioButton(mcqQuestion.GetAnswer(i));
+            for (int i = 0; i < mcqQuestion.getNumberOfAnswers(); i++) {
+                answerOption[i] = new JRadioButton(mcqQuestion.getAnswer(i));
                 answerOption[i].setMnemonic(KeyEvent.VK_B);
-                answerOption[i].setActionCommand(((MultipleChoiceQuestion) question).GetAnswer(i));
+                answerOption[i].setActionCommand(((MultipleChoiceQuestion) question).getAnswer(i));
                 group.add(answerOption[i]);
                 leftPanel.add(this.answerOption[i]);
             } // for each answer
@@ -80,14 +80,12 @@ public class QuestionView extends JPanel {
         // add Button
         JButton submitButton = new JButton("Save");
         this.add(submitButton);
-        // set overall panel size
-        // this.setSize(new Dimension(600, 250));    
     }
 
     @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
-        d.width = 575;
+        d.width = 1025;
         return d;
     }
 }

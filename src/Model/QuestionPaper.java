@@ -4,162 +4,173 @@ import java.util.ArrayList;
 
 public class QuestionPaper {
 
-    private int PaperID;
-    private String Title;
-    private String Description;
-    private String Instructions;
-    private ArrayList<Section> SectionList;
-    private ArrayList<Integer> EligibleStudents;
-    private ArrayList<Integer> EliglbeTeachers;
+    private int paperID;
+    private String title;
+    private String description;
+    private String instructions;
+    private ArrayList<Section> sectionList;
+    private ArrayList<Integer> eligibleStudents;
+    private ArrayList<Integer> eligibleSetters;
 
     public QuestionPaper(int GivenPaperID, int CreatorID) {
-        PaperID = GivenPaperID;
-        SectionList = new ArrayList<>();
-        EligibleStudents = new ArrayList<>();
-        EliglbeTeachers = new ArrayList<>();
-        EliglbeTeachers.add(CreatorID);
+        paperID = GivenPaperID;
+        sectionList = new ArrayList<>();
+        eligibleStudents = new ArrayList<>();
+        eligibleSetters = new ArrayList<>();
+        eligibleSetters.add(CreatorID);
     }
 
     public QuestionPaper(int GivenPaperID) {
-        PaperID = GivenPaperID;
-        SectionList = new ArrayList<>();
-        EligibleStudents = new ArrayList<>();
-        EliglbeTeachers = new ArrayList<>();
+        paperID = GivenPaperID;
+        sectionList = new ArrayList<>();
+        eligibleStudents = new ArrayList<>();
+        eligibleSetters = new ArrayList<>();
     }
-    
+
     /*
      *	Modifying Question Paper
      */
-    public void AddEligibleStudent(int ID) {
-        EligibleStudents.add(ID);
+    public void addEligibleStudent(int ID) {
+        eligibleStudents.add(ID);
     }
 
-    public void AddEligibleStudents(int[] IDs) {
+    public void addEligibleStudents(int[] IDs) {
         for (int ID : IDs) {
-            EligibleStudents.add(ID);
+            eligibleStudents.add(ID);
         }
     }
 
-    public void AddEligibleSetter(int ID) {
-        EliglbeTeachers.add(ID);
+    public void addEligibleSetter(int ID) {
+        eligibleSetters.add(ID);
     }
 
-    public void AddEligibleSetters(int[] IDs) {
+    public void addEligibleSetters(int[] IDs) {
         for (int ID : IDs) {
-            EliglbeTeachers.add(ID);
+            eligibleSetters.add(ID);
         }
     }
-    
-    public void SetTitle ( String Title) {
-        this.Title = Title;
+
+    public void setTitle(String Title) {
+        this.title = Title;
     }
-    
-    public void SetDescription ( String Description) {
-        this.Description = Description;
+
+    public void setDescription(String Description) {
+        this.description = Description;
     }
-    
-    public void SetInstructions ( String Instructions ) {
-        this.Instructions = Instructions;
+
+    public void setInstructions(String Instructions) {
+        this.instructions = Instructions;
     }
 
     /*
      *	Reading/Using Question Paper
      */
-    public int GetPaperID() {
-        return PaperID;
+    public int getPaperID() {
+        return paperID;
     }
-    
-    public String GetTitle(){
-        return Title;
-    }
-    
-    public String GetDescription(){
-        return Description;
-    }
-    
-    public String GetInstructions() {
-        return Instructions;
-    }
-    
-    
 
-    public boolean IsStudentEligible(int StudentID) {
-        for (int ID : EligibleStudents) {
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public boolean isStudentEligible(int StudentID) {
+        for (int ID : eligibleStudents) {
             if (StudentID == ID) {
                 return true;
             }
         }
         return false;
     }
-    
-    public int GetNumberOfSections() {
-        return SectionList.size();
-    }
-    
-    public Section GetSection(int ID) {
-        return SectionList.get(ID);
-    }
-    
-    public ArrayList<Section> getSectionList(){
-        return SectionList;
-    }
-    
-    public void AddSection(int position, Section S) {
-  	SectionList.add (position, S);
-    }
-    
-    public void AddSection(Section S) {
-  	SectionList.add (S);
+
+    public boolean isSetterEligible(int SetterID) {
+        for (int ID : eligibleSetters) {
+            if (SetterID == ID) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void RemoveSection (int position) {
-        SectionList.remove(position);
+    public int getNumberOfSections() {
+        return sectionList.size();
     }
 
-    public void MoveSectionUp (int SectionToMove) {
-        if (SectionToMove <= 0) return;
-        if (SectionToMove >= SectionList.size()) return;
-
-        SectionList.add(SectionToMove-1, GetSection(SectionToMove));
-        SectionList.remove(SectionToMove +1 );
+    public Section getSection(int ID) {
+        return sectionList.get(ID);
     }
 
-    public void MoveSectionDown (int SectionToMove) {
-        MoveSectionUp(SectionToMove+1);
+    public ArrayList<Section> getSectionList() {
+        return sectionList;
     }
-    
+
+    public void addSection(int position, Section S) {
+        sectionList.add(position, S);
+    }
+
+    public void addSection(Section S) {
+        sectionList.add(S);
+    }
+
+    public void removeSection(int position) {
+        sectionList.remove(position);
+    }
+
+    public void moveSectionUp(int SectionToMove) {
+        if (SectionToMove <= 0) {
+            return;
+        }
+        if (SectionToMove >= sectionList.size()) {
+            return;
+        }
+
+        sectionList.add(SectionToMove - 1, getSection(SectionToMove));
+        sectionList.remove(SectionToMove + 1);
+    }
+
+    public void moveSectionDown(int SectionToMove) {
+        moveSectionUp(SectionToMove + 1);
+    }
+
     // produces an XML for students submission
-    public void CreateSubmissionDocument() {
+    public void createSubmissionDocument() {
         /* 
          * 
          */
     }
-    
+
+    // TODO: CHANGE THIS
     public String toXML(Modeller model) {
         String XML = "<QuestionPaper id=\"" + model.getNextID() + "\">\n";
-        
-        XML += "<Title>" + Title + "</Title>\n";
-        XML += "<Description>" + Description + "</Description>\n";
-        XML += "<Instructions>" + Instructions + "</Instructions>\n";
-        
+
+        XML += "<Title>" + title + "</Title>\n";
+        XML += "<Description>" + description + "</Description>\n";
+        XML += "<Instructions>" + instructions + "</Instructions>\n";
+
         // eligible students
-        for (int i = 0; i<EligibleStudents.size(); i++) {
-            XML += "<EligibleStudent>" + EligibleStudents.get(i) + "</EligibleStudent>\n";
+        for (int i = 0; i < eligibleStudents.size(); i++) {
+            XML += "<EligibleStudent>" + eligibleStudents.get(i) + "</EligibleStudent>\n";
         }
-        
+
         // eligible teachers
-        for (int i = 0; i<EliglbeTeachers.size(); i++) {
-            XML += "<EligibleTeacher>" + EliglbeTeachers.get(i) + "</EligibleTeacher>\n";
+        for (int i = 0; i < eligibleSetters.size(); i++) {
+            XML += "<EligibleTeacher>" + eligibleSetters.get(i) + "</EligibleTeacher>\n";
         }
-        
+
         // sections       
-        for (int i = 0; i<SectionList.size(); i++) {
-            XML += SectionList.get(i).toXML();
+        for (int i = 0; i < sectionList.size(); i++) {
+            XML += sectionList.get(i).toXML();
         }
-        
+
         XML += "</QuestionPaper>\n";
-        
+
         return XML;
-    }       
-    
+    }
 }

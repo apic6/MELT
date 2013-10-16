@@ -5,7 +5,6 @@
 package Viewer;
 
 import Model.Modeller;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -33,7 +32,9 @@ public class Viewer extends JFrame {
          Welcome wel=new Welcome(this,model);
          setContentPane(wel);
          setVisible(true);
-         
+        //FIBQPanel fibtest=new FIBQPanel(this,model);
+       // setContentPane(fibtest);
+        // setVisible(true);
 }
   
      
@@ -48,10 +49,10 @@ public class Viewer extends JFrame {
      
      public void addListener(ActionListener mal,DocumentListener doc,FocusListener foc) {
           //(Welcome.teacherButton).addActionListener(mal);
-         (LoginScreen.loginButton).addFocusListener(foc);
-         (TestWizard.submit).addActionListener(mal);
+        // (LoginScreen.loginButton).addFocusListener(foc);
+        // (TestWizard.submit).addActionListener(mal);
           //  (QuestionCreator.title).getDocument().addDocumentListener(doc);
-         (LoginScreen.userIDText).addFocusListener(foc);
+        // (LoginScreen.userIDText).addFocusListener(foc);
          
     }
      

@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<StudentSubmission>
-    <SubmissionSection id="01">
-        <StudentID>01</StudentID>
-        <SubmissionSection>
-            <SectionID>01</SectionID>
-            <SubmissionSubSection>
-                <SubSectionID>01</SubSectionID>
-                <MCQAnswer>
-                    <AnswerID>01</AnswerID>
-                    <Answer>1</Answer>
-                    <Mark>1</Mark>
-                </MCQAnswer>
-                <FITBAnswer>
-                    <AnswerID>01</AnswerID>
-                    <Answer>Hello</Answer>
-                    <Mark>1</Mark>
-                </FITBAnswer>                
-            </SubmissionSubSection>
-        </SubmissionSection>
-    </SubmissionSection>
+<Submissions><StudentSubmission id="1">
+<StudentID>1</StudentID>
+<SubmissionSection>
+<SectionID>1</SectionID>
+<SubmissionSubSection>
+<SubSectionID>1</SubSectionID>
+<MCQAnswer>
+<AnswerID>1</AnswerID>
+<Answer>1</Answer>
+</MCQAnswer>
+
+<FITBAnswer>
+<AnswerID>1</AnswerID>
+<Answer>1</Answer>
+</FITBAnswer>
+
+</SubmissionSubSection>
+
+</SubmissionSection>
+
+<SubmissionSection>
+<SectionID>1</SectionID>
+<SubmissionSubSection>
+<SubSectionID>1</SubSectionID>
+<MCQAnswer>
+<AnswerID>1</AnswerID>
+<Answer>1</Answer>
+</MCQAnswer>
+
+<FITBAnswer>
+<AnswerID>1</AnswerID>
+<Answer>1</Answer>
+</FITBAnswer>
+
+</SubmissionSubSection>
+
+</SubmissionSection>
+
 </StudentSubmission>
+</Submissions>

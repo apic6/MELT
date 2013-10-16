@@ -34,48 +34,52 @@ public class Section {
         SubSectionList = new ArrayList<>();
     }
     
-    public void SetTitle ( String Title) {
+    public void setTitle ( String Title) {
         this.Title = Title;
     }
     
-    public void SetDescription ( String Description) {
+    public void setDescription ( String Description) {
         this.Description = Description;
     }
     
-    public void SetInstructions ( String Instructions ) {
+    public void setInstructions ( String Instructions ) {
         this.Instructions = Instructions;
     }
     
-    public void SetTimeLimit ( int TimeLimit) {
+    public void setTimeLimit ( int TimeLimit) {
         this.TimeLimit = TimeLimit;
     }
     
-    public int GetID(){
+    public int getID(){
         return ID;
     }
     
-    public String GetTitle(){
+    public String getTitle(){
         return Title;
     }
     
-    public String GetDescription(){
+    public String getDescription(){
         return Description;
     }
     
-    public String GetInstructions() {
+    public String getInstructions() {
         return Instructions;
     }
     
-    public int GetTimeLimit(){
+    public int getTimeLimit(){
         return TimeLimit;
     }
     
-    public int GetNumberOfSubSections() {
+    public int getNumberOfSubSections() {
         return SubSectionList.size();
     }
     
-    public SubSection GetSubSection(int ID) {
+    public SubSection getSubSection(int ID) {
         return SubSectionList.get(ID);
+    }
+    
+    public ArrayList<SubSection> getSubSections(){
+        return SubSectionList;
     }
     
     public void AddSubSection(int position, SubSection S) {
@@ -94,7 +98,7 @@ public class Section {
         if (SubSectionToMove <= 0) return;
         if (SubSectionToMove >= SubSectionList.size()) return;
 
-        SubSectionList.add(SubSectionToMove-1, GetSubSection(SubSectionToMove));
+        SubSectionList.add(SubSectionToMove-1, getSubSection(SubSectionToMove));
         SubSectionList.remove(SubSectionToMove +1 );
     }
 
