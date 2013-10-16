@@ -47,7 +47,9 @@ public class SectionView extends JPanel {
         };
 
         for (int i = 0; i < section.getNumberOfSubSections(); i++) {
-            tabbedPane.addTab(section.getSubSection(i).getTitle(), new SubSectionView(section.getSubSection(i)));
+           SubSectionView subV=new SubSectionView(section.getSubSection(i));
+
+            tabbedPane.addTab(section.getSubSection(i).getTitle(),subV);
         }
 
 

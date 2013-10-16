@@ -8,6 +8,10 @@ public class MultipleChoiceQuestion implements Question {
     private String[] answers;
     private int[] possibleAnswers;
 
+    public MultipleChoiceQuestion(){
+        
+    }
+    
     public MultipleChoiceQuestion(String Question, String[] Answers, String Instructions, int[] possibleAnswers, int mark) {
         this.question = Question;
         this.instructions = Instructions;
@@ -58,6 +62,27 @@ public class MultipleChoiceQuestion implements Question {
 
     public void setMark(int mark) {
         this.mark = mark;
+    }
+    
+   
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+        
+    }
+
+    public void setPossibleAnswers(int[] possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+    
+   
+
+    public void setAnswers(String[] answers) {
+        this.answers = answers;
     }
 
     public int getMark() {
