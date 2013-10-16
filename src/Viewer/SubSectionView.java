@@ -25,12 +25,11 @@ public class SubSectionView extends JPanel {
     // int height;
 
     public SubSectionView(SubSection subSection) {
-        JPanel questionsPanel = new JPanel(){
+        JPanel questionsPanel = new JPanel() {
             @Override
             public Dimension getPreferredSize() {
-                Dimension d = new Dimension();
-                d.height = 650;
-                d.width = super.getPreferredSize().width;
+                Dimension d = super.getPreferredSize();
+                d.width = 1050;
                 return d;
             }
         };
@@ -41,14 +40,9 @@ public class SubSectionView extends JPanel {
         JScrollPane scrollPane = new JScrollPane() {
             @Override
             public Dimension getPreferredSize() {
-                Dimension d = new Dimension();
-                d.height = 650;
-                d.width = super.getPreferredSize().width;
-                return d;
+                return new Dimension(1050, 750);
             }
         };
-
-        // height = 0;  
 
         questions = new Question[subSection.getNumberOfQuestions()];
         questionViews = new QuestionView[questions.length];
@@ -57,24 +51,16 @@ public class SubSectionView extends JPanel {
             questions[i] = subSection.getQuestion(i);
             questionViews[i] = new QuestionView(questions[i]);
             questionsPanel.add(questionViews[i]);
-            // con.gridy++;
-            // height += questionViews[i].getHeight();
         }
         scrollPane.getViewport().add(questionsPanel, null);
 
         this.add(scrollPane, null);
         this.setLayout(new GridLayout(1, 1));
         this.add(scrollPane);
-
-        // scrollPane.setViewportView(questionsPanel);
-        // questionsPanel.setPreferredSize(new Dimension(650, 1000));
-        // scrollPane.setSize(new Dimension(650, 600));
     }
-    
+
     @Override
     public Dimension getPreferredSize() {
-        Dimension d = super.getPreferredSize();
-        d.width = 550;
-        return d;
+        return new Dimension(1050, 750);
     }
 }

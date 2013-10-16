@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 /**
  *
  * @author Daniel
@@ -26,7 +28,7 @@ import javax.swing.border.TitledBorder;
 public class SubsectionEditor extends JPanel{
     
     private JLabel title_label = new JLabel("title:");
-    private JTextArea title = new JTextArea(1,30);
+    private JTextArea titleArea = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
     private JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
@@ -34,7 +36,7 @@ public class SubsectionEditor extends JPanel{
     private JTabbedPane questionType;
     private JPanel MCQ;
     private JPanel rightPanel = new JPanel();
-    SubSection subSection;
+    private SubSection subSection;
     MultipleChoiceQuestion question;
     private JPanel answerPanel;
     GridBagConstraints apc = new GridBagConstraints();
@@ -44,10 +46,11 @@ public class SubsectionEditor extends JPanel{
      
      
     public SubsectionEditor(SubSection subSection){
-        title.setText(subSection.getTitle());
+        titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
         instruction.setText(subSection.getInstructions());
         answerAreas = new ArrayList();
+        this.subSection = subSection;
         initComponents();
     }
 
@@ -67,7 +70,23 @@ public class SubsectionEditor extends JPanel{
         gbc.weightx = 0.7;
         gbc.weighty=1.0;
         gbc.gridx = 1;
-        add(title,gbc);
+        add(titleArea,gbc);
+        
+        titleArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                subSection.setTitle(titleArea.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                subSection.setTitle(titleArea.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                subSection.setTitle(titleArea.getText());
+            }
+    });
         
         gbc.weightx = 0.3;
         gbc.weighty=1.0;
@@ -79,6 +98,22 @@ public class SubsectionEditor extends JPanel{
         gbc.gridx = 1;
         add(description,gbc);
         
+        description.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                subSection.setDescription(description.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                subSection.setDescription(description.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                subSection.setDescription(description.getText());
+            }
+    });
+        
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -87,6 +122,22 @@ public class SubsectionEditor extends JPanel{
         gbc.weightx = 0.7;
         gbc.gridx = 1;
         add(instruction,gbc);
+        
+        instruction.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                subSection.setInstructions(instruction.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                subSection.setInstructions(instruction.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                subSection.setInstructions(instruction.getText());
+            }
+    });
         
             questionCreator.setLayout(new GridBagLayout());
             questionCreator.setBorder(new TitledBorder("Create New Question"));

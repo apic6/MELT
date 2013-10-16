@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -57,6 +59,22 @@ public class SectionEditor extends JPanel{
         gbc.gridx = 1;
         add(title,gbc);
         
+        title.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                section.setTitle(title.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                section.setTitle(title.getText());}
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                section.setTitle(title.getText());
+            }
+    });
+        
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -66,6 +84,21 @@ public class SectionEditor extends JPanel{
         gbc.gridx = 1;
         add(description,gbc);
         
+        description.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                section.setDescription(description.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                section.setDescription(description.getText());}
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                section.setDescription(description.getText());
+            }
+    });
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -75,6 +108,22 @@ public class SectionEditor extends JPanel{
         gbc.gridx = 1;
         add(instruction,gbc);
         
+        instruction.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                section.setInstructions(instruction.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                section.setInstructions(instruction.getText());}
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                section.setInstructions(instruction.getText());
+            }
+    });
+        
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 0.3;
@@ -83,6 +132,22 @@ public class SectionEditor extends JPanel{
         gbc.gridx = 1;
         gbc.weightx = 0.7;
         add(timeLimit,gbc);
+        
+        timeLimit.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+            }
+    });
         
         JPanel positionPanel = new JPanel();
         positionPanel.setBorder(new TitledBorder("Position"));

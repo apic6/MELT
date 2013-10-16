@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -29,12 +31,13 @@ public class PaperEditor extends JPanel{
     private JTextArea instruction = new JTextArea(3,30);
     private JPanel sections_panel = new JPanel();
     private ArrayList<Section> sections;
+    private QuestionPaper paper;
     public PaperEditor(QuestionPaper paper){
         title.setText(paper.getTitle());
         description.setText(paper.getDescription());
         instruction.setText(paper.getInstructions());
         sections = paper.getSectionList();
-        
+        this.paper = paper;
         initComponents();
     }
 
@@ -53,6 +56,22 @@ public class PaperEditor extends JPanel{
         gbc.gridx = 1;
         add(title,gbc);
         
+        title.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                paper.setTitle(title.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                paper.setTitle(title.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                paper.setTitle(title.getText());
+            }
+    });
+        
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -62,6 +81,22 @@ public class PaperEditor extends JPanel{
         gbc.gridx = 1;
         add(description,gbc);
         
+        description.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                paper.setDescription(description.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                paper.setDescription(description.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                paper.setDescription(description.getText());
+            }
+    });
+        
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -70,6 +105,22 @@ public class PaperEditor extends JPanel{
         gbc.weightx = 0.7;
         gbc.gridx = 1;
         add(instruction,gbc);
+        
+        instruction.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                paper.setInstructions(instruction.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                paper.setInstructions(instruction.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                paper.setInstructions(instruction.getText());
+            }
+    });
         
         sections_panel.setBorder(new TitledBorder("sections"));
         sections_panel.setLayout(new GridBagLayout());

@@ -34,23 +34,23 @@ public class QuestionView extends JPanel {
     public QuestionView(Question question) {
         // left panel represents the question+answer
         JPanel leftPanel = new JPanel() {
-            @Override 
+            @Override
             public Dimension getPreferredSize() {
                 Dimension d = super.getPreferredSize();
-                d.width = 450;
-                return d;                
+                d.width = 975;
+                return d;
             }
         };
+        
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
         FlowLayout mainLayout = new FlowLayout(FlowLayout.LEFT);
         setLayout(mainLayout);
 
-        this.question = new JLabel("<html>"+ question.getQuestion() + "</html>", 0);
+        this.question = new JLabel("<html>" + question.getQuestion() + "</html>", 0);
         this.question.setHorizontalTextPosition(SwingConstants.LEFT);
         this.question.setHorizontalAlignment(SwingConstants.LEFT);
         leftPanel.setAlignmentX(LEFT_ALIGNMENT);
-        // this.question.setSize(575, this.question.getHeight());
         leftPanel.add(this.question);
 
         JLabel spacing = new JLabel("\n");
@@ -79,13 +79,13 @@ public class QuestionView extends JPanel {
         this.add(leftPanel);
         // add Button
         JButton submitButton = new JButton("Save");
-        this.add(submitButton); 
+        this.add(submitButton);
     }
 
     @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
-        d.width = 525;
+        d.width = 1025;
         return d;
     }
 }

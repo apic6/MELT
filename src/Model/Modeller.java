@@ -181,10 +181,6 @@ public class Modeller {
         submissions.remove(index);
     }
 
-    public void setValue() {
-        System.out.println("it Works");
-    }
-
     public void loadSubmissions() {
         SubmissionLoader loader = new SubmissionLoader();
 
