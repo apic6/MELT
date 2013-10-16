@@ -28,15 +28,15 @@ import javax.swing.event.DocumentListener;
  * @author Daniel
  */
 public class SubsectionEditor extends JPanel{
-    private JTextArea title;                                         
-    private JLabel title_label = new JLabel("title:");
-    private JTextArea titleArea = new JTextArea(1,30);
+    private static JTextArea title=new JTextArea(1,30);                                         
+    private static JLabel title_label = new JLabel("title:");
+    private static JTextArea titleArea = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
-    private JTextArea description = new JTextArea(3,30);
+    private static JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
-    private JTextArea instruction = new JTextArea(3,30);
-    private JTextArea markArea = new JTextArea(1,5);
-    JTextArea answer = new JTextArea(1,20);
+    private static JTextArea instruction = new JTextArea(3,30);
+    private static JTextArea markArea = new JTextArea(1,5);
+    static JTextArea answer = new JTextArea(1,20);
     private JTabbedPane questionType;
     private JPanel MCQ;
     private int notEmptyQuetion = 0 ;
@@ -64,7 +64,7 @@ public class SubsectionEditor extends JPanel{
     
     public SubsectionEditor(SubSection subSection, Question Q, TestWizard wizard)
     {
-        title.setText(subSection.getTitle());
+        titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
         instruction.setText(subSection.getInstructions());
         answerAreas = new ArrayList();
@@ -182,7 +182,7 @@ public class SubsectionEditor extends JPanel{
             c3.gridx = 1;
             c3.weightx = 0.7;
             
-            title = new JTextArea(1,20);
+            //title = new JTextArea(1,20);
             MCQ.add(title,c3);
 
             JLabel mark_label = new JLabel("marks");
@@ -304,7 +304,7 @@ public class SubsectionEditor extends JPanel{
 
             c3.gridx = 1;
             c3.weightx = 0.7;
-            title = new JTextArea(1,20);
+            //title = new JTextArea(1,20);
             
             title.setText(question.getQuestion());
             
@@ -419,12 +419,12 @@ public class SubsectionEditor extends JPanel{
             
             
         }
-        public void addListeners(FocusListener foc){
+        public static void addListeners(FocusListener foc){
         titleArea.addFocusListener(foc);
         description.addFocusListener(foc);
         instruction.addFocusListener(foc);
         markArea.addFocusListener(foc);
-        title.addFocusListener(foc);
+        //title.addFocusListener(foc);
         answer.addFocusListener(foc);
         }
 }

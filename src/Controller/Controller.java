@@ -12,6 +12,7 @@ import Model.Modeller;
 import Model.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.SectionEditor;
+import Viewer.SubsectionEditor;
 import Viewer.TestWizard;
 import Viewer.Viewer;
 import java.awt.event.ActionEvent;
@@ -34,7 +35,7 @@ public class Controller {
     // private Viewer aview;
      //private ArrayList<QuestionPaper> questionPapers;
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
-        
+        SubsectionEditor.addListeners(new ViewerFocusListener());
         SectionEditor.addListeners(new ViewerFocusListener());
         view.addListener(new ViewerEventListener(),new ViewerDocumentListener(),new ViewerFocusListener());
         amodel=model;
