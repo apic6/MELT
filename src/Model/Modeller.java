@@ -29,7 +29,6 @@ public class Modeller {
     public void init() {
         loadPapers();
         loadSubmissions();
-        // loadMarkingSchemes();
     }
 
     public void loadPapers() {
@@ -92,7 +91,7 @@ public class Modeller {
         }
     }
 
-    public void saveMarkingSchemes(String filename) throws FileNotFoundException {
+    /* public void saveMarkingSchemes(String filename) throws FileNotFoundException {
         String xmlString = "<MarkingSchemes>";
         if (filename == null) {
             filename = "markingSchemes/MarkingSchemes.xml";
@@ -111,7 +110,7 @@ public class Modeller {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    } */
     
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
