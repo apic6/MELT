@@ -62,7 +62,6 @@ public class QuestionPaperLoader {
             }
             // eligible teachers
             for (int j = 0; j < QPElement.getElementsByTagName("EligibleTeacher").getLength(); j++) {
-                System.out.println("I read teacher");
                 paper.addEligibleSetter(Integer.parseInt(QPElement.getElementsByTagName("EligibleTeacher").item(j).getTextContent().toString()));
             }
 
@@ -93,15 +92,12 @@ public class QuestionPaperLoader {
                     // Add Questions
                     NodeList QuestionList = SSElement.getElementsByTagName("Question");
 
-                    System.out.println("Length: " + QuestionList.getLength());
                     for (int l = 0; l < QuestionList.getLength(); l++) {
-                        System.out.println("Question: " + l);
                         Node QuestionNode = QuestionList.item(l);
                         Element QElement = (Element) QuestionNode;
 
                         Question question = null;
 
-                        System.out.print("Entry " + l + " ");
                         if (QElement.getAttribute("type").toString().equals("MCQ")) {
                             String[] answers = new String[QElement.getElementsByTagName("Answer").getLength()];
                             int[] possibleAnswers = new int[QElement.getElementsByTagName("PossibleAnswer").getLength()];

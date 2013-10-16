@@ -71,8 +71,6 @@ class QuestionPanel extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         Dimension d = new Dimension(550, 100);
-        // System.out.println(super.getHeight());
-        // d.height = super.getHeight();
         return d;
     }
 }
@@ -140,7 +138,6 @@ public class LeftPanel extends JTabbedPane {
 
             frame.remove(panel);
             panel = new RightPanel(paper.getSection(0));
-            System.out.println("Section");
             frame.add(panel);
             frame.revalidate();
             frame.repaint();
@@ -153,7 +150,6 @@ public class LeftPanel extends JTabbedPane {
 
             frame.remove(panel);
             panel = new RightPanel(paper.getSection(0).getSubSection(0));
-            System.out.println("SubSection");
             frame.add(panel);
             frame.revalidate();
             frame.repaint();
@@ -166,7 +162,6 @@ public class LeftPanel extends JTabbedPane {
 
             frame.remove(panel);
             panel = new RightPanel(paper.getSection(0).getSubSection(0).getQuestion(0));
-            System.out.println("Question");
             frame.add(panel);
             frame.revalidate();
             frame.repaint();
@@ -179,7 +174,6 @@ public class LeftPanel extends JTabbedPane {
 
             frame.remove(panel);
             panel = new RightPanel(paper);
-            System.out.println("Paper");
             frame.add(panel);
             frame.revalidate();
             frame.repaint();            
