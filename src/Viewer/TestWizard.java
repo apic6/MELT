@@ -61,18 +61,36 @@ public class TestWizard extends JPanel{
     private JPanel FIBQ;
     final JPanel questionCreator = new JPanel() ;
     public TestWizard wizard;
+    
+    ///New Test Constructor
     public TestWizard(JFrame frame,Modeller model){
         this.model = model;
         mainFrame = frame;
+        
         sectionList = new ArrayList();
-        paper = new QuestionPaper(123456);
+        int ID=model.getNextID();
+        paper = new QuestionPaper(ID);
         wizard = this;
         initComponents();
         
         answerAreas = new ArrayList();
     
 }
+    
+    //Edit an old Test Constructor
+   public TestWizard(JFrame frame,Modeller model,QuestionPaper paper){
+   this.model=model;
+   mainFrame=frame;
+   this.paper=paper;
+   sectionList=new ArrayList();
+   wizard=this;
+   initComponents();
+   
+   answerAreas= new ArrayList();
+   }
 
+   
+   
     private void initComponents() {
         final JPanel rightPanel = new JPanel();
         

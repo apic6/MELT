@@ -98,8 +98,8 @@ public class TeacherView extends JPanel {
         
         //c2.gridx = 0;
         //c2.gridy = 0;
-        c2.ipadx = 20;
-        c2.ipady = 20;
+        c2.ipadx = 10;
+        c2.ipady = 10;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
         c2.insets = new Insets(50, 20, 30, 0);
@@ -114,15 +114,15 @@ public class TeacherView extends JPanel {
         for(int i=0;i<papers.size();++i){
             j=i;
             c2.gridy=c2.gridy+i;
-            c2.gridx = i;
+            c2.gridx = 0;
             this.add(new PaperPreviewer(papers.get(i)),c2);
             
-            c2.gridx=i+1;
+            c2.gridx=1;
             JButton editButton=new JButton("Edit Test");
             editButton.addActionListener(new EditListener());
             this.add(editButton,c2);
             
-            c2.gridx=i+2;
+            c2.gridx=2;
             JButton previewButton=new JButton("Preview Test");
             previewButton.addActionListener(new PreviewListener());
             this.add(previewButton,c2);
