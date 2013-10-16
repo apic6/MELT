@@ -113,17 +113,13 @@ public class QuestionPaperLoader {
                                     QElement.getElementsByTagName("Instructions").item(0).getTextContent(), possibleAnswers, mark);
                         } else if (QElement.getAttribute("type").toString().equals("FITBQ")) {
                             // TODO
-                            String[] answers = new String[QElement.getElementsByTagName("Answer").getLength()];
                             String[] possibleAnswers = new String[QElement.getElementsByTagName("PossibleAnswer").getLength()];
-                            for (int m = 0; m < answers.length; m++) {
-                                answers[m] = QElement.getElementsByTagName("Answer").item(m).getTextContent();
-                            }
                             for (int m = 0; m < possibleAnswers.length; m++) {
                                 possibleAnswers[m] = QElement.getElementsByTagName("PossibleAnswer").item(m).getTextContent();
                             }              
                             int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());                            
                             question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
-                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), answers, possibleAnswers, mark);
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), possibleAnswers, mark);
                         } else {
                             System.out.println("ERROR");
                         }
