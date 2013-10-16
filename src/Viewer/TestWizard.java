@@ -78,7 +78,6 @@ public class TestWizard extends JPanel{
    
    
     private void initComponents() {
-        final JPanel rightPanel = new JPanel();
         
         setBorder(new TitledBorder("New QuestionPaper"));
         setLayout(new GridBagLayout());
@@ -110,7 +109,7 @@ public class TestWizard extends JPanel{
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
             tabs.setSelectedIndex(tabs.getTabCount()-1);
             tabs.revalidate();
-            repainRightPanel("Section informtion",new SectionEditor(paper.getSection(paper.getNumberOfSections()-1)));
+            repainRightPanel("Section informtion",new SectionEditor(paper.getSection(paper.getNumberOfSections()-1),wizard));
             }
         });
         
@@ -121,9 +120,9 @@ public class TestWizard extends JPanel{
                 int tabNr = ((TabbedPaneUI)tabs.getUI()).tabForCoordinate(tabs, e.getX(), e.getY());
                 
                 if(tabNr > -1){
-                    repainRightPanel("Section informtion",new SectionEditor(paper.getSection(tabNr)));}
+                    repainRightPanel("Section informtion",new SectionEditor(paper.getSection(tabNr),wizard));}
                 else{
-                    repainRightPanel("QuestionPaper informtion",new PaperEditor(paper));
+                    repainRightPanel("QuestionPaper informtion",new PaperEditor(paper,wizard));
                 }
             }
         });
@@ -162,7 +161,7 @@ public class TestWizard extends JPanel{
         gbc_right.gridx = 0;
         gbc_right.gridy = 0;
         gbc_right.weighty = 0.2;
-        rightPanel.add(new PaperEditor(paper),gbc_right);
+        rightPanel.add(new PaperEditor(paper,wizard),gbc_right);
 
     }
     

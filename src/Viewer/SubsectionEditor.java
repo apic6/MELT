@@ -43,14 +43,16 @@ public class SubsectionEditor extends JPanel{
     private JPanel FIBQ;
     final JPanel questionCreator = new JPanel() ;
      ArrayList<JTextArea> answerAreas;
+     private TestWizard wizard;
      
      
-    public SubsectionEditor(SubSection subSection){
+    public SubsectionEditor(SubSection subSection,TestWizard wizard){
         titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
         instruction.setText(subSection.getInstructions());
         answerAreas = new ArrayList();
         this.subSection = subSection;
+        this.wizard = wizard;
         initComponents();
     }
 
