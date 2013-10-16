@@ -9,6 +9,8 @@ import Model.Section;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -122,28 +124,50 @@ public class PaperEditor extends JPanel{
             }
     });
         
-        sections_panel.setBorder(new TitledBorder("sections"));
-        sections_panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc2 = new GridBagConstraints();
-        gbc2.fill = GridBagConstraints.HORIZONTAL;
-        gbc2.gridx = 0;
-        gbc2.gridy = 0;
-        int section_num = 0;
-        for(Section one : sections){
-            JLabel sec_label = new JLabel("Section "+ (++section_num));
-            sections_panel.add(sec_label,gbc2);
-            gbc2.gridx = 1;
-            JLabel sec_title = new JLabel(one.getTitle());
-            sections_panel.add(sec_title,gbc2);
-            gbc2.gridx = 2;
-            JButton edit_section = new JButton("Edit");
-            sections_panel.add(edit_section,gbc2);
-            gbc2.gridx = 0;
-            gbc2.gridy++;
-        }
-        
+        JPanel sectionPanel = new JPanel();
+        sectionPanel.setBorder(new TitledBorder("SubSections"));
+        gbc.gridy++;
+        add(sectionPanel,gbc);
+            
+            sectionPanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc3 = new GridBagConstraints();
+            gbc3.fill = GridBagConstraints.HORIZONTAL;
+            gbc3.insets = new Insets(10,10,10,10);
+            gbc3.gridx = 0;
+            gbc3.gridy = 0;
+            
+            for(int i = 0; i < paper.getNumberOfSections(); ++i){
+                JLabel subTitleLabel = new JLabel("SubSection"+(i+1)+":  "+paper.getSectionList().get(i).getTitle());
+                sectionPanel.add(subTitleLabel,gbc3);
+                JButton moveUp = new JButton("UP");
+                final int pos = i;
+                moveUp.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(pos>0)
+                        paper.getSectionList().add(pos-1,paper.getSectionList().remove(pos));
+                    }
+                });
+                JButton moveDown = new JButton("DOWN");
+                moveDown.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(pos<(paper.getNumberOfSections()-1))
+                        paper.getSectionList().add(pos+1,paper.getSectionList().remove(pos));
+                    }
+                });
+                gbc3.gridx++;
+                sectionPanel.add(moveUp,gbc3);
+                gbc3.gridx++;
+                sectionPanel.add(moveDown,gbc3);
+                
+                gbc3.gridy++;
+                gbc3.gridx = 0;
+            }
         gbc.gridx = 0;
         gbc.gridy++;
-        add(sections_panel,gbc);
+        add(sectionPanel,gbc);
     }
 }

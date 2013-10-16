@@ -9,6 +9,8 @@ import Model.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -57,6 +59,7 @@ public class SectionEditor extends JPanel{
         
         gbc.weightx = 0.7;
         gbc.gridx = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         add(title,gbc);
         
         title.getDocument().addDocumentListener(new DocumentListener() {
@@ -78,10 +81,12 @@ public class SectionEditor extends JPanel{
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 1;
+        gbc.gridwidth = 1;
         add(description_label,gbc);
         
         gbc.weightx = 0.7;
         gbc.gridx = 1;
+        gbc.gridwidth = 3;
         add(description,gbc);
         
         description.getDocument().addDocumentListener(new DocumentListener() {
@@ -102,10 +107,12 @@ public class SectionEditor extends JPanel{
         gbc.weightx = 0.3;
         gbc.gridx = 0;
         gbc.gridy = 2;
+        gbc.gridwidth = 1;
         add(instruction_label,gbc);
         
         gbc.weightx = 0.7;
         gbc.gridx = 1;
+        gbc.gridwidth = 3;
         add(instruction,gbc);
         
         instruction.getDocument().addDocumentListener(new DocumentListener() {
@@ -127,6 +134,7 @@ public class SectionEditor extends JPanel{
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 0.3;
+        gbc.gridwidth = 1;
         add(time_label,gbc);
         
         gbc.gridx = 1;
@@ -141,13 +149,38 @@ public class SectionEditor extends JPanel{
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+                if("".equals(timeLimit.getText()))
+                    section.setTimeLimit(0);
+                else
+                    section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
                 section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
             }
     });
+        
+      gbc.gridx ++;
+      JButton moreTime = new JButton("+");
+      moreTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeLimit.setText(String.valueOf(Integer.parseInt(timeLimit.getText())+1));
+            }
+        });
+      JButton lessTime = new JButton("-");
+      lessTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Integer.parseInt(timeLimit.getText())>0)
+                timeLimit.setText(String.valueOf(Integer.parseInt(timeLimit.getText())-1));
+            }
+        });
+      add(moreTime,gbc);
+      gbc.gridx++;
+      add(lessTime,gbc);
         
         JPanel positionPanel = new JPanel();
         positionPanel.setBorder(new TitledBorder("Position"));
@@ -186,7 +219,24 @@ public class SectionEditor extends JPanel{
                 JLabel subTitleLabel = new JLabel("SubSection"+(i+1)+":  "+section.getSubSections().get(i).getTitle());
                 subsectionPanel.add(subTitleLabel,gbc3);
                 JButton moveUp = new JButton("UP");
+                final int pos = i;
+                moveUp.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(pos>0)
+                        section.getSubSections().add(pos-1,section.getSubSections().remove(pos));
+                    }
+                });
                 JButton moveDown = new JButton("DOWN");
+                moveDown.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(pos<(section.getNumberOfSubSections()-1))
+                        section.getSubSections().add(pos+1,section.getSubSections().remove(pos));
+                    }
+                });
                 gbc3.gridx++;
                 subsectionPanel.add(moveUp,gbc3);
                 gbc3.gridx++;
