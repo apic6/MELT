@@ -4,15 +4,12 @@ public class FITBQuestion implements Question {
 
     private String instructions;
     private String question;
-    private String chosenAnswer;
-    private String[] answers;
     private String[] possibleAnswers;
     private int mark;
 
-    FITBQuestion(String question, String instructions, String[] answers, String[] possibleAnswer, int mark) {
+    FITBQuestion(String question, String instructions, String[] possibleAnswers, int mark) {
         this.question = question;
         this.instructions = instructions;
-        this.answers = answers;
         this.possibleAnswers = possibleAnswers;
         this.mark = mark;
     }
@@ -20,14 +17,6 @@ public class FITBQuestion implements Question {
     @Override
     public String getInstructions() {
         return instructions;
-    }
-
-    public int getNumberOfAnswers() {
-        return answers.length;
-    }
-
-    public String getAnswer(int i) {
-        return answers[i];
     }
 
     @Override
@@ -58,7 +47,7 @@ public class FITBQuestion implements Question {
         XML += "<Instructions>" + instructions + "</Instructions>\n";
         XML += "<QuestionText>" + question + "</QuestionText>\n";
         for (int i = 0; i < possibleAnswers.length; i++) {
-            if (answers[i] != null) {
+            if (possibleAnswers[i] != null) {
                 XML += "<PossibleAnswer>" + possibleAnswers[i] + "</PossibleAnswer>\n";
             }
         }

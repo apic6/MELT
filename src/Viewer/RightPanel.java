@@ -485,10 +485,10 @@ public class RightPanel extends JPanel {
             }
         } else {
             FITBQuestion fitbQuestion = (FITBQuestion) question;
-            for (int i = 0; i < fitbQuestion.getNumberOfAnswers(); i++) {
+            for (int i = 0; i < fitbQuestion.getNumberOfPossibleAnswers(); i++) {
                 con.gridy ++;
                 con.gridx = 0;
-                JLabel answerText = new JLabel(fitbQuestion.getAnswer(i));
+                JLabel answerText = new JLabel(fitbQuestion.getPossibleAnswer(i));
                 add(answerText, con);
                 con.gridx = 1;
                 JLabel mark = new JLabel("Mark: x");

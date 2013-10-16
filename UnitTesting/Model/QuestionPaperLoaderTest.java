@@ -17,12 +17,14 @@ import static org.junit.Assert.*;
  * @author mbaxkak4
  */
 public class QuestionPaperLoaderTest {
+    private static QuestionPaperLoader instance;
     
     public QuestionPaperLoaderTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        instance = new QuestionPaperLoader();
     }
     
     @AfterClass
@@ -43,12 +45,12 @@ public class QuestionPaperLoaderTest {
     @Test
     public void testReadPapers() {
         System.out.println("readPapers");
-        QuestionPaperLoader instance = new QuestionPaperLoader();
+        
         int expResult = 0;
         int result = instance.readPapers();
-        assertEquals(expResult, result);
+        assertTrue("Load papers has returned a negative value meaning -ve papers were loaded, simply impossible!", result >= expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // fail("The test case is a prototype.");
     }
 
     /**
@@ -57,12 +59,13 @@ public class QuestionPaperLoaderTest {
     @Test
     public void testGetQuestionPapers() {
         System.out.println("getQuestionPapers");
-        QuestionPaperLoader instance = new QuestionPaperLoader();
-        ArrayList expResult = null;
+        
+        instance.readPapers();
+        
         ArrayList result = instance.getQuestionPapers();
-        assertEquals(expResult, result);
+        assertNotNull("The list of papers is null, woops!", result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +75,13 @@ public class QuestionPaperLoaderTest {
     public void testGetQuestionPaper() {
         System.out.println("getQuestionPaper");
         int i = 0;
-        QuestionPaperLoader instance = new QuestionPaperLoader();
-        QuestionPaper expResult = null;
+        
+        instance.readPapers();
+        
         QuestionPaper result = instance.getQuestionPaper(i);
-        assertEquals(expResult, result);
+        assertNotNull("The returned paper is null, woops!", result);
+
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // fail("The test case is a prototype.");
     }
 }
