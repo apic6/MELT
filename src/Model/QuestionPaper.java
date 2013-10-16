@@ -148,7 +148,7 @@ public class QuestionPaper {
 
     // TODO: CHANGE THIS
     public String toXML(Modeller model) {
-        String XML = "<QuestionPaper id=\"" + model.getNextID() + "\">\n";
+        String XML = "<QuestionPaper id=\"" + paperID + "\">\n";          /////////////model.getNextID()
 
         XML += "<Title>" + title + "</Title>\n";
         XML += "<Description>" + description + "</Description>\n";

@@ -58,12 +58,6 @@ public class Controller {
                   QuestionPaper  p;
                   p=TestWizard.getQuestionPaper();
               
-                try {
-                    amodel.addPaper(p);
-                    amodel.savePapers(null);
-                    } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                                                        }
                 }
                     break;
                 
@@ -110,16 +104,15 @@ class ViewerFocusListener implements FocusListener {
                  
                 try {
                     // p.getPaperID();
-                    if(amodel.getPaper(p.getPaperID())!=null){
-                    amodel.removePaper(p.getPaperID());
+                    if(amodel.getPaper(p.getPaperID()-1)!=null){
+                    amodel.removePaper(p.getPaperID()-1);
                     amodel.addPaper(p);
+                    
                     }
                     else {
                     amodel.addPaper(p);
                     }
-                                        
-                    
-                  
+                     
                     amodel.savePapers(null);
                     } catch (FileNotFoundException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
