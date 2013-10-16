@@ -64,10 +64,10 @@ public class TestWizard extends JPanel{
 }
     
     //Edit an old Test Constructor
-   public TestWizard(JFrame frame,Modeller model,QuestionPaper paper){
+   public TestWizard(JFrame frame,Modeller model,QuestionPaper apaper){
    this.model=model;
    mainFrame=frame;
-   this.paper=paper;
+   paper=apaper;
    sectionList=new ArrayList();
    wizard=this;
    initComponents();

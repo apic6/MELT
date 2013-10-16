@@ -110,7 +110,7 @@ public class TeacherView extends JPanel {
        // amodel.loadPapers("papers/Papers.xml");
         
         ArrayList<QuestionPaper> papers = amodel.getPapers();
-        
+        paper=papers.get(1);
         for(int i=0;i<papers.size();++i){
             j=i;
             c2.gridy=c2.gridy+i;
@@ -141,12 +141,11 @@ public class TeacherView extends JPanel {
         
         }
     }
-     private class  EditListener implements ActionListener{
+     private class  EditListener implements ActionListener {
         
         @Override
         public void actionPerformed(ActionEvent evt){
-          //  TestPreviewer tp=new TestPreviewer(amodel,j);
-            //tp.setVisible(true);
+            TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
         }
     }
     
