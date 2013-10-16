@@ -23,6 +23,15 @@ public class FITBQuestion implements Question {
     public String getQuestion() {
         return question;
     }
+    
+   
+    @Override
+    public MultipleChoiceQuestion getMCQ (){
+    return null;
+    }
+    @Override
+    public FITBQuestion getFIB(){
+    return this;}
 
     public int getNumberOfPossibleAnswers() {
         return possibleAnswers.length;

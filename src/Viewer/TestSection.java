@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+import Model.Modeller;
 import Model.QuestionPaper;
 import Model.Section;
 import java.awt.GridBagConstraints;
@@ -18,6 +19,7 @@ import javax.swing.JTextArea;
 import static Viewer.TestWizard.paper;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
 import javax.swing.plaf.TabbedPaneUI;
 /**
  *
@@ -34,7 +36,11 @@ public class TestSection extends JPanel{
     public Section section;
     private TestWizard wizard;
     private JPanel rightPanel;
-    public TestSection(JPanel rightPanel,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
+    public Modeller model;
+    
+   public TestSection(Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
+        this.model = model;
+//        mainFrame = frame;
         section = new Section();
         sectionList.add(this);
         paper.addSection(section);
@@ -81,7 +87,7 @@ public class TestSection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JPanel subsection = new Subsection(section);
+                JPanel subsection = new Subsection(section,model,paper,wizard);
                 subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
                 subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();

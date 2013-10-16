@@ -31,6 +31,14 @@ public class MultipleChoiceQuestion implements Question {
     public String getQuestion() {
         return question;
     }
+    @Override
+    public MultipleChoiceQuestion getMCQ (){
+    return this;
+    }
+    @Override
+    public FITBQuestion getFIB(){
+    return null;}
+    
 
     public int getNumberOfAnswers() {
         return answers.length;

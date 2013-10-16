@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
 
 /**
@@ -104,7 +106,7 @@ public class TestWizard extends JPanel{
             c2.weightx = 1.0;
             c2.weighty = 1.0;
             c2.fill = GridBagConstraints.BOTH;
-            tab3.add(new TestSection(rightPanel,paper,sectionList,wizard),c2);
+            tab3.add(new TestSection(model,paper,sectionList,wizard),c2);
             
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
             tabs.setSelectedIndex(tabs.getTabCount()-1);
