@@ -116,7 +116,7 @@ public class Student extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView));
                     mainFrame.setVisible(true);
-                    mainFrame.pack();
+                   // mainFrame.pack();
                 }
             });
 

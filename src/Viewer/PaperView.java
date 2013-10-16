@@ -52,7 +52,7 @@ class SectionPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 mainFrame.setContentPane(new SectionView(section, mainFrame, pView));
                 mainFrame.setVisible(true);
-                mainFrame.pack();
+               // mainFrame.pack();
                 /*
                  * mainFrame.removeAll();
                  mainFrame.add(new SectionView(section));
@@ -103,7 +103,7 @@ public class PaperView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 mainFrame.setContentPane(studentView);
                 mainFrame.setVisible(true);
-                mainFrame.pack();
+                //mainFrame.pack();
             }
         });
 
@@ -120,7 +120,7 @@ public class PaperView extends JPanel {
         // questionsPanel.setPreferredSize(new Dimension(700, 1000));
         // add(scrollPane);
         // add(questionsPanel);
-        this.setSize(new Dimension(700, 600));
+       // this.setSize(new Dimension(700, 600));
         // pack();
     }
 
