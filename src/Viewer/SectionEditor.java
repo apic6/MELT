@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,13 +27,13 @@ import javax.swing.event.DocumentListener;
 public class SectionEditor extends JPanel{
     
     private JLabel title_label = new JLabel("title:");
-    private JTextArea title = new JTextArea(1,30);
+    private static JTextArea title = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
-    private JTextArea description = new JTextArea(3,30);
+    private static JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
-    private JTextArea instruction = new JTextArea(3,30);
+    private static JTextArea instruction = new JTextArea(3,30);
     private JLabel time_label = new JLabel("time limit:");
-    private JTextArea timeLimit = new JTextArea(1,10);
+    private static JTextArea timeLimit = new JTextArea(1,10);
     private Section section;
     private TestWizard wizard; 
     
@@ -232,5 +233,11 @@ public class SectionEditor extends JPanel{
             }
         
             
+    }
+    public static void addListeners(FocusListener foc){
+    title.addFocusListener(foc);
+    description.addFocusListener(foc);
+    instruction.addFocusListener(foc);
+    timeLimit.addFocusListener(foc);
     }
 }

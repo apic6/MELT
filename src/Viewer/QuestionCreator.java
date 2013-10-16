@@ -11,6 +11,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,12 +27,14 @@ import javax.swing.JTextArea;
  * @author Daniel
  */
 public class QuestionCreator extends JFrame{
+    JCheckBox isRight = new JCheckBox("right answer");
+    JTextArea answer = new JTextArea(1,20);
     JTabbedPane questionType;
     JPanel MCQ;
     JPanel FIBQ;
     JPanel mainPane;
     JPanel answerPanel;
-    public static JTextArea title;
+    JTextArea title;
     ArrayList<JTextArea> answerAreas;
     GridBagConstraints gbc_parent;
     GridBagConstraints gbc = new GridBagConstraints();
@@ -134,16 +138,21 @@ public class QuestionCreator extends JFrame{
             gbc.gridx = 0;
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
-            JTextArea answer = new JTextArea(1,20);
+           // JTextArea answer = new JTextArea(1,20);
             answerAreas.add(answer);
             gbc.gridx = 1;
             gbc.weightx = 0.7;
             tempPanel.add(answer,gbc);
-            JCheckBox isRight = new JCheckBox("right answer");
+            //JCheckBox isRight = new JCheckBox("right answer");
             gbc.gridx = 2;
             tempPanel.add(isRight,gbc);
             return tempPanel;
         }
     
-    
+ public void addListeners(FocusListener foc,ActionListener mal){
+ answer.addFocusListener(foc);
+ title.addFocusListener(foc);
+ isRight.addActionListener(mal);
+ 
+ }   
 }

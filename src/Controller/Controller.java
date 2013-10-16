@@ -11,6 +11,7 @@ package Controller;
 import Model.Modeller;
 import Model.QuestionPaper;
 import Viewer.LoginScreen;
+import Viewer.SectionEditor;
 import Viewer.TestWizard;
 import Viewer.Viewer;
 import java.awt.event.ActionEvent;
@@ -34,7 +35,7 @@ public class Controller {
      //private ArrayList<QuestionPaper> questionPapers;
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
         
-        
+        SectionEditor.addListeners(new ViewerFocusListener());
         view.addListener(new ViewerEventListener(),new ViewerDocumentListener(),new ViewerFocusListener());
         amodel=model;
        // aview=view;
@@ -104,9 +105,11 @@ class ViewerFocusListener implements FocusListener {
         public void focusLost(FocusEvent e) {
                  QuestionPaper  p;
                  p=TestWizard.getQuestionPaper();
-              
+               //  System.out.println(p.getPaperID());
+                 amodel.loadPapers();
+                 
                 try {
-                    p.getPaperID();
+                    // p.getPaperID();
                     if(amodel.getPaper(p.getPaperID())!=null){
                     amodel.removePaper(p.getPaperID());
                     amodel.addPaper(p);
@@ -116,7 +119,7 @@ class ViewerFocusListener implements FocusListener {
                     }
                                         
                     
-                    amodel.addPaper(p);
+                  
                     amodel.savePapers(null);
                     } catch (FileNotFoundException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);

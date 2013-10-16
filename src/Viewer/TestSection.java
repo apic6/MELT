@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import static Viewer.TestWizard.paper;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
@@ -111,6 +112,11 @@ public class TestSection extends JPanel{
         return this.instruction.getText();
     }
     
+    public void addListeners(FocusListener foc){
+    title.addFocusListener(foc);
+    description.addFocusListener(foc);
+    instruction.addFocusListener(foc);
+    }
 }
 
 

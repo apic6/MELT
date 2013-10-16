@@ -8,11 +8,12 @@ import Model.MultipleChoiceQuestion;
 import Model.Question;
 import javax.swing.JPanel;
 import Model.SubSection;
-import static Viewer.QuestionCreator.title;
+//import static Viewer.QuestionCreator.title;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -27,13 +28,15 @@ import javax.swing.event.DocumentListener;
  * @author Daniel
  */
 public class SubsectionEditor extends JPanel{
-    
+    private JTextArea title;                                         
     private JLabel title_label = new JLabel("title:");
     private JTextArea titleArea = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
     private JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
     private JTextArea instruction = new JTextArea(3,30);
+    private JTextArea markArea = new JTextArea(1,5);
+    JTextArea answer = new JTextArea(1,20);
     private JTabbedPane questionType;
     private JPanel MCQ;
     private int notEmptyQuetion = 0 ;
@@ -171,13 +174,14 @@ public class SubsectionEditor extends JPanel{
             c3.weightx = 0.3;
             c3.gridx = 0;
             c3.gridy = 0;
-            JLabel title_label = new JLabel("title:  ");
-            MCQ.add(title_label,c3);
+            JLabel title_label1 = new JLabel("title:  ");
+            MCQ.add(title_label1,c3);
 
 //            questionType.add(MCQ, c3) ;
 
             c3.gridx = 1;
             c3.weightx = 0.7;
+            
             title = new JTextArea(1,20);
             MCQ.add(title,c3);
 
@@ -187,7 +191,7 @@ public class SubsectionEditor extends JPanel{
             c3.weightx = 0.5;
             MCQ.add(mark_label,c3);
             
-            JTextArea markArea = new JTextArea(1,5);
+           
             c3.gridx = 1;
             c3.weightx = 0.3;
             MCQ.add(markArea,c3);
@@ -293,8 +297,8 @@ public class SubsectionEditor extends JPanel{
             c3.weightx = 0.3;
             c3.gridx = 0;
             c3.gridy = 0;
-            JLabel title_label = new JLabel("title:  ");
-            MCQ.add(title_label,c3);
+            JLabel title_label2 = new JLabel("title:  ");
+            MCQ.add(title_label2,c3);
 
 //            questionType.add(MCQ, c3) ;
 
@@ -313,7 +317,7 @@ public class SubsectionEditor extends JPanel{
             
             MCQ.add(mark_label,c3);
             
-            JTextArea markArea = new JTextArea(1,5);
+            //JTextArea markArea = new JTextArea(1,5);
             
             c3.gridx = 1;
             c3.weightx = 0.3;
@@ -353,7 +357,7 @@ public class SubsectionEditor extends JPanel{
             gbc1.gridx = 0;
             gbc1.weightx = 0.3;
             tempPanel.add(answer_label,gbc1);
-            JTextArea answer = new JTextArea(1,20);
+            //JTextArea answer = new JTextArea(1,20);
             answer.setText(mcquestion.getAnswer(i));
             answerAreas.add(answer);
             gbc1.gridx = 1;
@@ -403,7 +407,7 @@ public class SubsectionEditor extends JPanel{
             gbc.gridx = 0;
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
-            JTextArea answer = new JTextArea(1,20);
+            
             answerAreas.add(answer);
             gbc.gridx = 1;
             gbc.weightx = 0.7;
@@ -414,5 +418,13 @@ public class SubsectionEditor extends JPanel{
             return tempPanel;
             
             
+        }
+        public void addListeners(FocusListener foc){
+        titleArea.addFocusListener(foc);
+        description.addFocusListener(foc);
+        instruction.addFocusListener(foc);
+        markArea.addFocusListener(foc);
+        title.addFocusListener(foc);
+        answer.addFocusListener(foc);
         }
 }

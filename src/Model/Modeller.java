@@ -134,7 +134,8 @@ public class Modeller {
 
     // retrieve a paper
     public QuestionPaper getPaper(int index) {
-        return questionPapers.get(index);
+        if(index>=questionPapers.size()){return null;}/////////////////////////
+        else{return questionPapers.get(index);}
     }
 
     // add a paper to the model
