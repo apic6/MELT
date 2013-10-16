@@ -110,7 +110,7 @@ public class TeacherView extends JPanel {
        // amodel.loadPapers("papers/Papers.xml");
         
         ArrayList<QuestionPaper> papers = amodel.getPapers();
-        //paper=papers.get(0);
+        paper=papers.get(1);
         for(int i=0;i<papers.size();++i){
             j=i;
             c2.gridy=c2.gridy+i;

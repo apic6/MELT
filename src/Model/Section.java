@@ -75,8 +75,7 @@ public class Section {
     }
     
     public SubSection getSubSection(int ID) {
-        if (SubSectionList.isEmpty()){return null;}
-        else { return SubSectionList.get(ID);}
+        return SubSectionList.get(ID);
     }
     
     public ArrayList<SubSection> getSubSections(){

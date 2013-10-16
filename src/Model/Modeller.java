@@ -145,7 +145,7 @@ public class Modeller {
 
     // remove a paper from the model
     public void removePaper(int index) {
-        questionPapers.remove(index-1);
+        questionPapers.remove(index);
     }
 
     // moves a paper up in a list

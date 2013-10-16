@@ -94,7 +94,6 @@ public class Subsection extends JPanel{
         QuestionView[] questionViews;
         
         //QuestionPaper paper = papers.get(0);
-        
         final Section section = paper.getSection(0);
         SubSection subSection = section.getSubSection(0);
         
