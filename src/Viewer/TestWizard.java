@@ -153,8 +153,13 @@ public class TestWizard extends JPanel{
                 rightPanel.removeAll();
                 rightPanel.revalidate();
                 rightPanel.setLayout(new GridBagLayout());
-                rightPanel.setBorder(new TitledBorder("Section informtion"));
-                rightPanel.add(new SectionEditor(paper.getSection(tabNr)),gbc);
+                if(tabNr > -1){
+                    rightPanel.setBorder(new TitledBorder("Section informtion"));
+                    rightPanel.add(new SectionEditor(paper.getSection(tabNr)),gbc);}
+                else{
+                    rightPanel.setBorder(new TitledBorder("QuestionPaper informtion"));
+                    rightPanel.add(new PaperEditor(paper),gbc);
+                }
                 rightPanel.revalidate();
                 rightPanel.repaint();
             }
