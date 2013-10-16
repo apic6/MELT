@@ -1,42 +1,54 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package Viewer;
 
-import Model.Modeller;
-import Model.QuestionPaper;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-/**
- *
- * @author mbgm8je3
- */
-public class Test {
-    public static void main(String argv[]){
-        Modeller model = new Modeller();
-        model.loadPapers();
-        QuestionPaper paper = model.getPaper(0);
-        JPanel panel1 = new PaperEditor(paper);
-        JPanel panel2 = new SectionEditor(paper.getSection(0));
-        JPanel panel3 = new SubsectionEditor(paper.getSection(0).getSubSection(0));
-        //JPanel panel4 = new QuestionEditor();
-        
-        JFrame frame1 = new JFrame();
-        frame1.add(panel1);
-        frame1.setVisible(true);
-        frame1.pack();
-        
-        JFrame frame2 = new JFrame();
-        frame2.add(panel2);
-        frame2.setVisible(true);
-        frame2.pack();
-        
-        JFrame frame3 = new JFrame();
-        frame3.add(panel3);
-        frame3.setVisible(true);
-        frame3.pack();
-        
+public class Test extends JPanel {
+
+    public Test() {
+        ImageIcon icon = new ImageIcon("images/middle.gif");
+        JTabbedPane tabbedPane = new JTabbedPane();
+        Component panel1 = makeTextPanel("Blah");
+        tabbedPane.addTab("One", icon, panel1, "Does nothing");
+        tabbedPane.setSelectedIndex(0);
+
+        Component panel4 = makePanel();
+        tabbedPane.addTab("Two", icon, panel4, "Does nothing at all");
+//Add the tabbed pane to this panel.
+        setLayout(new GridLayout(1, 1));
+        add(tabbedPane);
+    }
+
+    protected Component makeTextPanel(String text) {
+        JPanel panel = new JPanel(false);
+        JLabel filler = new JLabel(text);
+        filler.setHorizontalAlignment(JLabel.CENTER);
+        panel.setLayout(new GridLayout(1, 1));
+        panel.add(filler);
+        return panel;
+    }
+
+    protected Component makePanel() {
+        JPanel panel = new JPanel(false);
+        JTextArea jEdit = new JTextArea(40, 50);
+        JScrollPane jScrollPane1 = new JScrollPane();
+        jScrollPane1.getViewport().add(jEdit, null);
+        panel.add(jScrollPane1, null);
+        panel.setLayout(new GridLayout(1, 1));
+        panel.add(jScrollPane1);
+        return panel;
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("TabbedPaneDemo");
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        frame.getContentPane().add(new Test(),
+                BorderLayout.CENTER);
+        frame.setSize(400, 125);
+        frame.setVisible(true);
     }
 }

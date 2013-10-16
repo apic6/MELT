@@ -37,7 +37,7 @@ public class QuestionView extends JPanel {
             @Override 
             public Dimension getPreferredSize() {
                 Dimension d = super.getPreferredSize();
-                d.width = 575;
+                d.width = 450;
                 return d;                
             }
         };
@@ -79,15 +79,13 @@ public class QuestionView extends JPanel {
         this.add(leftPanel);
         // add Button
         JButton submitButton = new JButton("Save");
-        this.add(submitButton);
-        // set overall panel size
-        // this.setSize(new Dimension(600, 250));    
+        this.add(submitButton); 
     }
 
     @Override
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
-        d.width = 575;
+        d.width = 525;
         return d;
     }
 }

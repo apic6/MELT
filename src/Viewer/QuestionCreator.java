@@ -93,7 +93,8 @@ public class QuestionCreator extends JFrame{
                 for(int i =0; i< answerAreas.size();++i){
                     answers[i] = answerAreas.get(i).getText();
                 }
-                question = new MultipleChoiceQuestion(title.getText(),answers,null);
+                // TODO: make it so that there is a fourth argument that is an array of integers which corresponds to the correct answers
+                question = new MultipleChoiceQuestion(title.getText(),answers,"None" /* instructions */, null /* poss. answers */, 0 /* marks */);
                 subSection.addQuestion(question);
                 mainPane.revalidate();
             }

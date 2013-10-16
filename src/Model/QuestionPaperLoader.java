@@ -104,17 +104,30 @@ public class QuestionPaperLoader {
                         System.out.print("Entry " + l + " ");
                         if (QElement.getAttribute("type").toString().equals("MCQ")) {
                             String[] answers = new String[QElement.getElementsByTagName("Answer").getLength()];
+                            int[] possibleAnswers = new int[QElement.getElementsByTagName("PossibleAnswer").getLength()];
                             for (int m = 0; m < answers.length; m++) {
                                 answers[m] = QElement.getElementsByTagName("Answer").item(m).getTextContent();
                             }
+                            for (int m = 0; m < possibleAnswers.length; m++) {
+                                possibleAnswers[m] = Integer.parseInt(QElement.getElementsByTagName("PossibleAnswer").item(m).getTextContent());
+                            }
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());
                             question = new MultipleChoiceQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
                                     answers,
-                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent());
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), possibleAnswers, mark);
                         } else if (QElement.getAttribute("type").toString().equals("FITBQ")) {
                             // TODO
-                            String[] strings = {"1", "2"};
+                            String[] answers = new String[QElement.getElementsByTagName("Answer").getLength()];
+                            String[] possibleAnswers = new String[QElement.getElementsByTagName("PossibleAnswer").getLength()];
+                            for (int m = 0; m < answers.length; m++) {
+                                answers[m] = QElement.getElementsByTagName("Answer").item(m).getTextContent();
+                            }
+                            for (int m = 0; m < possibleAnswers.length; m++) {
+                                possibleAnswers[m] = QElement.getElementsByTagName("PossibleAnswer").item(m).getTextContent();
+                            }              
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());                            
                             question = new FITBQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
-                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), strings);
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), answers, possibleAnswers, mark);
                         } else {
                             System.out.println("ERROR");
                         }
