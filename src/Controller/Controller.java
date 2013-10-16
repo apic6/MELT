@@ -53,19 +53,11 @@ public class Controller {
                 String pass= LoginScreen.getPass();
                 }
                     break;
-                case "submit":{
-                }
-                    break;
                 case "finish":{
                   QuestionPaper  p;
                   p=TestWizard.getQuestionPaper();
               
                 try {
-                 //   if (amodel.contains(p)) {
-                       // remove p
-                        //        add p
-                                        
-                    
                     amodel.addPaper(p);
                     amodel.savePapers(null);
                     } catch (FileNotFoundException ex) {
@@ -97,7 +89,7 @@ public class Controller {
  
         private void updateModel(){
             //
-            System.out.println("it works");
+           // System.out.println("it works");
         }
  }
 
@@ -105,7 +97,7 @@ class ViewerFocusListener implements FocusListener {
 
         @Override
         public void focusGained(FocusEvent e) {
-            System.out.println("works");
+            //System.out.println("works");
         }
 
         @Override
