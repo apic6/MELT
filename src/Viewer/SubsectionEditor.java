@@ -8,11 +8,13 @@ import Model.MultipleChoiceQuestion;
 import Model.Question;
 import javax.swing.JPanel;
 import Model.SubSection;
+import java.awt.Color;
 //import static Viewer.QuestionCreator.title;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -28,7 +30,7 @@ import javax.swing.event.DocumentListener;
  * @author Daniel
  */
 public class SubsectionEditor extends JPanel{
-    private JTextArea title;                                         
+    private JTextArea questionTitleArea = new JTextArea(1,30);                                         
     private JLabel title_label = new JLabel("title:");
     private JTextArea titleArea = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
@@ -50,27 +52,34 @@ public class SubsectionEditor extends JPanel{
     final JPanel questionCreator = new JPanel() ;
      ArrayList<JTextArea> answerAreas;
      private TestWizard wizard;
+    // MultipleChoiceQuestion mcquestion = question.getMCQ() ;
+     MultipleChoiceQuestion mcquestion = new MultipleChoiceQuestion();
      
      
     public SubsectionEditor(SubSection subSection,TestWizard wizard){
+        //mcquestion = new MultipleChoiceQuestion() ;
         titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
         instruction.setText(subSection.getInstructions());
+        questionTitleArea.setText(mcquestion.getQuestion());
+        
         answerAreas = new ArrayList();
         this.subSection = subSection;
         this.wizard = wizard;
+        
         initComponents();
     }
     
     public SubsectionEditor(SubSection subSection, Question Q, TestWizard wizard)
     {
-        title.setText(subSection.getTitle());
+        titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
         instruction.setText(subSection.getInstructions());
         answerAreas = new ArrayList();
         question = Q;
         notEmptyQuetion = 1 ;
         this.wizard = wizard;
+        mcquestion = question.getMCQ() ;
         initComponentsQ();
     }
     
@@ -182,9 +191,26 @@ public class SubsectionEditor extends JPanel{
             c3.gridx = 1;
             c3.weightx = 0.7;
             
-            title = new JTextArea(1,20);
-            MCQ.add(title,c3);
+            //titleArea = new JTextArea(1,20);
+            MCQ.add(questionTitleArea,c3);
 
+            questionTitleArea.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                mcquestion.setQuestion(questionTitleArea.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                mcquestion.setQuestion(questionTitleArea.getText());
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                 mcquestion.setQuestion(questionTitleArea.getText());
+            }
+    });
+             //subSection.addQuestion(mcquestion);
+           
             JLabel mark_label = new JLabel("marks");
             c3.gridy = 1;
             c3.gridx = 0;
@@ -210,6 +236,13 @@ public class SubsectionEditor extends JPanel{
             MCQ.add(answerPanel,c3);
 
             JButton submit = new JButton("submit");
+            submit.addActionListener(new ActionListener (){
+            @Override
+            public void actionPerformed(ActionEvent e){
+            subSection.addQuestion(mcquestion);
+            revalidate();
+            }
+ });
             c3.gridx = 0;
             c3.gridy = 3;
             c3.weighty = 0.2;
@@ -245,7 +278,7 @@ public class SubsectionEditor extends JPanel{
     }
     private void initComponentsQ() {
         
-        MultipleChoiceQuestion mcquestion = question.getMCQ() ;
+        
         
         
         setLayout(new GridBagLayout());
@@ -262,7 +295,7 @@ public class SubsectionEditor extends JPanel{
         gbc.weightx = 0.7;
         gbc.weighty=1.0;
         gbc.gridx = 1;
-        add(title,gbc);
+        add(titleArea,gbc);
         
         gbc.weightx = 0.3;
         gbc.weighty=1.0;
@@ -304,11 +337,11 @@ public class SubsectionEditor extends JPanel{
 
             c3.gridx = 1;
             c3.weightx = 0.7;
-            title = new JTextArea(1,20);
+            titleArea = new JTextArea(1,20);
             
-            title.setText(question.getQuestion());
+            titleArea.setText(question.getQuestion());
             
-            MCQ.add(title,c3);
+            MCQ.add(titleArea,c3);
 
             JLabel mark_label = new JLabel("marks");
             c3.gridy = 1;
@@ -338,6 +371,13 @@ public class SubsectionEditor extends JPanel{
             MCQ.add(answerPanel,c3);
 
             JButton submit = new JButton("submit");
+            submit.addActionListener(new ActionListener (){
+            @Override
+            public void actionPerformed(ActionEvent e){
+            subSection.addQuestion(mcquestion);
+            //revalidate();
+            }
+ });
             c3.gridx = 0;
             c3.gridy = 3;
             c3.weighty = 0.2;
@@ -424,7 +464,8 @@ public class SubsectionEditor extends JPanel{
         description.addFocusListener(foc);
         instruction.addFocusListener(foc);
         markArea.addFocusListener(foc);
-        title.addFocusListener(foc);
+        titleArea.addFocusListener(foc);
         answer.addFocusListener(foc);
+        questionTitleArea.addFocusListener(foc);
         }
 }

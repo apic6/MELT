@@ -7,11 +7,7 @@ package Viewer;
 import javax.swing.JPanel;
 import Model.*;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 
 /**

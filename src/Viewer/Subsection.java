@@ -36,9 +36,10 @@ import javax.swing.plaf.TabbedPaneUI;
 public class Subsection extends JPanel{
     private JButton createQuestion;
     private JPanel mainPane;
-    public int firstI  ;
-    public int lastI  ;
-    public int index ;
+    private int firstI  ;
+    private int lastI  ;
+    private int index ;
+    private String activeSubsection ;
     
     public Modeller amodel;
     public SubSection subSection;
@@ -95,7 +96,7 @@ public class Subsection extends JPanel{
         
         //QuestionPaper paper = papers.get(0);
         final Section section = paper.getSection(0);
-        SubSection subSection = section.getSubSection(0);
+        final SubSection subSection = section.getSubSection(0);
         
         String[] Answers = new String[2];
         Answers[0] = "hsdfbdsjhfb";
@@ -108,7 +109,7 @@ public class Subsection extends JPanel{
         
         MultipleChoiceQuestion a ;
         a = new MultipleChoiceQuestion("rololol", Answers, "what", possibleAnswers, 5);
-        
+        //listModel.addElement(questions);
         subSection.addQuestion(a);
         
         questions = new Question[subSection.getNumberOfQuestions()];
@@ -120,6 +121,7 @@ public class Subsection extends JPanel{
             listModel.addElement(questions[i].getQuestion());
             
         }
+        //listModel.addElement(questions[1].getQuestion());
         
         /*
         listModel = new DefaultListModel();
@@ -165,7 +167,7 @@ public class Subsection extends JPanel{
             
             
             public void valueChanged(ListSelectionEvent evt) {
-                if (evt.getValueIsAdjusting()){
+               if (evt.getValueIsAdjusting()){
                 
                 }else{
                 System.out.print("\n_First:" + evt.getFirstIndex()  + "_\n");
@@ -220,7 +222,7 @@ public class Subsection extends JPanel{
 //                rightPanel.removeAll();
 //                rightPanel.revalidate();
 //                rightPanel.setLayout(new GridBagLayout());
-//                rightPanel.setBorder(new TitledBorder("SubSection information"));
+//              /  rightPanel.setBorder(new TitledBorder("SubSection information"));
                 if (index != 0 && index != -1) 
                     wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0), questions[index - 1],wizard));
                 else 
