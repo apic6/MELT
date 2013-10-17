@@ -34,6 +34,15 @@ public class QuestionPaperTaker {
                 SubSection subSection = section.getSubSection(j);
                 SubmissionSubSection submSubSection = new SubmissionSubSection(j);
                 submSection.addSubSection(submSubSection);
+                for (int k=0; k<subSection.getNumberOfQuestions(); k++) {
+                    System.out.println("Adding question " + k);
+                    Question q = subSection.getQuestion(k);
+                    if (q instanceof MultipleChoiceQuestion) {
+                        MCQAnswer mcqAnswer = new MCQAnswer(k, -1);
+                    } else {
+                        FITBAnswer fitbAnswer = new FITBAnswer(k, "null");
+                    }
+                }
             } // subsections
         } // sections
     }
@@ -47,6 +56,11 @@ public class QuestionPaperTaker {
         FITBAnswer fitbAnswer = new FITBAnswer(questionID, answer);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(fitbAnswer);
     }
+    
+    public StudentSubmission getSubmission() {
+        return submission;
+    }
+    
     
     public void saveSubmission(String filename) throws FileNotFoundException {
         PrintWriter writer;
