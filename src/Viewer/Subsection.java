@@ -40,7 +40,7 @@ public class Subsection extends JPanel{
     private int lastI  ;
     private int index ;
     private String activeSubsection ;
-    
+    JList questionList = new JList() ;
     public Modeller amodel;
     public SubSection subSection;
     private JPanel rightPanel;
@@ -79,7 +79,7 @@ public class Subsection extends JPanel{
         gbc.weightx = 1 ;
         gbc.weighty = 1 ;
         gbc.fill = GridBagConstraints.BOTH ;
-        JList questionList = new JList() ;
+        
         questionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         questionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         //questionList.setVisibleRowCount(-1) ;
@@ -100,20 +100,20 @@ public class Subsection extends JPanel{
         final Section section = paper.getSection(0);
         final SubSection subSection = section.getSubSection(0);
         
-        String[] Answers = new String[2];
-        Answers[0] = "hsdfbdsjhfb";
-        Answers[1] = "sdkjgfmldgm";
-        int [] possibleAnswers = new int[2] ;
-        possibleAnswers[0] = 0 ;
-        possibleAnswers[1] = 1 ;
-        
+//        String[] Answers = new String[2];
+//        Answers[0] = "hsdfbdsjhfb";
+//        Answers[1] = "sdkjgfmldgm";
+//        int [] possibleAnswers = new int[2] ;
+//        possibleAnswers[0] = 0 ;
+//        possibleAnswers[1] = 1 ;
+//        
         listModel.addElement("New question");        
-        
-        MultipleChoiceQuestion a ;
-        a = new MultipleChoiceQuestion("rololol", Answers, "what", possibleAnswers, 5);
-        //listModel.addElement(questions);
-        subSection.addQuestion(a);
-        
+//        
+//        MultipleChoiceQuestion a ;
+//        a = new MultipleChoiceQuestion("rololol", Answers, "what", possibleAnswers, 5);
+//        //listModel.addElement(questions);
+//        subSection.addQuestion(a);
+//        
         questions = new Question[subSection.getNumberOfQuestions()];
         questionViews = new QuestionView[questions.length];
 
@@ -122,7 +122,7 @@ public class Subsection extends JPanel{
             questionViews[i] = new QuestionView(questions[i]);
             listModel.addElement(questions[i].getQuestion());
             
-        }
+          }
         //listModel.addElement(questions[1].getQuestion());
         
         /*
@@ -170,63 +170,8 @@ public class Subsection extends JPanel{
             
             public void valueChanged(ListSelectionEvent evt) {
                if (evt.getValueIsAdjusting()){
-                
-                }else{
-                System.out.print("\n_First:" + evt.getFirstIndex()  + "_\n");
-                System.out.print("_Last:" + evt.getLastIndex()  + "_\n");
-                
-                int firstLower = 0 ;
-                int newIndex = -1 ;
-                
-                if (firstI == -1 ||lastI == -1)
-                {
-                    firstI = evt.getFirstIndex() ;
-                    lastI = evt.getLastIndex() ;
-                    index = firstI ;
-                }
-                else
-                {
-              
-                if (firstI != evt.getFirstIndex())
-                {
-                    if (firstI < evt.getFirstIndex())
-                        firstLower = 1 ;
-                    else
-                        firstLower = 0 ;
-                    firstI = evt.getFirstIndex() ;
-                    newIndex = firstI ;
-                    
-                }
-                 if (lastI != evt.getLastIndex())
-                {
-                    lastI = evt.getLastIndex() ;
-                    newIndex = lastI ;
-                }
-               // if index == last and first < index
-                if (index == lastI && firstLower == 1)
-                    newIndex = firstI ;
-                
-                if (newIndex == -1)
-                    if (index == firstI)
-                        newIndex = lastI ;
-                    else if (index == lastI)
-                        newIndex = firstI ;
-                index = newIndex ;
-                }
-                
-                System.out.print(index);
-//                GridBagConstraints gbc = new GridBagConstraints();
-//                gbc.gridx = 0;
-//                gbc.gridy = 0;
-//                gbc.weighty = 1.0;
-//                gbc.fill = GridBagConstraints.HORIZONTAL;
-//                gbc.anchor = GridBagConstraints.NORTH;
-//                rightPanel.removeAll();
-//                rightPanel.revalidate();
-//                rightPanel.setLayout(new GridBagLayout());
-//              /  rightPanel.setBorder(new TitledBorder("SubSection information"));
-                if (index != 0 && index != -1) 
-                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0), subSection.getQuestion(index - 1),wizard,subsectionPanel));
+               if (questionList.getSelectedIndex() !=0) 
+                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0), subSection.getQuestion(questionList.getSelectedIndex() - 1),wizard,subsectionPanel));
                 else 
                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0),wizard,subsectionPanel));
 //

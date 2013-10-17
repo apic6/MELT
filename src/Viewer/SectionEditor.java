@@ -209,6 +209,7 @@ public class SectionEditor extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(pos>0)
+                            
                         section.getSubSections().add(pos-1,section.getSubSections().remove(pos));
                         wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard));
                     }
