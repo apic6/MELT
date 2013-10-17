@@ -95,9 +95,26 @@ public class TestSection extends JPanel{
                 wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard,subsection));
             }
         });
+        
+        JButton deleteSubsection = new JButton("Delete Subsection");
+         deleteSubsection.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                subsections.remove(subsections.getSelectedComponent());
+//                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
+//                subsections.setSelectedIndex(subsections.getTabCount()-1);
+                subsections.revalidate();
+//                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard,subsection));
+            }
+        });
+        
         con.gridy = 1;
         con.weighty = 0;
         add(addSubsection,con);
+        con.gridy++ ;
+        
+        add(deleteSubsection, con);
     }
     
     public String getTitle(){
