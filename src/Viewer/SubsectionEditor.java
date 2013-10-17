@@ -45,7 +45,7 @@ public class SubsectionEditor extends JPanel{
     private JPanel rightPanel = new JPanel();
     SubSection subSection;
     Question question;
-   
+    int j=0;
     private JPanel answerPanel;
     GridBagConstraints apc = new GridBagConstraints();
     private JPanel FIBQ;
@@ -234,13 +234,15 @@ public class SubsectionEditor extends JPanel{
             c3.weighty = 1.0;
             c3.weightx = 1.0;
             MCQ.add(answerPanel,c3);
-
-            JButton submit = new JButton("submit");
+           
+            JButton submit = new JButton("Add");
             submit.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed(ActionEvent e){
+                if (j>0){
             subSection.addQuestion(mcquestion);
-            revalidate();
+            revalidate();}
+                else{Popup pop=new Popup("You should create two or more answers!");}//pop.setVisible(true);}
             }
  });
             c3.gridx = 0;
@@ -257,7 +259,9 @@ public class SubsectionEditor extends JPanel{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     apc.gridy++;
+                    j=apc.gridy;
                     apc.weightx = 1.0;
+                    
                     answerPanel.add(addAnswer(apc.gridy+1),apc);
                     answerPanel.revalidate();
                 }
