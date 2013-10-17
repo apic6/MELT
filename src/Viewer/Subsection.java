@@ -47,8 +47,9 @@ public class Subsection extends JPanel{
     private QuestionPaper paper ;
     GridBagConstraints gbc = new GridBagConstraints();
     Section section;
-    private DefaultListModel listModel;
+    public DefaultListModel listModel;
     private TestWizard wizard;
+    Subsection subsectionPanel;
     Subsection(Section section, Modeller model, QuestionPaper paper, TestWizard wizard){
         this.paper = paper ;
         this.section = section;
@@ -57,6 +58,7 @@ public class Subsection extends JPanel{
         subSection = new SubSection();
         section.AddSubSection(subSection);
         this.rightPanel = rightPanel;
+        this.subsectionPanel = this;
         this.wizard = wizard;
         initComponents();
     }
@@ -224,9 +226,9 @@ public class Subsection extends JPanel{
 //                rightPanel.setLayout(new GridBagLayout());
 //              /  rightPanel.setBorder(new TitledBorder("SubSection information"));
                 if (index != 0 && index != -1) 
-                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0), questions[index - 1],wizard));
+                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0), subSection.getQuestion(index - 1),wizard,subsectionPanel));
                 else 
-                   wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0),wizard));
+                   wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0),wizard,subsectionPanel));
 //
 //                rightPanel.add(new SubsectionEditor(section.getSubSection(0)),gbc);
 //                

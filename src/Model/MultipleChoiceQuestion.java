@@ -52,8 +52,16 @@ public class MultipleChoiceQuestion implements Question {
         return answers[ID];
     }
 
+    public String[] getAnswers(){
+        return answers;
+    }
+    
     public int getNumberOfPossibleAnswers() {
         return possibleAnswers.length;
+    }
+    
+    public int[] getPossibleAnswers(){
+        return possibleAnswers;
     }
 
     public int getPossibleAnswer(int i) {

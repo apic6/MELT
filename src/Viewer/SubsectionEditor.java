@@ -43,7 +43,7 @@ public class SubsectionEditor extends JPanel{
     private JPanel MCQ;
     private int notEmptyQuetion = 0 ;
     private JPanel rightPanel = new JPanel();
-    static JButton submit = new JButton("Add");
+    static JButton submit;
     SubSection subSection;
     Question question;
     int j=0;
@@ -53,11 +53,13 @@ public class SubsectionEditor extends JPanel{
     final JPanel questionCreator = new JPanel() ;
      ArrayList<JTextArea> answerAreas;
      private TestWizard wizard;
+     int num_answers;
+     Subsection subsectionPanel;
     // MultipleChoiceQuestion mcquestion = question.getMCQ() ;
      MultipleChoiceQuestion mcquestion = new MultipleChoiceQuestion();
      
      
-    public SubsectionEditor(SubSection subSection,TestWizard wizard){
+    public SubsectionEditor(SubSection subSection,TestWizard wizard,Subsection subsectionPanel){
         //mcquestion = new MultipleChoiceQuestion() ;
         titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
@@ -67,11 +69,11 @@ public class SubsectionEditor extends JPanel{
         answerAreas = new ArrayList();
         this.subSection = subSection;
         this.wizard = wizard;
-        
+        this.subsectionPanel = subsectionPanel;
         initComponents();
     }
     
-    public SubsectionEditor(SubSection subSection, Question Q, TestWizard wizard)
+    public SubsectionEditor(SubSection subSection, Question Q, TestWizard wizard,Subsection subsectionPanel)
     {
         titleArea.setText(subSection.getTitle());
         description.setText(subSection.getDescription());
@@ -80,6 +82,8 @@ public class SubsectionEditor extends JPanel{
         question = Q;
         notEmptyQuetion = 1 ;
         this.wizard = wizard;
+        this.subSection = subSection;
+        this.subsectionPanel = subsectionPanel;
         mcquestion = question.getMCQ() ;
         initComponentsQ();
     }
@@ -236,13 +240,15 @@ public class SubsectionEditor extends JPanel{
             c3.weightx = 1.0;
             MCQ.add(answerPanel,c3);
            
-            
+            submit = new JButton("Add");
             submit.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed(ActionEvent e){
                 if (j>0){
-            subSection.addQuestion(mcquestion);
-            revalidate();}
+                    subSection.addQuestion(mcquestion);
+                    revalidate();
+                    subsectionPanel.listModel.addElement(mcquestion.getQuestion());
+                }
                 else{Popup pop=new Popup("You should create two or more answers!");}//pop.setVisible(true);}
             }
  });
@@ -260,7 +266,7 @@ public class SubsectionEditor extends JPanel{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     apc.gridy++;
-                    j=apc.gridy;
+                    j++;
                     apc.weightx = 1.0;
                     
                     answerPanel.add(addAnswer(apc.gridy+1),apc);
@@ -391,19 +397,38 @@ public class SubsectionEditor extends JPanel{
 
             answerPanel.setLayout(new GridBagLayout());
             apc.gridx = 0;
-            apc.gridy = -1;
-
+            apc.gridy = 0;
+            
+             num_answers = mcquestion.getNumberOfAnswers();
             for (int i = 0 ; i < mcquestion.getNumberOfAnswers(); i++)
             {
             JPanel tempPanel = new JPanel();
-            JLabel answer_label = new JLabel("answer"+i+": ");
+            JLabel answer_label = new JLabel("answer"+(i+1)+": ");
             tempPanel.setLayout(new GridBagLayout());
             GridBagConstraints gbc1 = new GridBagConstraints();
             gbc1.gridx = 0;
             gbc1.weightx = 0.3;
             tempPanel.add(answer_label,gbc1);
-            //JTextArea answer = new JTextArea(1,20);
+            answer = new JTextArea(1,20);
             answer.setText(mcquestion.getAnswer(i));
+            answer.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                for(int j = 0;j<answerAreas.size();++j)
+                (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                for(int j = 0;j<answerAreas.size();++j)
+                (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();            
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                for(int j = 0;j<answerAreas.size();++j)
+                (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();            
+            }
+    });
             answerAreas.add(answer);
             gbc1.gridx = 1;
             gbc1.weightx = 0.7;
@@ -415,19 +440,21 @@ public class SubsectionEditor extends JPanel{
             }
             gbc1.gridx = 2;
             tempPanel.add(isRight,gbc1.gridy);
-            apc.gridy++;
             apc.weightx = 1.0;
             answerPanel.add(tempPanel,apc);
-            answerPanel.revalidate();
+            apc.gridy++;
             }
+            answerPanel.revalidate();
+            answerPanel.repaint();
             
             addAnswer.addActionListener(new java.awt.event.ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     apc.gridy++;
                     apc.weightx = 1.0;
-                    answerPanel.add(addAnswer(apc.gridy+1),apc);
+                    answerPanel.add(addAnswer(++num_answers),apc);
                     answerPanel.revalidate();
+                    answerPanel.repaint();
                 }
 
             });
@@ -444,7 +471,7 @@ public class SubsectionEditor extends JPanel{
         gbc.gridy = 3;
         add(questionCreator,gbc);
     }
-        public JPanel addAnswer(int num){
+        public JPanel addAnswer(final int num){
             JPanel tempPanel = new JPanel();
             JLabel answer_label = new JLabel("answer"+num+": ");
             tempPanel.setLayout(new GridBagLayout());
@@ -453,11 +480,40 @@ public class SubsectionEditor extends JPanel{
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
             
+            answer = new JTextArea(1,20);
+            if(mcquestion.getAnswers() == null){
+                mcquestion.setAnswers(new String[1]);
+                mcquestion.setPossibleAnswers(new int[1]);
+            }else{
+                String[] new_answers = new String[mcquestion.getNumberOfAnswers()+1];
+                System.arraycopy(mcquestion.getAnswers(),0,new_answers,0,mcquestion.getNumberOfAnswers());
+                mcquestion.setAnswers(new_answers);
+                int[] new_possibles = new int[mcquestion.getNumberOfPossibleAnswers()+1];
+                System.arraycopy(mcquestion.getPossibleAnswers(),0,new_possibles,0,mcquestion.getNumberOfPossibleAnswers());
+                mcquestion.setPossibleAnswers(new_possibles);
+            }
+                
+            answer.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                mcquestion.getAnswers()[num-1] = answer.getText();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                mcquestion.getAnswers()[num-1] = answer.getText();
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                mcquestion.getAnswers()[num-1] = answer.getText();
+            }
+    });
             answerAreas.add(answer);
             gbc.gridx = 1;
             gbc.weightx = 0.7;
             tempPanel.add(answer,gbc);
             JCheckBox isRight = new JCheckBox("right answer");
+            gbc.weightx = 0;
             gbc.gridx = 2;
             tempPanel.add(isRight,gbc);
             return tempPanel;
