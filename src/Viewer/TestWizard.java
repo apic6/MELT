@@ -102,7 +102,7 @@ public class TestWizard extends JPanel{
            JFrame some=new JFrame();
            some.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
            some.setSize(new Dimension(1100,800));
-           some.setContentPane(new PaperView(paper, mainFrame, null,null));
+           some.setContentPane(new PaperView(paper, some, null,null));
            some.setVisible(true);}
         
         });add(editButton);
