@@ -19,7 +19,7 @@ public class QuestionPaperTaker {
     StudentSubmission submission;
     int studentID;
     
-    QuestionPaperTaker(QuestionPaper paper, int studentID) {
+    public QuestionPaperTaker(QuestionPaper paper, int studentID) {
         this.paper = paper;
         this.studentID = studentID;
         
@@ -38,17 +38,17 @@ public class QuestionPaperTaker {
         } // sections
     }
     
-    void answerQuestion(int sectionID, int subSectionID, int questionID, int answer) {
+    public void answerQuestion(int sectionID, int subSectionID, int questionID, int answer) {
         MCQAnswer mcqAnswer = new MCQAnswer(questionID, answer);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(mcqAnswer);
     }
     
-    void answerQuestion(int sectionID, int subSectionID, int questionID, String answer) {
+    public void answerQuestion(int sectionID, int subSectionID, int questionID, String answer) {
         FITBAnswer fitbAnswer = new FITBAnswer(questionID, answer);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(fitbAnswer);
     }
     
-    void saveSubmission(String filename) throws FileNotFoundException {
+    public void saveSubmission(String filename) throws FileNotFoundException {
         PrintWriter writer;
         try {
             writer = new PrintWriter(filename, "UTF-8");

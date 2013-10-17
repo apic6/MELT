@@ -123,7 +123,7 @@ public class TeacherView extends JPanel {
             editButton.addActionListener(new ActionListener(){
               @Override
            public void actionPerformed(ActionEvent evt){
-           mainFrame.setContentPane(new PaperView(paper, mainFrame, null,tView));
+           mainFrame.setContentPane(new PaperView(paper, mainFrame, null,tView, -1));
            mainFrame.setVisible(true);
         
         }
