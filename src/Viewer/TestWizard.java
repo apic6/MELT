@@ -105,7 +105,13 @@ public class TestWizard extends JPanel{
            some.setContentPane(new PaperView(paper, some, null,null));
            some.setVisible(true);}
         
-        });add(editButton);
+        });
+            GridBagConstraints c4=new GridBagConstraints();
+            c4.anchor=GridBagConstraints.SOUTHEAST;
+            c4.ipady=10;
+            c4.insets = new Insets(31,31,31,31);
+           // c4.anchor=GridBagConstraints.EAST;
+            add(editButton,c4);
         
         
         
