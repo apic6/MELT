@@ -95,23 +95,7 @@ public class TestWizard extends JPanel{
         tabs = new JTabbedPane();
         
         
-        JButton editButton=new JButton("Preview Test");
-            editButton.addActionListener(new ActionListener(){
-              @Override
-           public void actionPerformed(ActionEvent evt){
-           JFrame some=new JFrame();
-           some.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-           some.setSize(new Dimension(1100,800));
-           some.setContentPane(new PaperView(paper, some, null,null));
-           some.setVisible(true);}
         
-        });
-            GridBagConstraints c4=new GridBagConstraints();
-            c4.anchor=GridBagConstraints.SOUTHEAST;
-            c4.ipady=10;
-            c4.insets = new Insets(31,31,31,31);
-           // c4.anchor=GridBagConstraints.EAST;
-            add(editButton,c4);
         
         
         
@@ -187,6 +171,28 @@ public class TestWizard extends JPanel{
         gbc_right.gridy = 0;
         gbc_right.weighty = 0.2;
         rightPanel.add(new PaperEditor(paper,wizard),gbc_right);
+        
+        
+        
+        JButton editButton=new JButton("Preview Test");
+            editButton.addActionListener(new ActionListener(){
+              @Override
+           public void actionPerformed(ActionEvent evt){
+           JFrame some=new JFrame();
+           some.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+           some.setSize(new Dimension(1100,800));
+           some.setContentPane(new PaperView(paper, some, null,null));
+           some.setVisible(true);}
+        
+        });
+            GridBagConstraints c4=new GridBagConstraints();
+            c4.anchor=GridBagConstraints.LAST_LINE_END;
+//            c4.ipady=10;
+//            c4.insets = new Insets(31,31,31,31);
+            c4.gridx = 1 ;
+            c4.gridy = 1 ;
+           // c4.anchor=GridBagConstraints.EAST;
+            add(editButton,c4);
 
     }
     
