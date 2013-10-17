@@ -43,6 +43,7 @@ public class SubsectionEditor extends JPanel{
     private JPanel MCQ;
     private int notEmptyQuetion = 0 ;
     private JPanel rightPanel = new JPanel();
+    static JButton submit = new JButton("Add");
     SubSection subSection;
     Question question;
     int j=0;
@@ -235,7 +236,7 @@ public class SubsectionEditor extends JPanel{
             c3.weightx = 1.0;
             MCQ.add(answerPanel,c3);
            
-            JButton submit = new JButton("Add");
+            
             submit.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed(ActionEvent e){

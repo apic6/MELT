@@ -10,10 +10,12 @@ import Model.MultipleChoiceQuestion;
 import Model.SubSection;
 import static Viewer.TestWizard.paper;
 import static Viewer.TestWizard.submit;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -91,6 +93,21 @@ public class TestWizard extends JPanel{
         
         con.fill = GridBagConstraints.BOTH;
         tabs = new JTabbedPane();
+        
+        
+        JButton editButton=new JButton("Preview Test");
+            editButton.addActionListener(new ActionListener(){
+              @Override
+           public void actionPerformed(ActionEvent evt){
+           JFrame some=new JFrame();
+           some.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+           some.setSize(new Dimension(1100,800));
+           some.setContentPane(new PaperView(paper, mainFrame, null,null));
+           some.setVisible(true);}
+        
+        });add(editButton);
+        
+        
         
         add(tabs,con);
         
