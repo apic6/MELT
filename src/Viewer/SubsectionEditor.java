@@ -389,12 +389,16 @@ public class SubsectionEditor extends JPanel{
             //revalidate();
             }
  });
+            
+            
             c3.gridx = 0;
             c3.gridy = 3;
             c3.weighty = 0.2;
             c3.ipady = 20 ;
             MCQ.add(submit,c3);
 
+            
+            
             answerPanel.setLayout(new GridBagLayout());
             apc.gridx = 0;
             apc.gridy = 0;

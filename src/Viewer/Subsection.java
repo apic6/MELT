@@ -13,6 +13,7 @@ import Model.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -162,7 +163,25 @@ public class Subsection extends JPanel{
         * 
         add(createQuestion,gbc);
         * */
+        JButton delete = new JButton("delete");
+            delete.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (questionList.getSelectedIndex() !=0){
+                listModel.remove(questionList.getSelectedIndex());
+                
+                }
+            }
+        });
+            gbc.gridx = 0;
         
+        gbc.anchor = GridBagConstraints.PAGE_END ;      
+        gbc.weightx = 1 ;
+        gbc.weighty = 0.1 ;
+        gbc.fill = GridBagConstraints.BOTH ;
+            gbc.gridy++ ;
+            add(delete, gbc);
        
         
         questionList.addListSelectionListener(new ListSelectionListener() {
@@ -186,6 +205,10 @@ public class Subsection extends JPanel{
         
         
     });
+        
+        
+        
+        
     }
     class Foc implements FocusListener {
 
