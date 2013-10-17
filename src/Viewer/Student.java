@@ -114,7 +114,7 @@ public class Student extends JPanel {
             startButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView,null));
+                    mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView,null, Integer.parseInt(ID)));
                     mainFrame.setVisible(true);
                    // mainFrame.pack();
                 }
