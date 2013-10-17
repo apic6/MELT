@@ -168,6 +168,7 @@ public class Subsection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (questionList.isSelectionEmpty() == false)
                 if (questionList.getSelectedIndex() !=0){
                 listModel.remove(questionList.getSelectedIndex());
                 
