@@ -13,7 +13,7 @@ public class Marker {
     private int mark;
     private int totalMark;
 
-    Marker() {
+    public Marker() {
         mark = 0;
         totalMark = 0;
     }
@@ -72,19 +72,33 @@ public class Marker {
                 SubmissionSection submissionSection = submission.getSection(i);
                 Section section = paper.getSection(i);
 
+                if (submission.getSize() != paper.getNumberOfSections()) {
+                    System.out.println("Number of sections in paper differ");
+                }
+
                 // mark subsections
                 for (int j = 0; j < submissionSection.getSize(); j++) {
                     // get subSections
+                    if (submissionSection.getSize() != section.getNumberOfSubSections()) {
+                        System.out.println("Number of subsections in section " + j + " differ");
+                    }
+
                     SubmissionSubSection submissionSubSection = submissionSection.getSubSection(j);
                     SubSection subSection = section.getSubSection(j);
                     // mark questions
                     for (int k = 0; k < submissionSubSection.getSize(); k++) {
                         // if question was a MCQ Question
+                        if (submissionSubSection.getSize() != subSection.getNumberOfQuestions()) {
+                            System.out.println("Number of questions in section " + j + " and subsection " + k + " differ");
+                            System.out.println("Number of questions in subm. = " + submissionSubSection.getSize());
+                            System.out.println("Number of questions in paper. = " + subSection.getNumberOfQuestions());
+                        }
                         if (submissionSubSection.getAnswer(k) instanceof MCQAnswer) {
                             // if correct answer
                             MCQAnswer submAnswer = (MCQAnswer) submissionSubSection.getAnswer(k);
                             MultipleChoiceQuestion question = (MultipleChoiceQuestion) subSection.getQuestion(k);
                             for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
+                                System.out.println("Checking mark for section:" + i + " subsection " + j + " question");
                                 if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
                                     mark += question.getMark(); //question.getMark();
                                 }
