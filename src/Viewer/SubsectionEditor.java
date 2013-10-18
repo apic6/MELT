@@ -30,19 +30,21 @@ import javax.swing.event.DocumentListener;
 * @author Daniel
 */
 public class SubsectionEditor extends JPanel{
-    private static JTextArea questionTitleArea = new JTextArea(1,30);
+    private Popup pop=new Popup();
+    private  JTextArea questionTitleArea = new JTextArea(1,30);
     private JLabel title_label = new JLabel("title:");
-    private static JTextArea titleArea = new JTextArea(1,30);
+    private  JTextArea titleArea = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
-    private static JTextArea description = new JTextArea(3,30);
+    private  JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
-    private static JTextArea instruction = new JTextArea(3,30);
-    private static JTextArea markArea = new JTextArea(1,5);
+    private  JTextArea instruction = new JTextArea(3,30);
+    private  JTextArea markArea = new JTextArea(1,5);
     static JTextArea answer = new JTextArea(1,20);
     private JTabbedPane questionType;
     private JPanel MCQ;
     private int notEmptyQuetion = 0 ;
     private JPanel rightPanel = new JPanel();
+    private boolean onecorrectFlag=false;
     static JButton submit;
     SubSection subSection;
     Question question;
@@ -244,13 +246,13 @@ public class SubsectionEditor extends JPanel{
             submit.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed(ActionEvent e){
-                if (j>0){
+                if (j>1){
                     subSection.addQuestion(mcquestion);
-                    revalidate();
+                    //revalidate();
                     subsectionPanel.listModel.addElement(mcquestion.getQuestion());
-                }
-                else{Popup pop=new Popup("You should create two or more answers!");}//pop.setVisible(true);}
-            }
+                   }
+                else{pop.setText("You should create two or more answers!");pop.show();}
+           }
  });
             c3.gridx = 0;
             c3.gridy = 3;
@@ -438,9 +440,11 @@ public class SubsectionEditor extends JPanel{
             gbc1.weightx = 0.7;
             tempPanel.add(answer,gbc1);
             JCheckBox isRight = new JCheckBox("right answer");
+            
             if (mcquestion.getPossibleAnswer(i) == 1) {
             
                 isRight.setSelected(true);
+                
             }
             gbc1.gridx = 2;
             tempPanel.add(isRight,gbc1.gridy);
@@ -524,13 +528,8 @@ public class SubsectionEditor extends JPanel{
             
             
         }
+        
         public static void addListeners(FocusListener foc){
-        titleArea.addFocusListener(foc);
-        description.addFocusListener(foc);
-        instruction.addFocusListener(foc);
-        markArea.addFocusListener(foc);
-        //titleArea.addFocusListener(foc);
-        answer.addFocusListener(foc);
-        questionTitleArea.addFocusListener(foc);
+    //might be useful in the future
         }
 }

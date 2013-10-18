@@ -16,23 +16,29 @@ import javax.swing.JPanel;
  */
 public class Popup extends JDialog {
     private String message;
-    public Popup (String message)
+    JFrame frame;
+    public Popup ()
 
     {    
-        this.message=message;
+        
         initComponents();
 
     }
     
     
     void initComponents(){
-      JFrame frame=new JFrame();
-      JPanel panel=new JPanel();
+      frame=new JFrame();
+      //JPanel panel=new JPanel();
       frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      JOptionPane.showMessageDialog(frame,
-        message);
-     
-      setVisible(true);
-         
+      
+          
     }
+    
+    public void setText(String text){
+    message=text;
+    }
+    @Override
+    public void show(){
+    JOptionPane.showMessageDialog(frame,
+        message);}
 }

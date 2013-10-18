@@ -13,16 +13,23 @@ import Model.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.SectionEditor;
 import Viewer.SubsectionEditor;
+import Viewer.TeacherView;
 import Viewer.TestWizard;
 import Viewer.Viewer;
+import Viewer.Welcome;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -31,15 +38,13 @@ import javax.swing.event.DocumentListener;
  * @author mbaxkak4
  */
 public class Controller {
-     private Modeller amodel;
-    // private Viewer aview;
-     //private ArrayList<QuestionPaper> questionPapers;
+      private Modeller amodel;
+  
     public Controller(Viewer view,Modeller model) {   //constructor of controller class
-        SubsectionEditor.addListeners(new ViewerFocusListener());
-        SectionEditor.addListeners(new ViewerFocusListener());
-        view.addListener(new ViewerEventListener(),new ViewerDocumentListener(),new ViewerFocusListener());
+    
+       Welcome.addListener(new ViewerEventListener());
         amodel=model;
-       // aview=view;
+    
        
     }
     
@@ -51,16 +56,30 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
                 case "login":{
-                String username = LoginScreen.getUsername();
-                String pass= LoginScreen.getPass();
+                  String username = LoginScreen.getUsername();
+                  String pass= LoginScreen.getPass();
                 }
                     break;
-                case "finish":{
-                  QuestionPaper  p;
-                  p=TestWizard.getQuestionPaper();
-              
+                case "Create a New Test":{
+                  JFrame frame;
+                  frame=TeacherView.getFrame();
+                  frame.setContentPane(new TestWizard(frame,amodel));
+                  frame.setVisible(true);
+                  //TestWizard.addListener(new Mouse());
+                  Timer timer=new Timer(true);
+                  timer.scheduleAtFixedRate(new TimerTask(){
+                  @Override
+                     public void run() {
+                     save();
+                     }},0,2000);}
+                     break;
+                case "I am a Teacher":{
+                  JFrame frame;
+                  frame=Welcome.getFrame();
+                  frame.setContentPane(new TeacherView(frame,amodel));
+                  frame.setVisible(true);
+                  TeacherView.addListener(new ViewerEventListener()); 
                 }
-                    break;
                 
             }
                
@@ -98,8 +117,43 @@ class ViewerFocusListener implements FocusListener {
 
         @Override
         public void focusLost(FocusEvent e) {
-                 QuestionPaper  p;
-                 p=TestWizard.getQuestionPaper();
+               save();
+        }
+
+}
+
+public class Mouse implements MouseListener{
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+         save();           
+            
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+           
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            
+        }
+
+}
+
+private void save(){
+ QuestionPaper  p;
+                     p=TestWizard.getQuestionPaper();
                //  System.out.println(p.getPaperID());
                      amodel.loadPapers();
                  
@@ -118,8 +172,6 @@ class ViewerFocusListener implements FocusListener {
                     } catch (FileNotFoundException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                                                         }
-        }
-
 }
 
 }

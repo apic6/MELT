@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class Welcome extends JPanel{
     
-    public JFrame mainFrame;
+    public static JFrame mainFrame;
     public Modeller model;
     public Welcome(JFrame frame,Modeller model) {
         initComponents();
@@ -20,7 +20,7 @@ public class Welcome extends JPanel{
     }
 
     private javax.swing.JButton studentButton;
-    public static  javax.swing.JButton teacherButton;
+    private static  javax.swing.JButton teacherButton=new JButton();
     private javax.swing.JLabel welcomeLogo;
     private java.awt.Label welcomeLabel;
     
@@ -31,7 +31,7 @@ public class Welcome extends JPanel{
 
         welcomeLabel = new java.awt.Label();
         studentButton = new javax.swing.JButton();
-        teacherButton = new javax.swing.JButton();
+       // teacherButton = new javax.swing.JButton();
         //teacherButton.setActionCommand("teacherButton"); //test
         welcomeLogo = new javax.swing.JLabel(new ImageIcon("images/uom-logo.jpg"));
 
@@ -51,12 +51,12 @@ public class Welcome extends JPanel{
         });
         
         teacherButton.setText("I am a Teacher");
-        teacherButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new TeacherView(mainFrame,model));
-            }
-        });
+//        teacherButton.addActionListener(new java.awt.event.ActionListener() {
+//            @Override
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                  ((Viewer)mainFrame).guiChanger(new TeacherView(mainFrame,model));
+//            }
+//        });
         
         welcomeLogo.setText("");
         
@@ -98,6 +98,9 @@ public class Welcome extends JPanel{
         
     }           
 
-   
-    
+   public static void addListener(ActionListener mal){
+   teacherButton.addActionListener(mal);
+   }
+   public static JFrame getFrame(){
+   return mainFrame;}
 }

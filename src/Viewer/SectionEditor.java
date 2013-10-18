@@ -27,13 +27,13 @@ import javax.swing.event.DocumentListener;
 public class SectionEditor extends JPanel{
     
     private JLabel title_label = new JLabel("title:");
-    private static JTextArea title = new JTextArea(1,30);
+    private  JTextArea title = new JTextArea(1,30);
     private JLabel description_label = new JLabel("description:");
-    private static JTextArea description = new JTextArea(3,30);
+    private  JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
-    private static JTextArea instruction = new JTextArea(3,30);
+    private  JTextArea instruction = new JTextArea(3,30);
     private JLabel time_label = new JLabel("time limit:");
-    private static JTextArea timeLimit = new JTextArea(1,10);
+    private JTextArea timeLimit = new JTextArea(1,10);
     private Section section;
     private TestWizard wizard; 
     
@@ -236,9 +236,5 @@ public class SectionEditor extends JPanel{
             
     }
     public static void addListeners(FocusListener foc){
-    title.addFocusListener(foc);
-    description.addFocusListener(foc);
-    instruction.addFocusListener(foc);
-    timeLimit.addFocusListener(foc);
-    }
+  }
 }

@@ -28,7 +28,7 @@ public class TeacherView extends JPanel {
     
     private int j;
     private QuestionPaper paper;
-    private JFrame mainFrame;
+    private static JFrame mainFrame;
     private Modeller amodel;
     
     public TeacherView(JFrame frame,Modeller model){
@@ -40,7 +40,7 @@ public class TeacherView extends JPanel {
     }
     
     
-       private JButton createTest;
+       private static JButton createTest;
        private java.awt.Label previousLabel;
    
     private void initComponents()  {
@@ -65,12 +65,12 @@ public class TeacherView extends JPanel {
         c.weighty = 10;
         createTest.setText("Create a New Test");
         createTest.setPreferredSize(new Dimension(200, 40));
-        createTest.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel));
-            }
-        });
+//        createTest.addActionListener(new java.awt.event.ActionListener() {
+//            @Override
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel));
+//            }
+//        });
         this.add(createTest,c);
         
         
@@ -154,8 +154,12 @@ public class TeacherView extends JPanel {
       }
 
    
+  public static void addListener(ActionListener mal){
+  createTest.addActionListener(mal);
+   }
+   public static JFrame getFrame(){
+   return mainFrame;}
   
-    
 
 
 }

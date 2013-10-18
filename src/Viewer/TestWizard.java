@@ -9,7 +9,6 @@ import Model.QuestionPaper;
 import Model.MultipleChoiceQuestion;
 import Model.SubSection;
 import static Viewer.TestWizard.paper;
-import static Viewer.TestWizard.submit;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,8 +25,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
 
 /**
@@ -34,16 +32,16 @@ import javax.swing.plaf.TabbedPaneUI;
  * @author mbaxkmt6
  */
 public class TestWizard extends JPanel{
-    public JFrame mainFrame;
+    public static JFrame mainFrame;
     public Modeller model;
     public JTabbedPane tabs;
      ArrayList<JTextArea> answerAreas;
     public static QuestionPaper paper;
-    public static JButton submit=new JButton("finish");
+    public  JButton submit=new JButton("finish");
     ArrayList<TestSection> sectionList;
     private JTabbedPane questionType;
     private JPanel MCQ;
-    private JPanel rightPanel = new JPanel();
+    private static JPanel rightPanel = new JPanel();
     SubSection subSection;
     MultipleChoiceQuestion question;
     private JPanel answerPanel;
@@ -216,5 +214,11 @@ public class TestWizard extends JPanel{
                 rightPanel.revalidate();
                 rightPanel.repaint();
     }
- 
+    
+    
+ public static void addListener(MouseListener mouse){
+ mainFrame.addMouseListener(mouse);
+ rightPanel.addMouseListener(mouse);
+ }
+
 }
