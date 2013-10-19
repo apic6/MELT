@@ -33,7 +33,7 @@ public class TestSection extends JPanel{
     private JTextArea title;
     private JTextArea description;
     private JTextArea instruction;
-    private JTabbedPane subsections;
+    public JTabbedPane subsections;
     public Section section;
     private TestWizard wizard;
     private JPanel rightPanel;

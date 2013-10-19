@@ -98,8 +98,8 @@ public class Subsection extends JPanel{
         QuestionView[] questionViews;
         
         //QuestionPaper paper = papers.get(0);
-        final Section section = paper.getSection(0);
-        final SubSection subSection = section.getSubSection(0);
+//        final Section section = paper.getSection(0);
+//        final SubSection subSection = section.getSubSection(0);
         
 //        String[] Answers = new String[2];
 //        Answers[0] = "hsdfbdsjhfb";
@@ -191,9 +191,9 @@ public class Subsection extends JPanel{
             public void valueChanged(ListSelectionEvent evt) {
                if (evt.getValueIsAdjusting()){
                if (questionList.getSelectedIndex() !=0) 
-                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0), subSection.getQuestion(questionList.getSelectedIndex() - 1),wizard,subsectionPanel));
+                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(subSection, subSection.getQuestion(questionList.getSelectedIndex() - 1),wizard,subsectionPanel));
                 else 
-                   wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(0),wizard,subsectionPanel));
+                   wizard.repainRightPanel("SubSection information", new SubsectionEditor(subSection,wizard,subsectionPanel));
 //
 //                rightPanel.add(new SubsectionEditor(section.getSubSection(0)),gbc);
 //                

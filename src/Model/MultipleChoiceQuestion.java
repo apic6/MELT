@@ -116,4 +116,12 @@ public class MultipleChoiceQuestion implements Question {
 
         return XML;
     }
+
+    public int getRightAnswers() {
+        int result = 0;
+        for(int i=0;i<possibleAnswers.length;i++)
+            if(possibleAnswers[i] == 1)
+                result++;
+        return result;
+    }
 }

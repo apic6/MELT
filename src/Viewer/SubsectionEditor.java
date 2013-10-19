@@ -16,6 +16,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -25,6 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 /**
 *
 * @author Daniel
@@ -113,15 +116,18 @@ public class SubsectionEditor extends JPanel{
             @Override
             public void insertUpdate(DocumentEvent e) {
                 subSection.setTitle(titleArea.getText());
+                ((JTabbedPane)subsectionPanel.getParent()).setTitleAt(((JTabbedPane)subsectionPanel.getParent()).getSelectedIndex(),titleArea.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 subSection.setTitle(titleArea.getText());
+                ((JTabbedPane)subsectionPanel.getParent()).setTitleAt(((JTabbedPane)subsectionPanel.getParent()).getSelectedIndex(),titleArea.getText());
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
                 subSection.setTitle(titleArea.getText());
+                ((JTabbedPane)subsectionPanel.getParent()).setTitleAt(((JTabbedPane)subsectionPanel.getParent()).getSelectedIndex(),titleArea.getText());
             }
     });
         
@@ -246,12 +252,13 @@ public class SubsectionEditor extends JPanel{
             submit.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed(ActionEvent e){
-                if (j>1){
+                if (j>1&&mcquestion.getRightAnswers()>0){
                     subSection.addQuestion(mcquestion);
                     //revalidate();
                     subsectionPanel.listModel.addElement(mcquestion.getQuestion());
                    }
-                else{pop.setText("You should create two or more answers!");pop.show();}
+                else if(j<=1){pop.setText("You should create two or more answers!");pop.show();}
+                else{pop.setText("Question should have at least one right answer!");pop.show();}
            }
  });
             c3.gridx = 0;
@@ -521,6 +528,13 @@ public class SubsectionEditor extends JPanel{
             gbc.weightx = 0.7;
             tempPanel.add(answer,gbc);
             JCheckBox isRight = new JCheckBox("right answer");
+            isRight.addItemListener(new ItemListener() {
+
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    mcquestion.getPossibleAnswers()[num-1] = e.getStateChange()==ItemEvent.SELECTED?1:0;
+                }
+            });
             gbc.weightx = 0;
             gbc.gridx = 2;
             tempPanel.add(isRight,gbc);

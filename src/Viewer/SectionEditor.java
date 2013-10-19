@@ -6,6 +6,7 @@ package Viewer;
 
 import Model.Section;
 import Model.SubSection;
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,6 +16,7 @@ import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
@@ -36,14 +38,16 @@ public class SectionEditor extends JPanel{
     private JTextArea timeLimit = new JTextArea(1,10);
     private Section section;
     private TestWizard wizard; 
+    private JPanel tabPanel;
     
-    public SectionEditor (Section section,TestWizard wizard){
+    public SectionEditor (Section section,TestWizard wizard, JPanel tabPanel){
         title.setText(section.getTitle());
         description.setText(section.getDescription());
         instruction.setText(section.getInstructions());
         timeLimit.setText(String.valueOf(section.getTimeLimit()));
         this.section = section;
         this.wizard = wizard;
+        this.tabPanel = tabPanel;
         initComponents();
     }
 
@@ -211,7 +215,7 @@ public class SectionEditor extends JPanel{
                         if(pos>0)
                             
                         section.getSubSections().add(pos-1,section.getSubSections().remove(pos));
-                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard));
+                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard,tabPanel));
                     }
                 });
                 JButton moveDown = new JButton("DOWN");
@@ -221,7 +225,12 @@ public class SectionEditor extends JPanel{
                     public void actionPerformed(ActionEvent e) {
                         if(pos<(section.getNumberOfSubSections()-1))
                         section.getSubSections().add(pos+1,section.getSubSections().remove(pos));
-                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard));
+                        JTabbedPane subsections = ((TestSection)tabPanel.getComponent(0)).subsections;
+                        Component tab_temp = subsections.getComponentAt(pos);
+                        subsections.remove(pos);
+                        subsections.insertTab(section.getSubSection(pos+1).getTitle(), null, tab_temp, null, pos+1);
+                        subsections.revalidate();
+                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard,tabPanel));
                     }
                 });
                 gbc3.gridx++;

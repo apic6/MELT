@@ -116,7 +116,7 @@ public class TestWizard extends JPanel{
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
             tabs.setSelectedIndex(tabs.getTabCount()-1);
             tabs.revalidate();
-            repainRightPanel("Section informtion",new SectionEditor(paper.getSection(paper.getNumberOfSections()-1),wizard));
+            repainRightPanel("Section informtion",new SectionEditor(paper.getSection(paper.getNumberOfSections()-1),wizard,(JPanel)tabs.getSelectedComponent()));
             }
         });
         
@@ -127,7 +127,7 @@ public class TestWizard extends JPanel{
                 int tabNr = ((TabbedPaneUI)tabs.getUI()).tabForCoordinate(tabs, e.getX(), e.getY());
                 
                 if(tabNr > -1){
-                    repainRightPanel("Section informtion",new SectionEditor(paper.getSection(tabNr),wizard));}
+                    repainRightPanel("Section informtion",new SectionEditor(paper.getSection(tabNr),wizard,(JPanel)tabs.getSelectedComponent()));}
                 else{
                     repainRightPanel("QuestionPaper informtion",new PaperEditor(paper,wizard));
                 }
