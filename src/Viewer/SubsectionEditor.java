@@ -224,16 +224,50 @@ public class SubsectionEditor extends JPanel{
     });
              //subSection.addQuestion(mcquestion);
            
-            JLabel mark_label = new JLabel("marks");
-            c3.gridy = 1;
-            c3.gridx = 0;
-            c3.weightx = 0.5;
-            MCQ.add(mark_label,c3);
+            JPanel markPane = new JPanel() ;
+            markPane.setLayout(new GridBagLayout());
+            GridBagConstraints c4 = new GridBagConstraints();
+            JLabel mark_label = new JLabel("marks: ");
+            c4.gridy = 0;
+            c4.gridx = 0;
+            c4.weightx = 0;
+           // c4.anchor = GridBagConstraints.NORTH;
+            markPane.add(mark_label,c4);
             
            
-            c3.gridx = 1;
-            c3.weightx = 0.3;
-            MCQ.add(markArea,c3);
+            c4.gridx = 1;
+            c4.weightx = 0.3;
+            markPane.add(markArea,c4);
+            markArea.setText("0");
+            c4.gridx++;
+             JButton moreTime = new JButton("+");
+            moreTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                markArea.setText(String.valueOf(Integer.parseInt(markArea.getText())+1));
+            }
+        });
+            JButton lessTime = new JButton("-");
+      lessTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Integer.parseInt(markArea.getText())>0)
+                markArea.setText(String.valueOf(Integer.parseInt(markArea.getText())-1));
+            }
+        });
+            markPane.add(moreTime,c4);
+      c4.gridx++;
+      markPane.add(lessTime,c4);
+      c3.gridx = 0 ;
+      c3.gridy = 1 ;
+      c3.weightx = 1 ;
+      c3.weighty = 1 ;
+      c3.gridwidth = GridBagConstraints.RELATIVE ;
+     c3.fill = GridBagConstraints.BOTH;
+      MCQ.add(markPane, c3) ;
+            
             
             JButton addAnswer = new JButton("add answer");
             c3.gridx = 2;
@@ -363,19 +397,49 @@ public class SubsectionEditor extends JPanel{
             
             MCQ.add(titleArea,c3);
 
-            JLabel mark_label = new JLabel("marks");
-            c3.gridy = 1;
-            c3.gridx = 0;
-            c3.weightx = 0.5;
+            JPanel markPane = new JPanel() ;
+            markPane.setLayout(new GridBagLayout());
+            GridBagConstraints c4 = new GridBagConstraints();
+            JLabel mark_label = new JLabel("marks: ");
+            c4.gridy = 0;
+            c4.gridx = 0;
+            c4.weightx = 0;
+           // c4.anchor = GridBagConstraints.NORTH;
+            markPane.add(mark_label,c4);
             
-            MCQ.add(mark_label,c3);
-            
-            //JTextArea markArea = new JTextArea(1,5);
-            
-            c3.gridx = 1;
-            c3.weightx = 0.3;
-            markArea.setText(Integer.toString(mcquestion.getMark()));
-            MCQ.add(markArea,c3);
+           
+            c4.gridx = 1;
+            c4.weightx = 0.3;
+            markPane.add(markArea,c4);
+            markArea.setText("0");
+            c4.gridx++;
+             JButton moreTime = new JButton("+");
+            moreTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                markArea.setText(String.valueOf(Integer.parseInt(markArea.getText())+1));
+            }
+        });
+            JButton lessTime = new JButton("-");
+      lessTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Integer.parseInt(markArea.getText())>0)
+                markArea.setText(String.valueOf(Integer.parseInt(markArea.getText())-1));
+            }
+        });
+            markPane.add(moreTime,c4);
+      c4.gridx++;
+      markPane.add(lessTime,c4);
+      c3.gridx = 0 ;
+      c3.gridy = 1 ;
+      c3.weightx = 1 ;
+      c3.weighty = 1 ;
+      c3.gridwidth = GridBagConstraints.RELATIVE ;
+     c3.fill = GridBagConstraints.BOTH;
+      MCQ.add(markPane, c3) ;
             
             JButton addAnswer = new JButton("add answer");
             c3.gridx = 2;
