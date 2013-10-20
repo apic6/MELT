@@ -117,13 +117,23 @@ public class QuestionPaperLoader {
                             String[] possibleAnswers = new String[QElement.getElementsByTagName("PossibleAnswer").getLength()];
                             for (int m = 0; m < 2; m++) {
                                 questionParts[m] = QElement.getElementsByTagName("QuestionText").item(m).getTextContent();
-                            }              
+                            }
                             for (int m = 0; m < possibleAnswers.length; m++) {
                                 possibleAnswers[m] = QElement.getElementsByTagName("PossibleAnswer").item(m).getTextContent();
-                            }              
-                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());                            
+                            }
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());
                             question = new FITBQuestion(questionParts,
                                     QElement.getElementsByTagName("Instructions").item(0).getTextContent(), possibleAnswers, mark);
+                        } else if (QElement.getAttribute("type").toString().equals("MBQ")) {
+                            // TODO
+                            ArrayList<String> questionParts = new ArrayList<String>();
+                            for (int m = 0; m < QElement.getElementsByTagName("QuestionText").getLength(); m++) {
+                                System.out.println("Item: " + m);
+                                questionParts.add(QElement.getElementsByTagName("QuestionText").item(m).getTextContent());
+                            }
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());
+                            question = new MultipleBlankQuestion(questionParts,
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), mark);
                         } else {
                             System.out.println("ERROR");
                         }

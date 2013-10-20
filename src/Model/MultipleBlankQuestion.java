@@ -9,7 +9,7 @@ public class MultipleBlankQuestion implements Question {
     private int mark;
 
     MultipleBlankQuestion(ArrayList<String> question, String instructions, int mark) {
-        
+        questionParts = new ArrayList();
         for (int i = 0 ; i< question.size(); i++) {
             questionParts.add(question.get(i));
         }
