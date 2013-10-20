@@ -51,7 +51,7 @@ public class SubmissionLoader {
             Node submissionNode = submissionList.item(i);
             Element sElement = (Element) submissionNode;
 
-            StudentSubmission submission = new StudentSubmission(Integer.parseInt(sElement.getAttribute("id")), Integer.parseInt(sElement.getElementsByTagName("StudentID").item(0).getTextContent()));
+            StudentSubmission submission = new StudentSubmission(Integer.parseInt(sElement.getElementsByTagName("PaperID").item(0).getTextContent()), Integer.parseInt(sElement.getElementsByTagName("StudentID").item(0).getTextContent()));
 
             // For each section
             NodeList submissionSectionList = sElement.getElementsByTagName("SubmissionSection");
