@@ -91,7 +91,10 @@ public class Marker extends JPanel {
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
         
-       // for(int i=0;i<)
+        for(int i=0;i<submission.getSize();++i){
+          //  SubmissionSection subsec;
+        
+        }
         
         
         /////////MarkView
