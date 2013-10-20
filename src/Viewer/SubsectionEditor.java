@@ -41,7 +41,8 @@ public class SubsectionEditor extends JPanel{
     private  JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
     private  JTextArea instruction = new JTextArea(3,30);
-    private  JTextArea markArea = new JTextArea(1,5);
+   // private  JTextArea markArea = new JTextArea(1,5);
+    private JLabel markArea = new JLabel();
     static JTextArea answer = new JTextArea(1,20);
     private JTabbedPane questionType;
     private JPanel MCQ;
@@ -70,7 +71,7 @@ public class SubsectionEditor extends JPanel{
         description.setText(subSection.getDescription());
         instruction.setText(subSection.getInstructions());
         questionTitleArea.setText(mcquestion.getQuestion());
-        
+       
         answerAreas = new ArrayList();
         this.subSection = subSection;
         this.wizard = wizard;
@@ -287,6 +288,7 @@ public class SubsectionEditor extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e){
                 if (j>1&&mcquestion.getRightAnswers()>0){
+                    mcquestion.setMark(Integer.parseInt(markArea.getText()));
                     subSection.addQuestion(mcquestion);
                     //revalidate();
                     subsectionPanel.listModel.addElement(mcquestion.getQuestion());
@@ -410,8 +412,9 @@ public class SubsectionEditor extends JPanel{
            
             c4.gridx = 1;
             c4.weightx = 0.3;
+            
             markPane.add(markArea,c4);
-            markArea.setText("0");
+            markArea.setText(String.valueOf(mcquestion.getMark()));
             c4.gridx++;
              JButton moreTime = new JButton("+");
             moreTime.addActionListener(new ActionListener() {
@@ -458,6 +461,7 @@ public class SubsectionEditor extends JPanel{
             submit.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed(ActionEvent e){
+            mcquestion.setMark(Integer.parseInt(markArea.getText()));
             subSection.addQuestion(mcquestion);
             //revalidate();
             }

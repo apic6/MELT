@@ -92,12 +92,13 @@ public class TestWizard extends JPanel{
         con.fill = GridBagConstraints.BOTH;
         tabs = new JTabbedPane();
         
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridBagLayout());
         
         
         
         
-        
-        add(tabs,con);
+        leftPanel.add(tabs,con);
         
         JButton addSection = new JButton("addSection");
         addSection.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +136,16 @@ public class TestWizard extends JPanel{
         });
         con.gridx = 0;
         con.gridy = 1;
+        con.weightx = 1.0;
         con.weighty = 0;
         con.gridwidth = 1;
-        add(addSection,con);
+        leftPanel.add(addSection,con);
+        
+        con.gridy = 0;
+        con.weightx = 0;
+        con.weighty = 0;
+        leftPanel.setPreferredSize(new Dimension(480,720));
+        add(leftPanel,con);
         
         submit.addActionListener(new java.awt.event.ActionListener(){
 
@@ -156,8 +164,9 @@ public class TestWizard extends JPanel{
         rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
-        con.weightx = 1.0;
-        con.weighty = 1.0;
+        con.weightx = 0;
+        con.weighty = 0;
+        rightPanel.setPreferredSize(new Dimension(600,700));
         add(rightPanel,con);
         
         rightPanel.setLayout(new GridBagLayout());
@@ -205,6 +214,7 @@ public class TestWizard extends JPanel{
                 gbc.gridx = 0;
                 gbc.gridy = 0;
                 gbc.weighty = 1.0;
+                gbc.weightx = 1.0;
                 gbc.fill = GridBagConstraints.HORIZONTAL;
                 gbc.anchor = GridBagConstraints.NORTH;
                 rightPanel.removeAll();
