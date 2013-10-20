@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
  * @author mbaxkak4
  */
 public class TeacherView extends JPanel {
-    
+    private static JButton markButton;
     private int j;
     private QuestionPaper paper;
     private static JFrame mainFrame;
@@ -155,11 +155,22 @@ public class TeacherView extends JPanel {
             mainFrame.setVisible(true);
                 //TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
             
-        }
-            
-            
-            });
+        }});
             BottomPanel.add(previewButton,c2);
+            
+            c2.gridx=3;
+            markButton=new JButton ("Mark Test");
+            markButton.addActionListener(new ActionListener(){
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                mainFrame.setContentPane(new TestWizard(mainFrame,amodel,paper));
+                mainFrame.setVisible(true);  
+                  }
+             
+            });
+            BottomPanel.add(markButton,c2);
+            
            
         }
         
@@ -171,6 +182,8 @@ public class TeacherView extends JPanel {
    
   public static void addListener(ActionListener mal){
   createTest.addActionListener(mal);
+  
+  
    }
    public static JFrame getFrame(){
    return mainFrame;}
