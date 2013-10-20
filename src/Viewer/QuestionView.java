@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import Model.*;
 import java.awt.Color;
+import static java.awt.Component.LEFT_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -49,22 +50,40 @@ public class QuestionView extends JPanel {
         FlowLayout mainLayout = new FlowLayout(FlowLayout.LEFT);
         setLayout(mainLayout);
 
-        this.question = new JLabel("<html>" + question.getQuestion() + "</html>", 0);
-        this.question.setHorizontalTextPosition(SwingConstants.LEFT);
-        this.question.setHorizontalAlignment(SwingConstants.LEFT);
-        leftPanel.setAlignmentX(LEFT_ALIGNMENT);
-        leftPanel.add(this.question);
 
-        JLabel spacing = new JLabel("\n");
-        leftPanel.add(spacing);
 
         // if FITBQuestion
         if (question instanceof FITBQuestion) {
+            FITBQuestion fitbQ = (FITBQuestion)question;
+            String[] questionText = fitbQ.getQuestionParts();
+            
+            this.question = new JLabel("<html>" + questionText[0] + "  BLANK  " + questionText[1] + "</html>", 0);
+            this.question.setHorizontalTextPosition(SwingConstants.LEFT);
+            this.question.setHorizontalAlignment(SwingConstants.LEFT);
+            leftPanel.setAlignmentX(LEFT_ALIGNMENT);
+            leftPanel.add(this.question);
+
+            JLabel spacing = new JLabel("\n");
+            
+            
+            leftPanel.add(spacing);
             answerArea = new JTextArea("Type Answer Here", 1, 50);
             answerArea.setSize(575, 50);
             leftPanel.add(this.answerArea);
 
         } else if (question instanceof MultipleChoiceQuestion) { // MCQ
+            MultipleChoiceQuestion mcQuestion = (MultipleChoiceQuestion)question;
+            
+            this.question = new JLabel("<html>" + mcQuestion.getQuestion() + "</html>", 0);
+            this.question.setHorizontalTextPosition(SwingConstants.LEFT);
+            this.question.setHorizontalAlignment(SwingConstants.LEFT);
+            leftPanel.setAlignmentX(LEFT_ALIGNMENT);
+            leftPanel.add(this.question);
+
+            JLabel spacing = new JLabel("\n");
+            
+            
+            leftPanel.add(spacing);
             MultipleChoiceQuestion mcqQuestion = (MultipleChoiceQuestion) question;
             group = new ButtonGroup();
             answerOption = new JRadioButton[mcqQuestion.getNumberOfAnswers()];

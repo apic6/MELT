@@ -89,7 +89,11 @@ public class SubsectionEditor extends JPanel{
         this.wizard = wizard;
         this.subSection = subSection;
         this.subsectionPanel = subsectionPanel;
-        mcquestion = question.getMCQ() ;
+        if (question instanceof MultipleChoiceQuestion) {
+            mcquestion = (MultipleChoiceQuestion)question;
+        } else {
+            mcquestion = null;
+        }
         initComponentsQ();
     }
     

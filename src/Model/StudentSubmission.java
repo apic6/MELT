@@ -125,6 +125,11 @@ public class StudentSubmission {
         this.studentID = studentID;
         sectionList = new ArrayList<>();
     }
+    
+    public StudentSubmission(int submissionID, int paperID, int studentID) {
+        this.paperID = paperID;
+        this.studentID = studentID;
+    }
 
     public int getPaperID() {
         return paperID;
@@ -156,7 +161,8 @@ public class StudentSubmission {
 
     public String toXML() {
         String XML = "";
-        XML += "<StudentSubmission id=\"" + paperID + "\">\n";
+        XML += "<StudentSubmission id=\"" + paperID + studentID + "\">\n";
+        XML += "<PaperID>" + paperID + "</PaperID>\n";
         XML += "<StudentID>" + studentID + "</StudentID>\n";
         for (int i = 0; i < sectionList.size(); i++) {
             XML += sectionList.get(i).toXML() + "\n";

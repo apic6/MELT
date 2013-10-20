@@ -3,12 +3,18 @@ package Model;
 public class FITBQuestion implements Question {
 
     private String instructions;
-    private String question;
+    private String[] questionParts;
     private String[] possibleAnswers;
     private int mark;
 
-    FITBQuestion(String question, String instructions, String[] possibleAnswers, int mark) {
-        this.question = question;
+    FITBQuestion(String[] question, String instructions, String[] possibleAnswers, int mark) {
+        if (question.length != 2) {
+            return;
+        } else {
+            this.questionParts = new String[2];
+            this.questionParts[0] = question[0];
+            this.questionParts[1] = question[1];
+        }
         this.instructions = instructions;
         this.possibleAnswers = possibleAnswers;
         this.mark = mark;
@@ -21,17 +27,12 @@ public class FITBQuestion implements Question {
 
     @Override
     public String getQuestion() {
-        return question;
+        return questionParts[0].concat("-Blank-" + questionParts[1]);
     }
     
-   
-    @Override
-    public MultipleChoiceQuestion getMCQ (){
-    return null;
+    public String[] getQuestionParts() {
+        return questionParts;
     }
-    @Override
-    public FITBQuestion getFIB(){
-    return this;}
 
     public int getNumberOfPossibleAnswers() {
         return possibleAnswers.length;
@@ -54,7 +55,8 @@ public class FITBQuestion implements Question {
         String XML = "<Question type=\"FITBQ\">\n";
 
         XML += "<Instructions>" + instructions + "</Instructions>\n";
-        XML += "<QuestionText>" + question + "</QuestionText>\n";
+        XML += "<QuestionText>" + questionParts[0] + "</QuestionText>\n";
+        XML += "<QuestionText>" + questionParts[0] + "</QuestionText>\n";
         for (int i = 0; i < possibleAnswers.length; i++) {
             if (possibleAnswers[i] != null) {
                 XML += "<PossibleAnswer>" + possibleAnswers[i] + "</PossibleAnswer>\n";
