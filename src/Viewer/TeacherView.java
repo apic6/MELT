@@ -62,6 +62,7 @@ public class TeacherView extends JPanel {
         c.gridy = 0;
         c.ipady = 50;
         c.ipadx = 30;
+        c.weightx=1.0;
         c.insets = new Insets(20,20,20,20);
         c.weighty = 10;
         createTest.setText("Create a New Test");
@@ -75,30 +76,25 @@ public class TeacherView extends JPanel {
         this.add(createTest,c);
        
         c.gridy=1;
+        c.weightx=1.0;
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridheight=GridBagConstraints.REMAINDER;
+        c.fill=GridBagConstraints.BOTH;
         c.weighty = 20;
         
         
-       JPanel BottomPanel=new JPanel()
-//            
-//            @Override
-//            public Dimension getPreferredSize(){
-//            return new Dimension(600,600);}
-      ;
-        
-      JScrollPane Scroll=new JScrollPane(BottomPanel)
-//            
-//            @Override
-//            public Dimension getPreferredSize(){
-//            return new Dimension(600,600);}
-       ;
-         this.add(Scroll,c);
+       JPanel BottomPanel=new JPanel();
+        BottomPanel.setLayout(new GridBagLayout()); //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       JScrollPane Scroll=new JScrollPane(BottomPanel) ;
+       
+      
+      
         
         GridBagConstraints c1 = new GridBagConstraints();
-        c1.fill = GridBagConstraints.HORIZONTAL;
+        c1.fill = GridBagConstraints.BOTH;
         c1.weightx = 1;
-        c1.weighty = 20;
+        c1.weighty = 1;
         c1.gridx = GridBagConstraints.RELATIVE;
         c1.gridy = 1;
         c1.ipady = 30;
@@ -114,8 +110,8 @@ public class TeacherView extends JPanel {
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.SOUTH;
         c2.gridx = GridBagConstraints.RELATIVE;
-        
-       
+        c2.fill = GridBagConstraints.BOTH;
+        c2.weighty=1;
         c2.ipadx = 10;
         c2.ipady = 10;
         c2.insets = new Insets(50, 0, 30, 20);
@@ -167,7 +163,8 @@ public class TeacherView extends JPanel {
            
         }
         
-    
+      
+                 this.add(Scroll,c);
     
       }
 
