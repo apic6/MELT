@@ -26,7 +26,8 @@ import javax.swing.JScrollPane;
  * @author mbaxkak4
  */
 public class TeacherView extends JPanel {
-    private static JButton markButton;
+   // private static JButton markButton;
+   // private static JButton editButton;
     private int j;
     private QuestionPaper paper;
     private static JFrame mainFrame;
@@ -133,8 +134,8 @@ public class TeacherView extends JPanel {
             BottomPanel.add(new PaperPreviewer(papers.get(i)),c2);
             
             c2.gridx=1;
-            JButton editButton=new JButton("Preview Test");
-            editButton.addActionListener(new ActionListener(){
+            JButton previewButton=new JButton("Preview Test");
+            previewButton.addActionListener(new ActionListener(){
               @Override
            public void actionPerformed(ActionEvent evt){
            mainFrame.setContentPane(new PaperView(paper, mainFrame, null,tView, -1));
@@ -143,11 +144,11 @@ public class TeacherView extends JPanel {
         }
             
             });
-            BottomPanel.add(editButton,c2);
+            BottomPanel.add(previewButton,c2);
             
             c2.gridx=2;
-            JButton previewButton=new JButton("Edit Test");
-            previewButton.addActionListener(new ActionListener(){
+            JButton editButton=new JButton("Edit Test");
+            editButton.addActionListener(new ActionListener(){
               
             @Override
             public void actionPerformed(ActionEvent evt){
@@ -156,15 +157,15 @@ public class TeacherView extends JPanel {
                 //TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
             
         }});
-            BottomPanel.add(previewButton,c2);
+            BottomPanel.add(editButton,c2);
             
             c2.gridx=3;
-            markButton=new JButton ("Mark Test");
+            JButton markButton=new JButton ("Mark Test");
             markButton.addActionListener(new ActionListener(){
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                mainFrame.setContentPane(new TestWizard(mainFrame,amodel,paper));
+                mainFrame.setContentPane(new Marker(amodel,mainFrame,paper));
                 mainFrame.setVisible(true);  
                   }
              
@@ -182,7 +183,8 @@ public class TeacherView extends JPanel {
    
   public static void addListener(ActionListener mal){
   createTest.addActionListener(mal);
-  
+  //editButton.addActionListener(mal);
+  //markButton.addActionListener(mal); 
   
    }
    public static JFrame getFrame(){
