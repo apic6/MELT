@@ -14,6 +14,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -31,17 +33,17 @@ public class QuestionView extends JPanel {
     JTextArea answerArea;
     JRadioButton[] answerOption;
 
-    public QuestionView(Question question) {
+    public QuestionView(Question question, final QuestionPaperTaker taker, final int sectionID, final int subSectionID, final int questionID) {
         // left panel represents the question+answer
         JPanel leftPanel = new JPanel() {
             @Override
             public Dimension getPreferredSize() {
                 Dimension d = super.getPreferredSize();
-                d.width = 975;
+                d.width = 1000;
                 return d;
             }
         };
-        
+
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
         FlowLayout mainLayout = new FlowLayout(FlowLayout.LEFT);
@@ -69,8 +71,15 @@ public class QuestionView extends JPanel {
 
             for (int i = 0; i < mcqQuestion.getNumberOfAnswers(); i++) {
                 answerOption[i] = new JRadioButton(mcqQuestion.getAnswer(i));
-                answerOption[i].setMnemonic(KeyEvent.VK_B);
+                answerOption[i].setMnemonic(i);
                 answerOption[i].setActionCommand(((MultipleChoiceQuestion) question).getAnswer(i));
+                final int j = i;
+                answerOption[i].addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        taker.answerQuestion(sectionID, subSectionID, questionID, group.getSelection().getMnemonic());
+                    }
+                });
                 group.add(answerOption[i]);
                 leftPanel.add(this.answerOption[i]);
             } // for each answer
@@ -78,8 +87,6 @@ public class QuestionView extends JPanel {
         // add leftPanel
         this.add(leftPanel);
         // add Button
-        JButton submitButton = new JButton("Save");
-        this.add(submitButton);
     }
 
     @Override

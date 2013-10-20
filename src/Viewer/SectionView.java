@@ -6,6 +6,7 @@ package Viewer;
 
 import Model.Modeller;
 import Model.QuestionPaper;
+import Model.QuestionPaperTaker;
 import Model.Section;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,7 +31,7 @@ public class SectionView extends JPanel {
     JFrame mainFrame;
     SubSectionView[] subSectionViews;
 
-    public SectionView(Section section, JFrame frame, final PaperView pView) {
+    public SectionView(Section section, JFrame frame, final PaperView pView, final QuestionPaperTaker taker, final int sectionID) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
 
@@ -47,9 +48,9 @@ public class SectionView extends JPanel {
         };
 
         for (int i = 0; i < section.getNumberOfSubSections(); i++) {
-           SubSectionView subV=new SubSectionView(section.getSubSection(i));
+            SubSectionView subV = new SubSectionView(section.getSubSection(i), taker, sectionID, i);
 
-            tabbedPane.addTab(section.getSubSection(i).getTitle(),subV);
+            tabbedPane.addTab(section.getSubSection(i).getTitle(), subV);
         }
 
 

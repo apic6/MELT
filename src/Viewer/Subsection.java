@@ -120,7 +120,8 @@ public class Subsection extends JPanel{
 
         for (int i = 0; i < subSection.getNumberOfQuestions(); i++) {
             questions[i] = subSection.getQuestion(i);
-            questionViews[i] = new QuestionView(questions[i]);
+            // TODO //
+            questionViews[i] = new QuestionView(questions[i], null, 0, 0, 0);
             listModel.addElement(questions[i].getQuestion());
             
           }

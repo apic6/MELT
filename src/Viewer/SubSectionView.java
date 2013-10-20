@@ -20,7 +20,7 @@ public class SubSectionView extends JPanel {
     QuestionView[] questionViews;
     // int height;
 
-    public SubSectionView(SubSection subSection) {
+    public SubSectionView(SubSection subSection, final QuestionPaperTaker taker, final int sectionID, final int subSectionID) {
         JPanel questionsPanel = new JPanel() {
             @Override
             public Dimension getPreferredSize() {
@@ -45,7 +45,7 @@ public class SubSectionView extends JPanel {
 
         for (int i = 0; i < subSection.getNumberOfQuestions(); i++) {
             questions[i] = subSection.getQuestion(i);
-            questionViews[i] = new QuestionView(questions[i]);
+            questionViews[i] = new QuestionView(questions[i], taker, sectionID, subSectionID, i);
             questionsPanel.add(questionViews[i]);
         }
         scrollPane.getViewport().add(questionsPanel, null);

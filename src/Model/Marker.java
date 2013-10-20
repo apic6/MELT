@@ -18,7 +18,7 @@ public class Marker {
         totalMark = 0;
     }
 
-    /* 
+    /*
      * public boolean markTest(StudentSubmission submission, MarkingScheme markingScheme) {
      mark = 0;
      totalMark = 0;

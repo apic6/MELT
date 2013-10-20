@@ -55,7 +55,7 @@ public class Modeller {
             filename = "papers/Papers.xml";
         }
         for (int i = 0; i < questionPapers.size(); i++) {
-            xmlString += questionPapers.get(i).toXML(this);
+            xmlString += questionPapers.get(i).toXML();
         }
         xmlString += "</QuestionPapers>";
 

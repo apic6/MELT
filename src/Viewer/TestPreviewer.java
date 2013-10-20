@@ -54,7 +54,8 @@ public final class TestPreviewer extends JFrame {
 
         for (int i = 0; i < subSection.getNumberOfQuestions(); i++) {
             questions[i] = subSection.getQuestion(i);
-            questionViews[i] = new QuestionView(questions[i]);
+            // TOOD
+            questionViews[i] = new QuestionView(questions[i], null, 0, 0, 0);
             questionsPanel.add(questionViews[i]);
         }
 
