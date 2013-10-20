@@ -311,6 +311,7 @@ public class SubsectionEditor extends JPanel{
             apc.gridx = 0;
             apc.gridy = -1;
 
+            
             addAnswer.addActionListener(new java.awt.event.ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -320,6 +321,7 @@ public class SubsectionEditor extends JPanel{
                     
                     answerPanel.add(addAnswer(apc.gridy+1),apc);
                     answerPanel.revalidate();
+                    answerPanel.repaint();
                 }
 
             });
@@ -567,7 +569,7 @@ public class SubsectionEditor extends JPanel{
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
             
-            answer = new JTextArea(1,20);
+            final JTextArea answer_new = new JTextArea(1,20);
             if(mcquestion.getAnswers() == null){
                 mcquestion.setAnswers(new String[1]);
                 mcquestion.setPossibleAnswers(new int[1]);
@@ -580,25 +582,25 @@ public class SubsectionEditor extends JPanel{
                 mcquestion.setPossibleAnswers(new_possibles);
             }
                 
-            answer.getDocument().addDocumentListener(new DocumentListener() {
+            answer_new.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                mcquestion.getAnswers()[num-1] = answer.getText();
+                mcquestion.getAnswers()[num-1] = answer_new.getText();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                mcquestion.getAnswers()[num-1] = answer.getText();
+                mcquestion.getAnswers()[num-1] = answer_new.getText();
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
-                mcquestion.getAnswers()[num-1] = answer.getText();
+                mcquestion.getAnswers()[num-1] = answer_new.getText();
             }
     });
-            answerAreas.add(answer);
+            answerAreas.add(answer_new);
             gbc.gridx = 1;
             gbc.weightx = 0.7;
-            tempPanel.add(answer,gbc);
+            tempPanel.add(answer_new,gbc);
             JCheckBox isRight = new JCheckBox("right answer");
             isRight.addItemListener(new ItemListener() {
 

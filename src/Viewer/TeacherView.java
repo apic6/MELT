@@ -75,22 +75,6 @@ public class TeacherView extends JPanel {
 //            }
 //        });
         this.add(createTest,c);
-       
-        c.gridy=1;
-        c.weightx=1.0;
-        c.gridx = GridBagConstraints.RELATIVE;
-        c.gridwidth = GridBagConstraints.REMAINDER;
-        c.gridheight=GridBagConstraints.REMAINDER;
-        c.fill=GridBagConstraints.BOTH;
-        c.weighty = 20;
-        
-        
-       JPanel BottomPanel=new JPanel();
-        BottomPanel.setLayout(new GridBagLayout()); //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       JScrollPane Scroll=new JScrollPane(BottomPanel) ;
-       
-      
-      
         
         GridBagConstraints c1 = new GridBagConstraints();
         c1.fill = GridBagConstraints.BOTH;
@@ -106,7 +90,33 @@ public class TeacherView extends JPanel {
         previousLabel.setBackground(new java.awt.Color(245, 245, 245));
         previousLabel.setFont(new java.awt.Font("Monospaced", 3, 16)); // NOI18N
         previousLabel.setText("List of older English Language tests ");
-        BottomPanel.add(previousLabel,c1);
+        this.add(previousLabel,c1);
+        
+        
+        
+        
+        
+        
+        
+        
+       
+        c.gridy=2;
+        c.weightx=1.0;
+        c.gridx = GridBagConstraints.RELATIVE;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.gridheight=GridBagConstraints.REMAINDER;
+        c.fill=GridBagConstraints.BOTH;
+        c.weighty = 20;
+        
+        
+       JPanel BottomPanel=new JPanel();
+       BottomPanel.setLayout(new GridBagLayout()); //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       JScrollPane Scroll=new JScrollPane(BottomPanel) ;
+       
+      
+      
+        
+      
         
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.SOUTH;
