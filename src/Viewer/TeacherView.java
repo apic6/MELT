@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -72,14 +73,32 @@ public class TeacherView extends JPanel {
 //            }
 //        });
         this.add(createTest,c);
+       
+        c.gridy=1;
+        c.gridx = GridBagConstraints.RELATIVE;
+        c.gridwidth = GridBagConstraints.REMAINDER;
+        c.weighty = 20;
         
         
+       JPanel BottomPanel=new JPanel()
+//            
+//            @Override
+//            public Dimension getPreferredSize(){
+//            return new Dimension(600,600);}
+      ;
         
+      JScrollPane Scroll=new JScrollPane(BottomPanel)
+//            
+//            @Override
+//            public Dimension getPreferredSize(){
+//            return new Dimension(600,600);}
+       ;
+         this.add(Scroll,c);
         
         GridBagConstraints c1 = new GridBagConstraints();
         c1.fill = GridBagConstraints.HORIZONTAL;
         c1.weightx = 1;
-        c1.weighty = 0;
+        c1.weighty = 20;
         c1.gridx = GridBagConstraints.RELATIVE;
         c1.gridy = 1;
         c1.ipady = 30;
@@ -90,33 +109,32 @@ public class TeacherView extends JPanel {
         previousLabel.setBackground(new java.awt.Color(245, 245, 245));
         previousLabel.setFont(new java.awt.Font("Monospaced", 3, 16)); // NOI18N
         previousLabel.setText("List of older English Language tests ");
-        this.add(previousLabel,c1);
+        BottomPanel.add(previousLabel,c1);
         
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.SOUTH;
         c2.gridx = GridBagConstraints.RELATIVE;
         
-        //c2.gridx = 0;
-        //c2.gridy = 0;
+       
         c2.ipadx = 10;
         c2.ipady = 10;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
         c2.insets = new Insets(50, 20, 30, 0);
         c2.anchor = GridBagConstraints.SOUTH;
-        //c2.gridwidth = GridBagConstraints.REMAINDER;
+       
         c2.gridy = 2;
         
-       // amodel.loadPapers("papers/Papers.xml");
+       
         
         ArrayList<QuestionPaper> papers = amodel.getPapers();
-       // paper=papers.get(0);
+      
         for(int i=0;i<papers.size();++i){
             paper=papers.get(i);
             j=i;
             c2.gridy=c2.gridy+i;
             c2.gridx = 0;
-            this.add(new PaperPreviewer(papers.get(i)),c2);
+            BottomPanel.add(new PaperPreviewer(papers.get(i)),c2);
             
             c2.gridx=1;
             JButton editButton=new JButton("Preview Test");
@@ -129,7 +147,7 @@ public class TeacherView extends JPanel {
         }
             
             });
-            this.add(editButton,c2);
+            BottomPanel.add(editButton,c2);
             
             c2.gridx=2;
             JButton previewButton=new JButton("Edit Test");
@@ -145,11 +163,11 @@ public class TeacherView extends JPanel {
             
             
             });
-            this.add(previewButton,c2);
+            BottomPanel.add(previewButton,c2);
            
         }
         
-     
+    
     
       }
 
