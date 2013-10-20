@@ -193,6 +193,11 @@ public class Modeller {
 
         submissions = loader.getSubmissions();
     }
+    
+    public ArrayList<StudentSubmission> getSubmissions(){
+    
+    loadSubmissions();
+    return submissions;}
 
     public void loadMarkingSchemes() {
         MarkingSchemeLoader loader = new MarkingSchemeLoader();
