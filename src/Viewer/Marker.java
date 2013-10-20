@@ -91,6 +91,9 @@ public class Marker extends JPanel {
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
         
+       // for(int i=0;i<)
+        
+        
         /////////MarkView
     
         this.add(rightScroll,con);
