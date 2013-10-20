@@ -19,6 +19,7 @@ public class FITBQuestionTest {
 
     private static FITBQuestion instance;
     private static String[] possibleAnswers;
+    private static String[] question;
 
     public FITBQuestionTest() {
     }
@@ -30,7 +31,11 @@ public class FITBQuestionTest {
         possibleAnswers[0] = "Hello";
         possibleAnswers[1] = "Goodbye";
         
-        instance = new FITBQuestion("Question?", "Instructions", possibleAnswers, 1);
+        question = new String[2];
+        question[0] = "Hello";
+        question[1] = "Goodbye";
+        
+        instance = new FITBQuestion(question, "Instructions", possibleAnswers, 1);
     }
     
     @AfterClass
