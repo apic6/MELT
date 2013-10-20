@@ -119,6 +119,7 @@
 </Section>
 </QuestionPaper>
 <QuestionPaper id="4">
+<<<<<<< HEAD
 <Title>null</Title>
 <Description>null</Description>
 <Instructions>null</Instructions>
@@ -230,6 +231,16 @@
 <Mark>0</Mark>
 </Question>
 </SubSection>
+=======
+<Title>ertwert</Title>
+<Description>ewrtewr</Description>
+<Instructions>tewrtewrterwt</Instructions>
+<Section id="0">
+<Title>null</Title>
+<Description>null</Description>
+<Instructions>null</Instructions>
+<TimeLimit>0</TimeLimit>
+>>>>>>> branch 'master' of https://github.com/apic6/MELT.git
 </Section>
 </QuestionPaper>
 </QuestionPapers>
