@@ -191,11 +191,16 @@ public class Subsection extends JPanel{
             
             public void valueChanged(ListSelectionEvent evt) {
                if (evt.getValueIsAdjusting()){
-               if (questionList.getSelectedIndex() !=0) 
+               if (questionList.getSelectedIndex() !=0) {
                     wizard.repainRightPanel("SubSection information", new SubsectionEditor(subSection, subSection.getQuestion(questionList.getSelectedIndex() - 1),wizard,subsectionPanel));
-                else 
+                    System.out.print(questionList.getSelectedIndex());
+                            
+               }
+                else {
                    wizard.repainRightPanel("SubSection information", new SubsectionEditor(subSection,wizard,subsectionPanel));
-//
+                System.out.print(questionList.getSelectedIndex());
+                            
+               }
 //                rightPanel.add(new SubsectionEditor(section.getSubSection(0)),gbc);
 //                
 //                rightPanel.revalidate();
