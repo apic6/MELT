@@ -134,6 +134,8 @@ public class StudentSubmission {
     public int getPaperID() {
         return paperID;
     }
+    public int getStudentID(){
+    return studentID;}
 
     public void addSection(SubmissionSection section) {
         sectionList.add(section);

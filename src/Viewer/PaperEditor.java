@@ -149,6 +149,9 @@ public class PaperEditor extends JPanel{
                     public void actionPerformed(ActionEvent e) {
                         if(pos>0){
                         paper.getSectionList().add(pos-1,paper.getSectionList().remove(pos));
+                        JPanel tab_temp = (JPanel)wizard.tabs.getComponentAt(pos);
+                        wizard.tabs.remove(pos);
+                        wizard.tabs.insertTab(paper.getSection(pos-1).getTitle(), null, tab_temp, null, pos-1);
                         wizard.repainRightPanel("SubSection information", new PaperEditor(paper,wizard));
                         }
                     }
@@ -160,6 +163,9 @@ public class PaperEditor extends JPanel{
                     public void actionPerformed(ActionEvent e) {
                         if(pos<(paper.getNumberOfSections()-1)){
                         paper.getSectionList().add(pos+1,paper.getSectionList().remove(pos));
+                        JPanel tab_temp = (JPanel)wizard.tabs.getComponentAt(pos);
+                        wizard.tabs.remove(pos);
+                        wizard.tabs.insertTab(paper.getSection(pos+1).getTitle(), null, tab_temp, null, pos+1);
                         wizard.repainRightPanel("SubSection information", new PaperEditor(paper,wizard));
                         }
                     }
@@ -174,6 +180,7 @@ public class PaperEditor extends JPanel{
             }
         gbc.gridx = 0;
         gbc.gridy++;
+        gbc.gridwidth = 2;
         add(sectionPanel,gbc);
     }
 }

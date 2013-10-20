@@ -73,15 +73,19 @@ public class SectionEditor extends JPanel{
             @Override
             public void insertUpdate(DocumentEvent e) {
                 section.setTitle(title.getText());
+                wizard.tabs.setTitleAt(wizard.tabs.getSelectedIndex(),title.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                section.setTitle(title.getText());}
+                section.setTitle(title.getText());
+                wizard.tabs.setTitleAt(wizard.tabs.getSelectedIndex(),title.getText());
+            }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
                 section.setTitle(title.getText());
+                wizard.tabs.setTitleAt(wizard.tabs.getSelectedIndex(),title.getText());
             }
     });
         
@@ -213,9 +217,15 @@ public class SectionEditor extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if(pos>0)
-                            
+                        {
                         section.getSubSections().add(pos-1,section.getSubSections().remove(pos));
+                        JTabbedPane subsections = ((TestSection)tabPanel.getComponent(0)).subsections;
+                        Component tab_temp = subsections.getComponentAt(pos);
+                        subsections.remove(pos);
+                        subsections.insertTab(section.getSubSection(pos-1).getTitle(), null, tab_temp, null, pos-1);
+                        subsections.revalidate();
                         wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard,tabPanel));
+                        }
                     }
                 });
                 JButton moveDown = new JButton("DOWN");
@@ -223,14 +233,14 @@ public class SectionEditor extends JPanel{
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(pos<(section.getNumberOfSubSections()-1))
+                        if(pos<(section.getNumberOfSubSections()-1)){
                         section.getSubSections().add(pos+1,section.getSubSections().remove(pos));
                         JTabbedPane subsections = ((TestSection)tabPanel.getComponent(0)).subsections;
                         Component tab_temp = subsections.getComponentAt(pos);
                         subsections.remove(pos);
                         subsections.insertTab(section.getSubSection(pos+1).getTitle(), null, tab_temp, null, pos+1);
                         subsections.revalidate();
-                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard,tabPanel));
+                        wizard.repainRightPanel("Section Information",new SectionEditor(section,wizard,tabPanel));}
                     }
                 });
                 gbc3.gridx++;
