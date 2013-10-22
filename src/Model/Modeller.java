@@ -141,6 +141,11 @@ public class Modeller {
     // add a paper to the model
     public void addPaper(QuestionPaper paper) {
         questionPapers.add(paper);
+        
+       
+    }
+    public void addPaper(int index,QuestionPaper paper){
+      questionPapers.add(index,paper);
     }
 
     // remove a paper from the model

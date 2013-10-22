@@ -29,9 +29,11 @@ public class TeacherView extends JPanel {
    // private static JButton markButton;
    // private static JButton editButton;
     private int j;
-    private QuestionPaper paper;
+    private static QuestionPaper paper;
     private static JFrame mainFrame;
     private Modeller amodel;
+    private static JButton markTrigger=new JButton("markTrigger");
+    private static JButton editTrigger=new JButton("editTrigger");
     
     public TeacherView(JFrame frame,Modeller model){
         
@@ -165,23 +167,29 @@ public class TeacherView extends JPanel {
               
             @Override
             public void actionPerformed(ActionEvent evt){
-            mainFrame.setContentPane(new TestWizard(mainFrame,amodel,papers.get(j)));
-            mainFrame.setVisible(true);
-                //TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
+//            mainFrame.setContentPane(new TestWizard(mainFrame,amodel,papers.get(j)));
+//            mainFrame.setVisible(true);
+            paper=papers.get(j);
+            editTrigger.doClick();
+                
             
         }});
             BottomPanel.add(editButton,c2);
             
             c2.gridx=3;
             
+            JButton soome=new JButton();
+            
+            
             JButton markButton=new JButton ("Mark Test");
            
             markButton.addActionListener(new ActionListener(){
-
+            
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 mainFrame.setContentPane(new Marker(amodel,mainFrame,papers.get(j)));
                 mainFrame.setVisible(true);  
+                markTrigger.doClick();
                   }
              
             });
@@ -193,13 +201,15 @@ public class TeacherView extends JPanel {
    
   public static void addListener(ActionListener mal){
   createTest.addActionListener(mal);
-  //editButton.addActionListener(mal);
-  //markButton.addActionListener(mal); 
+  markTrigger.addActionListener(mal);
+  editTrigger.addActionListener(mal); 
   
    }
    public static JFrame getFrame(){
    return mainFrame;}
   
-
+   public static QuestionPaper getPaper(){
+   
+   return paper;}
 
 }
