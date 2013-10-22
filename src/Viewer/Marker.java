@@ -11,12 +11,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -30,7 +33,7 @@ public class Marker extends JPanel {
     private StudentSubmission submission;
     private JList submissionList;
     private DefaultListModel listModel;
-    
+    private ListSelectionModel listSelectionModel;
     public Marker(Modeller model,JFrame frame,QuestionPaper paper) {
     this.mainFrame=frame;
     this.model=model;
@@ -42,7 +45,7 @@ public class Marker extends JPanel {
     
     void initComponents(){
     
-       
+        System.err.println(paper.getPaperID());
         setLayout(new GridBagLayout());
         GridBagConstraints con= new GridBagConstraints();
          
@@ -68,15 +71,28 @@ public class Marker extends JPanel {
         
         listModel = new DefaultListModel();
         submissionList=new JList(listModel);
+        listSelectionModel=submissionList.getSelectionModel();
+        //listSelectionModel.setValueIsAdjusting(false);
+        listSelectionModel.addListSelectionListener(new ListSelectionListener(){
+             @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()){
+                int f=submissionList.getSelectedIndex();
+                  }         
+                 }
+        });
         
         
         for(int i=0;i<submissions.size();++i){
         submission=submissions.get(i);
         String subID=submission.getStudentID()+"";
         listModel.addElement(subID);
+        
+        
         }
         submissionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         submissionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        
         
         JScrollPane listScroller = new JScrollPane(submissionList);
         leftPanel.add(listScroller,c1);

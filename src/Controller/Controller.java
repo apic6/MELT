@@ -65,7 +65,7 @@ public class Controller {
                   frame=TeacherView.getFrame();
                   frame.setContentPane(new TestWizard(frame,amodel));
                   frame.setVisible(true);
-                  //TestWizard.addListener(new Mouse());
+                  TestWizard.addListener(new Mouse());
                   Timer timer=new Timer(true);
                   timer.scheduleAtFixedRate(new TimerTask(){
                   @Override
