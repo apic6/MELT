@@ -217,19 +217,6 @@ public class Subsection extends JPanel{
         
         
     }
-    class Foc implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-         
-         
-         
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            
-        }
-    }
+  
     
 }
