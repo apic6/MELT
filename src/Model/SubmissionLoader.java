@@ -66,6 +66,10 @@ public class SubmissionLoader {
                     
                     NodeList submissionAnswerList1 = sssElement.getElementsByTagName("MCQAnswer");
                     NodeList submissionAnswerList2 = sssElement.getElementsByTagName("FITBAnswer");
+                    NodeList submissionAnswerList3 = sssElement.getElementsByTagName("MFITBAnswer");
+                    NodeList submissionAnswerList4 = sssElement.getElementsByTagName("EssayAnswer");
+                    
+                    // parse MCQ Answers
                     for (int l = 0; l < submissionAnswerList1.getLength(); l++) {
                         Element sMCQAnswer = (Element) submissionAnswerList1.item(l);
                         MCQAnswer answer = new MCQAnswer(Integer.parseInt(sMCQAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
@@ -73,13 +77,35 @@ public class SubmissionLoader {
                         
                         submSubSection.addAnswer(answer);
                     }
+                    
+                    // parse FITB Answers
                     for (int l = 0; l < submissionAnswerList2.getLength(); l++) {
-                        Element sFITBAnswer = (Element) submissionAnswerList1.item(l);
+                        Element sFITBAnswer = (Element) submissionAnswerList2.item(l);
                         FITBAnswer answer = new FITBAnswer(Integer.parseInt(sFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
                                                          sFITBAnswer.getElementsByTagName("Answer").item(0).getTextContent());
                         
                         submSubSection.addAnswer(answer);                        
                     }
+                    
+                    // parse MFITB Answers
+                    for (int l = 0; l < submissionAnswerList3.getLength(); l++) {
+                        Element sMFITBAnswer = (Element) submissionAnswerList3.item(l);
+                        ArrayList<String> strings = new ArrayList<String>();
+                        NodeList answers = sMFITBAnswer.getElementsByTagName("Answer");
+                        for (int m = 0; m<answers.getLength(); m++)
+                            strings.add(answers.item(m).getTextContent());
+                        MFITBAnswer answer = new MFITBAnswer(Integer.parseInt(sMFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
+                                                         strings);
+                        
+                        submSubSection.addAnswer(answer);                        
+                    }
+                    for (int l = 0; l < submissionAnswerList4.getLength(); l++) {
+                        Element sEssayAnswer = (Element) submissionAnswerList4.item(l);
+                        EssayAnswer answer = new EssayAnswer(Integer.parseInt(sEssayAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
+                                                         sEssayAnswer.getElementsByTagName("Answer").item(0).getTextContent());
+                        
+                        submSubSection.addAnswer(answer);                        
+                    }                    
                     
                     submSection.addSubSection(submSubSection);
                 }

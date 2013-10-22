@@ -26,7 +26,7 @@ public class MultipleBlankQuestion implements Question {
     public String getQuestion() {
         String question = "";
         for (int i = 0; i< questionParts.size(); i++) {
-            question.concat("-Blank-" + questionParts.get(i));
+            question = question.concat("-Blank-" + questionParts.get(i));
         }
         return question;
     }
