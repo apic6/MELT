@@ -1,83 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QuestionPapers>
-    <QuestionPaper id="1">
-        <Title>Very nice titeeeeee</Title>
-        <Description>adsdad</Description>
-        <Instructions>null</Instructions>
-        <EligibleStudent>12301230</EligibleStudent>
-        <Section id="0">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>0</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <Question type="MCQ">
-                    <QuestionText>a</QuestionText>
-                    <Answer>1</Answer>
-                    <Answer>2</Answer>
-                    <Answer>3</Answer>
-                    <PossibleAnswer>1</PossibleAnswer>
-                    <Instructions>asd</Instructions>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="FITBQ">
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>is a sensible representation of how this question should</QuestionText>
-                    <PossibleAnswer>asdasd</PossibleAnswer>
-                    <Instructions>asd</Instructions>
-                    <Mark>10</Mark>
-                </Question>                                
-                <Question type="MBQ">
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>is a sensible representation of how this question should</QuestionText>
-                    <QuestionText>to a student taking the test</QuestionText>
-                    <Instructions>asd</Instructions>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="EssayQuestion">
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <Instructions>asd</Instructions>
-                    <Mark>10</Mark>
-                </Question>  
-                              
-            </SubSection>
-        </Section>
-    </QuestionPaper>
-    <QuestionPaper id="2">
-        <Title>null</Title>
-        <Description>mia wraia petalouda mes sto dasos gamietai</Description>
-        <Instructions>RHR</Instructions>
-        <Section id="0">
-            <Title>null</Title>
-            <Description>null</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>0</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>HRHR</Description>
-                <Instructions>RYHR</Instructions>
-                <Question type="MCQ">
-                    <Instructions>null</Instructions>
-                    <QuestionText>RYYRH</QuestionText>
-                    <PossibleAnswer>1</PossibleAnswer>
-                    <PossibleAnswer>0</PossibleAnswer>
-                    <PossibleAnswer>0</PossibleAnswer>
-                    <PossibleAnswer>0</PossibleAnswer>
-                    <Mark>3</Mark>
-                </Question>
-                <Question type="MCQ">
-                    <Instructions>null</Instructions>
-                    <QuestionText>RYYRH</QuestionText>
-                    <PossibleAnswer>1</PossibleAnswer>
-                    <PossibleAnswer>0</PossibleAnswer>
-                    <PossibleAnswer>0</PossibleAnswer>
-                    <PossibleAnswer>0</PossibleAnswer>
-                    <Mark>3</Mark>
-                </Question>
-            </SubSection>
-        </Section>
-    </QuestionPaper>
+<QuestionPapers><QuestionPaper id="1">
+<Title>Very nice titeeeeee</Title>
+<Description>adsdad</Description>
+<Instructions>null</Instructions>
+<EligibleStudent>12301230</EligibleStudent>
+<Section id="0">
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<TimeLimit>0</TimeLimit>
+<SubSection>
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<Question type="MCQ">
+<Instructions>asd</Instructions>
+<QuestionText>a</QuestionText>
+<Answer>1</Answer>
+<Answer>2</Answer>
+<Answer>3</Answer>
+<PossibleAnswer>1</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<PossibleAnswer>asdasd</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="MBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>is a sensible representation of how this question should</QuestionText>
+<QuestionText>to a student taking the test</QuestionText>
+<Mark>10</Mark>
+</Question>
+<Question type="EssayQuestion">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<Mark>10</Mark>
+</Question>
+</SubSection>
+</Section>
+</QuestionPaper>
+<QuestionPaper id="2">
+<Title>null</Title>
+<Description>mia wraia petalouda mes sto dasos gamietai</Description>
+<Instructions>RHR</Instructions>
+<Section id="0">
+<Title>null</Title>
+<Description>null</Description>
+<Instructions>null</Instructions>
+<TimeLimit>0</TimeLimit>
+<SubSection>
+<Title>null</Title>
+<Description>HRHR</Description>
+<Instructions>RYHR</Instructions>
+<Question type="MCQ">
+<Instructions>null</Instructions>
+<QuestionText>RYYRH</QuestionText>
+<PossibleAnswer>1</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<Mark>3</Mark>
+</Question>
+<Question type="MCQ">
+<Instructions>null</Instructions>
+<QuestionText>RYYRH</QuestionText>
+<PossibleAnswer>1</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<Mark>3</Mark>
+</Question>
+</SubSection>
+</Section>
+</QuestionPaper>
 </QuestionPapers>
