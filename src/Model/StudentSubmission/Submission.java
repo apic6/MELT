@@ -59,7 +59,7 @@ public class Submission {
     public void setMark(int mark) {
         this.mark = mark;
     }
-    
+
     public boolean isFullyMarked() {
         return fullyMarked;
     }
@@ -86,16 +86,25 @@ public class Submission {
 
         for (int i = 0; i < sectionList.size(); i++) {
             sectionList.get(i).normalise();
-            this.fullyMarked= true;
-            if (!sectionList.get(i).isFullyMarked())
+            this.fullyMarked = true;
+            if (!sectionList.get(i).isFullyMarked()) {
                 this.fullyMarked = false;
+            }
         }
     }
-    
+
     public ArrayList<Answer> getUnmarkedQuestions() {
         ArrayList<Answer> answers = new ArrayList<>();
-        for (int i = 0; i<sectionList.size(); i++) {
+        for (int i = 0; i < sectionList.size(); i++) {
             answers.addAll(sectionList.get(i).getUnmarkedQuestions());
+        }
+        return answers;
+    }
+
+    public ArrayList<Answer> getMarkableAnswers() {
+        ArrayList<Answer> answers = new ArrayList<>();
+        for (int i = 0; i < sectionList.size(); i++) {
+            answers.addAll(sectionList.get(i).getMarkableAnswers());
         }
         return answers;
     }

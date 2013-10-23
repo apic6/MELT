@@ -4,9 +4,11 @@
 */
 package Viewer;
 
+import Model.questionPaper.EssayQuestion;
 import Model.questionPaper.MultipleChoiceQuestion;
 import Model.questionPaper.Question;
 import javax.swing.JPanel;
+import Viewer.FIBQPanel;
 import Model.questionPaper.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -57,6 +59,7 @@ public class SubsectionEditor extends JPanel{
      int num_answers;
      Subsection subsectionPanel;
      MultipleChoiceQuestion mcquestion = new MultipleChoiceQuestion();
+     EssayQuestion essayQuestion = new EssayQuestion();
      
     
     public SubsectionEditor(SubSection subSection, Question Q, TestWizard wizard,Subsection subsectionPanel)
@@ -69,12 +72,12 @@ public class SubsectionEditor extends JPanel{
         this.subSection = subSection;
         this.subsectionPanel = subsectionPanel;
         if(Q != null){
-        question = Q;
-        if (question instanceof MultipleChoiceQuestion) {
-            mcquestion = (MultipleChoiceQuestion)question;
-        } else {
-            mcquestion = null;
-        }
+            question = Q;
+            if (question instanceof MultipleChoiceQuestion) {
+                mcquestion = (MultipleChoiceQuestion)question;
+            } else if(question instanceof EssayQuestion){
+                essayQuestion = (EssayQuestion)question;
+            }
         }
         initComponents();
     }
@@ -168,7 +171,7 @@ public class SubsectionEditor extends JPanel{
             }
     });
         
-        questionCreator = renderQuestionCreator(question);
+        questionCreator = renderQuestionCreator();
 
         gbc.weighty = 1.0;
         gbc.gridx = 0;
@@ -235,7 +238,7 @@ public class SubsectionEditor extends JPanel{
             
         }
         
-        private JPanel renderQuestionCreator(Question question){
+        private JPanel renderQuestionCreator(){
             JPanel tempCreator = new JPanel();
             tempCreator.setLayout(new GridBagLayout());
             if(question != null)
@@ -246,6 +249,18 @@ public class SubsectionEditor extends JPanel{
 
             questionType = new JTabbedPane();
             MCQ = new JPanel();
+            
+            questionType.addTab("MCQ",MCQ);
+
+            FIBQ = new FIBQPanel();
+            questionType.addTab("FIBQ",FIBQ);
+            
+            MFIBQ = new JPanel();
+            questionType.addTab("MFIBQ",MFIBQ);
+            
+            Essay = new JPanel();
+            questionType.addTab("Essay",Essay);
+            
             MCQ.setLayout(new GridBagLayout());
             c3.fill = GridBagConstraints.BOTH;
             c3.insets = new Insets(10,5,5,10);
@@ -351,82 +366,83 @@ public class SubsectionEditor extends JPanel{
             apc.gridx = 0;
             apc.gridy = 0;
             
-            if(question != null){
-            titleArea.setText(question.getQuestion());
-            markArea.setText(String.valueOf(mcquestion.getMark()));
-            for (int i = 0 ; i < mcquestion.getNumberOfAnswers(); i++)
-            {
-            JPanel tempPanel = new JPanel();
-            JLabel answer_label = new JLabel("answer"+(i+1)+": ");
-            tempPanel.setLayout(new GridBagLayout());
-            GridBagConstraints gbc1 = new GridBagConstraints();
-            gbc1.gridx = 0;
-            gbc1.weightx = 0.3;
-            tempPanel.add(answer_label,gbc1);
-            answer = new JTextArea(1,20);
-            answer.setText(mcquestion.getAnswer(i));
-            answer.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                for(int j = 0;j<answerAreas.size();++j)
-                (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();
-            }
+            if(mcquestion.getQuestion() != null){
+                questionType.setSelectedIndex(0);
+                titleArea.setText(mcquestion.getQuestion());
+                markArea.setText(String.valueOf(mcquestion.getMark()));
+                for (int i = 0 ; i < mcquestion.getNumberOfAnswers(); i++)
+                {
+                JPanel tempPanel = new JPanel();
+                JLabel answer_label = new JLabel("answer"+(i+1)+": ");
+                tempPanel.setLayout(new GridBagLayout());
+                GridBagConstraints gbc1 = new GridBagConstraints();
+                gbc1.gridx = 0;
+                gbc1.weightx = 0.3;
+                tempPanel.add(answer_label,gbc1);
+                answer = new JTextArea(1,20);
+                answer.setText(mcquestion.getAnswer(i));
+                answer.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    for(int j = 0;j<answerAreas.size();++j)
+                    (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();
+                }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                for(int j = 0;j<answerAreas.size();++j)
-                (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();            
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                for(int j = 0;j<answerAreas.size();++j)
-                (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();            
-            }
-    });
-            answerAreas.add(answer);
-            gbc1.gridx = 1;
-            gbc1.weightx = 0.7;
-            tempPanel.add(answer,gbc1);
-            JCheckBox isRight = new JCheckBox("right answer");
-            
-            if (mcquestion.getPossibleAnswer(i) == 1) {
-            
-                isRight.setSelected(true);
-                
-            }
-            gbc1.gridx = 2;
-            tempPanel.add(isRight,gbc1.gridy);
-            apc.weightx = 1.0;
-            answerPanel.add(tempPanel,apc);
-            apc.gridy++;
-            }
-            answerPanel.revalidate();
-            answerPanel.repaint();
-            
-            submit.addActionListener(new ActionListener (){
-            @Override
-            public void actionPerformed(ActionEvent e){
-            mcquestion.setMark(Integer.parseInt(markArea.getText()));
-            subSection.addQuestion(mcquestion);
-            //revalidate();
-            }
- });
-            }
-            else{
-            markArea.setText("0");
-            submit.addActionListener(new ActionListener (){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                if (mcquestion.getNumberOfAnswers()>1&&mcquestion.getRightAnswers()>0){
-                    mcquestion.setMark(Integer.parseInt(markArea.getText()));
-                    subSection.addQuestion(mcquestion);
-                    //revalidate();
-                    subsectionPanel.listModel.addElement(mcquestion.getQuestion());
-                   }
-                else if(mcquestion.getNumberOfAnswers()<=1){pop.setText("You should create two or more answers!");pop.show();}
-                else{pop.setText("Question should have at least one right answer!");pop.show();}
-           }
- });
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    for(int j = 0;j<answerAreas.size();++j)
+                    (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();            
+                }
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    for(int j = 0;j<answerAreas.size();++j)
+                    (mcquestion.getAnswers())[j] = answerAreas.get(j).getText();            
+                }
+                });
+                answerAreas.add(answer);
+                gbc1.gridx = 1;
+                gbc1.weightx = 0.7;
+                tempPanel.add(answer,gbc1);
+                JCheckBox isRight = new JCheckBox("right answer");
+
+                if (mcquestion.getPossibleAnswer(i) == 1) {
+
+                    isRight.setSelected(true);
+
+                }
+                gbc1.gridx = 2;
+                tempPanel.add(isRight,gbc1.gridy);
+                apc.weightx = 1.0;
+                answerPanel.add(tempPanel,apc);
+                apc.gridy++;
+                }
+                answerPanel.revalidate();
+                answerPanel.repaint();
+
+                submit.addActionListener(new ActionListener (){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                mcquestion.setMark(Integer.parseInt(markArea.getText()));
+                subSection.addQuestion(mcquestion);
+                //revalidate();
+                }
+                });
+                }
+                else{
+                markArea.setText("0");
+                submit.addActionListener(new ActionListener (){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                    if (mcquestion.getNumberOfAnswers()>1&&mcquestion.getRightAnswers()>0){
+                        mcquestion.setMark(Integer.parseInt(markArea.getText()));
+                        subSection.addQuestion(mcquestion);
+                        //revalidate();
+                        subsectionPanel.listModel.addElement(mcquestion.getQuestion());
+                       }
+                    else if(mcquestion.getNumberOfAnswers()<=1){pop.setText("You should create two or more answers!");pop.show();}
+                    else{pop.setText("Question should have at least one right answer!");pop.show();}
+               }
+                });
             }
             addAnswer.addActionListener(new java.awt.event.ActionListener() {
                 @Override
@@ -439,50 +455,75 @@ public class SubsectionEditor extends JPanel{
                 }
 
             });
-            questionType.addTab("MCQ",MCQ);
-
-            FIBQ = new JPanel();
-            questionType.addTab("FIBQ",FIBQ);
-            MFIBQ = new JPanel();
-            
-            MFIBQ.setLayout(new GridBagLayout());
-            
-            questionType.addTab("MFIBQ",MFIBQ);
-            
-            Essay = new JPanel();
             Essay.setLayout(new GridBagLayout());
             GridBagConstraints gbc_essay = new GridBagConstraints();
-            JLabel essay_question_label = new JLabel("Question");
+            gbc_essay.insets = new Insets(5, 5, 5, 5);
+            JLabel essay_question_label = new JLabel("Question: ");
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 0;
             Essay.add(essay_question_label,gbc_essay);
             
-            JTextArea essay_question = new JTextArea(5,30);
+            final JTextArea essay_question = new JTextArea(1,30);
             gbc_essay.gridx = 1;
             Essay.add(essay_question,gbc_essay);
             
-            JLabel essay_wordlimit_label = new JLabel("Word Limit");
+            JLabel essay_instructions_label = new JLabel("Instructions: ");
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 1;
+            Essay.add(essay_instructions_label,gbc_essay);
+            
+            final JTextArea essay_instructions = new JTextArea(5,30);
+            gbc_essay.gridx = 1;
+            Essay.add(essay_instructions,gbc_essay);
+            
+            JLabel essay_wordlimit_label = new JLabel("Word Limit: ");
+            gbc_essay.gridx = 0;
+            gbc_essay.gridy = 2;
             Essay.add(essay_wordlimit_label,gbc_essay);
             
-            JTextArea essay_wordlimit = new JTextArea(1,5);
+            final JTextArea essay_wordlimit = new JTextArea(1,5);
             gbc_essay.gridx = 1;
             Essay.add(essay_wordlimit,gbc_essay);
             
-            JLabel essay_marks_label = new JLabel("Marks");
+            JLabel essay_marks_label = new JLabel("Marks: ");
             gbc_essay.gridx = 0;
-            gbc_essay.gridy = 2;
+            gbc_essay.gridy = 3;
             Essay.add(essay_marks_label,gbc_essay);
             
-            JTextArea essay_marks = new JTextArea(1,5);
+            final JLabel essay_marks = new JLabel();
             gbc_essay.gridx = 1;
             Essay.add(essay_marks,gbc_essay);
+            essay_marks.setText("0");
             
+            gbc_essay.gridx = 0;
+            gbc_essay.gridy = 4;
             
-            gbc_essay.gridx = 1;
+            JButton submitEssay = new JButton("submit");
+            Essay.add(submitEssay,gbc_essay);
             
-            questionType.addTab("Essay",Essay);
+            if(essayQuestion.getQuestion() != null){
+                questionType.setSelectedIndex(3);
+                essay_question.setText(essayQuestion.getQuestion());
+                essay_instructions.setText(essayQuestion.getInstructions());
+                essay_wordlimit.setText(String.valueOf(essayQuestion.getWordLimit()));
+                essay_marks.setText(String.valueOf(essayQuestion.getMark()));
+               
+            } 
+            submitEssay.addActionListener(new ActionListener (){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                essayQuestion.setQuestion(essay_question.getText());
+                essayQuestion.setInstructions(essay_instructions.getText());
+                essayQuestion.setMark(Integer.parseInt(essay_marks.getText()));
+                essayQuestion.setWordLimit(Integer.valueOf(essay_wordlimit.getText()));
+                subSection.addQuestion(essayQuestion);
+                subsectionPanel.listModel.addElement(essayQuestion.getQuestion());
+                //revalidate();
+                }
+                });
+            
+            MFIBQ.setLayout(new GridBagLayout());
+            
             tempCreator.add(questionType);
             return tempCreator;
         }

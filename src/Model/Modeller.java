@@ -22,8 +22,8 @@ import Model.StudentSubmission.*;
  */
 public class Modeller {
 
-    ArrayList<QuestionPaper> questionPapers;
-    ArrayList<Submission> submissions;
+    private static ArrayList<QuestionPaper> questionPapers;
+    private static ArrayList<Submission> submissions;
     QuestionPaper viewingPaper;
 
     public Modeller() {     //constructor

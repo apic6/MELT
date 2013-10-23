@@ -37,6 +37,13 @@ public class Marker {
         return subm.getUnmarkedQuestions();
     }
 
+    public ArrayList<Answer> getMarkableAnswers() {
+        if (subm == null) {
+            return null;
+        }
+        return subm.getMarkableAnswers();
+    }
+
     public void markQuestion(Answer ans, int givenMark) {
         if (ans instanceof EssayAnswer) {
             EssayAnswer answer = (EssayAnswer) ans;
@@ -116,6 +123,15 @@ public class Marker {
         } else {
             return false;
         }
+    }
+    
+    public void updateMark() {
+        // TODO
+        return;
+    }
+
+    public Submission getSubmission() {
+        return subm;
     }
 
     public int getMark() {
