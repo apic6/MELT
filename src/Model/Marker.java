@@ -104,16 +104,18 @@ public class Marker {
                                 }
                             }
                             // right or wrong increase total mark
-                            totalMark += question.getMark(); //markingAnswer.getMark();
-                        } /* else { // else it was FITB Question
-                         FITBAnswer submAnswer = (FITBAnswer) submissionSubSection.getAnswer(k);
-                         //FITBMarkingAnswer markingAnswer = (FITBMarkingAnswer)markingSubSection.getAnswer(k);
-                         if (submAnswer.getAnswer().equals(markingAnswer.getAnswer())) {
-                         mark += markingAnswer.getMark();
-                         }
-                         // right or wrong increase total mark
-                         totalMark += markingAnswer.getMark();
-                         } // else FITBQ */
+
+                        } else if (submissionSubSection.getAnswer(k) instanceof FITBAnswer) { // else it was FITB Question
+                            FITBAnswer submAnswer = (FITBAnswer) submissionSubSection.getAnswer(k);
+                            FITBQuestion question = (FITBQuestion) subSection.getQuestion(k);
+                            for (int l = 0; l<question.getNumberOfPossibleAnswers(); l++) {
+                                if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
+                                    mark += question.getMark();
+                                    break;
+                                }
+                            }
+                        } // else FITBQ 
+                        totalMark += subSection.getQuestion(k).getMark();
                     } // questions
                 } // subSections
             } // sections
