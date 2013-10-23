@@ -5,11 +5,13 @@
 package Viewer;
 
 import Model.questionPaper.EssayQuestion;
+import Model.questionPaper.MBQuestion;
 import Model.questionPaper.MultipleChoiceQuestion;
 import Model.questionPaper.Question;
 import javax.swing.JPanel;
 import Viewer.FIBQPanel;
 import Model.questionPaper.SubSection;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -50,7 +52,8 @@ public class SubsectionEditor extends JPanel{
     private JPanel answerPanel;
     GridBagConstraints apc = new GridBagConstraints();
     private JPanel FIBQ;
-    private JPanel MFIBQ;
+    private JPanel MBQ;
+    private int mb_part_num = 0;
     private JPanel Essay;
     
     JPanel questionCreator = new JPanel() ;
@@ -60,6 +63,7 @@ public class SubsectionEditor extends JPanel{
      Subsection subsectionPanel;
      MultipleChoiceQuestion mcquestion = new MultipleChoiceQuestion();
      EssayQuestion essayQuestion = new EssayQuestion();
+     MBQuestion mbquestion = new MBQuestion();
      
     
     public SubsectionEditor(SubSection subSection, Question Q, TestWizard wizard,Subsection subsectionPanel)
@@ -77,6 +81,8 @@ public class SubsectionEditor extends JPanel{
                 mcquestion = (MultipleChoiceQuestion)question;
             } else if(question instanceof EssayQuestion){
                 essayQuestion = (EssayQuestion)question;
+            } else if(question instanceof MBQuestion){
+                mbquestion = (MBQuestion)question;
             }
         }
         initComponents();
@@ -255,8 +261,8 @@ public class SubsectionEditor extends JPanel{
             FIBQ = new FIBQPanel();
             questionType.addTab("FIBQ",FIBQ);
             
-            MFIBQ = new JPanel();
-            questionType.addTab("MFIBQ",MFIBQ);
+            MBQ = new JPanel();
+            questionType.addTab("MBQ",MBQ);
             
             Essay = new JPanel();
             questionType.addTab("Essay",Essay);
@@ -522,8 +528,176 @@ public class SubsectionEditor extends JPanel{
                 }
                 });
             
-            MFIBQ.setLayout(new GridBagLayout());
+            MBQ.setLayout(new GridBagLayout());
+            GridBagConstraints gbc_mb = new GridBagConstraints();
+            gbc_mb.insets = new Insets(5, 5, 5, 5);
+            gbc_mb.gridx = 0;
+            gbc_mb.gridy = 0;
+            JLabel mb_question_label = new JLabel("Question");
+            MBQ.add(mb_question_label,gbc_mb);
+            final JTextArea mb_question = new JTextArea(1,30);
+            gbc_mb.gridx = 1;
+            MBQ.add(mb_question,gbc_mb);
+            gbc_mb.gridx = 0;
+            gbc_mb.gridy = 1;
+            JLabel mb_instructions_label = new JLabel("Instructions");
+            MBQ.add(mb_instructions_label,gbc_mb);
+            gbc_mb.gridx = 1;
+            final JTextArea mb_instructions = new JTextArea(5,30);
+            MBQ.add(mb_instructions,gbc_mb);
+            gbc_mb.gridx = 0;
+            gbc_mb.gridy = 2;
+            gbc_mb.gridwidth = GridBagConstraints.REMAINDER;
+            JPanel mb_markPane = new JPanel() ;
+            mb_markPane.setLayout(new GridBagLayout());
+            GridBagConstraints c5 = new GridBagConstraints();
+            c5.insets = new Insets(5,5,5,5);
+            JLabel mb_mark_label = new JLabel("marks: ");
+            c5.gridy = 0;
+            c5.gridx = 0;
+            c5.weightx = 0;
+            mb_markPane.add(mb_mark_label,c5);
             
+           
+            c5.gridx = 1;
+            c5.weightx = 0.3;
+            final JLabel mb_markArea = new JLabel();
+            mb_markPane.add(mb_markArea,c5);
+            mb_markArea.setText("0");
+             JButton mb_moreMark = new JButton("+");
+            mb_moreMark.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mb_markArea.setText(String.valueOf(Integer.parseInt(mb_markArea.getText())+1));
+                mbquestion.setMark(Integer.parseInt(mb_markArea.getText())+1);
+            }
+        });
+            JButton mb_lessMark = new JButton("-");
+      mb_lessMark.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Integer.parseInt(mb_markArea.getText())>0){
+                mb_markArea.setText(String.valueOf(Integer.parseInt(mb_markArea.getText())-1));
+                mbquestion.setMark(Integer.parseInt(mb_markArea.getText())+1);
+                }
+            }
+        });
+      c5.gridx++;
+      mb_markPane.add(mb_moreMark,c5);
+      c5.gridx++;
+      mb_markPane.add(mb_lessMark,c5);
+      
+      c5.gridx ++;
+      JButton add_part = new JButton("Add Part");
+      mb_markPane.add(add_part,c5);
+      
+      MBQ.add(mb_markPane, gbc_mb) ;
+            
+            
+            gbc_mb.gridx = 0;
+            gbc_mb.gridy = 3;
+            gbc_mb.gridwidth = GridBagConstraints.REMAINDER;
+            gbc_mb.weighty = 1.0;
+            final JPanel mb_question_parts = new JPanel();
+            mb_question_parts.setPreferredSize(new Dimension(400,150));
+            mb_question_parts.setBorder(new TitledBorder("MB Question"));
+            MBQ.add(mb_question_parts,gbc_mb);
+            
+            
+            if(mbquestion.getQuestionParts()==null){
+                mbquestion.setQuestionParts(new ArrayList<String>());
+            }
+            final int num_of_parts = mbquestion.getQuestionParts().size();
+            
+      add_part.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JLabel mb_blank = new JLabel("_____");
+                    final JTextArea mb_newpart = new JTextArea(1,10);
+                    mb_question_parts.add(mb_blank);
+                    mb_question_parts.add(mb_newpart);
+                    mb_question_parts.revalidate();
+                    mbquestion.getQuestionParts().add("");
+                    mb_newpart.getDocument().addDocumentListener(new DocumentListener() {
+
+                        @Override
+                        public void insertUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(num_of_parts,mb_newpart.getText());
+                        }
+
+                        @Override
+                        public void removeUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(num_of_parts,mb_newpart.getText());
+                        }
+
+                        @Override
+                        public void changedUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(num_of_parts,mb_newpart.getText());
+                        }
+                    });
+                }
+            });
+            
+      JButton mb_submit = new JButton("Submit");
+      gbc_mb.gridx = 0;
+      gbc_mb.gridy++;
+      gbc_mb.gridwidth =1;
+      gbc_mb.weighty = 0;
+      MBQ.add(mb_submit,gbc_mb);
+      
+      if(question!=null && question instanceof MBQuestion){
+          questionType.setSelectedIndex(2);
+          mb_instructions.setText(mbquestion.getInstructions());
+          mb_question.setText(mbquestion.getQuestion());
+          mb_markArea.setText(String.valueOf(mbquestion.getMark()));
+          
+          for(int i=0;i<mbquestion.getQuestionParts().size();i++){
+              JLabel mb_blank = new JLabel("_____");
+                    JTextArea mb_newpart = new JTextArea(1,10);
+                    mb_question_parts.add(mb_blank);
+                    mb_question_parts.add(mb_newpart);
+                    mb_newpart.setText(mbquestion.getQuestionParts().get(i));
+          }
+                    mb_question_parts.revalidate();
+          
+          
+      }else{
+          final JTextArea mb_part1 = new JTextArea(1,10);
+            mb_question_parts.add(mb_part1);
+            mbquestion.setQuestionParts(new ArrayList<String>());
+            mbquestion.getQuestionParts().add("");
+            mb_part1.getDocument().addDocumentListener(new DocumentListener() {
+
+                        @Override
+                        public void insertUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(0,mb_part1.getText());
+                        }
+
+                        @Override
+                        public void removeUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(0,mb_part1.getText());
+                        }
+
+                        @Override
+                        public void changedUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(0,mb_part1.getText());
+                        }
+                    });
+      }
+      mb_submit.addActionListener(new ActionListener() {
+
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                  mbquestion.setMark(Integer.valueOf(mb_markArea.getText()));
+                  mbquestion.setInstructions(mb_instructions.getText());
+                  subSection.addQuestion(mbquestion);
+                  subsectionPanel.listModel.addElement(mbquestion.getQuestion());
+              }
+          });
+      questionType.setPreferredSize(new Dimension(500,400));
             tempCreator.add(questionType);
             return tempCreator;
         }
