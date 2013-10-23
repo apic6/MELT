@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Model.xmlLoaders;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -12,6 +12,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
 import java.util.ArrayList;
+import Model.StudentSubmission.*;
 
 /**
  *
@@ -19,17 +20,17 @@ import java.util.ArrayList;
  */
 public class SubmissionLoader {
 
-    ArrayList<StudentSubmission> submissions;
+    ArrayList<Submission> submissions;
     File xmlFile;
     DocumentBuilderFactory dbFactory;
     DocumentBuilder dBuilder;
     Document doc;
 
-    SubmissionLoader() {
+    public SubmissionLoader() {
         this("submissions/Submissions.xml");
     }
 
-    SubmissionLoader(String filename) {
+    public SubmissionLoader(String filename) {
         try {
             submissions = new ArrayList<>();
             xmlFile = new File(filename);
@@ -44,14 +45,14 @@ public class SubmissionLoader {
     }
 
     // returns an integer showing the number of papers read
-    int loadSubmissions() {
+    public int loadSubmissions() {
         NodeList submissionList = doc.getElementsByTagName("StudentSubmission");
 
         for (int i = 0; i < submissionList.getLength(); i++) {
             Node submissionNode = submissionList.item(i);
             Element sElement = (Element) submissionNode;
 
-            StudentSubmission submission = new StudentSubmission(Integer.parseInt(sElement.getElementsByTagName("PaperID").item(0).getTextContent()), Integer.parseInt(sElement.getElementsByTagName("StudentID").item(0).getTextContent()));
+            Submission submission = new Submission(Integer.parseInt(sElement.getElementsByTagName("PaperID").item(0).getTextContent()), Integer.parseInt(sElement.getElementsByTagName("StudentID").item(0).getTextContent()));
 
             // For each section
             NodeList submissionSectionList = sElement.getElementsByTagName("SubmissionSection");
@@ -121,11 +122,11 @@ public class SubmissionLoader {
         return submissions.size();
     }
 
-    ArrayList<StudentSubmission> getSubmissions() {
+    public ArrayList<Submission> getSubmissions() {
         return submissions;
     }
 
-    StudentSubmission getSubmission(int i) {
+    public Submission getSubmission(int i) {
         return submissions.get(i);
     }
 }

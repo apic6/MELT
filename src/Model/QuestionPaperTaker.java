@@ -4,6 +4,12 @@
  */
 package Model;
 
+import Model.questionPaper.Section;
+import Model.questionPaper.Question;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.SubSection;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.StudentSubmission.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -16,14 +22,14 @@ import java.util.logging.Logger;
  */
 public class QuestionPaperTaker {
     QuestionPaper paper;
-    StudentSubmission submission;
+    Submission submission;
     int studentID;
     
     public QuestionPaperTaker(QuestionPaper paper, int studentID) {
         this.paper = paper;
         this.studentID = studentID;
         
-        submission = new StudentSubmission(paper.getPaperID(), studentID);
+        submission = new Submission(paper.getPaperID(), studentID);
         // each section
         for (int i = 0; i<paper.getNumberOfSections(); i++) {
             Section section = paper.getSection(i);
@@ -57,7 +63,7 @@ public class QuestionPaperTaker {
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(fitbAnswer);
     }
     
-    public StudentSubmission getSubmission() {
+    public Submission getSubmission() {
         return submission;
     }
     

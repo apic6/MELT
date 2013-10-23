@@ -4,8 +4,8 @@
  */
 package Viewer;
 
-import Model.Section;
-import Model.SubSection;
+import Model.questionPaper.Section;
+import Model.questionPaper.SubSection;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

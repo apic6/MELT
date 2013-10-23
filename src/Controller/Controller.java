@@ -9,7 +9,7 @@ package Controller;
  * @author mbaxkak4
  */
 import Model.Modeller;
-import Model.QuestionPaper;
+import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.Marker;
 import Viewer.PaperView;

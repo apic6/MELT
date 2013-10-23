@@ -4,6 +4,13 @@
  */
 package Model;
 
+import Model.questionPaper.Section;
+import Model.questionPaper.FITBQuestion;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.SubSection;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.StudentSubmission.*;
+
 /**
  *
  * @author mbgm8je3
@@ -62,7 +69,7 @@ public class Marker {
      return true;
      } else return false;
      }*/
-    public boolean markTest(StudentSubmission submission, QuestionPaper paper) {
+    public boolean markTest(Submission submission, QuestionPaper paper) {
         mark = 0;
         totalMark = 0;
         if (submission.getPaperID() == paper.getPaperID()) {

@@ -1,4 +1,4 @@
-package Model;
+package Model.questionPaper;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class MBQuestion implements Question {
     private ArrayList<String> questionParts;
     private int mark;
 
-    MBQuestion(ArrayList<String> question, String instructions, int mark) {
+    public MBQuestion(ArrayList<String> question, String instructions, int mark) {
         questionParts = new ArrayList();
         for (int i = 0 ; i< question.size(); i++) {
             questionParts.add(question.get(i));

@@ -1,4 +1,4 @@
-package Model;
+package Model.questionPaper;
 
 public class MultipleChoiceQuestion implements Question {
 
