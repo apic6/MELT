@@ -7,7 +7,10 @@ public class MBQuestion implements Question {
     private String instructions;
     private ArrayList<String> questionParts;
     private int mark;
-
+    
+    public MBQuestion(){
+        
+    }
     public MBQuestion(ArrayList<String> question, String instructions, int mark) {
         questionParts = new ArrayList();
         for (int i = 0 ; i< question.size(); i++) {
@@ -22,6 +25,10 @@ public class MBQuestion implements Question {
         return instructions;
     }
 
+    public void setInstructions(String instructions){
+        this.instructions = instructions;
+    }
+    
     @Override
     public String getQuestion() {
         String question = "";
@@ -35,6 +42,10 @@ public class MBQuestion implements Question {
         return questionParts;
     }
 
+    public void setQuestionParts(ArrayList<String> questionParts){
+        this.questionParts = questionParts;
+    }
+    
     public void setMark(int mark) {
         this.mark = mark;
     }
