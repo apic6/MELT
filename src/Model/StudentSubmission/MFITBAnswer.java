@@ -15,7 +15,7 @@ public class MFITBAnswer extends Answer {
     
     public MFITBAnswer(int id, ArrayList<String> answers) {
         this.id = id;
-        answers = new ArrayList<>();
+        this.answers = new ArrayList<>();
         for (int i = 0; i<answers.size(); i++)
             this.answers.add(answers.get(i));
     }
