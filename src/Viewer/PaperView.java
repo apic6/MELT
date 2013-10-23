@@ -134,30 +134,16 @@ public class PaperView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Submission subm = taker.getSubmission();
                 subm.normalise();
-                
+
                 Marker marker = new Marker();
                 marker.markTest(taker.getSubmission(), paper);
-
-                System.out.println(subm.toXML());
+                
                 System.out.println("Mark = " + marker.getMark() + "/" + marker.getTotalMark());
             }
         });
         this.add(finish, con);
     }
 
-    /* public static void main(String argv[]) {
-     Modeller model = new Modeller();
-     model.loadPapers("papers/Papers.xml");
-     ArrayList<QuestionPaper> papers = model.getPapersByStudentID(12301230);
-     QuestionPaper paper = papers.get(0);
-
-     JFrame frame = new JFrame();
-     PaperView pView = new PaperView(paper, frame);
-     frame.add(pView);
-
-     frame.pack();
-     frame.setVisible(true);
-     } */
     public void addListener(ActionListener mal) {
     }
 }

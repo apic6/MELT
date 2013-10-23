@@ -45,7 +45,7 @@ public class MBQuestion implements Question {
 
     @Override
     public String toXML() {
-        String XML = "<Question type=\"FITBQ\">\n";
+        String XML = "<Question type=\"MBQ\">\n";
 
         XML += "<Instructions>" + instructions + "</Instructions>\n";
         for (int i =0; i<questionParts.size(); i++) 

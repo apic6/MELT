@@ -38,6 +38,8 @@ public class EssayAnswer extends Answer {
     public String toXML() {
         String XML = "";
         XML += "<EssayAnswer>\n";
+        XML += "<SectionID>" + sectionID + "</SectionID>\n";
+        XML += "<SubSectionID>" + subSectionID + "</SubSectionID>\n";
         XML += "<AnswerID>" + id + "</AnswerID>\n";
         XML += "<Answer>" + answer + "</Answer>\n";
         XML += "</EssayAnswer>\n";
