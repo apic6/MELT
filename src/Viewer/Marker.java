@@ -140,7 +140,7 @@ public class Marker extends JPanel {
    mainFrame.addMouseListener(mouse);
   }  
 
-  void displaySUbmission(StudentSubmission sub){
+  void displaySubmission(Submission sub){
    for (int k=0;k<sub.getSize();++k){
        
         

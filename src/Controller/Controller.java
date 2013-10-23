@@ -99,7 +99,7 @@ public class Controller {
                   frame.setContentPane(new LoginScreen(frame,amodel));
                   LoginScreen.addListener(new ViewerEventListener());
                   frame.setVisible(true);
-                  TeacherView.addListener(new ViewerEventListener()); 
+                  //TeacherView.addListener(new ViewerEventListener()); 
                 }break;  
                     
                   case "markTrigger":{
