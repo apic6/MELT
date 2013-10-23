@@ -5,6 +5,7 @@
 package Model.StudentSubmission;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -63,6 +64,14 @@ public class SubmissionSection {
         ArrayList<Answer> answers = new ArrayList<>();
         for (int i = 0; i < subSectionList.size(); i++) {
             answers.addAll(subSectionList.get(i).getUnmarkedQuestions());
+        }
+        return answers;
+    }
+
+    public ArrayList<Answer> getMarkableAnswers() {
+        ArrayList<Answer> answers = new ArrayList<>();
+        for (int i = 0; i < subSectionList.size(); i++) {
+            answers.addAll(subSectionList.get(i).getMarkableAnswers());
         }
         return answers;
     }

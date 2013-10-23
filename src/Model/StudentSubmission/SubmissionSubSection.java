@@ -5,6 +5,7 @@
 package Model.StudentSubmission;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -70,6 +71,17 @@ public class SubmissionSubSection {
         ArrayList<Answer> answers = new ArrayList<>();
         for (int i = 0; i < answerList.size(); i++) {
             if (!answerList.get(i).isMarked())
+                answers.add(answerList.get(i));
+        }
+        return answers;
+    }
+    
+    public ArrayList<Answer> getMarkableAnswers() {
+        ArrayList<Answer> answers = new ArrayList<>();
+        for (int i = 0; i < answerList.size(); i++) {
+            if (answerList.get(i) instanceof EssayAnswer)
+                answers.add(answerList.get(i));
+            else if (answerList.get(i) instanceof MFITBAnswer)
                 answers.add(answerList.get(i));
         }
         return answers;
