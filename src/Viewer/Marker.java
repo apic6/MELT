@@ -153,7 +153,8 @@ public class Marker extends JPanel {
            SubmissionSubSection subsec=sec.getSubSection(l);
            SubSection paperSubsec=paperSec.getSubSection(l);
            for(int m=0;m<subsec.getSize();m++){
-       
+            ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
+           
            Answer ans=subsec.getAnswer(m);
            Question ques=paperSubsec.getQuestion(m);
            JLabel questionLabel=new JLabel(ques.getQuestion());
