@@ -48,7 +48,7 @@ public class MCQAnswerTest {
         System.out.println("getID");
 
         int expResult = 1;
-        int result = instance.getQuestionID();
+        int result = instance.getID();
         assertEquals("Result is not the same as passed during creation", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");

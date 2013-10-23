@@ -66,7 +66,6 @@ public class Marker {
                                     mark += question.getMark(); //question.getMark();
                                 }
                             }
-                            submAnswer.setMarked(true);
                             // right or wrong increase total mark
 
                         } else if (submissionSubSection.getAnswer(k) instanceof FITBAnswer) { // else it was FITB Question
@@ -78,7 +77,6 @@ public class Marker {
                                     break;
                                 }
                             }
-                            submAnswer.setMarked(true);
                         } // else FITBQ 
                         totalMark += subSection.getQuestion(k).getMark();
                     } // questions

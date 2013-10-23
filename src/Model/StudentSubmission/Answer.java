@@ -11,18 +11,9 @@ package Model.StudentSubmission;
  */
 public class Answer {
     protected int id;
-    boolean marked;
     
-    public int getQuestionID() {
+    public int getID() {
         return id;
-    }
-    
-    public boolean isMarked() {
-        return marked;
-    }
-    
-    public void setMarked(boolean marked) {
-        this.marked = marked;
     }
     
     public String toXML() {

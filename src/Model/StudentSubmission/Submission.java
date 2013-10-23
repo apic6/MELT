@@ -12,24 +12,19 @@ import java.util.Comparator;
  *
  * @author mbgm8je3
  */
+
 public class Submission {
 
     int paperID;
     int studentID;
-    int mark;
-    int totalMark;
-    boolean fullyMarked;
     ArrayList<SubmissionSection> sectionList;
 
     public Submission(int paperID, int studentID) {
         this.paperID = paperID;
         this.studentID = studentID;
-        mark = 0;
-        totalMark = 0;
-        fullyMarked = false;
         sectionList = new ArrayList<>();
     }
-
+    
     public Submission(int submissionID, int paperID, int studentID) {
         this.paperID = paperID;
         this.studentID = studentID;
@@ -38,31 +33,8 @@ public class Submission {
     public int getPaperID() {
         return paperID;
     }
-
-    public int getStudentID() {
-        return studentID;
-    }
-
-    public int getMark() {
-        return mark;
-    }
-
-    public int getTotalMark() {
-        return totalMark;
-    }
-
-    public void setMark(int mark, int totalMark) {
-        this.mark = mark;
-        this.totalMark = totalMark;
-    }
-
-    public void setMark(int mark) {
-        this.mark = mark;
-    }
-    
-    public boolean isFullyMarked() {
-        return fullyMarked;
-    }
+    public int getStudentID(){
+    return studentID;}
 
     public void addSection(SubmissionSection section) {
         sectionList.add(section);
@@ -78,7 +50,6 @@ public class Submission {
 
     public void normalise() {
         Collections.sort(sectionList, new Comparator<SubmissionSection>() {
-            @Override
             public int compare(SubmissionSection a, SubmissionSection b) {
                 return a.getID() - b.getID();
             }
@@ -86,18 +57,7 @@ public class Submission {
 
         for (int i = 0; i < sectionList.size(); i++) {
             sectionList.get(i).normalise();
-            this.fullyMarked= true;
-            if (!sectionList.get(i).isFullyMarked())
-                this.fullyMarked = false;
         }
-    }
-    
-    public ArrayList<Answer> getUnmarkedQuestions() {
-        ArrayList<Answer> answers = new ArrayList<>();
-        for (int i = 0; i<sectionList.size(); i++) {
-            answers.addAll(sectionList.get(i).getUnmarkedQuestions());
-        }
-        return answers;
     }
 
     public String toXML() {

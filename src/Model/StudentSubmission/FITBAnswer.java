@@ -12,7 +12,6 @@ public class FITBAnswer extends Answer {
     private String answer;
     
     public FITBAnswer(int id, String answer) {
-        this.marked = false;
         this.id = id;
         this.answer = answer;
     }

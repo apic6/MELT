@@ -8,5 +8,3 @@ TODO:
 
 1. Populate submission document with "blank answers" if paper is submitted early, possibly add to "normalise()".
 2. facilitate the acquisition of papers that need to be marked.
-3. ??
-4. Profit

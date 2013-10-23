@@ -45,7 +45,7 @@ public class AnswerTest {
         System.out.println("getID");
         Answer instance = new Answer();
         
-        int result = instance.getQuestionID();
+        int result = instance.getID();
         assertTrue("ID negative, woops!", result >= 0);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");

@@ -15,12 +15,10 @@ import java.util.Comparator;
 public class SubmissionSubSection {
 
     int subSectionID;
-    boolean fullyMarked;
     ArrayList<Answer> answerList;
 
     public SubmissionSubSection(int id) {
         this.subSectionID = id;
-        fullyMarked = false;
         answerList = new ArrayList<>();
     }
 
@@ -28,13 +26,9 @@ public class SubmissionSubSection {
         return subSectionID;
     }
 
-    public boolean isFullyMarked() {
-        return fullyMarked;
-    }
-
     public void addAnswer(Answer answer) {
         for (int i = 0; i < answerList.size(); i++) {
-            if (answerList.get(i).getQuestionID() == answer.getQuestionID()) {
+            if (answerList.get(i).getID() == answer.getID()) {
                 answerList.remove(i);
                 answerList.add(answer);
                 return;
@@ -54,25 +48,9 @@ public class SubmissionSubSection {
     public void normalise() {
         Collections.sort(answerList, new Comparator<Answer>() {
             public int compare(Answer a, Answer b) {
-                return a.getQuestionID() - b.getQuestionID();
+                return a.getID() - b.getID();
             }
         });
-        fullyMarked = true;
-        for (int i = 0; i < answerList.size(); i++) {
-            fullyMarked = true;
-            if (!answerList.get(i).isMarked()) {
-                fullyMarked = false;
-            }
-        }
-    }
-
-    public ArrayList<Answer> getUnmarkedQuestions() {
-        ArrayList<Answer> answers = new ArrayList<>();
-        for (int i = 0; i < answerList.size(); i++) {
-            if (!answerList.get(i).isMarked())
-                answers.add(answerList.get(i));
-        }
-        return answers;
     }
 
     public String toXML() {

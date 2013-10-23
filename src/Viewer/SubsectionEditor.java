@@ -4,8 +4,10 @@
 */
 package Viewer;
 
-import Model.questionPaper.*;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.Question;
 import javax.swing.JPanel;
+import Model.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;

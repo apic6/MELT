@@ -12,7 +12,6 @@ public class MCQAnswer extends Answer {
     int answer;
     
     public MCQAnswer(int id, int answer) {
-        this.marked = false;
         this.id = id;
         this.answer = answer;
     }
