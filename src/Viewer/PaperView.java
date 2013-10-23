@@ -79,12 +79,13 @@ class SectionPanel extends JPanel {
 public class PaperView extends JPanel {
 
     QuestionPaper paper;
-    QuestionPaperTaker taker;
+    static QuestionPaperTaker taker;
     SectionPanel[] sPanels;
 
     public PaperView(final QuestionPaper paper, final JFrame mainFrame, final Student studentView, final TeacherView teacherView, int studentID) {
 
         this.paper = paper;
+        
         if (studentID >= 0) {
             taker = new QuestionPaperTaker(paper, studentID);
         } else {
@@ -144,10 +145,11 @@ public class PaperView extends JPanel {
         this.add(finish, con);
     }
 
+    
     public void addListener(ActionListener mal) {
     }
     
     
-//    public Submission getSubmission(){
-//    return subm;}
+    public static  Submission getSubmission(){
+    return taker.getSubmission();}
 }

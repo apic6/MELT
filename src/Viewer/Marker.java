@@ -148,7 +148,8 @@ public class Marker extends JPanel {
   void displaySubmission(Submission sub,GridBagConstraints c2){
               int counter=0;
               //int mark=0;
-      paper=model.getPaper(sub.getPaperID());
+       model.loadPapers();
+      paper=model.getPaper(sub.getPaperID()-1);
    for (int k=0;k<sub.getSize();++k){
        SubmissionSection sec=sub.getSection(k);
        Section paperSec=paper.getSection(k);
@@ -165,55 +166,55 @@ public class Marker extends JPanel {
           counter++;
           ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
            for(int m=0;m<unMarked.size();m++){
-               //Answer ans=subsec.getAnswer(m);
+               Answer ans=subsec.getAnswer(m);
                Question ques=paperSubsec.getQuestion(m);
                    
                c2.gridy=counter;
                c2.gridx=0;
-               c2.weightx=0.5;
+               //c2.weightx=0.25;
                JLabel questionLabel=new JLabel("Question"+m);
                rightPanel.add(questionLabel, c2);
                c2.gridx=1;
-               c2.weightx=3;
+               //c2.weightx=1.75;
                JLabel question=new JLabel(ques.getQuestion());
-               rightPanel.add(question);
+               rightPanel.add(question,c2);
                c2.gridx=2;
-               c2.weightx=0.2;
-               c2.ipadx=10;
+              // c2.weightx=0.25;
+              // c2.ipadx=10;
                JButton plusMark=new JButton("+");
                rightPanel.add(plusMark,c2);
                c2.gridx=3;
-               c2.weightx=0.2;
-               c2.ipadx=10;
+              // c2.weightx=0.25;
+               //c2.ipadx=10;
                JButton minusMark=new JButton("-");
                rightPanel.add(minusMark,c2);
                c2.ipadx=0;
                counter++;
                c2.gridy=counter;
                c2.gridx=0;
-               c2.weightx=0.5;
+               //c2.weightx=0.25;
                JLabel answerLabel=new JLabel("Answer"+m);
                rightPanel.add(answerLabel, c2);
                c2.gridx=1;
-               c2.weightx=3;
-               JLabel Answer=new JLabel(ques.getQuestion());
-               rightPanel.add(question);
+               //c2.weightx=1.75;
+               JLabel Answer=new JLabel(ans.getAnswerString());
+               rightPanel.add(Answer,c2);
                c2.gridx=2;
-               c2.weightx=0.2;
-               c2.ipadx=10;
+               //c2.weightx=0.25;
+               //c2.ipadx=10;
                JLabel mark=new JLabel();
                rightPanel.add(mark,c2);
                c2.gridx=3;
-               c2.weightx=0.2;
-               c2.ipadx=10;
-               JButton rand=new JButton("rand");
-               rightPanel.add(rand,c2);
+               //c2.weightx=0.25;
+               //c2.ipadx=10;
+              // JButton rand=new JButton("rand");
+               //rightPanel.add(rand,c2);
                c2.ipadx=0;
                //JLabel answerLabel=new JLabel(ans.toString());
                
-              rightPanel.add(questionLabel);
+              //  rightPanel.add(questionLabel);
                 
-                rightPanel.add(answerLabel,c2);
+              //  rightPanel.add(answerLabel,c2);
                 counter++;
            }
        }

@@ -25,6 +25,8 @@ public class EssayAnswer extends Answer {
     public String getAnswer() {
         return answer;
     }
+    @Override
+    public String getAnswerString(){return answer;}
     
     public int getSectionID () {
         return sectionID;

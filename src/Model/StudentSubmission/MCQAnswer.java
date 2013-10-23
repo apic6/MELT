@@ -19,6 +19,10 @@ public class MCQAnswer extends Answer {
     public int getAnswer() {
         return answer;
     }
+    @Override
+    public String getAnswerString(){
+        
+        return String.valueOf(answer);}
     
     @Override
     public String toXML() {

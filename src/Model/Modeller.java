@@ -98,6 +98,7 @@ public class Modeller {
         loadPapers();
         return questionPapers;
     }
+    
 
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
@@ -159,7 +160,7 @@ public class Modeller {
     }
 
     // get number of papers
-    int getNumberOfSubmission() {
+    public int getNumberOfSubmission() {
         return submissions.size();
     }
 
@@ -171,10 +172,14 @@ public class Modeller {
     // add a paper to the model
     public void addSubmission(Submission submission) {
         submissions.add(submission);
+        
+    }
+    public void addSubmission(Submission submission,int index){
+    submissions.add(index,submission);
     }
 
     // remove a paper from the model
-    void removeSubmission(int index) {
+    public void removeSubmission(int index) {
         submissions.remove(index);
     }
 

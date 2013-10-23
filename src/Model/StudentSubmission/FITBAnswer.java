@@ -19,6 +19,7 @@ public class FITBAnswer extends Answer {
     public String getAnswer() {
         return answer;
     }
+    public String getAnswerString(){return answer;}
     
     @Override
     public String toXML() {

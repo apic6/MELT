@@ -131,8 +131,15 @@ public class Controller {
                    
                     case "startTrigger": {
                    // PaperView.addListeners(new Mouse());
-                        Timer timer=new Timer(true);
-                        timer.scheduleAtFixedRate(new TimerTask(){
+                           Submission newsub;
+                           newsub=PaperView.getSubmission();
+                           amodel.loadSubmissions();
+                           amodel.addSubmission(newsub);
+                           try{
+                           amodel.saveSubmissions(null);}
+                           catch (FileNotFoundException ex){}
+                           Timer timer=new Timer(true);
+                           timer.scheduleAtFixedRate(new TimerTask(){
                            @Override
                            public void run() {
                            saveSubmission();
@@ -256,25 +263,28 @@ private void saveMarks(){
 
 }
 
-private void saveSubmission(){
+private void saveSubmission() {
          Submission sub;
-         //sub=PaperView.getSubmission();
-         amodel.loadSubmissions();
-//          try {
-//                    // p.getPaperID();
-//                    if(amodel.getSubmission(sub.getSubID()-1)!=null){
-//                    amodel.removePaper(sub.getSubID()-1);
-//                    amodel.addSubmission(sub);
-//                    
-//                    }
-//                    else {
-//                    amodel.addSubmission(sub);
-//                    }
-//                     
-//                    amodel.saveSubmissions(null);
-//                    } catch (FileNotFoundException ex) {
-//                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-//                                                        }
+         sub=PaperView.getSubmission();
+         
+
+         ArrayList<Submission> allsubs;
+         try{
+             amodel.loadSubmissions();
+         allsubs=amodel.getSubmissions();
+         for(int i=0;i<allsubs.size();i++){
+         if(allsubs.get(i).getPaperID()==sub.getPaperID()&&allsubs.get(i).getStudentID()==sub.getStudentID()){
+         amodel.removeSubmission(i);
+         amodel.addSubmission(sub, i);
+         }
+        
+        
+         }
+         amodel.saveSubmissions(null);}
+         catch (FileNotFoundException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                                        }
+  
 }
 
 }

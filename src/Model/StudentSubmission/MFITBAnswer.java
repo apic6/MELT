@@ -33,6 +33,8 @@ public class MFITBAnswer extends Answer {
     public String getAnswer(int i) {
         return answers.get(i);
     }
+    @Override
+    public String getAnswerString(){return answer;}
 
     public int getSectionID() {
         return sectionID;
