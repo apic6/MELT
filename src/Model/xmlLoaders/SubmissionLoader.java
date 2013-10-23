@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Model.xmlLoaders;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -26,11 +26,11 @@ public class SubmissionLoader {
     DocumentBuilder dBuilder;
     Document doc;
 
-    SubmissionLoader() {
+    public SubmissionLoader() {
         this("submissions/Submissions.xml");
     }
 
-    SubmissionLoader(String filename) {
+    public SubmissionLoader(String filename) {
         try {
             submissions = new ArrayList<>();
             xmlFile = new File(filename);
@@ -45,7 +45,7 @@ public class SubmissionLoader {
     }
 
     // returns an integer showing the number of papers read
-    int loadSubmissions() {
+    public int loadSubmissions() {
         NodeList submissionList = doc.getElementsByTagName("StudentSubmission");
 
         for (int i = 0; i < submissionList.getLength(); i++) {
@@ -122,11 +122,11 @@ public class SubmissionLoader {
         return submissions.size();
     }
 
-    ArrayList<Submission> getSubmissions() {
+    public ArrayList<Submission> getSubmissions() {
         return submissions;
     }
 
-    Submission getSubmission(int i) {
+    public Submission getSubmission(int i) {
         return submissions.get(i);
     }
 }

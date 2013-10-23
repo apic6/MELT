@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package Model.xmlLoaders;
 
 import Model.questionPaper.Section;
 import Model.questionPaper.FITBQuestion;
@@ -52,7 +52,7 @@ public class QuestionPaperLoader {
     }
 
     // returns an integer showing the number of papers read
-    int readPapers() {
+    public int readPapers() {
         NodeList PaperList = doc.getElementsByTagName("QuestionPaper");
 
         for (int i = 0; i < PaperList.getLength(); i++) {
@@ -166,11 +166,11 @@ public class QuestionPaperLoader {
         return QuestionPapers.size();
     }
 
-    ArrayList<QuestionPaper> getQuestionPapers() {
+    public ArrayList<QuestionPaper> getQuestionPapers() {
         return QuestionPapers;
     }
 
-    QuestionPaper getQuestionPaper(int i) {
+    public QuestionPaper getQuestionPaper(int i) {
         return QuestionPapers.get(i);
     }
 }

@@ -5,6 +5,8 @@
 package Model;
 //Should be able to handle data request and manipulate persistent data
 
+import Model.xmlLoaders.SubmissionLoader;
+import Model.xmlLoaders.QuestionPaperLoader;
 import Model.questionPaper.QuestionPaper;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
