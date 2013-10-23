@@ -4,33 +4,23 @@
  */
 package Viewer;
 
-import Model.questionPaper.FITBQuestion;
-import Model.questionPaper.Question;
-import Model.questionPaper.MultipleChoiceQuestion;
-import Model.questionPaper.MBQuestion;
-import Model.questionPaper.EssayQuestion;
-import java.awt.event.KeyEvent;
+import Model.questionPaper.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import Model.*;
-import java.awt.Color;
-import static java.awt.Component.LEFT_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
+
 
 /**
  *
@@ -144,7 +134,14 @@ public class QuestionView extends JPanel {
             text += questionParts.get(questionParts.size() - 1);
             text += "</html>";
 
-            this.question = new JLabel(text, 0);
+            this.question = new JLabel(text, 0) {
+                @Override
+                public Dimension getPreferredSize() {
+                        Dimension d = super.getPreferredSize();
+                        d.width = 1000;
+                        return d;                    
+                }
+            };
             leftPanel.add(this.question, con);
             con.gridy++;
 
@@ -162,10 +159,12 @@ public class QuestionView extends JPanel {
                         return d;
                     }
                 };
+                
                 answerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 JLabel label = new JLabel("Word " + (i + 1) + ": ");
-                JTextArea area = new JTextArea("Type answer here", 1, 50);
+                JTextArea area = new JTextArea("Type answer here",1, 25);
                 answerPanel.add(label);
+               
                 answerPanel.add(area);
                 leftPanel.add(answerPanel, con);
                 con.gridy++;
