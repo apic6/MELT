@@ -2,13 +2,13 @@ package Model;
 
 import java.util.ArrayList;
 
-public class MultipleBlankQuestion implements Question {
+public class MBQuestion implements Question {
 
     private String instructions;
     private ArrayList<String> questionParts;
     private int mark;
 
-    MultipleBlankQuestion(ArrayList<String> question, String instructions, int mark) {
+    MBQuestion(ArrayList<String> question, String instructions, int mark) {
         questionParts = new ArrayList();
         for (int i = 0 ; i< question.size(); i++) {
             questionParts.add(question.get(i));
