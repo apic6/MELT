@@ -122,17 +122,18 @@ public class Marker extends JPanel {
         
         con.gridx=1;
         con.weightx=2.5;
-//        JPanel rightPanel=new JPanel();
+        
         JScrollPane rightScroll=new JScrollPane(rightPanel);
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
-        rightPanel.add(test);
-//        for(int i=0;i<submission.getSize();++i){
-//          //  SubmissionSection subsec;
-//        
-//        }
-        
-        displaySubmission(submission);
+        GridBagConstraints c2 = new GridBagConstraints();
+        c2.gridx=0;
+        c2.gridy=0;
+        c2.anchor = GridBagConstraints.FIRST_LINE_START ;      
+        c2.weightx = 1 ;
+        c2.weighty = 1 ;
+        c1.fill = GridBagConstraints.BOTH ;
+        displaySubmission(submission,c2);
         /////////MarkView
     
         this.add(rightScroll,con);
@@ -144,22 +145,76 @@ public class Marker extends JPanel {
    mainFrame.addMouseListener(mouse);
   }  
 
-  void displaySubmission(Submission sub){
+  void displaySubmission(Submission sub,GridBagConstraints c2){
+              int counter=0;
+              //int mark=0;
       paper=model.getPaper(sub.getPaperID());
    for (int k=0;k<sub.getSize();++k){
        SubmissionSection sec=sub.getSection(k);
-       Section paperSec=paper.getSection(k);
+      Section paperSec=paper.getSection(k);
+      JLabel sectitle=new JLabel(paperSec.getTitle());
+      c2.gridy=counter;
+      rightPanel.add(sectitle,c2);
+      counter++;
        for(int l=0;l<sec.getSize();++l){
            SubmissionSubSection subsec=sec.getSubSection(l);
            SubSection paperSubsec=paperSec.getSubSection(l);
-           for(int m=0;m<subsec.getSize();m++){
-       
-           Answer ans=subsec.getAnswer(m);
-           Question ques=paperSubsec.getQuestion(m);
-           JLabel questionLabel=new JLabel(ques.getQuestion());
-           //JLabel answerLabel=new JLabel(ans.);
-           rightPanel.add(questionLabel);
-           //rightPanel.add(answerLabel);
+          JLabel subsecTitle=new JLabel(paperSubsec.getTitle());
+          c2.gridx=counter;
+          rightPanel.add(subsecTitle, c2);
+          counter++;
+          ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
+           for(int m=0;m<unMarked.size();m++){
+               Answer ans=subsec.getAnswer(m);
+               Question ques=paperSubsec.getQuestion(m);
+                   
+               c2.gridy=counter;
+               c2.gridx=0;
+               c2.weightx=0.5;
+               JLabel questionLabel=new JLabel("Question"+m);
+               rightPanel.add(questionLabel, c2);
+               c2.gridx=1;
+               c2.weightx=3;
+               JLabel question=new JLabel(ques.getQuestion());
+               rightPanel.add(question);
+               c2.gridx=2;
+               c2.weightx=0.2;
+               c2.ipadx=10;
+               JButton plusMark=new JButton("+");
+               rightPanel.add(plusMark,c2);
+               c2.gridx=3;
+               c2.weightx=0.2;
+               c2.ipadx=10;
+               JButton minusMark=new JButton("-");
+               rightPanel.add(minusMark,c2);
+               c2.ipadx=0;
+               counter++;
+               c2.gridy=counter;
+               c2.gridx=0;
+               c2.weightx=0.5;
+               JLabel answerLabel=new JLabel("Answer"+m);
+               rightPanel.add(answerLabel, c2);
+               c2.gridx=1;
+               c2.weightx=3;
+               JLabel Answer=new JLabel(ques.getQuestion());
+               rightPanel.add(question);
+               c2.gridx=2;
+               c2.weightx=0.2;
+               c2.ipadx=10;
+               JLabel mark=new JLabel();
+               rightPanel.add(mark,c2);
+               c2.gridx=3;
+               c2.weightx=0.2;
+               c2.ipadx=10;
+               JButton rand=new JButton("rand");
+               rightPanel.add(rand,c2);
+               c2.ipadx=0;
+               //JLabel answerLabel=new JLabel(ans.toString());
+               
+              rightPanel.add(questionLabel);
+                
+                rightPanel.add(answerLabel,c2);
+                counter++;
            }
        }
         
