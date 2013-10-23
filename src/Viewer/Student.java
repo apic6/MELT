@@ -26,6 +26,7 @@ public class Student extends JPanel {
     public int intID;
     public JFrame mainFrame;
     public Modeller amodel;
+    private static JButton startTrigger;
 
     public Student(JFrame frame, Modeller model, String studentID) {
         amodel = model;
@@ -116,7 +117,7 @@ public class Student extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView,null, Integer.parseInt(ID)));
                     mainFrame.setVisible(true);
-                   // mainFrame.pack();
+                    startTrigger.doClick();
                 }
             });
 
@@ -140,5 +141,11 @@ public class Student extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(1100,800);
+    }
+    public JFrame getFrame(){
+    return mainFrame;}
+    
+    public void addListener (ActionListener mal){
+    startTrigger.addActionListener(mal);
     }
 }

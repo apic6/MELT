@@ -90,6 +90,7 @@ public class Marker extends JPanel {
                 int f=submissionList.getSelectedIndex();
                 submission=submissions.get(f);
                 test.setText("jhskjhsa   "+f);
+                       
                   }         
                  }
         });
@@ -135,6 +136,14 @@ public class Marker extends JPanel {
   public static void addListeners(MouseListener mouse){
    mainFrame.addMouseListener(mouse);
   }  
+
+  void displaySUbmission(StudentSubmission sub){
+   for (int k=0;k<sub.getSize();++k){
+       
+        
+   
+   }
   
+  }
     
 }

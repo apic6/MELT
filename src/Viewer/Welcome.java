@@ -19,7 +19,7 @@ public class Welcome extends JPanel{
         
     }
 
-    private javax.swing.JButton studentButton;
+    private static javax.swing.JButton studentButton;
     private static  javax.swing.JButton teacherButton=new JButton();
     private javax.swing.JLabel welcomeLogo;
     private java.awt.Label welcomeLabel;
@@ -43,12 +43,12 @@ public class Welcome extends JPanel{
 
         studentButton.setText("I am a Student");
         studentButton.setToolTipText("");
-        studentButton.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                  ((Viewer)mainFrame).guiChanger(new LoginScreen(mainFrame,model));
-            }
-        });
+//        studentButton.addActionListener(new java.awt.event.ActionListener() {
+//            @Override
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                  ((Viewer)mainFrame).guiChanger(new LoginScreen(mainFrame,model));
+//            }
+//        });
         
         teacherButton.setText("I am a Teacher");
 //        teacherButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +100,7 @@ public class Welcome extends JPanel{
 
    public static void addListener(ActionListener mal){
    teacherButton.addActionListener(mal);
+   studentButton.addActionListener(mal);
    }
    public static JFrame getFrame(){
    return mainFrame;}
