@@ -24,7 +24,6 @@ public class Modeller {
 
     ArrayList<QuestionPaper> questionPapers;
     ArrayList<Submission> submissions;
-    ArrayList<MarkingScheme> markingSchemes;
     QuestionPaper viewingPaper;
 
     public Modeller() {     //constructor
@@ -73,7 +72,7 @@ public class Modeller {
             Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void saveSubmissions(String filename) throws FileNotFoundException {
         String xmlString = "<Submissions>";
         if (filename == null) {
@@ -95,32 +94,11 @@ public class Modeller {
         }
     }
 
-    /* public void saveMarkingSchemes(String filename) throws FileNotFoundException {
-        String xmlString = "<MarkingSchemes>";
-        if (filename == null) {
-            filename = "markingSchemes/MarkingSchemes.xml";
-        }
-        for (int i = 0; i < markingSchemes.size(); i++) {
-            xmlString += markingSchemes.get(i).toXML();
-        }
-        xmlString += "</MarkingSchemes>";
+    public ArrayList<QuestionPaper> getPapers() {
+        loadPapers();
+        return questionPapers;
+    }
 
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter(filename, "UTF-8");
-            writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            writer.println(xmlString);
-            writer.close();
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Modeller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } */
-    
-    public ArrayList<QuestionPaper> getPapers(){
-    loadPapers();
-    return questionPapers;}
-    
-    
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
         for (int i = 0; i < questionPapers.size(); i++) {
@@ -138,18 +116,23 @@ public class Modeller {
 
     // retrieve a paper
     public QuestionPaper getPaper(int index) {
-        if(index>=questionPapers.size()){return null;}/////////////////////////
-        else{return questionPapers.get(index);}
+        if (index >= questionPapers.size()) {
+            return null;
+        }/////////////////////////
+        else {
+            return questionPapers.get(index);
+        }
     }
 
     // add a paper to the model
     public void addPaper(QuestionPaper paper) {
         questionPapers.add(paper);
-        
-       
+
+
     }
-    public void addPaper(int index,QuestionPaper paper){
-      questionPapers.add(index,paper);
+
+    public void addPaper(int index, QuestionPaper paper) {
+        questionPapers.add(index, paper);
     }
 
     // remove a paper from the model
@@ -174,8 +157,8 @@ public class Modeller {
     public void MovePaperDown(int index) {
         movePaperUp(index + 1);
     }
-    
-        // get number of papers
+
+    // get number of papers
     int getNumberOfSubmission() {
         return submissions.size();
     }
@@ -202,17 +185,10 @@ public class Modeller {
 
         submissions = loader.getSubmissions();
     }
-    
-    public ArrayList<Submission> getSubmissions(){
-    
-    loadSubmissions();
-    return submissions;}
 
-    public void loadMarkingSchemes() {
-        MarkingSchemeLoader loader = new MarkingSchemeLoader();
+    public ArrayList<Submission> getSubmissions() {
 
-        loader.loadMarkingSchemes();
-
-        markingSchemes = loader.getMarkingSchemes();
+        loadSubmissions();
+        return submissions;
     }
 }
