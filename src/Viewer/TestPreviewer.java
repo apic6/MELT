@@ -5,10 +5,10 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.Question;
-import Model.QuestionPaper;
-import Model.Section;
-import Model.SubSection;
+import Model.questionPaper.Question;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.Section;
+import Model.questionPaper.SubSection;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;

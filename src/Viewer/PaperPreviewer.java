@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+import Model.questionPaper.QuestionPaper;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;

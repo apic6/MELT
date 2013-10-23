@@ -4,6 +4,11 @@
  */
 package Viewer;
 
+import Model.questionPaper.FITBQuestion;
+import Model.questionPaper.Question;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.MBQuestion;
+import Model.questionPaper.EssayQuestion;
 import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

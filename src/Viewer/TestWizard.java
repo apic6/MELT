@@ -5,9 +5,9 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.QuestionPaper;
-import Model.MultipleChoiceQuestion;
-import Model.SubSection;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.SubSection;
 import static Viewer.TestWizard.paper;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Model.questionPaper.QuestionPaper;
+import Model.StudentSubmission.Submission;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -205,7 +207,7 @@ public class ModellerTest {
         System.out.println("getSubmission");
         int index = 0;
 
-        StudentSubmission result = instance.getSubmission(index);
+        Submission result = instance.getSubmission(index);
         assertNotNull("Submission incorrectly null", result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
@@ -219,7 +221,7 @@ public class ModellerTest {
         System.out.println("addSubmission");
 
         int before = instance.getNumberOfSubmission();
-        StudentSubmission submission = null;
+        Submission submission = null;
         instance.addSubmission(submission);
         int after = instance.getNumberOfSubmission();
 

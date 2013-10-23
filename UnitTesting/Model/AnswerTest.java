@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Model.StudentSubmission.Answer;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

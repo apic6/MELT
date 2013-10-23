@@ -5,11 +5,11 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.Question;
-import Model.QuestionPaper;
-import Model.MultipleChoiceQuestion;
-import Model.Section;
-import Model.SubSection;
+import Model.questionPaper.Question;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.Section;
+import Model.questionPaper.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;

@@ -5,8 +5,8 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.QuestionPaper;
-import Model.StudentSubmission;
+import Model.questionPaper.QuestionPaper;
+import Model.StudentSubmission.*;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseListener;
@@ -27,13 +27,16 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author mbaxkak4
  */
+
+import Model.StudentSubmission.*;
+
 public class Marker extends JPanel {
     
     JLabel test=new JLabel();
     private static JFrame mainFrame;
     private Modeller model;
     private QuestionPaper paper;
-    private StudentSubmission submission;
+    private Submission submission;
     private JList submissionList;
     private DefaultListModel listModel;
     private ListSelectionModel listSelectionModel;
@@ -69,7 +72,7 @@ public class Marker extends JPanel {
         
         leftPanel.setLayout(new GridBagLayout());
         leftPanel.setBorder(new TitledBorder("Student Submissions for "+paper.getTitle()));
-        final ArrayList<StudentSubmission> submissions=model.getSubmissions();
+        final ArrayList<Submission> submissions=model.getSubmissions();
         GridBagConstraints c1= new GridBagConstraints();
         
         c1.gridx=0;

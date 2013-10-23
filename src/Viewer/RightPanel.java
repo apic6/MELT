@@ -4,12 +4,12 @@
  */
 package Viewer;
 
-import Model.FITBQuestion;
-import Model.MultipleChoiceQuestion;
-import Model.Question;
-import Model.QuestionPaper;
-import Model.Section;
-import Model.SubSection;
+import Model.questionPaper.FITBQuestion;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.Question;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.Section;
+import Model.questionPaper.SubSection;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

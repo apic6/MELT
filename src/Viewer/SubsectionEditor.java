@@ -4,10 +4,10 @@
 */
 package Viewer;
 
-import Model.MultipleChoiceQuestion;
-import Model.Question;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.Question;
 import javax.swing.JPanel;
-import Model.SubSection;
+import Model.questionPaper.SubSection;
 import java.awt.Color;
 //import static Viewer.QuestionCreator.title;
 import java.awt.GridBagConstraints;

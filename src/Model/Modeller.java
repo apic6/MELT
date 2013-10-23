@@ -5,12 +5,14 @@
 package Model;
 //Should be able to handle data request and manipulate persistent data
 
+import Model.questionPaper.QuestionPaper;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Model.StudentSubmission.*;
 
 /**
  *
@@ -19,7 +21,7 @@ import java.util.logging.Logger;
 public class Modeller {
 
     ArrayList<QuestionPaper> questionPapers;
-    ArrayList<StudentSubmission> submissions;
+    ArrayList<Submission> submissions;
     ArrayList<MarkingScheme> markingSchemes;
     QuestionPaper viewingPaper;
 
@@ -177,12 +179,12 @@ public class Modeller {
     }
 
     // retrieve a paper
-    StudentSubmission getSubmission(int index) {
+    Submission getSubmission(int index) {
         return submissions.get(index);
     }
 
     // add a paper to the model
-    public void addSubmission(StudentSubmission submission) {
+    public void addSubmission(Submission submission) {
         submissions.add(submission);
     }
 
@@ -199,7 +201,7 @@ public class Modeller {
         submissions = loader.getSubmissions();
     }
     
-    public ArrayList<StudentSubmission> getSubmissions(){
+    public ArrayList<Submission> getSubmissions(){
     
     loadSubmissions();
     return submissions;}

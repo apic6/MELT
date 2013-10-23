@@ -5,7 +5,7 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.QuestionPaper;
+import Model.questionPaper.QuestionPaper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
