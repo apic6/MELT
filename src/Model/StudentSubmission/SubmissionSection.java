@@ -15,15 +15,21 @@ import java.util.Comparator;
 public class SubmissionSection {
 
     int sectionID;
+    boolean fullyMarked;
     ArrayList<SubmissionSubSection> subSectionList;
 
     public SubmissionSection(int id) {
         this.sectionID = id;
+        fullyMarked = false;
         subSectionList = new ArrayList<>();
     }
 
     public int getID() {
         return sectionID;
+    }
+
+    public boolean isFullyMarked() {
+        return fullyMarked;
     }
 
     public void addSubSection(SubmissionSubSection subSection) {
@@ -46,7 +52,19 @@ public class SubmissionSection {
         });
         for (int i = 0; i < subSectionList.size(); i++) {
             subSectionList.get(i).normalise();
+            this.fullyMarked = true;
+            if (!subSectionList.get(i).isFullyMarked()) {
+                this.fullyMarked = false;
+            }
         }
+    }
+
+    public ArrayList<Answer> getUnmarkedQuestions() {
+        ArrayList<Answer> answers = new ArrayList<>();
+        for (int i = 0; i < subSectionList.size(); i++) {
+            answers.addAll(subSectionList.get(i).getUnmarkedQuestions());
+        }
+        return answers;
     }
 
     public String toXML() {

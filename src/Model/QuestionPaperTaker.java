@@ -67,12 +67,12 @@ public class QuestionPaperTaker {
     }
 
     public void answerQuestion(int sectionID, int subSectionID, int questionID, ArrayList<String> answers) {
-        MFITBAnswer mbAnswer = new MFITBAnswer(questionID, answers);
+        MFITBAnswer mbAnswer = new MFITBAnswer(sectionID, subSectionID, questionID, answers);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(mbAnswer);
     }
     
     public void answerQuestionEssay(int sectionID, int subSectionID, int questionID, String answer) {
-        EssayAnswer essayAnswer = new EssayAnswer(questionID, answer);
+        EssayAnswer essayAnswer = new EssayAnswer(sectionID, subSectionID, questionID, answer);
         submission.getSection(sectionID).getSubSection(subSectionID).addAnswer(essayAnswer);
     }
 

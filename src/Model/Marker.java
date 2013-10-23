@@ -4,11 +4,7 @@
  */
 package Model;
 
-import Model.questionPaper.Section;
-import Model.questionPaper.FITBQuestion;
-import Model.questionPaper.QuestionPaper;
-import Model.questionPaper.SubSection;
-import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.*;
 import Model.StudentSubmission.*;
 
 /**
@@ -23,6 +19,11 @@ public class Marker {
     public Marker() {
         mark = 0;
         totalMark = 0;
+    }
+    
+    public Marker(Submission subm) {
+        mark = subm.getMark();
+        totalMark = subm.getTotalMark();
     }
 
     public boolean markTest(Submission submission, QuestionPaper paper) {
