@@ -29,9 +29,11 @@ public class TeacherView extends JPanel {
    // private static JButton markButton;
    // private static JButton editButton;
     private int j;
-    private QuestionPaper paper;
+    private static QuestionPaper paper;
     private static JFrame mainFrame;
     private Modeller amodel;
+    private static JButton markTrigger=new JButton("markTrigger");
+    private static JButton editTrigger=new JButton("editTrigger");
     
     public TeacherView(JFrame frame,Modeller model){
         
@@ -44,6 +46,7 @@ public class TeacherView extends JPanel {
     
        private static JButton createTest;
        private java.awt.Label previousLabel;
+      // private static JButton markButton;
    
     private void initComponents()  {
         
@@ -134,21 +137,23 @@ public class TeacherView extends JPanel {
         
        
         
-        ArrayList<QuestionPaper> papers = amodel.getPapers();
-      
+        final ArrayList<QuestionPaper> papers = amodel.getPapers();
+        
         for(int i=0;i<papers.size();++i){
-            paper=papers.get(i);
-            j=i;
+            
+            
+            //paper=papers.get(i);
+            final int j=i;
             c2.gridy=c2.gridy+i;
             c2.gridx = 0;
-            BottomPanel.add(new PaperPreviewer(papers.get(i)),c2);
+            BottomPanel.add(new PaperPreviewer(papers.get(j)),c2);
             
             c2.gridx=1;
             JButton previewButton=new JButton("Preview Test");
             previewButton.addActionListener(new ActionListener(){
               @Override
            public void actionPerformed(ActionEvent evt){
-           mainFrame.setContentPane(new PaperView(paper, mainFrame, null,tView, -1));
+           mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, null,tView, -1));
            mainFrame.setVisible(true);
         
         }
@@ -162,44 +167,49 @@ public class TeacherView extends JPanel {
               
             @Override
             public void actionPerformed(ActionEvent evt){
-            mainFrame.setContentPane(new TestWizard(mainFrame,amodel,paper));
-            mainFrame.setVisible(true);
-                //TestWizard editTest=new TestWizard(mainFrame,amodel,paper); 
+//            mainFrame.setContentPane(new TestWizard(mainFrame,amodel,papers.get(j)));
+//            mainFrame.setVisible(true);
+            paper=papers.get(j);
+            editTrigger.doClick();
+                
             
         }});
             BottomPanel.add(editButton,c2);
             
             c2.gridx=3;
+            
+            JButton soome=new JButton();
+            
+            
             JButton markButton=new JButton ("Mark Test");
+           
             markButton.addActionListener(new ActionListener(){
-
+            
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                mainFrame.setContentPane(new Marker(amodel,mainFrame,paper));
+                mainFrame.setContentPane(new Marker(amodel,mainFrame,papers.get(j)));
                 mainFrame.setVisible(true);  
+                markTrigger.doClick();
                   }
              
             });
             BottomPanel.add(markButton,c2);
-            
-           
-        }
-        
-      
-                 this.add(Scroll,c);
-    
-      }
+            }
+        this.add(Scroll,c);
+    }
 
    
   public static void addListener(ActionListener mal){
   createTest.addActionListener(mal);
-  //editButton.addActionListener(mal);
-  //markButton.addActionListener(mal); 
+  markTrigger.addActionListener(mal);
+  editTrigger.addActionListener(mal); 
   
    }
    public static JFrame getFrame(){
    return mainFrame;}
   
-
+   public static QuestionPaper getPaper(){
+   
+   return paper;}
 
 }

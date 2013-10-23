@@ -35,7 +35,8 @@ public class SectionEditor extends JPanel{
     private JLabel instruction_label = new JLabel("instruction:");
     private  JTextArea instruction = new JTextArea(3,30);
     private JLabel time_label = new JLabel("time limit:");
-    private JTextArea timeLimit = new JTextArea(1,10);
+   // private JTextArea timeLimit = new JTextArea(1,10);
+    private JLabel timeLimit=new JLabel();
     private Section section;
     private TestWizard wizard; 
     private JPanel tabPanel;
@@ -152,24 +153,24 @@ public class SectionEditor extends JPanel{
         gbc.weightx = 0.7;
         add(timeLimit,gbc);
         
-        timeLimit.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                if("".equals(timeLimit.getText()))
-                    section.setTimeLimit(0);
-                else
-                    section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
-            }
-    });
+//        timeLimit.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                if("".equals(timeLimit.getText()))
+//                    section.setTimeLimit(0);
+//                else
+//                    section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+//            }
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+//            }
+//    });
         
       gbc.gridx ++;
       JButton moreTime = new JButton("+");
@@ -178,6 +179,7 @@ public class SectionEditor extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 timeLimit.setText(String.valueOf(Integer.parseInt(timeLimit.getText())+1));
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
             }
         });
       JButton lessTime = new JButton("-");
@@ -187,6 +189,7 @@ public class SectionEditor extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 if(Integer.parseInt(timeLimit.getText())>0)
                 timeLimit.setText(String.valueOf(Integer.parseInt(timeLimit.getText())-1));
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
             }
         });
       add(moreTime,gbc);

@@ -11,6 +11,7 @@ package Controller;
 import Model.Modeller;
 import Model.QuestionPaper;
 import Viewer.LoginScreen;
+import Viewer.Marker;
 import Viewer.SectionEditor;
 import Viewer.SubsectionEditor;
 import Viewer.TeacherView;
@@ -60,26 +61,53 @@ public class Controller {
                   String pass= LoginScreen.getPass();
                 }
                     break;
+                    
                 case "Create a New Test":{
                   JFrame frame;
                   frame=TeacherView.getFrame();
                   frame.setContentPane(new TestWizard(frame,amodel));
                   frame.setVisible(true);
-                  //TestWizard.addListener(new Mouse());
+                  TestWizard.addListener(new Mouse());
                   Timer timer=new Timer(true);
                   timer.scheduleAtFixedRate(new TimerTask(){
                   @Override
                      public void run() {
-                     save();
+                     saveNewTest();
                      }},0,2000);}
                      break;
+                    
                 case "I am a Teacher":{
                   JFrame frame;
                   frame=Welcome.getFrame();
                   frame.setContentPane(new TeacherView(frame,amodel));
                   frame.setVisible(true);
                   TeacherView.addListener(new ViewerEventListener()); 
-                }
+                }break;
+                    
+                case "markTrigger":{
+                Marker.addListeners(new Mouse());
+                Timer timer=new Timer(true);
+                timer.scheduleAtFixedRate(new TimerTask(){
+                @Override
+                public void run() {
+                     saveMarks();
+                     }},0,2000);}break;
+                    
+                    case "editTrigger":{
+                        
+                 JFrame frame;
+                 QuestionPaper paper;
+                 frame=TeacherView.getFrame();
+                 frame.setContentPane(new TestWizard(frame,amodel,TeacherView.getPaper()));
+                 frame.setVisible(true);
+                 TestWizard.addListener(new Mouse());
+                 Timer timer=new Timer(true);
+                 timer.scheduleAtFixedRate(new TimerTask(){
+                 @Override
+                 public void run() {
+                   // System.err.println("jskahkjdashjkdhsakfhskdfjsakfhjks");
+                     saveOldTest();
+                     }},0,2000);}break;
                 
             }
                
@@ -117,7 +145,7 @@ class ViewerFocusListener implements FocusListener {
 
         @Override
         public void focusLost(FocusEvent e) {
-               save();
+             //  saveTest();
         }
 
 }
@@ -126,8 +154,9 @@ public class Mouse implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-         save();           
-            
+          //  System.err.println(e.getSource());
+          // saveTest();  //         
+            System.err.println("it worksjsjsjsjsjhkhfksadf");
         }
 
         @Override
@@ -151,7 +180,7 @@ public class Mouse implements MouseListener{
 
 }
 
-private void save(){
+private void saveNewTest(){
  QuestionPaper  p;
                      p=TestWizard.getQuestionPaper();
                //  System.out.println(p.getPaperID());
@@ -172,6 +201,30 @@ private void save(){
                     } catch (FileNotFoundException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                                                         }
+}
+private void saveOldTest(){
+ QuestionPaper  p;
+                     p=TestWizard.getQuestionPaper();
+               //  System.out.println(p.getPaperID());
+                     amodel.loadPapers();
+                 
+                try {
+                    // p.getPaperID();
+                   
+                    amodel.removePaper(p.getPaperID()-1);
+                    amodel.addPaper(p.getPaperID()-1,p);             //it always adds at the end of the list...
+                    
+                 
+                    amodel.savePapers(null);
+                    } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                                                        }
+}
+
+private void saveMarks(){
+
+
+
 }
 
 }

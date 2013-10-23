@@ -9,14 +9,19 @@ import Model.QuestionPaper;
 import Model.StudentSubmission;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -24,13 +29,14 @@ import javax.swing.border.TitledBorder;
  */
 public class Marker extends JPanel {
     
+    JLabel test=new JLabel();
     private static JFrame mainFrame;
     private Modeller model;
     private QuestionPaper paper;
     private StudentSubmission submission;
     private JList submissionList;
     private DefaultListModel listModel;
-    
+    private ListSelectionModel listSelectionModel;
     public Marker(Modeller model,JFrame frame,QuestionPaper paper) {
     this.mainFrame=frame;
     this.model=model;
@@ -42,7 +48,11 @@ public class Marker extends JPanel {
     
     void initComponents(){
     
+        
        
+        
+        
+        System.err.println(paper.getPaperID());
         setLayout(new GridBagLayout());
         GridBagConstraints con= new GridBagConstraints();
          
@@ -54,9 +64,12 @@ public class Marker extends JPanel {
         
         JPanel leftPanel=new JPanel();
         JScrollPane leftScroll=new JScrollPane(leftPanel);////////////////may be reversed
+        
+        
+        
         leftPanel.setLayout(new GridBagLayout());
         leftPanel.setBorder(new TitledBorder("Student Submissions for "+paper.getTitle()));
-        ArrayList<StudentSubmission> submissions=model.getSubmissions();
+        final ArrayList<StudentSubmission> submissions=model.getSubmissions();
         GridBagConstraints c1= new GridBagConstraints();
         
         c1.gridx=0;
@@ -68,15 +81,30 @@ public class Marker extends JPanel {
         
         listModel = new DefaultListModel();
         submissionList=new JList(listModel);
+        listSelectionModel=submissionList.getSelectionModel();
+        //listSelectionModel.setValueIsAdjusting(false);
+        listSelectionModel.addListSelectionListener(new ListSelectionListener(){
+             @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()){
+                int f=submissionList.getSelectedIndex();
+                submission=submissions.get(f);
+                test.setText("jhskjhsa   "+f);
+                  }         
+                 }
+        });
         
         
         for(int i=0;i<submissions.size();++i){
         submission=submissions.get(i);
         String subID=submission.getStudentID()+"";
         listModel.addElement(subID);
+        
+        
         }
         submissionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         submissionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        
         
         JScrollPane listScroller = new JScrollPane(submissionList);
         leftPanel.add(listScroller,c1);
@@ -90,6 +118,12 @@ public class Marker extends JPanel {
         JScrollPane rightScroll=new JScrollPane(rightPanel);
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
+        rightPanel.add(test);
+        for(int i=0;i<submission.getSize();++i){
+          //  SubmissionSection subsec;
+        
+        }
+        
         
         /////////MarkView
     
@@ -98,8 +132,8 @@ public class Marker extends JPanel {
     
     
     
-  public static void addListeners(){
-  
+  public static void addListeners(MouseListener mouse){
+   mainFrame.addMouseListener(mouse);
   }  
   
     

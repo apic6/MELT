@@ -132,7 +132,11 @@ public class QuestionPaperLoader {
                                 questionParts.add(QElement.getElementsByTagName("QuestionText").item(m).getTextContent());
                             }
                             int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());
-                            question = new MultipleBlankQuestion(questionParts,
+                            question = new MBQuestion(questionParts,
+                                    QElement.getElementsByTagName("Instructions").item(0).getTextContent(), mark);
+                        } else if (QElement.getAttribute("type").toString().equals("EssayQuestion")) {
+                            int mark = Integer.parseInt(QElement.getElementsByTagName("Mark").item(0).getTextContent());
+                            question = new EssayQuestion(QElement.getElementsByTagName("QuestionText").item(0).getTextContent(),
                                     QElement.getElementsByTagName("Instructions").item(0).getTextContent(), mark);
                         } else {
                             System.out.println("ERROR");
