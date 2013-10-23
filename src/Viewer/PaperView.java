@@ -146,4 +146,8 @@ public class PaperView extends JPanel {
 
     public void addListener(ActionListener mal) {
     }
+    
+    
+//    public Submission getSubmission(){
+//    return subm;}
 }

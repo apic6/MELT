@@ -9,6 +9,7 @@ package Controller;
  * @author mbaxkak4
  */
 import Model.Modeller;
+import Model.StudentSubmission.Submission;
 import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.Marker;
@@ -65,6 +66,7 @@ public class Controller {
                   JFrame frame;
                   frame=LoginScreen.getFrame();
                   frame.setContentPane(new Student(frame,amodel,username));
+                  Student.addListener(new ViewerEventListener());
                   frame.setVisible(true);
                   
                   
@@ -134,7 +136,7 @@ public class Controller {
                            @Override
                            public void run() {
                            saveSubmission();
-                           }},0,2000); }break;
+                           }},0,6000); }break;
                 
             }
                
@@ -255,7 +257,24 @@ private void saveMarks(){
 }
 
 private void saveSubmission(){
-
+         Submission sub;
+         //sub=PaperView.getSubmission();
+         amodel.loadSubmissions();
+//          try {
+//                    // p.getPaperID();
+//                    if(amodel.getSubmission(sub.getSubID()-1)!=null){
+//                    amodel.removePaper(sub.getSubID()-1);
+//                    amodel.addSubmission(sub);
+//                    
+//                    }
+//                    else {
+//                    amodel.addSubmission(sub);
+//                    }
+//                     
+//                    amodel.saveSubmissions(null);
+//                    } catch (FileNotFoundException ex) {
+//                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+//                                                        }
 }
 
 }

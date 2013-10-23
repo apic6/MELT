@@ -26,7 +26,7 @@ public class Student extends JPanel {
     public int intID;
     public JFrame mainFrame;
     public Modeller amodel;
-    private static JButton startTrigger;
+    private static JButton startTrigger=new JButton("startTrigger");
 
     public Student(JFrame frame, Modeller model, String studentID) {
         amodel = model;
@@ -145,7 +145,7 @@ public class Student extends JPanel {
     public JFrame getFrame(){
     return mainFrame;}
     
-    public void addListener (ActionListener mal){
+    public static void addListener (ActionListener mal){
     startTrigger.addActionListener(mal);
     }
 }
