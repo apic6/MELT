@@ -5,7 +5,12 @@ public class EssayQuestion implements Question {
     private String instructions;
     private String question;
     private int mark;
-
+    private int wordLimit;
+    
+    public EssayQuestion(){
+        
+    }
+    
     public EssayQuestion(String question, String instructions, int mark) {
         this.question = question;
         this.instructions = instructions;
@@ -17,11 +22,27 @@ public class EssayQuestion implements Question {
         return instructions;
     }
 
+    public void setInstructions(String instructions){
+        this.instructions = instructions;
+    }
+    
     @Override
     public String getQuestion() {
         return question;
     }
 
+    public void setQuestion(String question){
+        this.question = question;
+    }
+    
+    public int getWordLimit(){
+        return this.wordLimit;
+    }
+    
+    public void setWordLimit(int wordLimit){
+        this.wordLimit = wordLimit;
+    }
+    
     public void setMark(int mark) {
         this.mark = mark;
     }
