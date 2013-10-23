@@ -4,12 +4,9 @@
  */
 package Model;
 
-import Model.questionPaper.Section;
-import Model.questionPaper.FITBQuestion;
-import Model.questionPaper.QuestionPaper;
-import Model.questionPaper.SubSection;
-import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.*;
 import Model.StudentSubmission.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,15 +16,45 @@ public class Marker {
 
     private int mark;
     private int totalMark;
+    private Submission subm;
 
     public Marker() {
+        subm = null;
         mark = 0;
         totalMark = 0;
+    }
+
+    public Marker(Submission subm) {
+        this.subm = subm;
+        mark = subm.getMark();
+        totalMark = subm.getTotalMark();
+    }
+
+    public ArrayList<Answer> getUnmarkedAnswers() {
+        if (subm == null) {
+            return null;
+        }
+        return subm.getUnmarkedQuestions();
+    }
+
+    public void markQuestion(Answer ans, int givenMark) {
+        if (ans instanceof EssayAnswer) {
+            EssayAnswer answer = (EssayAnswer) ans;
+            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMarked(true);
+            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMark(givenMark);
+            mark += givenMark;
+        } else if (ans instanceof MFITBAnswer) {
+            MFITBAnswer answer = (MFITBAnswer) ans;
+            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMarked(true);
+            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMark(givenMark);
+            mark += givenMark;
+        }
     }
 
     public boolean markTest(Submission submission, QuestionPaper paper) {
         mark = 0;
         totalMark = 0;
+        this.subm = submission;
         if (submission.getPaperID() == paper.getPaperID()) {
             // mark sections
             for (int i = 0; i < submission.getSize(); i++) {
@@ -63,6 +90,7 @@ public class Marker {
                             for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
                                 System.out.println("Checking mark for section:" + i + " subsection " + j + " question");
                                 if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
+                                    submAnswer.setMark(question.getMark());
                                     mark += question.getMark(); //question.getMark();
                                 }
                             }
@@ -71,8 +99,9 @@ public class Marker {
                         } else if (submissionSubSection.getAnswer(k) instanceof FITBAnswer) { // else it was FITB Question
                             FITBAnswer submAnswer = (FITBAnswer) submissionSubSection.getAnswer(k);
                             FITBQuestion question = (FITBQuestion) subSection.getQuestion(k);
-                            for (int l = 0; l<question.getNumberOfPossibleAnswers(); l++) {
+                            for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
                                 if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
+                                    submAnswer.setMark(question.getMark());
                                     mark += question.getMark();
                                     break;
                                 }

@@ -8,6 +8,7 @@ import Model.questionPaper.EssayQuestion;
 import Model.questionPaper.MultipleChoiceQuestion;
 import Model.questionPaper.Question;
 import javax.swing.JPanel;
+import Viewer.FIBQPanel;
 import Model.questionPaper.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
