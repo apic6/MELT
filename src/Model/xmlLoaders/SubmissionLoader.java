@@ -64,50 +64,55 @@ public class SubmissionLoader {
                 for (int k = 0; k < submissionSubSectionList.getLength(); k++) {
                     Element sssElement = (Element) submissionSubSectionList.item(k);
                     SubmissionSubSection submSubSection = new SubmissionSubSection(Integer.parseInt(sssElement.getElementsByTagName("SubSectionID").item(0).getTextContent()));
-                    
+
                     NodeList submissionAnswerList1 = sssElement.getElementsByTagName("MCQAnswer");
                     NodeList submissionAnswerList2 = sssElement.getElementsByTagName("FITBAnswer");
                     NodeList submissionAnswerList3 = sssElement.getElementsByTagName("MFITBAnswer");
                     NodeList submissionAnswerList4 = sssElement.getElementsByTagName("EssayAnswer");
-                    
+
                     // parse MCQ Answers
                     for (int l = 0; l < submissionAnswerList1.getLength(); l++) {
                         Element sMCQAnswer = (Element) submissionAnswerList1.item(l);
-                        MCQAnswer answer = new MCQAnswer(Integer.parseInt(sMCQAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
-                                                         Integer.parseInt(sMCQAnswer.getElementsByTagName("Answer").item(0).getTextContent()));
-                        
+                        MCQAnswer answer = new MCQAnswer(Integer.parseInt(sMCQAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
+                                Integer.parseInt(sMCQAnswer.getElementsByTagName("Answer").item(0).getTextContent()));
+
                         submSubSection.addAnswer(answer);
                     }
-                    
+
                     // parse FITB Answers
                     for (int l = 0; l < submissionAnswerList2.getLength(); l++) {
                         Element sFITBAnswer = (Element) submissionAnswerList2.item(l);
-                        FITBAnswer answer = new FITBAnswer(Integer.parseInt(sFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
-                                                         sFITBAnswer.getElementsByTagName("Answer").item(0).getTextContent());
-                        
-                        submSubSection.addAnswer(answer);                        
+                        FITBAnswer answer = new FITBAnswer(Integer.parseInt(sFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
+                                sFITBAnswer.getElementsByTagName("Answer").item(0).getTextContent());
+
+                        submSubSection.addAnswer(answer);
                     }
-                    
+
                     // parse MFITB Answers
                     for (int l = 0; l < submissionAnswerList3.getLength(); l++) {
                         Element sMFITBAnswer = (Element) submissionAnswerList3.item(l);
                         ArrayList<String> strings = new ArrayList<String>();
                         NodeList answers = sMFITBAnswer.getElementsByTagName("Answer");
-                        for (int m = 0; m<answers.getLength(); m++)
+                        for (int m = 0; m < answers.getLength(); m++) {
                             strings.add(answers.item(m).getTextContent());
-                        MFITBAnswer answer = new MFITBAnswer(Integer.parseInt(sMFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
-                                                         strings);
-                        
-                        submSubSection.addAnswer(answer);                        
+                        }
+                        MFITBAnswer answer = new MFITBAnswer(Integer.parseInt(sMFITBAnswer.getElementsByTagName("SectionID").item(0).getTextContent()),
+                                Integer.parseInt(sMFITBAnswer.getElementsByTagName("SubSectionID").item(0).getTextContent()),
+                                Integer.parseInt(sMFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
+                                strings);
+
+                        submSubSection.addAnswer(answer);
                     }
                     for (int l = 0; l < submissionAnswerList4.getLength(); l++) {
                         Element sEssayAnswer = (Element) submissionAnswerList4.item(l);
-                        EssayAnswer answer = new EssayAnswer(Integer.parseInt(sEssayAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()), 
-                                                         sEssayAnswer.getElementsByTagName("Answer").item(0).getTextContent());
-                        
-                        submSubSection.addAnswer(answer);                        
-                    }                    
-                    
+                        EssayAnswer answer = new EssayAnswer(Integer.parseInt(sEssayAnswer.getElementsByTagName("SectionID").item(0).getTextContent()),
+                                Integer.parseInt(sEssayAnswer.getElementsByTagName("SubSectionID").item(0).getTextContent()),
+                                Integer.parseInt(sEssayAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
+                                sEssayAnswer.getElementsByTagName("Answer").item(0).getTextContent());
+
+                        submSubSection.addAnswer(answer);
+                    }
+
                     submSection.addSubSection(submSubSection);
                 }
 

@@ -20,24 +20,5 @@
             </SubmissionSubSection>
 
         </SubmissionSection>
-
-        <SubmissionSection>
-            <SectionID>1</SectionID>
-            <SubmissionSubSection>
-                <SubSectionID>1</SubSectionID>
-                <MCQAnswer>
-                    <AnswerID>1</AnswerID>
-                    <Answer>1</Answer>
-                </MCQAnswer>
-
-                <FITBAnswer>
-                    <AnswerID>1</AnswerID>
-                    <Answer>1</Answer>
-                </FITBAnswer>
-
-            </SubmissionSubSection>
-
-        </SubmissionSection>
-
     </StudentSubmission>
 </Submissions>
