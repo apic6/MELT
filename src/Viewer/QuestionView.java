@@ -4,28 +4,26 @@
  */
 package Viewer;
 
-import java.awt.event.KeyEvent;
+import Model.questionPaper.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import Model.*;
-import java.awt.Color;
-import static java.awt.Component.LEFT_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -37,6 +35,7 @@ public class QuestionView extends JPanel {
     ButtonGroup group;
     JTextArea answerArea;
     JRadioButton[] answerOption;
+    JTextArea[] mbqAreas;
 
     public QuestionView(Question question, final QuestionPaperTaker taker, final int sectionID, final int subSectionID, final int questionID) {
         // left panel represents the question+answer
@@ -85,6 +84,24 @@ public class QuestionView extends JPanel {
                 }
             };
             answerArea.setSize(575, 50);
+            answerArea.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent arg0) {
+                    //
+                }
+
+                @Override
+                public void keyReleased(KeyEvent arg0) {
+                    System.out.println("key typed");
+                    taker.answerQuestionFITB(sectionID, subSectionID, questionID, answerArea.getText());
+                }
+
+                @Override
+                public void keyPressed(KeyEvent arg0) {
+                    // todo
+                }
+            });
+
             leftPanel.add(this.answerArea, con);
 
         } else if (question instanceof MultipleChoiceQuestion) { // MCQ
@@ -139,7 +156,14 @@ public class QuestionView extends JPanel {
             text += questionParts.get(questionParts.size() - 1);
             text += "</html>";
 
-            this.question = new JLabel(text, 0);
+            this.question = new JLabel(text, 0) {
+                @Override
+                public Dimension getPreferredSize() {
+                    Dimension d = super.getPreferredSize();
+                    d.width = 1000;
+                    return d;
+                }
+            };
             leftPanel.add(this.question, con);
             con.gridy++;
 
@@ -147,6 +171,8 @@ public class QuestionView extends JPanel {
 
             leftPanel.add(spacing, con);
             con.gridy++;
+
+            mbqAreas = new JTextArea[questionParts.size() - 1];
 
             for (int i = 0; i < questionParts.size() - 1; i++) {
                 JPanel answerPanel = new JPanel() {
@@ -157,17 +183,40 @@ public class QuestionView extends JPanel {
                         return d;
                     }
                 };
+
                 answerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
                 JLabel label = new JLabel("Word " + (i + 1) + ": ");
-                JTextArea area = new JTextArea("Type answer here", 1, 50);
+                mbqAreas[i] = new JTextArea("Type answer here", 1, 25);
                 answerPanel.add(label);
-                answerPanel.add(area);
+                mbqAreas[i].addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent arg0) {
+                        //
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent arg0) {
+                        System.out.println("key typed");
+                        ArrayList<String> answers = new ArrayList();
+                        for (int i = 0; i < mbqAreas.length; i++) {
+                            answers.add(mbqAreas[i].getText());
+                        }
+                        taker.answerQuestion(sectionID, subSectionID, questionID, answers);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent arg0) {
+                        // todo
+                    }
+                });
+
+                answerPanel.add(mbqAreas[i]);
                 leftPanel.add(answerPanel, con);
                 con.gridy++;
             }
         } else if (question instanceof EssayQuestion) {
             EssayQuestion eQuestion = (EssayQuestion) question;
-            
+
             this.question = new JLabel("<html>" + eQuestion.getQuestion() + "</html>", 0);
             leftPanel.add(this.question, con);
             con.gridy++;
@@ -175,11 +224,29 @@ public class QuestionView extends JPanel {
             JLabel spacing = new JLabel("\n");
             leftPanel.add(spacing, con);
             con.gridy++;
-            
+
             answerArea = new JTextArea("Type Answer Here");
             answerArea.setLineWrap(true);
             answerArea.setWrapStyleWord(true);
-            
+            answerArea.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent arg0) {
+                    //
+                }
+
+                @Override
+                public void keyReleased(KeyEvent arg0) {
+                    System.out.println("key typed");
+                    taker.answerQuestionEssay(sectionID, subSectionID, questionID, answerArea.getText());
+                }
+
+                @Override
+                public void keyPressed(KeyEvent arg0) {
+                    // todo
+                }
+            });
+
+
             JScrollPane scrollPane = new JScrollPane() {
                 @Override
                 public Dimension getPreferredSize() {
@@ -191,9 +258,10 @@ public class QuestionView extends JPanel {
             };
             scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             scrollPane.setViewportView(answerArea);
-            leftPanel.add(scrollPane, con);            
+            leftPanel.add(scrollPane, con);
         }
         // add leftPanel
+
         this.add(leftPanel);
         // add Button
     }

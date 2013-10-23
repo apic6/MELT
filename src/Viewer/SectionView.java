@@ -5,9 +5,9 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.QuestionPaper;
+import Model.questionPaper.QuestionPaper;
 import Model.QuestionPaperTaker;
-import Model.Section;
+import Model.questionPaper.Section;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

@@ -1,0 +1,10 @@
+Features Added recently and may not be 100%
+1. Auto saving and submission creation of all question types.
+2. UI representation.
+3. Marking of Both MCQ and FITB
+
+
+TODO:
+
+1. Populate submission document with "blank answers" if paper is submitted early, possibly add to "normalise()".
+2. facilitate the acquisition of papers that need to be marked.

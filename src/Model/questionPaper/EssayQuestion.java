@@ -1,4 +1,4 @@
-package Model;
+package Model.questionPaper;
 
 public class EssayQuestion implements Question {
 
@@ -6,7 +6,7 @@ public class EssayQuestion implements Question {
     private String question;
     private int mark;
 
-    EssayQuestion(String question, String instructions, int mark) {
+    public EssayQuestion(String question, String instructions, int mark) {
         this.question = question;
         this.instructions = instructions;
         this.mark = mark;

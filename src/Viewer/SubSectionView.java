@@ -4,6 +4,8 @@
  */
 package Viewer;
 
+import Model.questionPaper.Question;
+import Model.questionPaper.SubSection;
 import javax.swing.JPanel;
 import Model.*;
 import java.awt.Color;

@@ -5,8 +5,8 @@
 package Viewer;
 
 import Model.Modeller;
-import Model.QuestionPaper;
-import Model.Section;
+import Model.questionPaper.QuestionPaper;
+import Model.questionPaper.Section;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;

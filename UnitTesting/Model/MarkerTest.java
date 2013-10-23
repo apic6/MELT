@@ -4,6 +4,14 @@
  */
 package Model;
 
+import Model.questionPaper.Section;
+import Model.questionPaper.MultipleChoiceQuestion;
+import Model.questionPaper.SubSection;
+import Model.questionPaper.QuestionPaper;
+import Model.StudentSubmission.MCQAnswer;
+import Model.StudentSubmission.SubmissionSubSection;
+import Model.StudentSubmission.Submission;
+import Model.StudentSubmission.SubmissionSection;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,13 +24,13 @@ import static org.junit.Assert.*;
  * @author mbgm8je3
  */
 public class MarkerTest {
-    private static StudentSubmission submission;
+    private static Submission submission;
     private static QuestionPaper paper;
     private static Marker instance;
     
     public MarkerTest() {
         paper = new QuestionPaper(1);
-        submission = new StudentSubmission(1, 101);
+        submission = new Submission(1, 101);
         
         Section section = new Section(1, "Section 1", "Desc", "Inst", 10);
         SubSection  sSection = new SubSection("Sub Section 1", "Desc", "Inst");

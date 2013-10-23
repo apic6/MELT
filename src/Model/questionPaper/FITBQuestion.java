@@ -1,4 +1,4 @@
-package Model;
+package Model.questionPaper;
 
 public class FITBQuestion implements Question {
 
@@ -7,7 +7,7 @@ public class FITBQuestion implements Question {
     private String[] possibleAnswers;
     private int mark;
 
-    FITBQuestion(String[] question, String instructions, String[] possibleAnswers, int mark) {
+    public FITBQuestion(String[] question, String instructions, String[] possibleAnswers, int mark) {
         if (question.length != 2) {
             return;
         } else {

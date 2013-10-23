@@ -1,4 +1,4 @@
-package Model;
+package Model.questionPaper;
 
 public interface Question {
     int getMark();
