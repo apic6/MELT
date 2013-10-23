@@ -7,7 +7,7 @@ package Viewer;
 import Model.questionPaper.MultipleChoiceQuestion;
 import Model.questionPaper.Question;
 import javax.swing.JPanel;
-import Model.SubSection;
+import Model.questionPaper.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -443,6 +443,46 @@ public class SubsectionEditor extends JPanel{
 
             FIBQ = new JPanel();
             questionType.addTab("FIBQ",FIBQ);
+            MFIBQ = new JPanel();
+            
+            MFIBQ.setLayout(new GridBagLayout());
+            
+            questionType.addTab("MFIBQ",MFIBQ);
+            
+            Essay = new JPanel();
+            Essay.setLayout(new GridBagLayout());
+            GridBagConstraints gbc_essay = new GridBagConstraints();
+            JLabel essay_question_label = new JLabel("Question");
+            gbc_essay.gridx = 0;
+            gbc_essay.gridy = 0;
+            Essay.add(essay_question_label,gbc_essay);
+            
+            JTextArea essay_question = new JTextArea(5,30);
+            gbc_essay.gridx = 1;
+            Essay.add(essay_question,gbc_essay);
+            
+            JLabel essay_wordlimit_label = new JLabel("Word Limit");
+            gbc_essay.gridx = 0;
+            gbc_essay.gridy = 1;
+            Essay.add(essay_wordlimit_label,gbc_essay);
+            
+            JTextArea essay_wordlimit = new JTextArea(1,5);
+            gbc_essay.gridx = 1;
+            Essay.add(essay_wordlimit,gbc_essay);
+            
+            JLabel essay_marks_label = new JLabel("Marks");
+            gbc_essay.gridx = 0;
+            gbc_essay.gridy = 2;
+            Essay.add(essay_marks_label,gbc_essay);
+            
+            JTextArea essay_marks = new JTextArea(1,5);
+            gbc_essay.gridx = 1;
+            Essay.add(essay_marks,gbc_essay);
+            
+            
+            gbc_essay.gridx = 1;
+            
+            questionType.addTab("Essay",Essay);
             tempCreator.add(questionType);
             return tempCreator;
         }
