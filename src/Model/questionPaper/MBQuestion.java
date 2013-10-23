@@ -31,7 +31,7 @@ public class MBQuestion implements Question {
         return question;
     }
     
-    public ArrayList<String>getQuestionParts() {
+    public ArrayList<String> getQuestionParts() {
         return questionParts;
     }
 
