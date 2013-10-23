@@ -12,7 +12,9 @@ import Model.Modeller;
 import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.Marker;
+import Viewer.PaperView;
 import Viewer.SectionEditor;
+import Viewer.Student;
 import Viewer.SubsectionEditor;
 import Viewer.TeacherView;
 import Viewer.TestWizard;
@@ -52,13 +54,21 @@ public class Controller {
 
 
 
- class ViewerEventListener implements ActionListener {          //How to distinguish between events without breaking encapsulation?Buttons are private...      
+ class ViewerEventListener implements ActionListener {          
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
                 case "login":{
                   String username = LoginScreen.getUsername();
                   String pass= LoginScreen.getPass();
+                  if (pass.equals("English")){
+                  JFrame frame;
+                  frame=LoginScreen.getFrame();
+                  frame.setContentPane(new Student(frame,amodel,username));
+                  frame.setVisible(true);
+                  
+                  
+                  }
                 }
                     break;
                     
@@ -83,8 +93,16 @@ public class Controller {
                   frame.setVisible(true);
                   TeacherView.addListener(new ViewerEventListener()); 
                 }break;
+                  case "I am a Student":{
+                  JFrame frame;
+                  frame=Welcome.getFrame();
+                  frame.setContentPane(new LoginScreen(frame,amodel));
+                  LoginScreen.addListener(new ViewerEventListener());
+                  frame.setVisible(true);
+                  //TeacherView.addListener(new ViewerEventListener()); 
+                }break;  
                     
-                case "markTrigger":{
+                  case "markTrigger":{
                 Marker.addListeners(new Mouse());
                 Timer timer=new Timer(true);
                 timer.scheduleAtFixedRate(new TimerTask(){
@@ -93,7 +111,7 @@ public class Controller {
                      saveMarks();
                      }},0,2000);}break;
                     
-                    case "editTrigger":{
+                  case "editTrigger":{
                         
                  JFrame frame;
                  QuestionPaper paper;
@@ -108,6 +126,15 @@ public class Controller {
                    // System.err.println("jskahkjdashjkdhsakfhskdfjsakfhjks");
                      saveOldTest();
                      }},0,2000);}break;
+                   
+                    case "startTrigger": {
+                   // PaperView.addListeners(new Mouse());
+                        Timer timer=new Timer(true);
+                        timer.scheduleAtFixedRate(new TimerTask(){
+                           @Override
+                           public void run() {
+                           saveSubmission();
+                           }},0,2000); }break;
                 
             }
                
@@ -224,6 +251,10 @@ private void saveOldTest(){
 private void saveMarks(){
 
 
+
+}
+
+private void saveSubmission(){
 
 }
 

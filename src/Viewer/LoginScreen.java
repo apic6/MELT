@@ -21,9 +21,9 @@ import javax.swing.JTextField;
  */
 public class LoginScreen extends JPanel {
     
-     public JFrame mainFrame;
-     public static JButton loginButton=new JButton("login");
-     public static JTextField userIDText = new JTextField(20);
+     private static JFrame mainFrame;
+     private static JButton loginButton=new JButton("login");
+     private static JTextField userIDText = new JTextField(20);
      private static JPasswordField passwordText = new JPasswordField(20);
      private Modeller amodel;
      
@@ -60,18 +60,18 @@ public class LoginScreen extends JPanel {
                 
 		loginButton.setBounds(10, 80, 80, 25);
 		this.add(loginButton);
-		loginButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent Ev){
-                    String pass=(passwordText.getText()).toString();
-                if( "English".equals(pass)){
-                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel,userIDText.getText()));   
-                                } 
-                else {
-                          
-                        }
-                }
-                });
+//		loginButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent Ev){
+//                    String pass=(passwordText.getText()).toString();
+//                if( "English".equals(pass)){
+//                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel,userIDText.getText()));   
+//                                } 
+//                else {
+//                          
+//                        }
+//                }
+//                });
                 
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.setBounds(180, 80, 80, 25);
@@ -95,8 +95,15 @@ String login=userIDText.getText();
     return login; 
 }
 public static String getPass(){
-char[] pass=passwordText.getPassword();
- return pass.toString();
+String pass=(passwordText.getText()).toString();
+ return pass;
+}
+public static void addListener(ActionListener mal){
+loginButton.addActionListener(mal);
+
+}
+public static  JFrame getFrame(){
+return mainFrame;
 }
 
 }
