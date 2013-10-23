@@ -53,7 +53,7 @@ public class EssayQuestion implements Question {
 
     @Override
     public String toXML() {
-        String XML = "<Question type=\"FITBQ\">\n";
+        String XML = "<Question type=\"EssayQuestion\">\n";
 
         XML += "<Instructions>" + instructions + "</Instructions>\n";
         XML += "<QuestionText>" + question + "</QuestionText>\n";

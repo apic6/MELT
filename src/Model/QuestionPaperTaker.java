@@ -10,7 +10,7 @@ import Model.questionPaper.QuestionPaper;
 import Model.questionPaper.SubSection;
 import Model.questionPaper.MultipleChoiceQuestion;
 import Model.StudentSubmission.*;
-import Model.questionPaper.MBQuestion;
+import Model.questionPaper.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -44,12 +44,20 @@ public class QuestionPaperTaker {
                 SubmissionSubSection submSubSection = new SubmissionSubSection(j);
                 submSection.addSubSection(submSubSection);
                 for (int k = 0; k < subSection.getNumberOfQuestions(); k++) {
-                    System.out.println("Adding question " + k);
                     Question q = subSection.getQuestion(k);
                     if (q instanceof MultipleChoiceQuestion) {
                         MCQAnswer mcqAnswer = new MCQAnswer(k, -1);
-                    } else {
-                        FITBAnswer fitbAnswer = new FITBAnswer(k, "null");
+                        submSubSection.addAnswer(mcqAnswer);
+                    } else if (q instanceof FITBQuestion) {
+                        FITBAnswer fitbAnswer = new FITBAnswer(k, null);
+                        submSubSection.addAnswer(fitbAnswer);
+                    } else if (q instanceof EssayQuestion) {
+                        EssayAnswer eAnswer = new EssayAnswer(i, j, k, "Student didn't answer");
+                        submSubSection.addAnswer(eAnswer);
+                    } else if (q instanceof MBQuestion) {
+                        ArrayList<String> list = null;
+                        MFITBAnswer mAnswer = new MFITBAnswer(i, j, k, list);
+                        submSubSection.addAnswer(mAnswer);
                     }
                 }
             } // subsections

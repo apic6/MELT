@@ -95,8 +95,9 @@ public class Marker {
                             MCQAnswer submAnswer = (MCQAnswer) submissionSubSection.getAnswer(k);
                             MultipleChoiceQuestion question = (MultipleChoiceQuestion) subSection.getQuestion(k);
                             for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
-                                System.out.println("Checking mark for section:" + i + " subsection " + j + " question");
-                                if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
+                                if (submAnswer.getAnswer() == -1) {
+                                    // didn't answer;
+                                } else if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
                                     submAnswer.setMark(question.getMark());
                                     mark += question.getMark(); //question.getMark();
                                 }
@@ -107,7 +108,9 @@ public class Marker {
                             FITBAnswer submAnswer = (FITBAnswer) submissionSubSection.getAnswer(k);
                             FITBQuestion question = (FITBQuestion) subSection.getQuestion(k);
                             for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
-                                if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
+                                if (submAnswer.getAnswer() == null) {
+                                    // didn't answer;
+                                } else if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
                                     submAnswer.setMark(question.getMark());
                                     mark += question.getMark();
                                     break;
@@ -124,7 +127,7 @@ public class Marker {
             return false;
         }
     }
-    
+
     public void updateMark() {
         // TODO
         return;
