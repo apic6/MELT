@@ -29,6 +29,9 @@ import javax.swing.event.ListSelectionListener;
  */
 
 import Model.StudentSubmission.*;
+import Model.questionPaper.Question;
+import Model.questionPaper.Section;
+import Model.questionPaper.SubSection;
 
 public class Marker extends JPanel {
     
@@ -40,6 +43,7 @@ public class Marker extends JPanel {
     private JList submissionList;
     private DefaultListModel listModel;
     private ListSelectionModel listSelectionModel;
+    private JPanel rightPanel=new JPanel();
     public Marker(Modeller model,JFrame frame,QuestionPaper paper) {
     this.mainFrame=frame;
     this.model=model;
@@ -118,15 +122,12 @@ public class Marker extends JPanel {
         
         con.gridx=1;
         con.weightx=2.5;
-        JPanel rightPanel=new JPanel();
+        
         JScrollPane rightScroll=new JScrollPane(rightPanel);
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
         rightPanel.add(test);
-        for(int i=0;i<submission.getSize();++i){
-          //  SubmissionSection subsec;
-        
-        }
+        displaySubmission(submission);
         
         
         /////////MarkView
@@ -141,7 +142,23 @@ public class Marker extends JPanel {
   }  
 
   void displaySubmission(Submission sub){
-   for (int k=0;k<sub.getSize();++k){
+      paper=model.getPaper(sub.getPaperID());
+      for (int k=0;k<sub.getSize();++k){
+       SubmissionSection sec=sub.getSection(k);
+       Section paperSec=paper.getSection(k);
+       for(int l=0;l<sec.getSize();++l){
+           SubmissionSubSection subsec=sec.getSubSection(l);
+           SubSection paperSubsec=paperSec.getSubSection(l);
+           for(int m=0;m<subsec.getSize();m++){
+               
+           Answer ans=subsec.getAnswer(m);
+           Question ques=paperSubsec.getQuestion(m);
+           JLabel questionLabel=new JLabel(ques.getQuestion());
+           //JLabel answerLabel=new JLabel(ans.);
+           rightPanel.add(questionLabel);
+           //rightPanel.add(answerLabel);
+           }
+       }
        
         
    

@@ -11,7 +11,7 @@ import java.util.Comparator;
 /**
  *
  * @author mbgm8je3
- */
+ */ 
 public class SubmissionSection {
 
     int sectionID;
