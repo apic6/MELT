@@ -151,7 +151,7 @@ public class Marker extends JPanel {
       paper=model.getPaper(sub.getPaperID());
    for (int k=0;k<sub.getSize();++k){
        SubmissionSection sec=sub.getSection(k);
-      Section paperSec=paper.getSection(k);
+       Section paperSec=paper.getSection(k);
       JLabel sectitle=new JLabel(paperSec.getTitle());
       c2.gridy=counter;
       rightPanel.add(sectitle,c2);
@@ -165,7 +165,7 @@ public class Marker extends JPanel {
           counter++;
           ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
            for(int m=0;m<unMarked.size();m++){
-               Answer ans=subsec.getAnswer(m);
+               //Answer ans=subsec.getAnswer(m);
                Question ques=paperSubsec.getQuestion(m);
                    
                c2.gridy=counter;
