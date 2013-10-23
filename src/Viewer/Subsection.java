@@ -197,7 +197,7 @@ public class Subsection extends JPanel{
                             
                }
                 else {
-                   wizard.repainRightPanel("SubSection information", new SubsectionEditor(subSection,wizard,subsectionPanel));
+                   wizard.repainRightPanel("SubSection information", new SubsectionEditor(subSection,null,wizard,subsectionPanel));
                 System.out.print(questionList.getSelectedIndex());
                             
                }

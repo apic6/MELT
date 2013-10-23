@@ -75,7 +75,7 @@ public class TestSection extends JPanel{
             public void mouseClicked(MouseEvent e) {
                 int tabNr = ((TabbedPaneUI)subsections.getUI()).tabForCoordinate(subsections, e.getX(), e.getY());
                 if(tabNr > -1)
-                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(tabNr),wizard,(Subsection)subsections.getComponentAt(tabNr)));
+                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(tabNr),null,wizard,(Subsection)subsections.getComponentAt(tabNr)));
                 else
                 wizard.repainRightPanel("QuestionPaper information", new PaperEditor(paper,wizard));
             }
@@ -92,7 +92,7 @@ public class TestSection extends JPanel{
                 subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
                 subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();
-                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard,subsection));
+                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),null,wizard,subsection));
             }
         });
         
