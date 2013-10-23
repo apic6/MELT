@@ -7,6 +7,7 @@ package Viewer;
 import Model.questionPaper.MultipleChoiceQuestion;
 import Model.questionPaper.Question;
 import javax.swing.JPanel;
+import Viewer.FIBQPanel;
 import Model.questionPaper.SubSection;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -441,7 +442,9 @@ public class SubsectionEditor extends JPanel{
             });
             questionType.addTab("MCQ",MCQ);
 
-            FIBQ = new JPanel();
+            FIBQ = new FIBQPanel();
+            //FIBQ.setLayout(new GridBagLayout());
+            
             questionType.addTab("FIBQ",FIBQ);
             MFIBQ = new JPanel();
             

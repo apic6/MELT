@@ -5,8 +5,10 @@
 package Viewer;
 
 import Model.Modeller;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -23,10 +25,11 @@ public final class FIBQPanel extends JPanel {
     private JFrame mainFrame;
     private Modeller model;
     GridBagConstraints c = new GridBagConstraints();
-    int j=1;
-   public FIBQPanel (JFrame frame,Modeller model) {
-       this.model=model;
-       this.mainFrame=frame;
+    int j=0;
+   //public FIBQPanel (JFrame frame,Modeller model) {
+    public FIBQPanel () { 
+      //  this.model=model;
+      //  this.mainFrame=frame;
         initComponents();
 }
   
@@ -34,16 +37,17 @@ public final class FIBQPanel extends JPanel {
    void initComponents() {
       
        setLayout(new GridBagLayout()) ; 
-      c.ipady=1;
+     // c.ipady=10;
+       //c.fill = GridBagConstraints.BOTH ;
       c.anchor = GridBagConstraints.NORTH;
-      c.weighty=1.0;
+      //c.weighty=1.0;
       c.gridx=0;
       c.gridy=0;
       JLabel title=new JLabel("Sentence");
       this.add(title,c);
       c.gridx=1;
       c.gridy=0;
-      JTextField firstPart=new JTextField(20);
+      JTextField firstPart=new JTextField(10);
       this.add(firstPart,c);
       c.gridx=2;
       c.gridy=0;
@@ -51,26 +55,44 @@ public final class FIBQPanel extends JPanel {
       this.add(blank,c);
       c.gridx=3;
       c.gridy=0;
-      JTextField secondPart=new JTextField(20);
+      JTextField secondPart=new JTextField(10);
       this.add(secondPart,c);
-      c.gridx=4;
-      c.gridy=0;
+      c.gridx=0;
+      c.gridy=1;
+      c.ipady = 0 ;
+      c.weighty = 1.0 ;
+      c.weightx = 1.0 ;
+//      c.ipady = 10 ;
+      c.anchor = GridBagConstraints.FIRST_LINE_START;
+      
       JButton addAnswerButton=new JButton("Add Answer");
       this.add(addAnswerButton,c);
       
-      c.gridy=j;
+      final JPanel answerPanel = new JPanel();
+      answerPanel.setLayout(new GridBagLayout());
+      
+      c.gridx = 1 ;
+      c.gridy=1;
+      c.gridwidth = GridBagConstraints.REMAINDER ;
+      this.add(answerPanel, c) ;
       addAnswerButton.addActionListener(new ActionListener(){
 
           @Override
           public void actionPerformed(ActionEvent e) {
-              
-          add(addAnswer(j),c);
+              c.gridy=j;
+          answerPanel.add(addAnswer(j),c);
           revalidate();
+          repaint();
           j++;
-          c.gridy=j;
+          
           
           }
       });
+       JButton submit = new JButton("submit");
+       c.gridx = 0 ;
+       c.gridy = 2 ;
+       c.fill = GridBagConstraints.HORIZONTAL;
+       this.add(submit, c);
        
    }
 
@@ -79,16 +101,27 @@ public final class FIBQPanel extends JPanel {
             JLabel answer_label = new JLabel("Possible Blank Filler "+num);
             tempPanel.setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
-            gbc.anchor= GridBagConstraints.NORTH;
+            gbc.anchor= GridBagConstraints.FIRST_LINE_START ;
             gbc.weighty=1.0;
             gbc.gridx = 0;
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
-            JTextField answer = new JTextField(20);
+            JTextField answer = new JTextField(10);
             this.add(answer);
             gbc.gridx = 1;
             gbc.weightx = 0.7;
             tempPanel.add(answer,gbc);
             return tempPanel;
+            
         }
+   public static void main(String argv[]) {
+       JFrame frame = new JFrame();
+        frame.setLayout(new GridLayout(1, 0));
+        //frame.setPreferredSize(new Dimension(1200, 800));
+
+        frame.add(new FIBQPanel());
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+   }
 }
