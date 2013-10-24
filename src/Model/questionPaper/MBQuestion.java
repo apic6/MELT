@@ -12,7 +12,7 @@ public class MBQuestion implements Question {
         
     }
     public MBQuestion(ArrayList<String> question, String instructions, int mark) {
-        questionParts = new ArrayList();
+        questionParts = new ArrayList<>();
         for (int i = 0 ; i< question.size(); i++) {
             questionParts.add(question.get(i));
         }

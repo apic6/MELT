@@ -21,7 +21,7 @@ public class Section {
     private ArrayList<SubSection> SubSectionList;
     
     public Section(){
-        SubSectionList = new ArrayList();
+        SubSectionList = new ArrayList<SubSection>();
     }
     
     public Section (int ID, String Title, String Description, String Instructions, int TimeLimit) {
