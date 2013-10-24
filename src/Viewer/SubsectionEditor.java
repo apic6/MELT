@@ -441,13 +441,14 @@ public class SubsectionEditor extends JPanel{
                 submit.addActionListener(new ActionListener (){
                 @Override
                 public void actionPerformed(ActionEvent e){
-                    if (mcquestion.getNumberOfAnswers()>1&&mcquestion.getRightAnswers()>0){
+                    if (mcquestion.getNumberOfAnswers()>1&&mcquestion.getRightAnswers()>0&&mcquestion.getQuestion()!=null){
                         mcquestion.setMark(Integer.parseInt(markArea.getText()));
                         subSection.addQuestion(mcquestion);
                         //revalidate();
                         subsectionPanel.listModel.addElement(mcquestion.getQuestion());
                        }
                     else if(mcquestion.getNumberOfAnswers()<=1){pop.setText("You should create two or more answers!");pop.show();}
+                    else if("".equals(mcquestion.getQuestion())){pop.setText("Question Title should not be blank!");pop.show();}
                     else{pop.setText("Question should have at least one right answer!");pop.show();}
                }
                 });
@@ -466,6 +467,7 @@ public class SubsectionEditor extends JPanel{
             Essay.setLayout(new GridBagLayout());
             GridBagConstraints gbc_essay = new GridBagConstraints();
             gbc_essay.insets = new Insets(5, 5, 5, 5);
+            gbc_essay.anchor = GridBagConstraints.NORTH;
             JLabel essay_question_label = new JLabel("Question: ");
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 0;
@@ -502,14 +504,8 @@ public class SubsectionEditor extends JPanel{
             essay_marks_pane.setLayout(new GridBagLayout());
             GridBagConstraints c6 = new GridBagConstraints();
             c6.insets = new Insets(5,5,5,5);
-            JLabel essay_mark_label = new JLabel("marks: ");
             c6.gridy = 0;
             c6.gridx = 0;
-            c6.weightx = 0;
-            essay_marks_pane.add(essay_mark_label,c6);
-            
-           
-            c6.gridx = 1;
             c6.weightx = 0.3;
             final JLabel essay_markArea = new JLabel();
             essay_marks_pane.add(essay_markArea,c6);
@@ -546,7 +542,8 @@ public class SubsectionEditor extends JPanel{
             
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 4;
-            
+            gbc_essay.gridwidth = 2;
+            gbc_essay.weighty = 1.0;
             JButton submitEssay = new JButton("submit");
             Essay.add(submitEssay,gbc_essay);
             
@@ -686,7 +683,7 @@ public class SubsectionEditor extends JPanel{
       JButton mb_submit = new JButton("Submit");
       gbc_mb.gridx = 0;
       gbc_mb.gridy++;
-      gbc_mb.gridwidth =1;
+      gbc_mb.gridwidth = 2;
       gbc_mb.weighty = 0;
       MBQ.add(mb_submit,gbc_mb);
       
