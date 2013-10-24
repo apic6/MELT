@@ -30,6 +30,7 @@ public class SectionView extends JPanel {
     QuestionPaper sourcePaper;
     JFrame mainFrame;
     SubSectionView[] subSectionViews;
+    JTabbedPane tabbedPane;
 
     public SectionView(Section section, JFrame frame, final PaperView pView, final QuestionPaperTaker taker, final int sectionID) {
         this.setLayout(new GridBagLayout());
@@ -40,7 +41,7 @@ public class SectionView extends JPanel {
         con.gridx = 0;
         con.gridy = 0;
 
-        JTabbedPane tabbedPane = new JTabbedPane() {
+        tabbedPane = new JTabbedPane() {
             @Override
             public Dimension getPreferredSize() {
                 return new Dimension(1075, 700);
@@ -108,5 +109,9 @@ public class SectionView extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(1075, 775);
+    }
+
+    void setSelectedSubSection(int i) {
+        tabbedPane.setSelectedIndex(i);
     }
 }
