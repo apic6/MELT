@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Viewer;
+package Viewer.PaperViews;
 
 import Model.Marker;
 import Model.Modeller;
@@ -10,6 +10,8 @@ import Model.questionPaper.QuestionPaper;
 import Model.QuestionPaperTaker;
 import Model.StudentSubmission.Submission;
 import Model.questionPaper.Section;
+import Viewer.Student;
+import Viewer.TeacherView;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
