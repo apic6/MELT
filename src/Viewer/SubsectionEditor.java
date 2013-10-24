@@ -348,6 +348,8 @@ public class SubsectionEditor extends JPanel{
             JButton addAnswer = new JButton("add answer");
             c3.gridx = 2;
             c3.weightx = 0.2;
+            c3.weighty = 0;
+            c3.fill = GridBagConstraints.NONE;
             MCQ.add(addAnswer,c3);
 
             answerPanel = new JPanel();
@@ -496,10 +498,51 @@ public class SubsectionEditor extends JPanel{
             gbc_essay.gridy = 3;
             Essay.add(essay_marks_label,gbc_essay);
             
-            final JLabel essay_marks = new JLabel();
+            final JPanel essay_marks_pane = new JPanel();
+            essay_marks_pane.setLayout(new GridBagLayout());
+            GridBagConstraints c6 = new GridBagConstraints();
+            c6.insets = new Insets(5,5,5,5);
+            JLabel essay_mark_label = new JLabel("marks: ");
+            c6.gridy = 0;
+            c6.gridx = 0;
+            c6.weightx = 0;
+            essay_marks_pane.add(essay_mark_label,c6);
+            
+           
+            c6.gridx = 1;
+            c6.weightx = 0.3;
+            final JLabel essay_markArea = new JLabel();
+            essay_marks_pane.add(essay_markArea,c6);
+            essay_markArea.setText("0");
+             JButton essay_moreMark = new JButton("+");
+            essay_moreMark.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                essay_markArea.setText(String.valueOf(Integer.parseInt(essay_markArea.getText())+1));
+                essayQuestion.setMark(Integer.parseInt(essay_markArea.getText())+1);
+            }
+        });
+            JButton essay_lessMark = new JButton("-");
+      essay_lessMark.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Integer.parseInt(essay_markArea.getText())>0){
+                essay_markArea.setText(String.valueOf(Integer.parseInt(essay_markArea.getText())-1));
+                essayQuestion.setMark(Integer.parseInt(essay_markArea.getText())+1);
+                }
+            }
+        });
+      c6.gridx++;
+      essay_marks_pane.add(essay_moreMark,c6);
+      c6.gridx++;
+      essay_marks_pane.add(essay_lessMark,c6);
+      
+//            final JLabel essay_marks_ = new JLabel();
             gbc_essay.gridx = 1;
-            Essay.add(essay_marks,gbc_essay);
-            essay_marks.setText("0");
+            Essay.add(essay_marks_pane,gbc_essay);
+//            essay_marks.setText("0");
             
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 4;
@@ -512,7 +555,7 @@ public class SubsectionEditor extends JPanel{
                 essay_question.setText(essayQuestion.getQuestion());
                 essay_instructions.setText(essayQuestion.getInstructions());
                 essay_wordlimit.setText(String.valueOf(essayQuestion.getWordLimit()));
-                essay_marks.setText(String.valueOf(essayQuestion.getMark()));
+                essay_markArea.setText(String.valueOf(essayQuestion.getMark()));
                
             } 
             submitEssay.addActionListener(new ActionListener (){
@@ -520,7 +563,7 @@ public class SubsectionEditor extends JPanel{
                 public void actionPerformed(ActionEvent e){
                 essayQuestion.setQuestion(essay_question.getText());
                 essayQuestion.setInstructions(essay_instructions.getText());
-                essayQuestion.setMark(Integer.parseInt(essay_marks.getText()));
+                essayQuestion.setMark(Integer.parseInt(essay_markArea.getText()));
                 essayQuestion.setWordLimit(Integer.valueOf(essay_wordlimit.getText()));
                 subSection.addQuestion(essayQuestion);
                 subsectionPanel.listModel.addElement(essayQuestion.getQuestion());
@@ -609,8 +652,6 @@ public class SubsectionEditor extends JPanel{
             if(mbquestion.getQuestionParts()==null){
                 mbquestion.setQuestionParts(new ArrayList<String>());
             }
-            final int num_of_parts = mbquestion.getQuestionParts().size();
-            
       add_part.addActionListener(new ActionListener() {
 
                 @Override
@@ -621,6 +662,7 @@ public class SubsectionEditor extends JPanel{
                     mb_question_parts.add(mb_newpart);
                     mb_question_parts.revalidate();
                     mbquestion.getQuestionParts().add("");
+                    final int num_of_parts = mbquestion.getQuestionParts().size()-1;
                     mb_newpart.getDocument().addDocumentListener(new DocumentListener() {
 
                         @Override
@@ -653,13 +695,12 @@ public class SubsectionEditor extends JPanel{
           mb_instructions.setText(mbquestion.getInstructions());
           mb_question.setText(mbquestion.getQuestion());
           mb_markArea.setText(String.valueOf(mbquestion.getMark()));
-          
-          for(int i=0;i<mbquestion.getQuestionParts().size();i++){
+          mb_question_parts.add(new JTextArea(mbquestion.getQuestionParts().get(0)));
+          for(int i=1;i<mbquestion.getQuestionParts().size();i++){
               JLabel mb_blank = new JLabel("_____");
-                    JTextArea mb_newpart = new JTextArea(1,10);
+                    JTextArea mb_newpart = new JTextArea(mbquestion.getQuestionParts().get(i));
                     mb_question_parts.add(mb_blank);
                     mb_question_parts.add(mb_newpart);
-                    mb_newpart.setText(mbquestion.getQuestionParts().get(i));
           }
                     mb_question_parts.revalidate();
           
