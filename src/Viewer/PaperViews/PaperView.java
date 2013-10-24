@@ -74,7 +74,7 @@ class SectionPanel extends JPanel {
 
         setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
     }
-    
+
     SectionPanel(final Section section, final JFrame mainFrame, final PaperView pView, final int sectionID) {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         GridBagLayout mainLayout = new GridBagLayout();
@@ -153,8 +153,8 @@ public class PaperView extends JPanel {
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    mainFrame.setContentPane(studentView);
-                    mainFrame.setVisible(true);
+                mainFrame.setContentPane(studentView);
+                mainFrame.setVisible(true);
                 //mainFrame.pack();
             }
         });
@@ -228,6 +228,58 @@ public class PaperView extends JPanel {
             }
         });
         this.add(finish, con);
+    }
+
+    public PaperView(QuestionPaper paper, final JFrame mainFrame, final TeacherView teacherView, int[] sectionAndSubSection) {
+        this.paper = paper;
+
+        sPanels = new SectionPanel[paper.getNumberOfSections()];
+
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        GridBagLayout layout = new GridBagLayout();
+        setLayout(layout);
+
+        GridBagConstraints con = new GridBagConstraints();
+
+        con.gridx = 0;
+        con.gridy = 0;
+        con.fill = GridBagConstraints.HORIZONTAL;
+
+        con.ipady = 5;
+
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.setContentPane(teacherView);
+                mainFrame.setVisible(true);
+            }
+        });
+
+
+        this.add(back, con);
+        con.gridy++;
+        for (int i = 0; i < paper.getNumberOfSections(); i++) {
+            sPanels[i] = new SectionPanel(paper.getSection(i), mainFrame, this, i);
+            this.add(sPanels[i], con);
+            con.gridy++;
+        }
+
+        JButton finish = new JButton("Finish");
+        finish.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Popup pop = new Popup();
+                pop.setText("Cannot save as teacher.");
+                pop.show();
+            }
+        });
+        this.add(finish, con);
+
+        SectionView sView = new SectionView(paper.getSection(sectionAndSubSection[0]), mainFrame, this, sectionAndSubSection[0]);
+        sView.setSelectedSubSection(sectionAndSubSection[1]);
+        mainFrame.setContentPane(sView);
+        mainFrame.setVisible(true);
     }
 
     public void addListener(ActionListener mal) {

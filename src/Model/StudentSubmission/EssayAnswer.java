@@ -44,6 +44,9 @@ public class EssayAnswer extends Answer {
         XML += "<SubSectionID>" + subSectionID + "</SubSectionID>\n";
         XML += "<AnswerID>" + id + "</AnswerID>\n";
         XML += "<Answer>" + answer + "</Answer>\n";
+        if (super.isMarked()) {
+            XML += "<Mark>" + super.getMark() + "</Mark>";
+        }
         XML += "</EssayAnswer>\n";
         return XML;
     }

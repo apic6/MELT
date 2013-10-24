@@ -54,6 +54,9 @@ public class MFITBAnswer extends Answer {
         for (int i = 0; i < answers.size(); i++) {
             XML += "<Answer>" + answers.get(i) + "</Answer>\n";
         }
+        if (super.isMarked()) {
+            XML += "<Mark>" + super.getMark() + "</Mark>";
+        }
         XML += "</MFITBAnswer>\n";
         return XML;
     }
