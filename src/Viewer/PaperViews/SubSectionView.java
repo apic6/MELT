@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Viewer;
+package Viewer.PaperViews;
 
 import Model.questionPaper.Question;
 import Model.questionPaper.SubSection;

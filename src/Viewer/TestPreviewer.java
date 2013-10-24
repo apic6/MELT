@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+import Viewer.PaperViews.QuestionView;
 import Model.Modeller;
 import Model.questionPaper.Question;
 import Model.questionPaper.QuestionPaper;

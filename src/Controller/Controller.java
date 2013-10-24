@@ -13,7 +13,7 @@ import Model.StudentSubmission.Submission;
 import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.Marker;
-import Viewer.PaperView;
+import Viewer.PaperViews.PaperView;
 import Viewer.SectionEditor;
 import Viewer.Student;
 import Viewer.SubsectionEditor;

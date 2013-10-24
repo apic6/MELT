@@ -1,5 +1,6 @@
 package Viewer;
 
+import Viewer.PaperViews.PaperView;
 import Model.Modeller;
 import Model.questionPaper.QuestionPaper;
 import java.awt.Color;
