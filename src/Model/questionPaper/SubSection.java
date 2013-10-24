@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class SubSection {
 
     public enum CollectionType {
-
         QUESTIONS,
         SUBSECTIONS,
         UNDEFINED

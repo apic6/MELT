@@ -9,4 +9,6 @@ Features Added recently and may not be 100%
 
 TODO:
 
-1.  
+1.  SUBSUBSUBSUSBUBSUSBSUSBSUBSUBSUBS
+2.  TIMERR
+3. Student right panel -> submission.isFullyMarked() -> shows there
