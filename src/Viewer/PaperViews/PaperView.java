@@ -153,13 +153,8 @@ public class PaperView extends JPanel {
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (teacherView == null) {
                     mainFrame.setContentPane(studentView);
                     mainFrame.setVisible(true);
-                } else {
-                    mainFrame.setContentPane(teacherView);
-                    mainFrame.setVisible(true);
-                }
                 //mainFrame.pack();
             }
         });
