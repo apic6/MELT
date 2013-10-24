@@ -15,30 +15,31 @@ import javax.swing.JPanel;
  * @author mbaxkak4
  */
 public class Popup extends JDialog {
+
     private String message;
     JFrame frame;
-    public Popup ()
 
-    {    
-        
+    public Popup() {
+
         initComponents();
 
     }
-    
-    
-    void initComponents(){
-      frame=new JFrame();
-      //JPanel panel=new JPanel();
-      frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-      
-          
+
+    void initComponents() {
+        frame = new JFrame();
+        //JPanel panel=new JPanel();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
     }
-    
-    public void setText(String text){
-    message=text;
+
+    public void setText(String text) {
+        message = text;
     }
+
     @Override
-    public void show(){
-    JOptionPane.showMessageDialog(frame,
-        message);}
+    public void show() {
+        JOptionPane.showMessageDialog(frame,
+                message);
+    }
 }
