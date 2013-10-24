@@ -20,6 +20,10 @@ public class FITBQuestion implements Question {
         this.mark = mark;
     }
 
+    public FITBQuestion() {
+        
+    }
+
     @Override
     public String getInstructions() {
         return instructions;
@@ -34,6 +38,25 @@ public class FITBQuestion implements Question {
         return questionParts;
     }
 
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public String[] getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    public void setQuestionParts(String[] questionParts) {
+        this.questionParts = questionParts;
+    }
+     public void setQuestionParts(String questionParts, int i) {
+        this.questionParts[i] = questionParts;
+    }
+    public void setPossibleAnswers(String[] possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
+    
     public int getNumberOfPossibleAnswers() {
         return possibleAnswers.length;
     }

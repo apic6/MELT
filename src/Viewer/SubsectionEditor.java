@@ -258,7 +258,7 @@ public class SubsectionEditor extends JPanel{
             
             questionType.addTab("MCQ",MCQ);
 
-            FIBQ = new FIBQPanel();
+            //FIBQ = new FIBQPanel(subSection, question, subsectionPanel);
             questionType.addTab("FIBQ",FIBQ);
             
             MBQ = new JPanel();
