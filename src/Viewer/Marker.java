@@ -44,7 +44,7 @@ public class Marker extends JPanel {
     private JList submissionList;
     private DefaultListModel listModel;
     private ListSelectionModel listSelectionModel;
-    private JPanel rightPanel=new JPanel(){
+    private JPanel rightPanel=new JPanel() /* {
     
         @Override
         public Dimension getPreferredSize(){
@@ -53,7 +53,7 @@ public class Marker extends JPanel {
           Dim.height=super.getPreferredSize().height;
           return Dim;  
     }
-    };
+    }*/;
     public Marker(Modeller model,JFrame frame,QuestionPaper paper) {
     this.mainFrame=frame;
     this.model=model;
@@ -190,7 +190,14 @@ public class Marker extends JPanel {
                rightPanel.add(questionLabel, c2);
                c2.gridx=1;
                //c2.weightx=1.75;
-               JLabel question=new JLabel(ques.getQuestion());
+               JLabel question=new JLabel("<html>"+ques.getQuestion()+"</html>") {
+                   @Override
+                   public Dimension getPreferredSize() {
+                       Dimension d = super.getPreferredSize();
+                       d.width = 400;
+                       return d;
+                   }
+               };
                rightPanel.add(question,c2);
                c2.gridx=2;
               // c2.weightx=0.25;
@@ -212,7 +219,7 @@ public class Marker extends JPanel {
                c2.gridx=1;
                //c2.weightx=1.75;
                
-               JLabel Answer=new JLabel("<html>"+ans.getAnswerString()+"</html>");
+               JLabel Answer=new JLabel(ans.getAnswerString());
                
                rightPanel.add(Answer,c2);
                c2.gridx=2;

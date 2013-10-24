@@ -5,8 +5,10 @@ Features Added recently and may not be 100%
 4. added getUnmarkedQuestions()
 5. Added manual marking support to marker.
 6. Populated submission with blank answers.
+7, Offer alternative constructors for PaperView that allow for different "start points"
 
 TODO:
 
-1.  Offer alternative constructors for PaperView that allow for different "start points"
-2.  
+1.  SUBSUBSUBSUSBUBSUSBSUSBSUBSUBSUBS
+2.  TIMERR
+3. Student right panel -> submission.isFullyMarked() -> shows there

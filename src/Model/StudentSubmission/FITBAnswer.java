@@ -27,6 +27,9 @@ public class FITBAnswer extends Answer {
         XML += "<FITBAnswer>\n";
         XML += "<AnswerID>" + id + "</AnswerID>\n";
         XML += "<Answer>" + answer + "</Answer>\n";
+        if (super.isMarked()) {
+            XML += "<Mark>" + super.getMark() + "</Mark>";
+        }
         XML += "</FITBAnswer>\n";
         return XML;                
     }    

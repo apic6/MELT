@@ -154,7 +154,7 @@ public class TeacherView extends JPanel {
             previewButton.addActionListener(new ActionListener(){
               @Override
            public void actionPerformed(ActionEvent evt){
-           mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, null,tView, -1));
+           mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, tView));
            mainFrame.setVisible(true);
         
         }

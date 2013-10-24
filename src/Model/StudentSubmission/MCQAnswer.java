@@ -30,6 +30,9 @@ public class MCQAnswer extends Answer {
         XML += "<MCQAnswer>\n";
         XML += "<AnswerID>" + id + "</AnswerID>\n";
         XML += "<Answer>" + answer + "</Answer>\n";
+        if (super.isMarked()) {
+            XML += "<Mark>" + super.getMark() + "</Mark>";
+        }
         XML += "</MCQAnswer>\n";
         return XML;         
     }

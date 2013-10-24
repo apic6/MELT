@@ -75,7 +75,9 @@ public class SubmissionLoader {
                         Element sMCQAnswer = (Element) submissionAnswerList1.item(l);
                         MCQAnswer answer = new MCQAnswer(Integer.parseInt(sMCQAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                                 Integer.parseInt(sMCQAnswer.getElementsByTagName("Answer").item(0).getTextContent()));
-
+                        if (sMCQAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                            answer.setMark(Integer.parseInt(sMCQAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
+                        }
                         submSubSection.addAnswer(answer);
                     }
 
@@ -84,6 +86,10 @@ public class SubmissionLoader {
                         Element sFITBAnswer = (Element) submissionAnswerList2.item(l);
                         FITBAnswer answer = new FITBAnswer(Integer.parseInt(sFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                                 sFITBAnswer.getElementsByTagName("Answer").item(0).getTextContent());
+
+                        if (sFITBAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                            answer.setMark(Integer.parseInt(sFITBAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
+                        }
 
                         submSubSection.addAnswer(answer);
                     }
@@ -101,6 +107,10 @@ public class SubmissionLoader {
                                 Integer.parseInt(sMFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                                 strings);
 
+                        if (sMFITBAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                            answer.setMark(Integer.parseInt(sMFITBAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
+                        }
+
                         submSubSection.addAnswer(answer);
                     }
                     for (int l = 0; l < submissionAnswerList4.getLength(); l++) {
@@ -109,6 +119,10 @@ public class SubmissionLoader {
                                 Integer.parseInt(sEssayAnswer.getElementsByTagName("SubSectionID").item(0).getTextContent()),
                                 Integer.parseInt(sEssayAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                                 sEssayAnswer.getElementsByTagName("Answer").item(0).getTextContent());
+
+                        if (sEssayAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                            answer.setMark(Integer.parseInt(sEssayAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
+                        }
 
                         submSubSection.addAnswer(answer);
                     }

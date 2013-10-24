@@ -30,6 +30,7 @@ public class SectionView extends JPanel {
     QuestionPaper sourcePaper;
     JFrame mainFrame;
     SubSectionView[] subSectionViews;
+    JTabbedPane tabbedPane;
 
     public SectionView(Section section, JFrame frame, final PaperView pView, final QuestionPaperTaker taker, final int sectionID) {
         this.setLayout(new GridBagLayout());
@@ -40,7 +41,7 @@ public class SectionView extends JPanel {
         con.gridx = 0;
         con.gridy = 0;
 
-        JTabbedPane tabbedPane = new JTabbedPane() {
+        tabbedPane = new JTabbedPane() {
             @Override
             public Dimension getPreferredSize() {
                 return new Dimension(1075, 700);
@@ -67,9 +68,50 @@ public class SectionView extends JPanel {
         con.gridy++;
         add(tabbedPane, con);
     }
+    
+    public SectionView(Section section, JFrame frame, final PaperView pView, final int sectionID) {
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints con = new GridBagConstraints();
+
+        mainFrame = frame;
+
+        con.gridx = 0;
+        con.gridy = 0;
+
+        JTabbedPane tabbedPane = new JTabbedPane() {
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(1075, 700);
+            }
+        };
+
+        for (int i = 0; i < section.getNumberOfSubSections(); i++) {
+            SubSectionView subV = new SubSectionView(section.getSubSection(i), sectionID, i);
+
+            tabbedPane.addTab(section.getSubSection(i).getTitle(), subV);
+        }
+
+
+        JButton back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.setContentPane(pView);
+                mainFrame.setVisible(true);
+            }
+        });
+
+        add(back, con);
+        con.gridy++;
+        add(tabbedPane, con);
+    }
 
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(1075, 775);
+    }
+
+    void setSelectedSubSection(int i) {
+        tabbedPane.setSelectedIndex(i);
     }
 }

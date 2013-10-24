@@ -36,6 +36,7 @@ public class Answer {
     }
     
     public void setMark(int mark) {
+        this.marked = true;
         this.mark = mark;
     }
     
