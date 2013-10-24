@@ -692,15 +692,59 @@ public class SubsectionEditor extends JPanel{
           mb_instructions.setText(mbquestion.getInstructions());
           mb_question.setText(mbquestion.getQuestion());
           mb_markArea.setText(String.valueOf(mbquestion.getMark()));
-          mb_question_parts.add(new JTextArea(mbquestion.getQuestionParts().get(0)));
+          final JTextArea mb_first_part = new JTextArea(mbquestion.getQuestionParts().get(0));
+          mb_first_part.getDocument().addDocumentListener(new DocumentListener() {
+
+                        @Override
+                        public void insertUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(0,mb_first_part.getText());
+                        }
+
+                        @Override
+                        public void removeUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(0,mb_first_part.getText());
+                        }
+
+                        @Override
+                        public void changedUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(0,mb_first_part.getText());
+                        }
+                    }); 
+          mb_question_parts.add(mb_first_part);
           for(int i=1;i<mbquestion.getQuestionParts().size();i++){
               JLabel mb_blank = new JLabel("_____");
-                    JTextArea mb_newpart = new JTextArea(mbquestion.getQuestionParts().get(i));
+                    final JTextArea mb_newpart = new JTextArea(mbquestion.getQuestionParts().get(i));
                     mb_question_parts.add(mb_blank);
                     mb_question_parts.add(mb_newpart);
+                    final int position = i;
+                     mb_newpart.getDocument().addDocumentListener(new DocumentListener() {
+
+                        @Override
+                        public void insertUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(position,mb_newpart.getText());
+                        }
+
+                        @Override
+                        public void removeUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(position,mb_newpart.getText());
+                        }
+
+                        @Override
+                        public void changedUpdate(DocumentEvent e) {
+                            mbquestion.getQuestionParts().set(position,mb_newpart.getText());
+                        }
+                    }); 
           }
                     mb_question_parts.revalidate();
-          
+           mb_submit.addActionListener(new ActionListener() {
+
+              @Override
+              public void actionPerformed(ActionEvent e) {
+                  mbquestion.setMark(Integer.valueOf(mb_markArea.getText()));
+                  mbquestion.setInstructions(mb_instructions.getText());
+                  subsectionPanel.listModel.setElementAt( mbquestion.getQuestion(),subsectionPanel.questionList.getSelectedIndex());
+              }
+          });
           
       }else{
           final JTextArea mb_part1 = new JTextArea(1,10);
@@ -723,9 +767,8 @@ public class SubsectionEditor extends JPanel{
                         public void changedUpdate(DocumentEvent e) {
                             mbquestion.getQuestionParts().set(0,mb_part1.getText());
                         }
-                    });
-      }
-      mb_submit.addActionListener(new ActionListener() {
+                    }); 
+            mb_submit.addActionListener(new ActionListener() {
 
               @Override
               public void actionPerformed(ActionEvent e) {
@@ -735,6 +778,8 @@ public class SubsectionEditor extends JPanel{
                   subsectionPanel.listModel.addElement(mbquestion.getQuestion());
               }
           });
+      }
+     
       questionType.setPreferredSize(new Dimension(500,400));
             tempCreator.add(questionType);
             return tempCreator;
