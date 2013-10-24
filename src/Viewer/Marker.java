@@ -32,6 +32,7 @@ import Model.StudentSubmission.*;
 import Model.questionPaper.Question;
 import Model.questionPaper.Section;
 import Model.questionPaper.SubSection;
+import java.awt.Dimension;
 
 public class Marker extends JPanel {
     
@@ -43,7 +44,16 @@ public class Marker extends JPanel {
     private JList submissionList;
     private DefaultListModel listModel;
     private ListSelectionModel listSelectionModel;
-    private JPanel rightPanel=new JPanel();
+    private JPanel rightPanel=new JPanel(){
+    
+        @Override
+        public Dimension getPreferredSize(){
+          Dimension Dim=new Dimension();
+          Dim.width=(int) (600);
+          Dim.height=super.getPreferredSize().height;
+          return Dim;  
+    }
+    };
     public Marker(Modeller model,JFrame frame,QuestionPaper paper) {
     this.mainFrame=frame;
     this.model=model;
@@ -124,19 +134,23 @@ public class Marker extends JPanel {
         con.weightx=2.5;
         
         JScrollPane rightScroll=new JScrollPane(rightPanel);
+        //rightPanel.setSize();
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
+        //rightPanel.setLayout();
+        
         GridBagConstraints c2 = new GridBagConstraints();
         c2.gridx=0;
         c2.gridy=0;
         c2.anchor = GridBagConstraints.FIRST_LINE_START ;      
         c2.weightx = 1 ;
-        c2.weighty = 1 ;
+        c2.weighty = 2 ;
         c1.fill = GridBagConstraints.BOTH ;
         displaySubmission(submission,c2);
         /////////MarkView
-    
+  
         this.add(rightScroll,con);
+        
     }
     
     
@@ -172,7 +186,7 @@ public class Marker extends JPanel {
                c2.gridy=counter;
                c2.gridx=0;
                //c2.weightx=0.25;
-               JLabel questionLabel=new JLabel("Question"+m);
+               JLabel questionLabel=new JLabel("Question   "+m);
                rightPanel.add(questionLabel, c2);
                c2.gridx=1;
                //c2.weightx=1.75;
@@ -193,11 +207,13 @@ public class Marker extends JPanel {
                c2.gridy=counter;
                c2.gridx=0;
                //c2.weightx=0.25;
-               JLabel answerLabel=new JLabel("Answer"+m);
+               JLabel answerLabel=new JLabel("Answer   "+m);
                rightPanel.add(answerLabel, c2);
                c2.gridx=1;
                //c2.weightx=1.75;
-               JLabel Answer=new JLabel(ans.getAnswerString());
+               
+               JLabel Answer=new JLabel("<html>"+ans.getAnswerString()+"</html>");
+               
                rightPanel.add(Answer,c2);
                c2.gridx=2;
                //c2.weightx=0.25;
