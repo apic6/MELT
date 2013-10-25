@@ -13,7 +13,7 @@
 <Title>null</Title>
 <Description>guhhjg</Description>
 <Instructions>null</Instructions>
-<Question type="MCQ">
+<CollectionType>QUESTIONS<Question type="MCQ">
 <Instructions>asd</Instructions>
 <QuestionText>a</QuestionText>
 <Answer>1</Answer>
@@ -41,6 +41,7 @@
 <QuestionText>This is a simple question to determine whether or not the</QuestionText>
 <Mark>10</Mark>
 </Question>
+</CollectionType>
 </SubSection>
 </Section>
 </QuestionPaper>
@@ -57,7 +58,7 @@
 <Title>null</Title>
 <Description>HRHR</Description>
 <Instructions>RYHR</Instructions>
-<Question type="MCQ">
+<CollectionType>QUESTIONS<Question type="MCQ">
 <Instructions>null</Instructions>
 <QuestionText>RYYRH</QuestionText>
 <PossibleAnswer>1</PossibleAnswer>
@@ -75,6 +76,7 @@
 <PossibleAnswer>0</PossibleAnswer>
 <Mark>3</Mark>
 </Question>
+</CollectionType>
 </SubSection>
 </Section>
 </QuestionPaper>

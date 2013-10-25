@@ -110,7 +110,7 @@ public class Controller {
                 timer.scheduleAtFixedRate(new TimerTask(){
                 @Override
                 public void run() {
-                     saveMarks();
+                     saveSubmission(Marker.getSubmission());
                      }},0,2000);}break;
                     
                   case "editTrigger":{
@@ -142,7 +142,7 @@ public class Controller {
                            timer.scheduleAtFixedRate(new TimerTask(){
                            @Override
                            public void run() {
-                           saveSubmission();
+                           saveSubmission(PaperView.getSubmission());
                            }},0,6000); }break;
                 
             }
@@ -263,9 +263,9 @@ private void saveMarks(){
 
 }
 
-private void saveSubmission() {
-         Submission sub;
-         sub=PaperView.getSubmission();
+private void saveSubmission(Submission submission) {
+         Submission sub=submission;
+         //sub=PaperView.getSubmission();
          
 
          ArrayList<Submission> allsubs;

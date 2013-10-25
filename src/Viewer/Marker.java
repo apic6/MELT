@@ -33,8 +33,13 @@ import Model.questionPaper.Question;
 import Model.questionPaper.Section;
 import Model.questionPaper.SubSection;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPopupMenu.Separator;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class Marker extends JPanel {
     
@@ -177,24 +182,27 @@ public class Marker extends JPanel {
        
        SubmissionSection sec=sub.getSection(k);
        Section paperSec=paper.getSection(k);
-       JLabel sectitle=new JLabel(paperSec.getTitle());
+       JLabel sectitle=new JLabel("Section: "+paperSec.getTitle());
        c2.gridx=0;
        c2.gridy=counter;
        rightPanel.add(sectitle,c2);
+       
+      // rightPanel.add((new Separator()).setPreferredSize(1000,1000));
        counter++;
       
        for(int l=0;l<sec.getSize();++l){
            SubmissionSubSection subsec=sec.getSubSection(l);
            SubSection paperSubsec=paperSec.getSubSection(l);
-          JLabel subsecTitle=new JLabel(paperSubsec.getTitle());
+          JLabel subsecTitle=new JLabel("Subsection: "+paperSubsec.getTitle());
           c2.gridx=0;
-          c2.gridx=counter;
+          c2.gridy=counter;
           rightPanel.add(subsecTitle, c2);
+          rightPanel.add(new Separator());
           counter++;
           ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
            for(int m=0;m<unMarked.size();m++){
                 final JLabel marksGiven=new JLabel();
-               int marks=0;
+               
                final Answer ans=subsec.getAnswer(m);
                final Question ques=paperSubsec.getQuestion(m);
                    
@@ -223,8 +231,8 @@ public class Marker extends JPanel {
                    public void actionPerformed(ActionEvent e) {
                     if(ans.getMark()<ques.getMark()){
                        ans.setMark(ans.getMark()+1);}
-                    marksGiven.revalidate();
-                    marksGiven.repaint();
+                    marksGiven.setText(""+ans.getMark());
+                    //marksGiven.repaint();
                    }
                
                });
@@ -238,9 +246,9 @@ public class Marker extends JPanel {
                    public void actionPerformed(ActionEvent e) {
                     if(ans.getMark()>0){
                        ans.setMark(ans.getMark()-1);
-                    marksGiven.revalidate();
-                    marksGiven.repaint();
-                    rightPanel.revalidate();}
+                    marksGiven.setText(""+ans.getMark());
+                    
+                    }
                    }
                });
                rightPanel.add(minusMark,c2);
