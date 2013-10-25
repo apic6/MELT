@@ -19,6 +19,7 @@ public class FITBAnswer extends Answer {
     public String getAnswer() {
         return answer;
     }
+    @Override
     public String getAnswerString(){return answer;}
     
     @Override

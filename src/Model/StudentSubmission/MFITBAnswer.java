@@ -34,7 +34,12 @@ public class MFITBAnswer extends Answer {
         return answers.get(i);
     }
     @Override
-    public String getAnswerString(){return answer;}
+    public String getAnswerString(){
+       if(answer==null){
+        for (int i=0;i<answers.size();i++){
+        
+            answer=answer+" "+answers.get(i);}}
+        return answer;}
 
     public int getSectionID() {
         return sectionID;
