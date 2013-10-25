@@ -6,6 +6,7 @@ package Viewer;
 
 import Viewer.PaperViews.PaperView;
 import Model.Modeller;
+import Model.StudentSubmission.Submission;
 import Model.questionPaper.QuestionPaper;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -179,7 +180,7 @@ public class TeacherView extends JPanel {
             
             c2.gridx=3;
             
-            JButton soome=new JButton();
+            //JButton soome=new JButton();
             
             
             JButton markButton=new JButton ("Mark Test");
@@ -194,7 +195,13 @@ public class TeacherView extends JPanel {
                   }
              
             });
-            BottomPanel.add(markButton,c2);
+            final ArrayList<Submission> submissions=amodel.getSubmissions();
+            for(int k=0;k<submissions.size();++k)  {
+                if(papers.get(j).getPaperID()==submissions.get(k).getPaperID()){
+            BottomPanel.add(markButton,c2);}
+                else{JLabel noMarksLabel=new JLabel("No submissions");
+                BottomPanel.add(noMarksLabel,c2);}
+            }
             }
         this.add(Scroll,c);
     }
