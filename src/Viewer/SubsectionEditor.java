@@ -418,6 +418,15 @@ public class SubsectionEditor extends JPanel{
                     isRight.setSelected(true);
 
                 }
+                final int position = i;
+                isRight.addItemListener(new ItemListener() {
+
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    mcquestion.getPossibleAnswers()[position] = e.getStateChange()==ItemEvent.SELECTED?1:0;
+                }
+            });
+                
                 gbc1.gridx = 2;
                 tempPanel.add(isRight,gbc1.gridy);
                 apc.weightx = 1.0;
@@ -453,6 +462,10 @@ public class SubsectionEditor extends JPanel{
                }
                 });
             }
+            if(mcquestion.getAnswers() == null)
+                num_answers = 0;
+            else
+                num_answers = mcquestion.getNumberOfAnswers();
             addAnswer.addActionListener(new java.awt.event.ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
