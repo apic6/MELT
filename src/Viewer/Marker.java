@@ -37,6 +37,7 @@ import Model.questionPaper.Question;
 import Model.questionPaper.Section;
 import Model.questionPaper.SubSection;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -118,7 +119,7 @@ public class Marker extends JPanel {
         submissionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         
         listSelectionModel=submissionList.getSelectionModel();
-        //listSelectionModel.setValueIsAdjusting(false);
+        
         listSelectionModel.addListSelectionListener(new ListSelectionListener(){
              @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -147,7 +148,7 @@ public class Marker extends JPanel {
         
         
         con.gridx=1;
-        con.weightx=2.5;
+        con.weightx=5;
         
         JScrollPane rightScroll=new JScrollPane(rightPanel);
     
@@ -161,9 +162,9 @@ public class Marker extends JPanel {
         c2.anchor = GridBagConstraints.FIRST_LINE_START ;      
         c2.weightx = 1 ;
         c2.weighty = 2 ;
-        c1.fill = GridBagConstraints.BOTH ;
-        displaySubmission(submission,c2);
-        /////////MarkView
+        con.fill = GridBagConstraints.BOTH ;
+        //displaySubmission(submission,c2);
+//        /////////MarkView
   
         this.add(rightScroll,con);
         
@@ -185,6 +186,8 @@ public class Marker extends JPanel {
        SubmissionSection sec=sub.getSection(k);
        Section paperSec=paper.getSection(k);
        JLabel sectitle=new JLabel("Section: "+paperSec.getTitle());
+        Font newLabelFont1=new Font(sectitle.getFont().getName(),Font.BOLD,sectitle.getFont().getSize()+5); 
+        sectitle.setFont(newLabelFont1); 
        c2.gridx=0;
        c2.gridy=counter;
        rightPanel.add(sectitle,c2);
@@ -196,7 +199,8 @@ public class Marker extends JPanel {
            SubmissionSubSection subsec=sec.getSubSection(l);
            SubSection paperSubsec=paperSec.getSubSection(l);
            JLabel subsecTitle=new JLabel("Subsection: "+paperSubsec.getTitle());
-          
+           Font newLabelFont=new Font(subsecTitle.getFont().getName(),Font.BOLD,subsecTitle.getFont().getSize()+3); 
+           subsecTitle.setFont(newLabelFont); 
            
             c2.gridx=0;
             c2.gridy=counter;
@@ -206,7 +210,7 @@ public class Marker extends JPanel {
             populateSubmissionSubSection(subsec, paperSubsec, sec.getID(), null);
           
 
-       } ////////////End of print question stuff
+       } 
         
    
    
@@ -235,6 +239,14 @@ public class Marker extends JPanel {
             }
         } else if (submSubSection.getType()== SubmissionSubSection.CollectionType.ANSWERS) {
             ArrayList<Answer> unMarked=submSubSection.getUnmarkedQuestions();
+            if(unMarked.isEmpty()) {
+            c2.gridy=counter;
+            c2.gridx=0;
+              
+               JLabel emptyLabel=new JLabel("There are no unmarked questions in this subsection!");
+               rightPanel.add(emptyLabel, c2);
+               counter++;
+            }
             for (int m = 0; m < unMarked.size(); m++) {
                 
                final JLabel marksGiven=new JLabel();

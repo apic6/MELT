@@ -15,9 +15,9 @@ import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.Marker;
 import Viewer.PaperViews.PaperView;
-import Viewer.SectionEditor;
+
 import Viewer.Student;
-import Viewer.SubsectionEditor;
+
 import Viewer.TeacherView;
 import Viewer.TestWizard;
 import Viewer.Viewer;
@@ -132,7 +132,7 @@ public class Controller {
                     timer.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
-                            // System.err.println("jskahkjdashjkdhsakfhskdfjsakfhjks");
+                        
                             saveOldTest();
                         }
                     }, 0, 2000);
@@ -208,9 +208,7 @@ public class Controller {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            //  System.err.println(e.getSource());
-            // saveTest();  //         
-            System.err.println("it worksjsjsjsjsjhkhfksadf");
+         
         }
 
         @Override
@@ -255,11 +253,11 @@ public class Controller {
     private void saveOldTest() {
         QuestionPaper p;
         p = TestWizard.getQuestionPaper();
-        //  System.out.println(p.getPaperID());
+      
         amodel.loadPapers();
 
         try {
-            // p.getPaperID();
+            
 
             amodel.removePaper(p.getPaperID() - 1);
             amodel.addPaper(p.getPaperID() - 1, p);             //it always adds at the end of the list...
@@ -271,12 +269,11 @@ public class Controller {
         }
     }
 
-    private void saveMarks() {
-    }
+ 
 
     private void saveSubmission(Submission submission) {
         Submission sub = submission;
-        //sub=PaperView.getSubmission();
+        
 
 
         ArrayList<Submission> allsubs;
