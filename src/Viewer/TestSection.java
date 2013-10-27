@@ -46,7 +46,7 @@ public class TestSection extends JPanel{
         {
             this.section = new Section();
             sectionList.add(this);
-            paper.addSection(section);
+            paper.addSection(this.section);
         }
         else
             this.section = section;

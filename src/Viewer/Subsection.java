@@ -58,8 +58,8 @@ public class Subsection extends JPanel{
         mainPane = this;
         amodel = model;
         if(subSection == null){
-            subSection = new SubSection();
-            section.AddSubSection(subSection);
+            this.subSection = new SubSection();
+            section.AddSubSection(this.subSection);
         }
         else{
             this.subSection = subSection;
