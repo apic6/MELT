@@ -66,6 +66,14 @@ public class MFITBAnswer extends Answer {
         return subSectionID;
     }
 
+    public int getSizeOfSubSectionList() {
+        return subSectionIDs.size();
+    }
+
+    public int getSubSectionAtIndex(int i) {
+        return subSectionIDs.get(i);
+    }
+
     @Override
     public String toXML() {
         String XML = "";

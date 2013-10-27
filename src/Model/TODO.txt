@@ -9,7 +9,4 @@ Features Added recently and may not be 100%
 
 TODO:
 
-2.  Update "questionsToBeMarked()" in submission
-3.  Update "markableQuestions()" in submission
-4. update the func to manually mark essay/mbq
 3. Student right panel -> submission.isFullyMarked() -> shows there

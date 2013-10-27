@@ -47,13 +47,21 @@ public class Marker {
     public void markQuestion(Answer ans, int givenMark) {
         if (ans instanceof EssayAnswer) {
             EssayAnswer answer = (EssayAnswer) ans;
-            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMarked(true);
-            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMark(givenMark);
+            SubmissionSubSection submSubSection = subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionAtIndex(0));
+            for (int i = 1; i<answer.getSizeOfSubSectionList(); i++) {
+                submSubSection = submSubSection.getSubSection(answer.getSubSectionAtIndex(i));
+            }
+            submSubSection.getAnswer(answer.getID()).setMarked(true);
+            submSubSection.getAnswer(answer.getID()).setMark(givenMark);
             mark += givenMark;
         } else if (ans instanceof MFITBAnswer) {
             MFITBAnswer answer = (MFITBAnswer) ans;
-            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMarked(true);
-            subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionID()).getAnswer(answer.getID()).setMark(givenMark);
+            SubmissionSubSection submSubSection = subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionAtIndex(0));
+            for (int i = 1; i<answer.getSizeOfSubSectionList(); i++) {
+                submSubSection = submSubSection.getSubSection(answer.getSubSectionAtIndex(i));
+            }
+            submSubSection.getAnswer(answer.getID()).setMarked(true);
+            submSubSection.getAnswer(answer.getID()).setMark(givenMark);
             mark += givenMark;
         }
     }

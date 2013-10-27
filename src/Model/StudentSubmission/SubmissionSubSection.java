@@ -125,9 +125,15 @@ public class SubmissionSubSection {
 
     public ArrayList<Answer> getUnmarkedQuestions() {
         ArrayList<Answer> answers = new ArrayList<>();
-        for (int i = 0; i < answerList.size(); i++) {
-            if (!answerList.get(i).isMarked()) {
-                answers.add(answerList.get(i));
+        if (type == CollectionType.ANSWERS) {
+            for (int i = 0; i < answerList.size(); i++) {
+                if (!answerList.get(i).isMarked()) {
+                    answers.add(answerList.get(i));
+                }
+            }
+        } else if (type == CollectionType.SUBSECTIONS) {
+            for (int i = 0; i < subsectionList.size(); i++) {
+                answers.addAll(subsectionList.get(i).getUnmarkedQuestions());
             }
         }
         return answers;
@@ -135,11 +141,17 @@ public class SubmissionSubSection {
 
     public ArrayList<Answer> getMarkableAnswers() {
         ArrayList<Answer> answers = new ArrayList<>();
-        for (int i = 0; i < answerList.size(); i++) {
-            if (answerList.get(i) instanceof EssayAnswer) {
-                answers.add(answerList.get(i));
-            } else if (answerList.get(i) instanceof MFITBAnswer) {
-                answers.add(answerList.get(i));
+        if (type == CollectionType.ANSWERS) {
+            for (int i = 0; i < answerList.size(); i++) {
+                if (answerList.get(i) instanceof EssayAnswer) {
+                    answers.add(answerList.get(i));
+                } else if (answerList.get(i) instanceof MFITBAnswer) {
+                    answers.add(answerList.get(i));
+                }
+            }
+        } else if (type == CollectionType.SUBSECTIONS) {
+            for (int i = 0; i < subsectionList.size(); i++) {
+                answers.addAll(subsectionList.get(i).getMarkableAnswers());
             }
         }
         return answers;
