@@ -58,6 +58,49 @@ public class Marker {
         }
     }
 
+    public void markSubSection(SubmissionSubSection submSubSection, SubSection subSection) {
+        // mark questions
+        if (subSection.getCollectionType() == SubSection.CollectionType.QUESTIONS) {
+            for (int i = 0; i < submSubSection.getSize(); i++) {
+                if (submSubSection.getAnswer(i) instanceof MCQAnswer) {
+                    // if correct answer
+                    MCQAnswer submAnswer = (MCQAnswer) submSubSection.getAnswer(i);
+                    MultipleChoiceQuestion question = (MultipleChoiceQuestion) subSection.getQuestion(i);
+                    for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
+                        if (submAnswer.getAnswer() == -1) {
+                            // didn't answer;
+                        } else if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
+                            submAnswer.setMark(question.getMark());
+                            mark += question.getMark(); //question.getMark();
+                        }
+                    }
+                    // right or wrong increase total mark
+
+                } else if (submSubSection.getAnswer(i) instanceof FITBAnswer) { // else it was FITB Question
+                    FITBAnswer submAnswer = (FITBAnswer) submSubSection.getAnswer(i);
+                    FITBQuestion question = (FITBQuestion) subSection.getQuestion(i);
+                    for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
+                        if (submAnswer.getAnswer() == null) {
+                            // didn't answer;
+                        } else if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
+                            submAnswer.setMark(question.getMark());
+                            mark += question.getMark();
+                            break;
+                        }
+                    }
+                } // else FITBQ 
+                totalMark += subSection.getQuestion(i).getMark();
+            } // questions
+        } else if (subSection.getCollectionType() == SubSection.CollectionType.SUBSECTIONS) {
+            for (int i = 0; i < submSubSection.getSize(); i++) {
+                SubmissionSubSection submissionSubSectionN = submSubSection.getSubSection(i);
+                SubSection subSectionN = subSection.getSubSection(i);
+
+                markSubSection(submissionSubSectionN, subSectionN);
+            }
+        }
+    }
+
     public boolean markTest(Submission submission, QuestionPaper paper) {
         mark = 0;
         totalMark = 0;
@@ -82,43 +125,8 @@ public class Marker {
 
                     SubmissionSubSection submissionSubSection = submissionSection.getSubSection(j);
                     SubSection subSection = section.getSubSection(j);
-                    // mark questions
-                    for (int k = 0; k < submissionSubSection.getSize(); k++) {
-                        // if question was a MCQ Question
-                        if (submissionSubSection.getSize() != subSection.getNumberOfQuestions()) {
-                            System.out.println("Number of questions in section " + j + " and subsection " + k + " differ");
-                            System.out.println("Number of questions in subm. = " + submissionSubSection.getSize());
-                            System.out.println("Number of questions in paper. = " + subSection.getNumberOfQuestions());
-                        }
-                        if (submissionSubSection.getAnswer(k) instanceof MCQAnswer) {
-                            // if correct answer
-                            MCQAnswer submAnswer = (MCQAnswer) submissionSubSection.getAnswer(k);
-                            MultipleChoiceQuestion question = (MultipleChoiceQuestion) subSection.getQuestion(k);
-                            for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
-                                if (submAnswer.getAnswer() == -1) {
-                                    // didn't answer;
-                                } else if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
-                                    submAnswer.setMark(question.getMark());
-                                    mark += question.getMark(); //question.getMark();
-                                }
-                            }
-                            // right or wrong increase total mark
 
-                        } else if (submissionSubSection.getAnswer(k) instanceof FITBAnswer) { // else it was FITB Question
-                            FITBAnswer submAnswer = (FITBAnswer) submissionSubSection.getAnswer(k);
-                            FITBQuestion question = (FITBQuestion) subSection.getQuestion(k);
-                            for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
-                                if (submAnswer.getAnswer() == null) {
-                                    // didn't answer;
-                                } else if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
-                                    submAnswer.setMark(question.getMark());
-                                    mark += question.getMark();
-                                    break;
-                                }
-                            }
-                        } // else FITBQ 
-                        totalMark += subSection.getQuestion(k).getMark();
-                    } // questions
+                    markSubSection(submissionSubSection, subSection);
                 } // subSections
             } // sections
 

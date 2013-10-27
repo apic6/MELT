@@ -78,15 +78,19 @@ public class SubmissionLoader {
         return submissions.get(i);
     }
 
-    private SubmissionSubSection readSubmSubSection(Element sssElement) {
+    private SubmissionSubSection readSubmSubSection(Element sssElement, ArrayList<Integer> subsectionIDList) {
         SubmissionSubSection submSubSection = new SubmissionSubSection(Integer.parseInt(sssElement.getElementsByTagName("SubSectionID").item(0).getTextContent()));
 
         if (sssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("SUBSECTIONS")) {
             NodeList subSectionListN = sssElement.getElementsByTagName("SubmissionSubSection");
             for (int k = 0; k < subSectionListN.getLength(); k++) {
+                ArrayList<Integer> list = new ArrayList<>();
+                for (int l = 0; l<subsectionIDList.size(); l++) {
+                    list.add(subsectionIDList.get(l));
+                }
                 Element ssElement = (Element) subSectionListN.item(k);
                 if (ssElement.getParentNode() == sssElement) {
-                    SubmissionSubSection submSubSectionN = readSubmSubSection(sssElement);
+                    SubmissionSubSection submSubSectionN = readSubmSubSection(sssElement, list);
 
                     submSubSection.addSubSection(submSubSectionN);
                 }
@@ -130,7 +134,7 @@ public class SubmissionLoader {
                     strings.add(answers.item(m).getTextContent());
                 }
                 MFITBAnswer answer = new MFITBAnswer(Integer.parseInt(sMFITBAnswer.getElementsByTagName("SectionID").item(0).getTextContent()),
-                        Integer.parseInt(sMFITBAnswer.getElementsByTagName("SubSectionID").item(0).getTextContent()),
+                        subsectionIDList,
                         Integer.parseInt(sMFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                         strings);
 
@@ -143,7 +147,7 @@ public class SubmissionLoader {
             for (int l = 0; l < submissionAnswerList4.getLength(); l++) {
                 Element sEssayAnswer = (Element) submissionAnswerList4.item(l);
                 EssayAnswer answer = new EssayAnswer(Integer.parseInt(sEssayAnswer.getElementsByTagName("SectionID").item(0).getTextContent()),
-                        Integer.parseInt(sEssayAnswer.getElementsByTagName("SubSectionID").item(0).getTextContent()),
+                        subsectionIDList,
                         Integer.parseInt(sEssayAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                         sEssayAnswer.getElementsByTagName("Answer").item(0).getTextContent());
 
@@ -163,8 +167,11 @@ public class SubmissionLoader {
         NodeList submissionSubSectionList = ssElement.getElementsByTagName("SubmissionSubSection");
         for (int k = 0; k < submissionSubSectionList.getLength(); k++) {
             Element sssElement = (Element) submissionSubSectionList.item(k);
+            
+            ArrayList<Integer> subsectionIDList = new ArrayList<>();
+            subsectionIDList.add(k);
 
-            SubmissionSubSection submSubSection = readSubmSubSection(sssElement);
+            SubmissionSubSection submSubSection = readSubmSubSection(sssElement, subsectionIDList);
 
             submSection.addSubSection(submSubSection);
         }
