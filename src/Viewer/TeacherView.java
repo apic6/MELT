@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -199,8 +199,10 @@ public class TeacherView extends JPanel {
             for(int k=0;k<submissions.size();++k)  {
                 if(papers.get(j).getPaperID()==submissions.get(k).getPaperID()){
             BottomPanel.add(markButton,c2);}
-                else{JLabel noMarksLabel=new JLabel("No submissions");
-                BottomPanel.add(noMarksLabel,c2);}
+                else{
+                 //   JLabel noMarksLabel=new JLabel("No submissions");
+                markButton.setEnabled(false);
+                BottomPanel.add(markButton,c2);}
             }
             }
         this.add(Scroll,c);
@@ -217,7 +219,6 @@ public class TeacherView extends JPanel {
    return mainFrame;}
   
    public static QuestionPaper getPaper(){
-   
    return paper;}
 
 }

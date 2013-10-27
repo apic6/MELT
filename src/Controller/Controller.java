@@ -145,7 +145,7 @@ public class Controller {
                      * I'll analyse this code and mine when Im more awake but right now having this code as-is prevents my code from working.
                      * I think it pulls thje submission a little too early and causes errors, I might be wrong though. */
                     
-                    /*Submission newsub;
+                    Submission newsub;
                     newsub = PaperView.getSubmission();
                     amodel.loadSubmissions();
                     amodel.addSubmission(newsub);
@@ -159,7 +159,7 @@ public class Controller {
                         public void run() {
                             saveSubmission(PaperView.getSubmission());
                         }
-                    }, 0, 6000); */
+                    }, 0, 2000); 
                 }
                 break;
 
