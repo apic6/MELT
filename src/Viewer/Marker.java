@@ -128,6 +128,11 @@ public class Marker extends JPanel {
                 rightPanel.setLayout(new GridBagLayout());
                 int f=submissionList.getSelectedIndex();
                 submission=listSubm.get(f);
+                c2.gridx=0;
+                c2.gridy=0;
+                c2.anchor = GridBagConstraints.FIRST_LINE_START ;      
+               // c2.weightx =  ;
+                c2.weighty = 2 ;
                 displaySubmission(submission,c2);
                 
                 rightPanel.revalidate();
@@ -148,7 +153,7 @@ public class Marker extends JPanel {
         
         
         con.gridx=1;
-        con.weightx=5;
+        con.weightx=5.0;
         
         JScrollPane rightScroll=new JScrollPane(rightPanel);
     
@@ -157,12 +162,8 @@ public class Marker extends JPanel {
     
         
         
-        c2.gridx=0;
-        c2.gridy=0;
-        c2.anchor = GridBagConstraints.FIRST_LINE_START ;      
-        c2.weightx = 1 ;
-        c2.weighty = 2 ;
-        con.fill = GridBagConstraints.BOTH ;
+        
+       // con.fill = GridBagConstraints.BOTH ;
         //displaySubmission(submission,c2);
 //        /////////MarkView
   
