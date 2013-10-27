@@ -19,6 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -35,7 +36,13 @@ import javax.swing.JTabbedPane;
  */
 class SectionPanel extends JPanel {
 
+    private Section section;
+    private JLabel timeRemaining;
+    JButton takeTest;
+
     SectionPanel(final Section section, final JFrame mainFrame, final PaperView pView, final QuestionPaperTaker taker, final int sectionID) {
+        this.section = section;
+
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         GridBagLayout mainLayout = new GridBagLayout();
         setLayout(mainLayout);
@@ -44,15 +51,19 @@ class SectionPanel extends JPanel {
 
         con.gridx = 0;
         con.gridy = 0;
+        con.ipadx = 10;
+        con.ipady = 10;
+
 
         setBackground(new Color(200, 200, 200));
 
         JLabel title = new JLabel("Title: " + section.getTitle());
         JLabel description = new JLabel("Description: " + section.getDescription());
         JLabel instructions = new JLabel("Instructions: " + section.getInstructions());
-        JLabel timeLimit = new JLabel("Time Limit: " + section.getTimeLimit());
+        section.setupTimer();
+        timeRemaining = new JLabel("Time Limit: " + giveIntAsTime(section.getRemainingTime()));
 
-        JButton takeTest = new JButton("Take Section");
+        takeTest = new JButton("Take Section");
 
         takeTest.addActionListener(new ActionListener() {
             @Override
@@ -68,7 +79,7 @@ class SectionPanel extends JPanel {
         con.gridy++;
         add(instructions, con);
         con.gridy++;
-        add(timeLimit, con);
+        add(timeRemaining, con);
         con.gridy++;
         add(takeTest, con);
 
@@ -115,7 +126,62 @@ class SectionPanel extends JPanel {
         setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
     }
 
-    public void addListener(ActionListener mal) {
+    public void updateTimer() {
+        ActionListener aListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                updateTime();
+            }
+        };
+        section.updateListener(aListener);
+
+        int remaining = section.getRemainingTime();
+        timeRemaining.setText("Time remaining: " + giveIntAsTime(remaining));
+    }
+
+    private void updateTime() {
+        System.out.println("Time: " + section.getRemainingTime());
+        section.timerTick();
+        int remaining = section.getRemainingTime();
+        if (remaining <= 0) {
+            section.stopTimer();
+            takeTest.setEnabled(false);
+            timeRemaining.setText("Time elapsed, your work has been saved.");
+        } else {
+            timeRemaining.setText("Time remaining: " + giveIntAsTime(remaining));
+        }
+
+        this.repaint();
+        this.revalidate();
+    }
+
+    private String giveIntAsTime(int time) {
+        String timer;
+
+        int hours = time % 3600000;
+        hours = (time - hours) / 3600000;
+
+        time -= hours * 3600000;
+        int minutes = time % 60000;
+        minutes = (time - minutes) / 60000;
+
+        time -= minutes * 60000;
+        time /= 1000;
+
+        if (hours > 0) {
+            timer = hours + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", time);
+        } else {
+            timer = minutes + ":" + String.format("%02d", time);
+        }
+
+        return timer;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        Dimension d = super.getPreferredSize();
+        d.width = 1000;
+        return d;
     }
 }
 
@@ -126,18 +192,19 @@ public class PaperView extends JPanel {
     SectionPanel[] sPanels;
 
     public PaperView(final QuestionPaper paper, final JFrame mainFrame, final Student studentView, int studentID) {
-
+        
         this.paper = paper;
 
         if (studentID >= 0) {
             taker = new QuestionPaperTaker(paper, studentID);
+            System.out.println(taker.getSubmission().toXML());
         } else {
             taker = null;
         }
 
         sPanels = new SectionPanel[paper.getNumberOfSections()];
 
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         GridBagLayout layout = new GridBagLayout();
         setLayout(layout);
 
@@ -145,9 +212,9 @@ public class PaperView extends JPanel {
 
         con.gridx = 0;
         con.gridy = 0;
-        con.fill = GridBagConstraints.HORIZONTAL;
+        con.insets = new Insets(10, 10, 10, 10);
 
-        con.ipady = 5;
+        JPanel buttons = new JPanel();
 
         JButton back = new JButton("Back");
         back.addActionListener(new ActionListener() {
@@ -159,14 +226,33 @@ public class PaperView extends JPanel {
             }
         });
 
-
-        this.add(back, con);
-        con.gridy++;
+        JPanel paperInfo = new JPanel();
+        JLabel title = new JLabel("Paper Title: " + paper.getTitle());
+        JLabel description = new JLabel("Paper Description: " + paper.getDescription());
+        JLabel instructions = new JLabel("Paper Instructions: " + paper.getTitle());
+        
+        paperInfo.setLayout(new GridBagLayout());
+        GridBagConstraints con2 = new GridBagConstraints();
+        con2.gridx = 0;
+        con2.gridy = 0;
+        
+        paperInfo.add(title, con2);
+        con2.gridy++;
+        paperInfo.add(description, con2);
+        con2.gridy++;
+        paperInfo.add(instructions, con2);
+        
+        this.add(paperInfo, con);
+        con.gridy++;        
+        
         for (int i = 0; i < paper.getNumberOfSections(); i++) {
             sPanels[i] = new SectionPanel(paper.getSection(i), mainFrame, this, taker, i);
             this.add(sPanels[i], con);
             con.gridy++;
         }
+
+
+
         JButton finish = new JButton("Finish");
         finish.addActionListener(new ActionListener() {
             @Override
@@ -180,7 +266,11 @@ public class PaperView extends JPanel {
                 System.out.println("Mark = " + marker.getMark() + "/" + marker.getTotalMark());
             }
         });
-        this.add(finish, con);
+
+        buttons.setLayout(new FlowLayout());
+        buttons.add(back);
+        buttons.add(finish);
+        this.add(buttons, con);
     }
 
     public PaperView(QuestionPaper paper, final JFrame mainFrame, final TeacherView teacherView) {
@@ -282,10 +372,23 @@ public class PaperView extends JPanel {
         mainFrame.setVisible(true);
     }
 
+    public void returnAndUpdateTimer(int sectionID) {
+        // update timer
+        sPanels[sectionID].updateTimer();
+    }
+
     public void addListener(ActionListener mal) {
     }
 
     public static Submission getSubmission() {
         return taker.getSubmission();
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        Dimension d = super.getPreferredSize();
+        d.height = 800;
+        d.width = 1100;
+        return d;
     }
 }

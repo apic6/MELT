@@ -233,12 +233,14 @@ public class SubSection {
         switch (type) {
             case SUBSECTIONS:
                 XML += "SUBSECTIONS";
+                XML += "</CollectionType>\n";
                 for (int i = 0; i < subSectionList.size(); i++) {
                     XML += subSectionList.get(i).toXML();
                 }
                 break;
             case QUESTIONS:
                 XML += "QUESTIONS";
+                XML += "</CollectionType>\n";
                 for (int i = 0; i < questionList.size(); i++) {
                     XML += questionList.get(i).toXML();
                 }
@@ -248,7 +250,7 @@ public class SubSection {
                 XML += "UNDEFINED";
                 break;
         }
-        XML += "</CollectionType>\n";
+        
 
 
 

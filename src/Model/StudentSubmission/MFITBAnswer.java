@@ -15,14 +15,27 @@ public class MFITBAnswer extends Answer {
     int sectionID;
     int subSectionID;
     ArrayList<String> answers;
+    ArrayList<Integer> subSectionIDs;
 
     public MFITBAnswer(int sectionID, int subSectionID, int questionID, ArrayList<String> answers) {
         this.marked = false;
         this.id = questionID;
         this.sectionID = sectionID;
         this.subSectionID = subSectionID;
-        if (answers == null)
+        if (answers == null) {
             answers = new ArrayList<String>();
+        }
+        this.answers = answers;
+    }
+
+    public MFITBAnswer(int sectionID, ArrayList<Integer> subSectionIDs, int questionID, ArrayList<String> answers) {
+        this.marked = false;
+        this.id = questionID;
+        this.sectionID = sectionID;
+        this.subSectionIDs = subSectionIDs;
+        if (answers == null) {
+            answers = new ArrayList<String>();
+        }
         this.answers = answers;
     }
 
@@ -33,13 +46,17 @@ public class MFITBAnswer extends Answer {
     public String getAnswer(int i) {
         return answers.get(i);
     }
+
     @Override
-    public String getAnswerString(){
-       if(answer==null){
-        for (int i=0;i<answers.size();i++){
-        
-            answer=answer+" "+answers.get(i);}}
-        return answer;}
+    public String getAnswerString() {
+        if (answer == null) {
+            for (int i = 0; i < answers.size(); i++) {
+
+                answer = answer + " " + answers.get(i);
+            }
+        }
+        return answer;
+    }
 
     public int getSectionID() {
         return sectionID;

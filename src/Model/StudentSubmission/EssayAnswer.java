@@ -4,6 +4,8 @@
  */
 package Model.StudentSubmission;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mbgm8je3
@@ -13,6 +15,7 @@ public class EssayAnswer extends Answer {
     int sectionID;
     int subSectionID;
     String answer;
+    ArrayList<Integer> subSectionIDs;
 
     public EssayAnswer(int sectionID, int subSectionID, int questionID, String answer) {
         this.marked = false;
@@ -22,19 +25,30 @@ public class EssayAnswer extends Answer {
         this.answer = answer;
     }
 
+    public EssayAnswer(int sectionID, ArrayList<Integer> subSectionIDs, int questionID, String answer) {
+        this.marked = false;
+        this.id = questionID;
+        this.sectionID = sectionID;
+        this.subSectionIDs = subSectionIDs;
+        this.answer = answer;
+    }
+
     public String getAnswer() {
         return answer;
     }
+
     @Override
-    public String getAnswerString(){return answer;}
-    
-    public int getSectionID () {
+    public String getAnswerString() {
+        return answer;
+    }
+
+    public int getSectionID() {
         return sectionID;
     }
-    
-    public int getSubSectionID () {
+
+    public int getSubSectionID() {
         return subSectionID;
-    }    
+    }
 
     @Override
     public String toXML() {

@@ -101,10 +101,12 @@ public class QuestionPaperLoader {
             // get element
             Element ssElement = (Element) SubSectionList.item(i);
             // and parse it
-            SubSection subSection = readSubSection(ssElement);
+            if (ssElement.getParentNode() == sElement) {
+                SubSection subSection = readSubSection(ssElement);
 
-            // Add SubSection to Section
-            section.AddSubSection(i, subSection);
+                // Add SubSection to Section
+                section.AddSubSection(i, subSection);
+            }
         }
         return section;
     }
@@ -122,10 +124,13 @@ public class QuestionPaperLoader {
             for (int i = 0; i < subSectionList.getLength(); i++) {
                 Element ssElementN = (Element) subSectionList.item(i);
 
-                SubSection subSectionN = readSubSection(ssElementN);
+                if (ssElementN.getParentNode() == ssElement) {
+                    SubSection subSectionN = readSubSection(ssElementN);
 
-                // Add SubSection to Section
-                subSection.addSubSection(i, subSectionN);
+                    // Add SubSection to Section
+                    subSection.addSubSection(subSectionN);
+                }
+
             }
         } else { // if it is composed of questions
             // add the questions to this subsection
