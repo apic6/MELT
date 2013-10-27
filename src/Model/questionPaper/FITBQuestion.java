@@ -58,7 +58,7 @@ public class FITBQuestion implements Question {
 
     
     public int getNumberOfPossibleAnswers() {
-        return possibleAnswers.length;
+       return possibleAnswers.length ;
     }
 
     public String getPossibleAnswer(int i) {
