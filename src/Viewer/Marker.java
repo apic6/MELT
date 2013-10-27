@@ -200,98 +200,98 @@ public class Marker extends JPanel {
            SubSection paperSubsec=paperSec.getSubSection(l);
           JLabel subsecTitle=new JLabel("Subsection: "+paperSubsec.getTitle());
           
-          
+            populateSubmissionSubSection(subsec, paperSubsec, sec.getID(), null);
           
           
           
           //////////////////////////////////////////////////////////////////////// Print Question stuff
-          c2.gridx=0;
-          c2.gridy=counter;
-          rightPanel.add(subsecTitle, c2);
-          rightPanel.add(new Separator());
-          counter++;
-          ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
-           for(int m=0;m<unMarked.size();m++){
-                final JLabel marksGiven=new JLabel();
-               
-               final Answer ans=subsec.getAnswer(m);
-               final Question ques=paperSubsec.getQuestion(m);
-                   
-               c2.gridy=counter;
-               c2.gridx=0;
-              
-               JLabel questionLabel=new JLabel("Question   "+m);
-               rightPanel.add(questionLabel, c2);
-               c2.gridx=1;
-             
-               JLabel question=new JLabel("<html>"+ques.getQuestion()+"</html>") {
-                   @Override
-                   public Dimension getPreferredSize() {
-                       Dimension d = super.getPreferredSize();
-                       d.width = 400;
-                       return d;
-                   }
-               };
-               rightPanel.add(question,c2);
-               c2.gridx=2;
-              
-               JButton plusMark=new JButton("+");
-               plusMark.addActionListener(new ActionListener(){
-
-                   @Override
-                   public void actionPerformed(ActionEvent e) {
-                    if(ans.getMark()<ques.getMark()){
-                       ans.setMark(ans.getMark()+1);}
-                    marksGiven.setText(""+ans.getMark());
-                    //marksGiven.repaint();
-                   }
-               
-               });
-               rightPanel.add(plusMark,c2);
-               c2.gridx=3;
-             
-               JButton minusMark=new JButton("-");
-               minusMark.addActionListener(new ActionListener() {
-
-                   @Override
-                   public void actionPerformed(ActionEvent e) {
-                    if(ans.getMark()>0){
-                       ans.setMark(ans.getMark()-1);
-                    marksGiven.setText(""+ans.getMark());
-                    
-                    }
-                   }
-               });
-               rightPanel.add(minusMark,c2);
-               c2.ipadx=0;
-               counter++;
-               c2.gridy=counter;
-               c2.gridx=0;
-              
-               JLabel answerLabel=new JLabel("Answer   "+m);
-               rightPanel.add(answerLabel, c2);
-               c2.gridx=1;
-              
-               
-               JLabel Answer=new JLabel("<html>"+ans.getAnswerString()+"</html>") {
-                   @Override
-                   public Dimension getPreferredSize() {
-                       Dimension d = super.getPreferredSize();
-                       d.width = 400;
-                       return d;
-                   }
-               };
-               rightPanel.add(Answer,c2);
-               c2.gridx=2;
-               marksGiven.setText(""+ans.getMark()+"");
-               rightPanel.add(marksGiven,c2);
-               c2.gridx=3;
-               JLabel markTotal=new JLabel("out of "+ques.getMark()+" total marks");
-               rightPanel.add(markTotal,c2);
-               c2.ipadx=0;
-           
-                counter++;
-           }
+//          c2.gridx=0;
+//          c2.gridy=counter;
+//          rightPanel.add(subsecTitle, c2);
+//          rightPanel.add(new Separator());
+//          counter++;
+//          ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
+//           for(int m=0;m<unMarked.size();m++){
+//                final JLabel marksGiven=new JLabel();
+//               
+//               final Answer ans=subsec.getAnswer(m);
+//               final Question ques=paperSubsec.getQuestion(m);
+//                   
+//               c2.gridy=counter;
+//               c2.gridx=0;
+//              
+//               JLabel questionLabel=new JLabel("Question   "+m);
+//               rightPanel.add(questionLabel, c2);
+//               c2.gridx=1;
+//             
+//               JLabel question=new JLabel("<html>"+ques.getQuestion()+"</html>") {
+//                   @Override
+//                   public Dimension getPreferredSize() {
+//                       Dimension d = super.getPreferredSize();
+//                       d.width = 400;
+//                       return d;
+//                   }
+//               };
+//               rightPanel.add(question,c2);
+//               c2.gridx=2;
+//              
+//               JButton plusMark=new JButton("+");
+//               plusMark.addActionListener(new ActionListener(){
+//
+//                   @Override
+//                   public void actionPerformed(ActionEvent e) {
+//                    if(ans.getMark()<ques.getMark()){
+//                       ans.setMark(ans.getMark()+1);}
+//                    marksGiven.setText(""+ans.getMark());
+//                    //marksGiven.repaint();
+//                   }
+//               
+//               });
+//               rightPanel.add(plusMark,c2);
+//               c2.gridx=3;
+//             
+//               JButton minusMark=new JButton("-");
+//               minusMark.addActionListener(new ActionListener() {
+//
+//                   @Override
+//                   public void actionPerformed(ActionEvent e) {
+//                    if(ans.getMark()>0){
+//                       ans.setMark(ans.getMark()-1);
+//                    marksGiven.setText(""+ans.getMark());
+//                    
+//                    }
+//                   }
+//               });
+//               rightPanel.add(minusMark,c2);
+//               c2.ipadx=0;
+//               counter++;
+//               c2.gridy=counter;
+//               c2.gridx=0;
+//              
+//               JLabel answerLabel=new JLabel("Answer   "+m);
+//               rightPanel.add(answerLabel, c2);
+//               c2.gridx=1;
+//              
+//               
+//               JLabel Answer=new JLabel("<html>"+ans.getAnswerString()+"</html>") {
+//                   @Override
+//                   public Dimension getPreferredSize() {
+//                       Dimension d = super.getPreferredSize();
+//                       d.width = 400;
+//                       return d;
+//                   }
+//               };
+//               rightPanel.add(Answer,c2);
+//               c2.gridx=2;
+//               marksGiven.setText(""+ans.getMark()+"");
+//               rightPanel.add(marksGiven,c2);
+//               c2.gridx=3;
+//               JLabel markTotal=new JLabel("out of "+ques.getMark()+" total marks");
+//               rightPanel.add(markTotal,c2);
+//               c2.ipadx=0;
+//           
+//                counter++;
+//           }
        } ////////////End of print question stuff
         
    
@@ -302,14 +302,14 @@ public class Marker extends JPanel {
    private void populateSubmissionSubSection(SubmissionSubSection submSubSection, SubSection subSection, int sectionID, ArrayList<Integer> subSectionIDs) {
         if (submSubSection.getType()== SubmissionSubSection.CollectionType.SUBSECTIONS) {
             for (int i = 0; i < subSection.getNumberOfSubSections(); i++) {
-                SubmissionSubSection submSectionn = new SubmissionSubSection(i);
+                
                 ArrayList<Integer> list = new ArrayList<>();
                 for (int j = 0; j<subSectionIDs.size(); j++) {
                     list.add(subSectionIDs.get(j));
                 }
                 list.add(i);
-                populateSubmissionSubSection(submSectionn, subSection.getSubSection(i), sectionID, list);
-                submSubSection.addSubSection(submSectionn);
+                populateSubmissionSubSection(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, list);
+           
             }
         } else if (submSubSection.getType()== SubmissionSubSection.CollectionType.ANSWERS) {
             ArrayList<Answer> unMarked=submSubSection.getUnmarkedQuestions();
