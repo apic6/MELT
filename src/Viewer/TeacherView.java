@@ -198,11 +198,12 @@ public class TeacherView extends JPanel {
             final ArrayList<Submission> submissions=amodel.getSubmissions();
             for(int k=0;k<submissions.size();++k)  {
                 if(papers.get(j).getPaperID()==submissions.get(k).getPaperID()){
-            BottomPanel.add(markButton,c2);}
+                  BottomPanel.add(markButton,c2);}
                 else{
-                 //   JLabel noMarksLabel=new JLabel("No submissions");
-                markButton.setEnabled(false);
-                BottomPanel.add(markButton,c2);}
+                    JLabel noMarksLabel=new JLabel("No submissions");
+               // markButton.setEnabled(false);
+                //BottomPanel.add(markButton,c2);
+                }
             }
             }
         this.add(Scroll,c);

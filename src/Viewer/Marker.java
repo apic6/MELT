@@ -49,7 +49,7 @@ public class Marker extends JPanel {
     
     JLabel test=new JLabel();
     private static JFrame mainFrame;
-    private int counter=0;
+    private int counter=0; 
     private Modeller model;
     private QuestionPaper paper;
     private static Submission submission;
@@ -57,16 +57,8 @@ public class Marker extends JPanel {
     private DefaultListModel listModel;
     private GridBagConstraints c2 = new GridBagConstraints();
     private ListSelectionModel listSelectionModel;
-    private JPanel rightPanel=new JPanel() /* {
+    private JPanel rightPanel=new JPanel();
     
-        @Override
-        public Dimension getPreferredSize(){
-          Dimension Dim=new Dimension();
-          Dim.width=(int) (600);
-          Dim.height=super.getPreferredSize().height;
-          return Dim;  
-    }
-    }*/;
     public Marker(Modeller model,JFrame frame,QuestionPaper paper) {
     this.mainFrame=frame;
     this.model=model;
@@ -100,6 +92,8 @@ public class Marker extends JPanel {
         leftPanel.setLayout(new GridBagLayout());
         leftPanel.setBorder(new TitledBorder("Student Submissions for "+paper.getTitle()));
         final ArrayList<Submission> submissions=model.getSubmissions();
+        final ArrayList<Submission> listSubm=new ArrayList<>();
+        
         GridBagConstraints c1= new GridBagConstraints();
         
         c1.gridx=0;
@@ -111,6 +105,18 @@ public class Marker extends JPanel {
         
         listModel = new DefaultListModel();
         submissionList=new JList(listModel);
+        for(int i=0;i<submissions.size();++i){
+        if(submissions.get(i).getPaperID()==paper.getPaperID()){
+        submission=submissions.get(i);
+        listSubm.add(submission);
+        String subID=submission.getStudentID()+"";
+        listModel.addElement(subID);
+        }
+        
+        }
+        submissionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        submissionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        
         listSelectionModel=submissionList.getSelectionModel();
         //listSelectionModel.setValueIsAdjusting(false);
         listSelectionModel.addListSelectionListener(new ListSelectionListener(){
@@ -120,7 +126,7 @@ public class Marker extends JPanel {
                 rightPanel.removeAll();
                 rightPanel.setLayout(new GridBagLayout());
                 int f=submissionList.getSelectedIndex();
-                submission=submissions.get(f);
+                submission=listSubm.get(f);
                 displaySubmission(submission,c2);
                 
                 rightPanel.revalidate();
@@ -131,16 +137,7 @@ public class Marker extends JPanel {
         });
         
         
-        for(int i=0;i<submissions.size();++i){
-        if(submissions.get(i).getPaperID()==paper.getPaperID()){
-        submission=submissions.get(i);
-        String subID=submission.getStudentID()+"";
-        listModel.addElement(subID);
-        }
         
-        }
-        submissionList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        submissionList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         
         
         JScrollPane listScroller = new JScrollPane(submissionList);
@@ -180,9 +177,9 @@ public class Marker extends JPanel {
 
   void displaySubmission(Submission sub,GridBagConstraints c2){
               
-            
+       counter=0;  
        model.loadPapers();
-      paper=model.getPaper(sub.getPaperID()-1);
+       paper=model.getPaper(sub.getPaperID()-1);
    for (int k=0;k<sub.getSize();++k){
        
        SubmissionSection sec=sub.getSection(k);
@@ -198,100 +195,17 @@ public class Marker extends JPanel {
        for(int l=0;l<sec.getSize();++l){
            SubmissionSubSection subsec=sec.getSubSection(l);
            SubSection paperSubsec=paperSec.getSubSection(l);
-          JLabel subsecTitle=new JLabel("Subsection: "+paperSubsec.getTitle());
+           JLabel subsecTitle=new JLabel("Subsection: "+paperSubsec.getTitle());
           
+           
+            c2.gridx=0;
+            c2.gridy=counter;
+            rightPanel.add(subsecTitle, c2);
+            rightPanel.add(new Separator());
+            counter++;
             populateSubmissionSubSection(subsec, paperSubsec, sec.getID(), null);
           
-          
-          
-          //////////////////////////////////////////////////////////////////////// Print Question stuff
-//          c2.gridx=0;
-//          c2.gridy=counter;
-//          rightPanel.add(subsecTitle, c2);
-//          rightPanel.add(new Separator());
-//          counter++;
-//          ArrayList<Answer> unMarked=subsec.getUnmarkedQuestions();
-//           for(int m=0;m<unMarked.size();m++){
-//                final JLabel marksGiven=new JLabel();
-//               
-//               final Answer ans=subsec.getAnswer(m);
-//               final Question ques=paperSubsec.getQuestion(m);
-//                   
-//               c2.gridy=counter;
-//               c2.gridx=0;
-//              
-//               JLabel questionLabel=new JLabel("Question   "+m);
-//               rightPanel.add(questionLabel, c2);
-//               c2.gridx=1;
-//             
-//               JLabel question=new JLabel("<html>"+ques.getQuestion()+"</html>") {
-//                   @Override
-//                   public Dimension getPreferredSize() {
-//                       Dimension d = super.getPreferredSize();
-//                       d.width = 400;
-//                       return d;
-//                   }
-//               };
-//               rightPanel.add(question,c2);
-//               c2.gridx=2;
-//              
-//               JButton plusMark=new JButton("+");
-//               plusMark.addActionListener(new ActionListener(){
-//
-//                   @Override
-//                   public void actionPerformed(ActionEvent e) {
-//                    if(ans.getMark()<ques.getMark()){
-//                       ans.setMark(ans.getMark()+1);}
-//                    marksGiven.setText(""+ans.getMark());
-//                    //marksGiven.repaint();
-//                   }
-//               
-//               });
-//               rightPanel.add(plusMark,c2);
-//               c2.gridx=3;
-//             
-//               JButton minusMark=new JButton("-");
-//               minusMark.addActionListener(new ActionListener() {
-//
-//                   @Override
-//                   public void actionPerformed(ActionEvent e) {
-//                    if(ans.getMark()>0){
-//                       ans.setMark(ans.getMark()-1);
-//                    marksGiven.setText(""+ans.getMark());
-//                    
-//                    }
-//                   }
-//               });
-//               rightPanel.add(minusMark,c2);
-//               c2.ipadx=0;
-//               counter++;
-//               c2.gridy=counter;
-//               c2.gridx=0;
-//              
-//               JLabel answerLabel=new JLabel("Answer   "+m);
-//               rightPanel.add(answerLabel, c2);
-//               c2.gridx=1;
-//              
-//               
-//               JLabel Answer=new JLabel("<html>"+ans.getAnswerString()+"</html>") {
-//                   @Override
-//                   public Dimension getPreferredSize() {
-//                       Dimension d = super.getPreferredSize();
-//                       d.width = 400;
-//                       return d;
-//                   }
-//               };
-//               rightPanel.add(Answer,c2);
-//               c2.gridx=2;
-//               marksGiven.setText(""+ans.getMark()+"");
-//               rightPanel.add(marksGiven,c2);
-//               c2.gridx=3;
-//               JLabel markTotal=new JLabel("out of "+ques.getMark()+" total marks");
-//               rightPanel.add(markTotal,c2);
-//               c2.ipadx=0;
-//           
-//                counter++;
-//           }
+
        } ////////////End of print question stuff
         
    
@@ -302,20 +216,28 @@ public class Marker extends JPanel {
    private void populateSubmissionSubSection(SubmissionSubSection submSubSection, SubSection subSection, int sectionID, ArrayList<Integer> subSectionIDs) {
         if (submSubSection.getType()== SubmissionSubSection.CollectionType.SUBSECTIONS) {
             for (int i = 0; i < subSection.getNumberOfSubSections(); i++) {
+                JLabel subsecTitle=new JLabel("Subsection: "+subSection.getTitle());
+          
+           
+                c2.gridx=0;
+                c2.gridy=counter;
+                rightPanel.add(subsecTitle, c2);
+                rightPanel.add(new Separator());
+                counter++;
                 
-                ArrayList<Integer> list = new ArrayList<>();
-                for (int j = 0; j<subSectionIDs.size(); j++) {
-                    list.add(subSectionIDs.get(j));
-                }
-                list.add(i);
-                populateSubmissionSubSection(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, list);
+//                ArrayList<Integer> list = new ArrayList<>();
+//                for (int j = 0; j<subSectionIDs.size(); j++) {
+//                    list.add(subSectionIDs.get(j));
+//                }
+//                list.add(i);
+                populateSubmissionSubSection(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, null);
            
             }
         } else if (submSubSection.getType()== SubmissionSubSection.CollectionType.ANSWERS) {
             ArrayList<Answer> unMarked=submSubSection.getUnmarkedQuestions();
             for (int m = 0; m < unMarked.size(); m++) {
                 
-                final JLabel marksGiven=new JLabel();
+               final JLabel marksGiven=new JLabel();
                
                final Answer ans=submSubSection.getAnswer(m);
                final Question ques=subSection.getQuestion(m);
@@ -401,6 +323,7 @@ public class Marker extends JPanel {
     
 
 
+   
    
 public static Submission getSubmission(){
 

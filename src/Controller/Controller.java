@@ -62,7 +62,7 @@ public class Controller {
                 case "login": {
                     String username = LoginScreen.getUsername();
                     String pass = LoginScreen.getPass();
-                    if (pass.equals("English")) {
+                    if (pass.equals("")) {
                         JFrame frame;
                         frame = LoginScreen.getFrame();
                         frame.setContentPane(new Student(frame, amodel, username));
