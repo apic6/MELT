@@ -39,12 +39,17 @@ public class TestSection extends JPanel{
     private JPanel rightPanel;
     public Modeller model;
     
-   public TestSection(Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
+   public TestSection(Section section,Modeller model,QuestionPaper paper,ArrayList<TestSection> sectionList,TestWizard wizard){
         this.model = model;
 //        mainFrame = frame;
-        section = new Section();
-        sectionList.add(this);
-        paper.addSection(section);
+        if(section == null)
+        {
+            this.section = new Section();
+            sectionList.add(this);
+            paper.addSection(this.section);
+        }
+        else
+            this.section = section;
         this.wizard = wizard;
         this.rightPanel = rightPanel;
         initComponents();
@@ -88,7 +93,7 @@ public class TestSection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Subsection subsection = new Subsection(section,model,paper,wizard);
+                Subsection subsection = new Subsection(null,section,model,paper,wizard);
                 subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
                 subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();
@@ -110,6 +115,14 @@ public class TestSection extends JPanel{
             }
         });
         
+         if(section.getNumberOfSubSections()>0){
+             for(int i = 0; i< section.getNumberOfSubSections(); i++){
+                Subsection subsection = new Subsection(section.getSubSection(i),section,model,paper,wizard);
+                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
+                subsections.revalidate();
+//                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),null,wizard,subsection));
+             }
+         }
         con.gridy = 1;
         con.weighty = 0;
         add(addSubsection,con);

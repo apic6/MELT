@@ -27,16 +27,18 @@ public class SubSection {
     public SubSection() {
         questionList = null;
         subSectionList = null;
-        type = CollectionType.UNDEFINED;
+        type = CollectionType.QUESTIONS;
+        questionList = new ArrayList<Question>();
     }
 
     public SubSection(String Title, String Description, String Instructions) {
         questionList = null;
         subSectionList = null;
-        type = CollectionType.UNDEFINED;
+        type = CollectionType.QUESTIONS;
         this.Title = Title;
         this.Description = Description;
         this.Instructions = Instructions;
+        questionList = new ArrayList<Question>();
     }
 
     public void setTitle(String Title) {
@@ -247,7 +249,7 @@ public class SubSection {
                 break;
             case UNDEFINED:
             default:
-                XML += "UNDEFINED";
+                XML += "UNDEFINED</CollectionType>\n";
                 break;
         }
         
