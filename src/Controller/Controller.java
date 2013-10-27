@@ -15,9 +15,9 @@ import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
 import Viewer.Marker;
 import Viewer.PaperViews.PaperView;
-import Viewer.SectionEditor;
+
 import Viewer.Student;
-import Viewer.SubsectionEditor;
+
 import Viewer.TeacherView;
 import Viewer.TestWizard;
 import Viewer.Viewer;
@@ -62,7 +62,7 @@ public class Controller {
                 case "login": {
                     String username = LoginScreen.getUsername();
                     String pass = LoginScreen.getPass();
-                    if (pass.equals("English")) {
+                    if (pass.equals("")) {
                         JFrame frame;
                         frame = LoginScreen.getFrame();
                         frame.setContentPane(new Student(frame, amodel, username));
@@ -132,7 +132,7 @@ public class Controller {
                     timer.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
-                            // System.err.println("jskahkjdashjkdhsakfhskdfjsakfhjks");
+                        
                             saveOldTest();
                         }
                     }, 0, 2000);
@@ -145,7 +145,7 @@ public class Controller {
                      * I'll analyse this code and mine when Im more awake but right now having this code as-is prevents my code from working.
                      * I think it pulls thje submission a little too early and causes errors, I might be wrong though. */
                     
-                    /*Submission newsub;
+                    Submission newsub;
                     newsub = PaperView.getSubmission();
                     amodel.loadSubmissions();
                     amodel.addSubmission(newsub);
@@ -159,7 +159,7 @@ public class Controller {
                         public void run() {
                             saveSubmission(PaperView.getSubmission());
                         }
-                    }, 0, 6000); */
+                    }, 0, 2000); 
                 }
                 break;
 
@@ -208,9 +208,7 @@ public class Controller {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            //  System.err.println(e.getSource());
-            // saveTest();  //         
-            System.err.println("it worksjsjsjsjsjhkhfksadf");
+         
         }
 
         @Override
@@ -255,11 +253,11 @@ public class Controller {
     private void saveOldTest() {
         QuestionPaper p;
         p = TestWizard.getQuestionPaper();
-        //  System.out.println(p.getPaperID());
+      
         amodel.loadPapers();
 
         try {
-            // p.getPaperID();
+            
 
             amodel.removePaper(p.getPaperID() - 1);
             amodel.addPaper(p.getPaperID() - 1, p);             //it always adds at the end of the list...
@@ -271,12 +269,11 @@ public class Controller {
         }
     }
 
-    private void saveMarks() {
-    }
+ 
 
     private void saveSubmission(Submission submission) {
         Submission sub = submission;
-        //sub=PaperView.getSubmission();
+        
 
 
         ArrayList<Submission> allsubs;
