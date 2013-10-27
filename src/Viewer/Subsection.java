@@ -52,13 +52,18 @@ public class Subsection extends JPanel{
     public DefaultListModel listModel;
     private TestWizard wizard;
     Subsection subsectionPanel;
-    Subsection(Section section, Modeller model, QuestionPaper paper, TestWizard wizard){
+    Subsection(SubSection subSection,Section section, Modeller model, QuestionPaper paper, TestWizard wizard){
         this.paper = paper ;
         this.section = section;
         mainPane = this;
         amodel = model;
-        subSection = new SubSection();
-        section.AddSubSection(subSection);
+        if(subSection == null){
+            subSection = new SubSection();
+            section.AddSubSection(subSection);
+        }
+        else{
+            this.subSection = subSection;
+        }
         this.rightPanel = rightPanel;
         this.subsectionPanel = this;
         this.wizard = wizard;

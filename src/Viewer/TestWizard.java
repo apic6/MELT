@@ -113,7 +113,7 @@ public class TestWizard extends JPanel{
             c2.weightx = 1.0;
             c2.weighty = 1.0;
             c2.fill = GridBagConstraints.BOTH;
-            tab3.add(new TestSection(model,paper,sectionList,wizard),c2);
+            tab3.add(new TestSection(null,model,paper,sectionList,wizard),c2);
             
             tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
             tabs.setSelectedIndex(tabs.getTabCount()-1);
@@ -135,6 +135,23 @@ public class TestWizard extends JPanel{
                 }
             }
         });
+        
+        if(paper.getNumberOfSections() > 0){
+            for(int i = 0; i< paper.getNumberOfSections(); i++){
+                JPanel tab3 = new JPanel();
+            tab3.setLayout(new GridBagLayout());
+            GridBagConstraints c2 = new GridBagConstraints();
+                 c2.gridx = 0;
+                c2.gridy = 0;
+                c2.weightx = 1.0;
+                c2.weighty = 1.0;
+                c2.fill = GridBagConstraints.BOTH;
+                tab3.add(new TestSection(paper.getSection(i),model,paper,sectionList,wizard),c2);
+
+                tabs.addTab("section"+ (tabs.getTabCount()+1),tab3);
+                tabs.revalidate();
+            }
+            }
         con.gridx = 0;
         con.gridy = 1;
         con.weightx = 1.0;
