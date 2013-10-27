@@ -21,6 +21,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -33,6 +34,8 @@ import javax.swing.event.DocumentListener;
  */
 public final class FIBQPanel extends JPanel {
     private JFrame mainFrame;
+    private Popup pop=new Popup();
+       private JTabbedPane questionType;
     JTextField firstPart=new JTextField(10);
     JTextField secondPart=new JTextField(10);
     private Modeller model;
@@ -42,14 +45,15 @@ public final class FIBQPanel extends JPanel {
     FITBQuestion fibquestion = new FITBQuestion();
     int j=0;
     ArrayList<JTextArea> answerAreas ;
+    int num_answers;
     Subsection subsectionPanel;
     private final SubSection subSection;
     Question question;
    //public FIBQPanel (JFrame frame,Modeller model) {
-    public FIBQPanel (SubSection subSection, Question Q, Subsection subsectionPanel) { 
+    public FIBQPanel (SubSection subSection, Question Q, Subsection subsectionPanel, JTabbedPane questionType) { 
         this.subSection = subSection;
         this.subsectionPanel = subsectionPanel;
-        
+        this.questionType = questionType;
         
         answerAreas = new ArrayList();
         if (Q != null)
@@ -66,6 +70,7 @@ public final class FIBQPanel extends JPanel {
    
    void initComponents() {
       
+            questionType.addTab("FIBQ",this);
 //       
        if (fibquestion.getQuestionParts() == null){
            fibquestion.setQuestionParts(new String[2]);
@@ -213,13 +218,13 @@ public final class FIBQPanel extends JPanel {
        
        
        
-       if(fibquestion.getQuestionParts()!= null){
-//                questionType.setSelectedIndex(0);
+       if(question!= null){
+                questionType.setSelectedComponent(this);
 //                titleArea.setText(mcquestion.getQuestion());
            firstPart.setText(fibquestion.getQuestionParts()[0]);
            secondPart.setText(fibquestion.getQuestionParts()[1]);
                 markArea.setText(String.valueOf(fibquestion.getMark()));
-                System.out.println("__"+ String.valueOf(fibquestion.getMark())+ "___");
+                
                 for (int i = 0 ; i < fibquestion.getNumberOfPossibleAnswers(); i++)
                 {
                 JPanel tempPanel = new JPanel();
@@ -254,7 +259,7 @@ public final class FIBQPanel extends JPanel {
                 gbc1.weightx = 0.7;
                 tempPanel.add(answer,gbc1);
                 
-                apc.weightx = 1.0 ;
+//                apc.weightx = 1.0 ;
                
                 answerPanel.add(tempPanel, apc);
                 apc.gridy++ ;
@@ -262,36 +267,55 @@ public final class FIBQPanel extends JPanel {
                 answerPanel.revalidate();
                 answerPanel.repaint();
 
-//                submit.addActionListener(new ActionListener (){
-//                @Override
-//                public void actionPerformed(ActionEvent e){
-//                fibquestion.setMark(Integer.parseInt(markArea.getText()));
-//                subSection.addQuestion(fibquestion);
-//                //revalidate();
-//                }
-//                });
+                submit.addActionListener(new ActionListener (){
+                @Override
+                public void actionPerformed(ActionEvent e){
+            
+                fibquestion.setMark(Integer.parseInt(markArea.getText()));
+                subSection.addQuestion(fibquestion);
+                
+//                subsectionPanel.listModel.addElement(fibquestion.getQuestion());
+               
+                }
+                });
+                
+                
                 }
                 else{
                 
                 markArea.setText("0");
-//                submit.addActionListener(new ActionListener (){
-//                @Override
-//                public void actionPerformed(ActionEvent e){
-//                fibquestion.setMark(Integer.parseInt(markArea.getText()));
-//                subSection.addQuestion(fibquestion);
-//                subsectionPanel.listModel.addElement(fibquestion.getQuestion());
-//               }
-//                });
+                
+                
+                submit.addActionListener(new ActionListener (){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                        if (fibquestion.getQuestionParts()[0] != null && fibquestion.getQuestionParts()[1] != null){
+                    fibquestion.setMark(Integer.parseInt(markArea.getText()));
+                    subSection.addQuestion(fibquestion);
+                    subsectionPanel.listModel.addElement(fibquestion.getQuestion());
+               
+                    }
+                       
+                else{pop.setText("Need the question!");pop.show();}
+               }
+                });
+                
+                
             }
+       if(fibquestion.getNumberOfPossibleAnswers() == 0)
+                num_answers = 0;
+            else
+                num_answers = fibquestion.getNumberOfPossibleAnswers();
        addAnswerButton.addActionListener(new ActionListener(){
 
           @Override
           public void actionPerformed(ActionEvent e) {
-              apc.gridy=j;
-          answerPanel.add(addAnswer(j),apc);
+              apc.gridy++;
+              
+          answerPanel.add(addAnswer(++num_answers),apc);
           revalidate();
           repaint();
-          j++;
+          
           
           
           }
@@ -301,22 +325,25 @@ public final class FIBQPanel extends JPanel {
        
        
        
-       submit.addActionListener(new ActionListener (){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                fibquestion.setMark(Integer.parseInt(markArea.getText()));
-                subSection.addQuestion(fibquestion);
-                subsectionPanel.listModel.addElement(fibquestion.getQuestion());
-                
-                
-               
-            }
-       });
+//       submit.addActionListener(new ActionListener (){
+//            @Override
+//            public void actionPerformed(ActionEvent e){
+//                if (fibquestion.getQuestion() != null){
+//                    subsectionPanel.listModel.addElement(fibquestion.getQuestion());
+//                }
+//                fibquestion.setMark(Integer.parseInt(markArea.getText()));
+//                subSection.addQuestion(fibquestion);
+////                subsectionPanel.listModel.addElement(fibquestion.getQuestion());
+//                
+//                
+//               
+//            }
+//       });
    }
 
    public JPanel addAnswer(final int num){
             JPanel tempPanel = new JPanel();
-            JLabel answer_label = new JLabel("Possible Blank Filler "+num);
+            JLabel answer_label = new JLabel("answer"+num+": ");
             tempPanel.setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.anchor= GridBagConstraints.FIRST_LINE_START ;
@@ -324,8 +351,8 @@ public final class FIBQPanel extends JPanel {
             gbc.gridx = 0;
             gbc.weightx = 0.3;
             tempPanel.add(answer_label,gbc);
-            final JTextField answer = new JTextField(10);
-            this.add(answer);
+            final JTextArea newAnswer = new JTextArea(1, 20);
+//            this.add(newAnswer);
             if (fibquestion.getPossibleAnswers() == null) {
                fibquestion.setPossibleAnswers(new String [1]);
             }
@@ -335,25 +362,25 @@ public final class FIBQPanel extends JPanel {
                 System.arraycopy(fibquestion.getPossibleAnswers(),0,new_answers,0,fibquestion.getNumberOfPossibleAnswers());
                 fibquestion.setPossibleAnswers(new_answers);
                 }
-            answer.getDocument().addDocumentListener(new DocumentListener() {
+            newAnswer.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                fibquestion.getPossibleAnswers()[num] = answer.getText();
+                fibquestion.getPossibleAnswers()[num-1] = newAnswer.getText();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                fibquestion.getPossibleAnswers()[num] = answer.getText();
+                fibquestion.getPossibleAnswers()[num-1] = newAnswer.getText();
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
-                fibquestion.getPossibleAnswers()[num] = answer.getText();
+                fibquestion.getPossibleAnswers()[num-1] = newAnswer.getText();
             }
     });
-            
+            answerAreas.add(newAnswer) ;
             gbc.gridx = 1;
             gbc.weightx = 0.7;
-            tempPanel.add(answer,gbc);
+            tempPanel.add(newAnswer,gbc);
             return tempPanel;
             
         }
