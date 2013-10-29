@@ -61,7 +61,7 @@ public class SubmissionLoader {
             } else {
                 submission.setFullyMarked(false);
             }
-            
+
             submission.setSubmitted();
 
             // For each section
@@ -100,7 +100,7 @@ public class SubmissionLoader {
                 }
                 Element ssElement = (Element) subSectionListN.item(k);
                 if (ssElement.getParentNode() == sssElement) {
-                    SubmissionSubSection submSubSectionN = readSubmSubSection(sssElement, list);
+                    SubmissionSubSection submSubSectionN = readSubmSubSection(ssElement, list);
 
                     submSubSection.addSubSection(submSubSectionN);
                 }
@@ -148,6 +148,12 @@ public class SubmissionLoader {
                         Integer.parseInt(sMFITBAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                         strings);
 
+//                if (sMFITBAnswer.getElementsByTagName("Marked").item(0).getTextContent().equals("TRUE")) {
+//                    answer.setMarked(true);
+//                } else {
+//                    answer.setMarked(false);
+//                }
+
                 if (sMFITBAnswer.getElementsByTagName("Mark").getLength() != 0) {
                     answer.setMark(Integer.parseInt(sMFITBAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
                 }
@@ -160,6 +166,12 @@ public class SubmissionLoader {
                         subsectionIDList,
                         Integer.parseInt(sEssayAnswer.getElementsByTagName("AnswerID").item(0).getTextContent()),
                         sEssayAnswer.getElementsByTagName("Answer").item(0).getTextContent());
+
+//                if (sEssayAnswer.getElementsByTagName("Marked").item(0).getTextContent().equals("TRUE")) {
+//                    answer.setMarked(true);
+//                } else {
+//                    answer.setMarked(false);
+//                }
 
                 if (sEssayAnswer.getElementsByTagName("Mark").getLength() != 0) {
                     answer.setMark(Integer.parseInt(sEssayAnswer.getElementsByTagName("Mark").item(0).getTextContent()));

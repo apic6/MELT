@@ -51,9 +51,9 @@ public class SubmissionSection {
                 return a.getID() - b.getID();
             }
         });
+        this.fullyMarked = true;
         for (int i = 0; i < subSectionList.size(); i++) {
             subSectionList.get(i).normalise();
-            this.fullyMarked = true;
             if (!subSectionList.get(i).isFullyMarked()) {
                 this.fullyMarked = false;
             }

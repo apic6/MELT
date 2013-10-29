@@ -108,7 +108,6 @@ public class Student extends JPanel {
         ArrayList<Submission> submissions = amodel.getMarkedSubmissionsByStudentID(intID);
 
 
-        ArrayList<Submission> subs1 = amodel.getSubmissions();
         for (int i = 0; i < submissions.size(); i++) {
             JPanel panel = new MarkedSubmission(submissions.get(i), amodel);
             rightPanel.add(panel);

@@ -99,9 +99,9 @@ public class Submission {
             }
         });
 
+        this.fullyMarked = true;
         for (int i = 0; i < sectionList.size(); i++) {
             sectionList.get(i).normalise();
-            this.fullyMarked = true;
             if (!sectionList.get(i).isFullyMarked()) {
                 this.fullyMarked = false;
             }
