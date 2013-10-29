@@ -140,7 +140,6 @@ class SectionPanel extends JPanel {
     }
 
     private void updateTime() {
-        System.out.println("Time: " + section.getRemainingTime());
         section.timerTick();
         int remaining = section.getRemainingTime();
         if (remaining <= 0) {
@@ -197,7 +196,6 @@ public class PaperView extends JPanel {
 
         if (studentID >= 0) {
             taker = new QuestionPaperTaker(paper, studentID);
-            System.out.println(taker.getSubmission().toXML());
         } else {
             taker = null;
         }
@@ -263,7 +261,7 @@ public class PaperView extends JPanel {
                 Marker marker = new Marker();
                 marker.markTest(taker.getSubmission(), paper);
 
-                System.out.println("Mark = " + marker.getMark() + "/" + marker.getTotalMark());
+                // System.out.println("Mark = " + marker.getMark() + "/" + marker.getTotalMark());
             }
         });
 

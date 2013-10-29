@@ -2,9 +2,11 @@ package Viewer;
 
 import Viewer.PaperViews.PaperView;
 import Model.Modeller;
+import Model.StudentSubmission.Submission;
 import Model.questionPaper.QuestionPaper;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -21,13 +24,29 @@ import javax.swing.border.TitledBorder;
  *
  * @author Daniel
  */
+class MarkedSubmission extends JPanel {
+
+    MarkedSubmission(Submission sub, Modeller model) {
+        QuestionPaper paper = model.getPaperByPaperID(sub.getPaperID());
+        if (paper != null) {
+            setLayout(new FlowLayout());
+            JLabel title = new JLabel("Paper: " + paper.getTitle());
+            JLabel mark = new JLabel("Marks: " + sub.getMark() + "/" + sub.getTotalMark());
+            add(title);
+            add(mark);
+        } else {
+            System.out.println("Submission for paper that doesn't exist.");
+        }
+    }
+}
+
 public class Student extends JPanel {
 
     public String ID;
     public int intID;
     public JFrame mainFrame;
     public Modeller amodel;
-    private static JButton startTrigger=new JButton("startTrigger");
+    private static JButton startTrigger = new JButton("startTrigger");
 
     public Student(JFrame frame, Modeller model, String studentID) {
         amodel = model;
@@ -81,8 +100,19 @@ public class Student extends JPanel {
 
         leftPanel.setLayout(new GridLayout(20, 0));
         leftPanel.setBorder(new TitledBorder("My avaliable tests"));
+        rightPanel.setLayout(new GridLayout(20, 0));
         rightPanel.setBorder(new TitledBorder("My previous taken tests"));
 
+        amodel.loadSubmissions();
+        amodel.loadPapers();
+        ArrayList<Submission> submissions = amodel.getMarkedSubmissionsByStudentID(intID);
+
+
+        ArrayList<Submission> subs1 = amodel.getSubmissions();
+        for (int i = 0; i < submissions.size(); i++) {
+            JPanel panel = new MarkedSubmission(submissions.get(i), amodel);
+            rightPanel.add(panel);
+        }
 
         /////////setting the layout for each panel
 
@@ -141,12 +171,14 @@ public class Student extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(1100,800);
+        return new Dimension(1100, 800);
     }
-    public JFrame getFrame(){
-    return mainFrame;}
-    
-    public static void addListener (ActionListener mal){
-    startTrigger.addActionListener(mal);
+
+    public JFrame getFrame() {
+        return mainFrame;
+    }
+
+    public static void addListener(ActionListener mal) {
+        startTrigger.addActionListener(mal);
     }
 }

@@ -60,18 +60,18 @@ public class LoginScreen extends JPanel {
                 
 		loginButton.setBounds(10, 80, 80, 25);
 		this.add(loginButton);
-//		loginButton.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent Ev){
-//                    String pass=(passwordText.getText()).toString();
-//                if( "English".equals(pass)){
-//                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel,userIDText.getText()));   
-//                                } 
-//                else {
-//                          
-//                        }
-//                }
-//                });
+		loginButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent Ev){
+                    String pass=(passwordText.getText()).toString();
+                if( "English".equals(pass)){
+                         ((Viewer)mainFrame).guiChanger(new Student(mainFrame,amodel,userIDText.getText()));   
+                                } 
+                else {
+                          
+                        }
+                }
+                });
                 
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.setBounds(180, 80, 80, 25);

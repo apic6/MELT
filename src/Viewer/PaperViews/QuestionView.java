@@ -92,7 +92,6 @@ public class QuestionView extends JPanel {
 
                 @Override
                 public void keyReleased(KeyEvent arg0) {
-                    System.out.println("key typed");
                     taker.answerQuestionFITB(sectionID, subSectionID, questionID, answerArea.getText());
                 }
 
@@ -196,7 +195,6 @@ public class QuestionView extends JPanel {
 
                     @Override
                     public void keyReleased(KeyEvent arg0) {
-                        System.out.println("key typed");
                         ArrayList<String> answers = new ArrayList();
                         for (int i = 0; i < mbqAreas.length; i++) {
                             answers.add(mbqAreas[i].getText());
@@ -236,7 +234,6 @@ public class QuestionView extends JPanel {
 
                 @Override
                 public void keyReleased(KeyEvent arg0) {
-                    System.out.println("key typed");
                     taker.answerQuestionEssay(sectionID, subSectionID, questionID, answerArea.getText());
                 }
 
@@ -321,7 +318,6 @@ public class QuestionView extends JPanel {
 
                 @Override
                 public void keyReleased(KeyEvent arg0) {
-                    System.out.println("key typed");
                     taker.answerQuestionFITB(sectionID, subSectionIDs, questionID, answerArea.getText());
                 }
 
@@ -425,7 +421,6 @@ public class QuestionView extends JPanel {
 
                     @Override
                     public void keyReleased(KeyEvent arg0) {
-                        System.out.println("key typed");
                         ArrayList<String> answers = new ArrayList();
                         for (int i = 0; i < mbqAreas.length; i++) {
                             answers.add(mbqAreas[i].getText());
@@ -465,7 +460,6 @@ public class QuestionView extends JPanel {
 
                 @Override
                 public void keyReleased(KeyEvent arg0) {
-                    System.out.println("key typed");
                     taker.answerQuestionEssay(sectionID, subSectionIDs, questionID, answerArea.getText());
                 }
 

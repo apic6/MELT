@@ -141,7 +141,6 @@ public class SectionView extends JPanel {
     }
 
     private void updateTime() {
-        System.out.println("Time: " + section.getRemainingTime());
         section.timerTick();
         int remaining = section.getRemainingTime();
         if (remaining == 0) {

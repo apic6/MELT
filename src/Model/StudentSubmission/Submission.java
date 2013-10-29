@@ -19,6 +19,7 @@ public class Submission {
     int mark;
     int totalMark;
     boolean fullyMarked;
+    boolean submitted;
     ArrayList<SubmissionSection> sectionList;
 
     public Submission(int paperID, int studentID) {
@@ -27,6 +28,7 @@ public class Submission {
         mark = 0;
         totalMark = 0;
         fullyMarked = false;
+        submitted = false;
         sectionList = new ArrayList<>();
     }
 
@@ -60,8 +62,21 @@ public class Submission {
         this.mark = mark;
     }
 
+    public void setFullyMarked(boolean marked) {
+        // System.err.println("Fully marked" + this.studentID + this.paperID);
+        fullyMarked = marked;
+    }
+
     public boolean isFullyMarked() {
         return fullyMarked;
+    }
+
+    public void setSubmitted() {
+        submitted = true;
+    }
+
+    public boolean isSubmitted() {
+        return submitted;
     }
 
     public void addSection(SubmissionSection section) {
@@ -114,6 +129,15 @@ public class Submission {
         XML += "<StudentSubmission id=\"" + paperID + studentID + "\">\n";
         XML += "<PaperID>" + paperID + "</PaperID>\n";
         XML += "<StudentID>" + studentID + "</StudentID>\n";
+        XML += "<FullyMarked>";
+        if (fullyMarked) {
+            XML += "TRUE";
+        } else {
+            XML += "FALSE";
+        }
+        XML += "</FullyMarked>";
+        XML += "<Mark>" + mark + "</Mark>";
+        XML += "<TotalMark>" + mark + "</TotalMark>";
         for (int i = 0; i < sectionList.size(); i++) {
             XML += sectionList.get(i).toXML() + "\n";
         }

@@ -53,6 +53,16 @@ public class SubmissionLoader {
             Element sElement = (Element) submissionNode;
 
             Submission submission = new Submission(Integer.parseInt(sElement.getElementsByTagName("PaperID").item(0).getTextContent()), Integer.parseInt(sElement.getElementsByTagName("StudentID").item(0).getTextContent()));
+            submission.setMark(Integer.parseInt(sElement.getElementsByTagName("Mark").item(0).getTextContent()),
+                    Integer.parseInt(sElement.getElementsByTagName("TotalMark").item(0).getTextContent()));
+
+            if (sElement.getElementsByTagName("FullyMarked").item(0).getTextContent().equals("TRUE")) {
+                submission.setFullyMarked(true);
+            } else {
+                submission.setFullyMarked(false);
+            }
+            
+            submission.setSubmitted();
 
             // For each section
             NodeList submissionSectionList = sElement.getElementsByTagName("SubmissionSection");
@@ -85,7 +95,7 @@ public class SubmissionLoader {
             NodeList subSectionListN = sssElement.getElementsByTagName("SubmissionSubSection");
             for (int k = 0; k < subSectionListN.getLength(); k++) {
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int l = 0; l<subsectionIDList.size(); l++) {
+                for (int l = 0; l < subsectionIDList.size(); l++) {
                     list.add(subsectionIDList.get(l));
                 }
                 Element ssElement = (Element) subSectionListN.item(k);
@@ -167,7 +177,7 @@ public class SubmissionLoader {
         NodeList submissionSubSectionList = ssElement.getElementsByTagName("SubmissionSubSection");
         for (int k = 0; k < submissionSubSectionList.getLength(); k++) {
             Element sssElement = (Element) submissionSubSectionList.item(k);
-            
+
             ArrayList<Integer> subsectionIDList = new ArrayList<>();
             subsectionIDList.add(k);
 

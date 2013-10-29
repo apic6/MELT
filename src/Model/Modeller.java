@@ -98,7 +98,6 @@ public class Modeller {
         loadPapers();
         return questionPapers;
     }
-    
 
     public ArrayList<QuestionPaper> getPapersByStudentID(int studentID) {
         ArrayList<QuestionPaper> eligiblePapers = new ArrayList<>();
@@ -108,6 +107,31 @@ public class Modeller {
             }
         }
         return eligiblePapers;
+    }
+
+    public ArrayList<Submission> getSubmissionsByStudentID(int studentID) {
+        ArrayList<Submission> studentsSubmissions = new ArrayList<>();
+        for (int i = 0; i < submissions.size(); i++) {
+            if (submissions.get(i).getStudentID() == studentID
+                    && submissions.get(i).isSubmitted()) {
+                studentsSubmissions.add(submissions.get(i));
+            }
+        }
+        return studentsSubmissions;
+    }
+
+    public ArrayList<Submission> getMarkedSubmissionsByStudentID(int studentID) {
+        ArrayList<Submission> studentsSubmissions = new ArrayList<>();
+        for (int i = 0; i < submissions.size(); i++) {
+            if (submissions.get(i).getStudentID() == studentID
+                    && submissions.get(i).isSubmitted()
+                    && submissions.get(i).isFullyMarked()) {
+                studentsSubmissions.add(submissions.get(i));
+
+            }
+
+        }
+        return studentsSubmissions;
     }
 
     // get number of papers
@@ -123,6 +147,15 @@ public class Modeller {
         else {
             return questionPapers.get(index);
         }
+    }
+
+    public QuestionPaper getPaperByPaperID(int id) {
+        for (int i = 0; i < questionPapers.size(); i++) {
+            if (questionPapers.get(i).getPaperID() == id) {
+                return questionPapers.get(i);
+            }
+        }
+        return null;
     }
 
     // add a paper to the model
@@ -172,10 +205,11 @@ public class Modeller {
     // add a paper to the model
     public void addSubmission(Submission submission) {
         submissions.add(submission);
-        
+
     }
-    public void addSubmission(Submission submission,int index){
-    submissions.add(index,submission);
+
+    public void addSubmission(Submission submission, int index) {
+        submissions.add(index, submission);
     }
 
     // remove a paper from the model

@@ -191,7 +191,6 @@ public class QuestionPaperLoader {
                 // TODO
                 ArrayList<String> questionParts = new ArrayList<>();
                 for (int i = 0; i < qElement.getElementsByTagName("QuestionText").getLength(); i++) {
-                    System.out.println("Item: " + i);
                     questionParts.add(qElement.getElementsByTagName("QuestionText").item(i).getTextContent());
                 }
                 int mark = Integer.parseInt(qElement.getElementsByTagName("Mark").item(0).getTextContent());
