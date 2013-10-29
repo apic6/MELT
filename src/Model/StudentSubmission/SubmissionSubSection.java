@@ -111,14 +111,17 @@ public class SubmissionSubSection {
             });
             fullyMarked = true;
             for (int i = 0; i < answerList.size(); i++) {
-                fullyMarked = true;
                 if (!answerList.get(i).isMarked()) {
                     fullyMarked = false;
                 }
             }
         } else if (type == CollectionType.SUBSECTIONS) {
+            fullyMarked = true;
             for (int i = 0; i < subsectionList.size(); i++) {
                 subsectionList.get(i).normalise();
+                if (!subsectionList.get(i).isFullyMarked()) {
+                    fullyMarked = false;
+                }
             }
         }
     }

@@ -108,7 +108,6 @@ public class Student extends JPanel {
         ArrayList<Submission> submissions = amodel.getMarkedSubmissionsByStudentID(intID);
 
 
-        ArrayList<Submission> subs1 = amodel.getSubmissions();
         for (int i = 0; i < submissions.size(); i++) {
             JPanel panel = new MarkedSubmission(submissions.get(i), amodel);
             rightPanel.add(panel);
@@ -125,7 +124,14 @@ public class Student extends JPanel {
         amodel.loadPapers("papers/Papers.xml");
         final ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(intID);
         for (int i = 0; i < papers.size(); ++i) {
-
+              boolean bool=true;
+             ArrayList<Submission> allsubs=amodel.getSubmissionsByStudentID(intID);
+            for (int y=0;y<allsubs.size();y++){
+            if(allsubs.get(y).getPaperID()==papers.get(i).getPaperID()){
+                bool=false;
+        }}
+            
+            if(bool){
             c1.gridy = i;
 
             c1.gridx = 1;
@@ -140,6 +146,11 @@ public class Student extends JPanel {
             //c1.gridwidth = 1;   //2 columns wide
             //c1.weightx=0.1;
             JButton startButton = new JButton("Start this Test");
+           
+            //startButton    
+            
+            
+            
             final Student sView = this;
             // TODO remove
             final int j = i;
@@ -155,9 +166,9 @@ public class Student extends JPanel {
             startButton.setPreferredSize(new Dimension(50, 50));
             startButton.addActionListener(new StartListener());
             leftPanel.add(startButton, c1);
-        }
+        } }
 
-
+        
 
 
     }

@@ -34,7 +34,7 @@ public class SubSection {
     public SubSection(String Title, String Description, String Instructions) {
         questionList = null;
         subSectionList = null;
-        type = CollectionType.QUESTIONS;
+        type = CollectionType.UNDEFINED;
         this.Title = Title;
         this.Description = Description;
         this.Instructions = Instructions;

@@ -262,7 +262,7 @@ public class Marker extends JPanel {
                rightPanel.add(questionLabel, c2);
                c2.gridx=1;
              
-               JLabel question=new JLabel("<html>"+ques.getQuestion()+"</html>") {
+               JLabel question=new JLabel("<html>"+"  "+ques.getQuestion()+"</html>") {
                    @Override
                    public Dimension getPreferredSize() {
                        Dimension d = super.getPreferredSize();
@@ -272,7 +272,7 @@ public class Marker extends JPanel {
                };
                rightPanel.add(question,c2);
                c2.gridx=2;
-              
+               
                JButton plusMark=new JButton("+");
                plusMark.addActionListener(new ActionListener(){
 
@@ -295,7 +295,7 @@ public class Marker extends JPanel {
                    public void actionPerformed(ActionEvent e) {
                     if(ans.getMark()>0){
                        ans.setMark(ans.getMark()-1);
-                    marksGiven.setText(""+ans.getMark());
+                    marksGiven.setText("     "+ans.getMark());
                     
                     }
                    }
@@ -309,7 +309,8 @@ public class Marker extends JPanel {
                JLabel answerLabel=new JLabel("Answer   "+m);
                rightPanel.add(answerLabel, c2);
                c2.gridx=1;
-              
+               c2.ipady=10;
+               c2.ipadx=10;
                
                JLabel Answer=new JLabel("<html>"+ans.getAnswerString()+"</html>") {
                    @Override
@@ -321,7 +322,7 @@ public class Marker extends JPanel {
                };
                rightPanel.add(Answer,c2);
                c2.gridx=2;
-               marksGiven.setText(""+ans.getMark()+"");
+               marksGiven.setText("     "+ans.getMark()+"");
                rightPanel.add(marksGiven,c2);
                c2.gridx=3;
                JLabel markTotal=new JLabel("out of "+ques.getMark()+" total marks");
