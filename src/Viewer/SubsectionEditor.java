@@ -373,6 +373,10 @@ public class SubsectionEditor extends JPanel{
             c3.gridy = 3;
             c3.weighty = 0.2;
             c3.ipady = 20 ;
+            c3.ipady = 20 ;
+          
+            c3.fill = GridBagConstraints.HORIZONTAL;
+            c3.anchor = GridBagConstraints.PAGE_END ;
             MCQ.add(submit,c3);
 
             answerPanel.setLayout(new GridBagLayout());
@@ -582,6 +586,10 @@ public class SubsectionEditor extends JPanel{
             gbc_essay.gridwidth = 2;
             gbc_essay.weighty = 1.0;
             JButton submitEssay = new JButton("submit");
+             gbc_essay.ipady = 20 ;
+          
+            gbc_essay.fill = GridBagConstraints.HORIZONTAL;
+            gbc_essay.anchor = GridBagConstraints.PAGE_END ;
             Essay.add(submitEssay,gbc_essay);
             
             if(essayQuestion.getQuestion() != null){
@@ -723,6 +731,9 @@ public class SubsectionEditor extends JPanel{
       gbc_mb.gridy++;
       gbc_mb.gridwidth = 2;
       gbc_mb.weighty = 0;
+      gbc_mb.ipady = 20 ;
+      gbc_mb.fill = GridBagConstraints.HORIZONTAL;
+      gbc_mb.anchor = GridBagConstraints.PAGE_END ;
       MBQ.add(mb_submit,gbc_mb);
       
       if(question!=null && question instanceof MBQuestion){
