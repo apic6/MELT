@@ -62,16 +62,17 @@ public class TestSection extends JPanel{
         
         con.gridx = 0;
         con.gridy = 0;
-        con.weightx = 0.3;
+        con.weightx = 0;
         con.anchor = GridBagConstraints.NORTHWEST;
         
         subsections = new JTabbedPane();
         con.gridx = 0;
+        con.gridwidth = 2 ;
         con.weighty = 1.0;
         con.gridy = 0;
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
-        con.gridwidth = GridBagConstraints.REMAINDER;
+       // con.gridwidth = GridBagConstraints.REMAINDER;
         add(subsections,con);
         
         subsections.addMouseListener(new MouseAdapter() {
@@ -106,11 +107,14 @@ public class TestSection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                if (subsections.getTabCount() != 0){
                 section.RemoveSubSection(subsections.getSelectedIndex());
                 subsections.remove(subsections.getSelectedComponent());
 //                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
 //                subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();
+                }
 //                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard,subsection));
             }
         });
@@ -123,10 +127,13 @@ public class TestSection extends JPanel{
 //                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),null,wizard,subsection));
              }
          }
-        con.gridy = 1;
+        con.gridwidth = 1 ;
+        
+         con.gridy = 1;
         con.weighty = 0;
+//        con.weightx = 0 ;
         add(addSubsection,con);
-        con.gridy++ ;
+        con.gridx++ ;
         
         add(deleteSubsection, con);
     }

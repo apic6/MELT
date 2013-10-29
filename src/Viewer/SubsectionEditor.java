@@ -113,6 +113,7 @@ public class SubsectionEditor extends JPanel{
         gbc.gridx = 1;
         add(titleArea,gbc);
         
+        
         titleArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -131,6 +132,8 @@ public class SubsectionEditor extends JPanel{
                 ((JTabbedPane)subsectionPanel.getParent()).setTitleAt(((JTabbedPane)subsectionPanel.getParent()).getSelectedIndex(),titleArea.getText());
             }
     });
+        
+
         
         gbc.weightx = 0.3;
         gbc.weighty=1.0;
@@ -283,25 +286,25 @@ public class SubsectionEditor extends JPanel{
 
             c3.gridx = 1;
             c3.weightx = 0.7;
-            titleArea = new JTextArea(1,20);
+            final JTextArea mcqtitleArea = new JTextArea(1,20);
             
-            titleArea.getDocument().addDocumentListener(new DocumentListener() {
+            mcqtitleArea.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                mcquestion.setQuestion(titleArea.getText());
+                mcquestion.setQuestion(mcqtitleArea.getText());
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                mcquestion.setQuestion(titleArea.getText());
+                mcquestion.setQuestion(mcqtitleArea.getText());
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
-                 mcquestion.setQuestion(titleArea.getText());
+                 mcquestion.setQuestion(mcqtitleArea.getText());
             }
     });
                 
-            MCQ.add(titleArea,c3);
+            MCQ.add(mcqtitleArea,c3);
 
             JPanel markPane = new JPanel() ;
             markPane.setLayout(new GridBagLayout());
@@ -385,7 +388,7 @@ public class SubsectionEditor extends JPanel{
             
             if(mcquestion.getQuestion() != null){
                 questionType.setSelectedIndex(0);
-                titleArea.setText(mcquestion.getQuestion());
+                mcqtitleArea.setText(mcquestion.getQuestion());
                 markArea.setText(String.valueOf(mcquestion.getMark()));
                 for (int i = 0 ; i < mcquestion.getNumberOfAnswers(); i++)
                 {
