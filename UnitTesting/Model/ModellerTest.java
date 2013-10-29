@@ -27,7 +27,6 @@ public class ModellerTest {
 
     @BeforeClass
     public static void setUpClass() {
-        instance = new Modeller();
     }
 
     @AfterClass
@@ -36,6 +35,9 @@ public class ModellerTest {
 
     @Before
     public void setUp() {
+        instance = new Modeller();
+        instance.loadPapers();
+        instance.loadSubmissions();
     }
 
     @After
@@ -133,6 +135,8 @@ public class ModellerTest {
         int after = instance.getNumberOfPapers();
 
         assertEquals("Paper wasn't added correctly", before + 1, after);
+
+        instance.removePaper(after - 1);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
     }
@@ -192,7 +196,7 @@ public class ModellerTest {
     public void testGetNumberOfSubmission() {
         System.out.println("getNumberOfSubmission");
 
-        int expResult = 1;
+        int expResult = 6;
         int result = instance.getNumberOfSubmission();
         assertEquals("Incorrect number of submissions", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -236,9 +240,9 @@ public class ModellerTest {
     @Test
     public void testRemoveSubmission() {
         System.out.println("removeSubmission");
-        
+
         int before = instance.getNumberOfSubmission();
-        instance.removeSubmission(before-1);
+        instance.removeSubmission(before - 1);
         int after = instance.getNumberOfSubmission();
 
         assertTrue("Incorrectly added submission", after == before - 1);

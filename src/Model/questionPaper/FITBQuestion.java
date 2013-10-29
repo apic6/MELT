@@ -79,7 +79,7 @@ public class FITBQuestion implements Question {
 
         XML += "<Instructions>" + instructions + "</Instructions>\n";
         XML += "<QuestionText>" + questionParts[0] + "</QuestionText>\n";
-        XML += "<QuestionText>" + questionParts[0] + "</QuestionText>\n";
+        XML += "<QuestionText>" + questionParts[1] + "</QuestionText>\n";
         for (int i = 0; i < possibleAnswers.length; i++) {
             if (possibleAnswers[i] != null) {
                 XML += "<PossibleAnswer>" + possibleAnswers[i] + "</PossibleAnswer>\n";

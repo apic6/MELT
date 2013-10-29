@@ -27,18 +27,18 @@ public class FITBQuestionTest {
 
     @BeforeClass
     public static void setUpClass() {
-        
+
         possibleAnswers = new String[2];
         possibleAnswers[0] = "Hello";
         possibleAnswers[1] = "Goodbye";
-        
+
         question = new String[2];
-        question[0] = "Hello";
-        question[1] = "Goodbye";
-        
+        question[0] = "q1";
+        question[1] = "q2";
+
         instance = new FITBQuestion(question, "Instructions", possibleAnswers, 1);
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
@@ -57,7 +57,7 @@ public class FITBQuestionTest {
     @Test
     public void testGetInstructions() {
         System.out.println("getInstructions");
-        
+
         String expResult = "Instructions";
         String result = instance.getInstructions();
         assertEquals("Error: Differs from construction", expResult, result);
@@ -71,8 +71,8 @@ public class FITBQuestionTest {
     @Test
     public void testGetQuestion() {
         System.out.println("getQuestion");
-        
-        String expResult = "Question?";
+
+        String expResult = "q1-Blank-q2";
         String result = instance.getQuestion();
         assertEquals("Error: Differs from construction", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -85,7 +85,7 @@ public class FITBQuestionTest {
     @Test
     public void testGetNumberOfPossibleAnswers() {
         System.out.println("getNumberOfPossibleAnswers");
-        
+
         int expResult = 2;
         int result = instance.getNumberOfPossibleAnswers();
         assertEquals("Error: Differs from construction", expResult, result);
@@ -100,7 +100,7 @@ public class FITBQuestionTest {
     public void testGetPossibleAnswer() {
         System.out.println("getPossibleAnswer");
         int i = 0;
-        
+
         String expResult = "Hello";
         String result = instance.getPossibleAnswer(i);
         assertEquals("Error: Differs from construction", expResult, result);
@@ -114,18 +114,18 @@ public class FITBQuestionTest {
     @Test
     public void testSetMark() {
         System.out.println("setMark");
-        
+
         int expected = 1;
         int result = instance.getMark();
         assertEquals("Error: Differs from construction", expected, result);
-        
+
         instance.setMark(2);
-        
+
         expected = 2;
         result = instance.getMark();
         assertEquals("Error: Differs from construction", expected, result);
-        
-        
+
+
         instance.setMark(1);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
@@ -137,10 +137,10 @@ public class FITBQuestionTest {
     @Test
     public void testGetMark() {
         System.out.println("getMark");
-        
+
         int expResult = 1;
         int result = instance.getMark();
-        
+
         assertEquals("Error: Differs from construction", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
@@ -152,16 +152,20 @@ public class FITBQuestionTest {
     @Test
     public void testToXML() {
         System.out.println("toXML");
-        
+
         String expResult = "<Question type=\"FITBQ\">\n"
                 + "<Instructions>Instructions</Instructions>\n"
-                + "<QuestionText>Question?</QuestionText>\n"
+                + "<QuestionText>q1</QuestionText>\n"
+                + "<QuestionText>q2</QuestionText>\n"
                 + "<PossibleAnswer>Hello</PossibleAnswer>\n"
                 + "<PossibleAnswer>Goodbye</PossibleAnswer>\n"
                 + "<Mark>1</Mark>\n"
                 + "</Question>\n";
-        
+
+
         String result = instance.toXML();
+        System.out.println(result);
+        System.out.println(expResult);
         assertEquals("Error: Differs from construction", expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
