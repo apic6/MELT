@@ -20,15 +20,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.NumberFormatter;
+import javax.swing.text.PlainDocument;
 /**
 *
 * @author Daniel
@@ -507,10 +513,25 @@ public class SubsectionEditor extends JPanel{
             gbc_essay.gridy = 2;
             Essay.add(essay_wordlimit_label,gbc_essay);
             
+            
             final JTextArea essay_wordlimit = new JTextArea(1,5);
             gbc_essay.gridx = 1;
             Essay.add(essay_wordlimit,gbc_essay);
-            
+           
+             essay_wordlimit.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                  char c = e.getKeyChar();
+                  if (!((c >= '0') && (c <= '9') ||
+                     (c == KeyEvent.VK_BACK_SPACE) ||
+                     (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                  }
+                }
+              });
+                  
+      
             JLabel essay_marks_label = new JLabel("Marks: ");
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 3;
