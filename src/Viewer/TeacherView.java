@@ -184,7 +184,7 @@ public class TeacherView extends JPanel {
             
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                mainFrame.setContentPane(new Marker(amodel,mainFrame,papers.get(j)));
+                mainFrame.setContentPane(new MarkerView(amodel,mainFrame,papers.get(j)));
                 mainFrame.setVisible(true);  
                 markTrigger.doClick();
                   }

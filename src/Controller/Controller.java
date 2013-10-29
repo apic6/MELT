@@ -13,7 +13,8 @@ import Model.Modeller;
 import Model.StudentSubmission.Submission;
 import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
-import Viewer.Marker;
+import Viewer.MarkerView;
+import Model.Marker;
 import Viewer.PaperViews.PaperView;
 
 import Viewer.Student;
@@ -109,12 +110,14 @@ public class Controller {
                 break;
 
                 case "markTrigger": {
-                    Marker.addListeners(new Mouse());
+                    MarkerView.addListeners(new Mouse());
                     Timer timer = new Timer(true);
                     timer.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
-                            saveSubmission(Marker.getSubmission());
+                            Submission sub = MarkerView.getSubmission();
+                            // sub.normalise();
+                            saveSubmission(sub);
                         }
                     }, 0, 2000);
                 }
@@ -140,7 +143,7 @@ public class Controller {
                 break;
 
                 case "startTrigger": {
-                    // PaperView.addListeners(new Mouse());
+                    PaperView.addListener(new ViewerEventListener());
                     /* Needed to comment out to fix some code, this may not work though.
                      * I'll analyse this code and mine when Im more awake but right now having this code as-is prevents my code from working.
                      * I think it pulls thje submission a little too early and causes errors, I might be wrong though. */
@@ -163,6 +166,17 @@ public class Controller {
                     }, 0, 2000); 
                 }
                 break;
+                    case"markerTrigger":{
+                    
+                        
+                        Marker marker = new Marker();
+                        Submission sub=PaperView.getSubmission();
+                        sub.normalise();
+                        marker.markTest(sub, PaperView.getPaper());
+                        sub=marker. getSubmission();
+                        saveSubmission(sub);
+                        System.err.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    }break;
 
             }
 
@@ -230,6 +244,7 @@ public class Controller {
     }
 
     private void saveNewTest() {
+        System.out.println("saving");
         QuestionPaper p;
         p = TestWizard.getQuestionPaper();
         //  System.out.println(p.getPaperID());
@@ -252,6 +267,7 @@ public class Controller {
     }
 
     private void saveOldTest() {
+        System.out.println("saving");
         QuestionPaper p;
         p = TestWizard.getQuestionPaper();
       

@@ -185,8 +185,8 @@ class SectionPanel extends JPanel {
 }
 
 public class PaperView extends JPanel {
-
-    QuestionPaper paper;
+    private static JButton markerTrigger=new JButton("markerTrigger");
+    static QuestionPaper paper;
     static QuestionPaperTaker taker;
     SectionPanel[] sPanels;
 
@@ -255,12 +255,12 @@ public class PaperView extends JPanel {
         finish.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Submission subm = taker.getSubmission();
-                subm.normalise();
-
-                Marker marker = new Marker();
-                marker.markTest(taker.getSubmission(), paper);
-
+//                Submission subm = taker.getSubmission();
+//                subm.normalise();
+//
+//                Marker marker = new Marker();
+//                marker.markTest(taker.getSubmission(), paper);
+                      markerTrigger.doClick();
                 // System.out.println("Mark = " + marker.getMark() + "/" + marker.getTotalMark());
             }
         });
@@ -375,12 +375,16 @@ public class PaperView extends JPanel {
         sPanels[sectionID].updateTimer();
     }
 
-    public void addListener(ActionListener mal) {
+    public static void addListener(ActionListener mal) {
+        markerTrigger.addActionListener(mal);
     }
 
     public static Submission getSubmission() {
         return taker.getSubmission();
     }
+    public static QuestionPaper getPaper(){
+    
+    return paper;}
 
     @Override
     public Dimension getPreferredSize() {

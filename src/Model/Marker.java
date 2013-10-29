@@ -77,9 +77,11 @@ public class Marker {
                     for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
                         if (submAnswer.getAnswer() == -1) {
                             // didn't answer;
+                            submAnswer.setMark(0);
                         } else if (submAnswer.getAnswer() == question.getPossibleAnswer(l)) {
                             submAnswer.setMark(question.getMark());
                             mark += question.getMark(); //question.getMark();
+                            break;
                         }
                     }
                     // right or wrong increase total mark
@@ -90,6 +92,7 @@ public class Marker {
                     for (int l = 0; l < question.getNumberOfPossibleAnswers(); l++) {
                         if (submAnswer.getAnswer() == null) {
                             // didn't answer;
+                            submAnswer.setMark(0);
                         } else if (submAnswer.getAnswer().equals(question.getPossibleAnswer(l))) {
                             submAnswer.setMark(question.getMark());
                             mark += question.getMark();

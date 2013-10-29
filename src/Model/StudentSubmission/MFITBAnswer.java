@@ -91,8 +91,11 @@ public class MFITBAnswer extends Answer {
 //            XML += "FALSE";
 //        }
 //        XML += "</Marked>";
-        if (super.isMarked()) {
-            XML += "<Mark>" + super.getMark() + "</Mark>";
+        if (marked) {
+            XML += "<Marked>TRUE</Marked>";
+            XML += "<Mark>" + mark+ "</Mark>";
+        } else {
+            XML += "<Marked>FALSE</Marked>";
         }
         XML += "</MFITBAnswer>\n";
         return XML;

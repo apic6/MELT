@@ -98,6 +98,7 @@ public class SubmissionLoader {
                 for (int l = 0; l < subsectionIDList.size(); l++) {
                     list.add(subsectionIDList.get(l));
                 }
+                list.add(k);
                 Element ssElement = (Element) subSectionListN.item(k);
                 if (ssElement.getParentNode() == sssElement) {
                     SubmissionSubSection submSubSectionN = readSubmSubSection(ssElement, list);
@@ -138,7 +139,7 @@ public class SubmissionLoader {
             // parse MFITB Answers
             for (int l = 0; l < submissionAnswerList3.getLength(); l++) {
                 Element sMFITBAnswer = (Element) submissionAnswerList3.item(l);
-                ArrayList<String> strings = new ArrayList<String>();
+                ArrayList<String> strings = new ArrayList<>();
                 NodeList answers = sMFITBAnswer.getElementsByTagName("Answer");
                 for (int m = 0; m < answers.getLength(); m++) {
                     strings.add(answers.item(m).getTextContent());
@@ -154,7 +155,7 @@ public class SubmissionLoader {
 //                    answer.setMarked(false);
 //                }
 
-                if (sMFITBAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                if (sMFITBAnswer.getElementsByTagName("Marked").item(0).getTextContent().equals("TRUE")) {
                     answer.setMark(Integer.parseInt(sMFITBAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
                 }
 
@@ -173,7 +174,7 @@ public class SubmissionLoader {
 //                    answer.setMarked(false);
 //                }
 
-                if (sEssayAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                if (sEssayAnswer.getElementsByTagName("Marked").item(0).getTextContent().equals("TRUE")) {
                     answer.setMark(Integer.parseInt(sEssayAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
                 }
 
@@ -190,12 +191,14 @@ public class SubmissionLoader {
         for (int k = 0; k < submissionSubSectionList.getLength(); k++) {
             Element sssElement = (Element) submissionSubSectionList.item(k);
 
-            ArrayList<Integer> subsectionIDList = new ArrayList<>();
-            subsectionIDList.add(k);
+            if (sssElement.getParentNode() == ssElement) {
+                ArrayList<Integer> subsectionIDList = new ArrayList<>();
+                subsectionIDList.add(k);
 
-            SubmissionSubSection submSubSection = readSubmSubSection(sssElement, subsectionIDList);
+                SubmissionSubSection submSubSection = readSubmSubSection(sssElement, subsectionIDList);
 
-            submSection.addSubSection(submSubSection);
+                submSection.addSubSection(submSubSection);
+            }
         }
 
         return submSection;
