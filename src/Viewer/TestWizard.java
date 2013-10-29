@@ -105,7 +105,7 @@ public class TestWizard extends JPanel{
         addSection.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JPanel tab3 = new JPanel();
+            JPanel tab3 = new JPanel();
             tab3.setLayout(new GridBagLayout());
             GridBagConstraints c2 = new GridBagConstraints();
             c2.gridx = 0;
@@ -127,9 +127,11 @@ public class TestWizard extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                tabs.remove(tabs.getSelectedComponent());
+                if (tabs.getTabCount() != 0){
                 sectionList.remove(tabs.getSelectedIndex());
                 paper.removeSection(tabs.getSelectedIndex());
+                tabs.remove(tabs.getSelectedComponent());
+                }
 //                subsections.remove(subsections.getSelectedComponent());
 ////                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
 ////                subsections.setSelectedIndex(subsections.getTabCount()-1);
