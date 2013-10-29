@@ -277,9 +277,12 @@ public final class FIBQPanel extends JPanel {
             
                 fibquestion.setMark(Integer.parseInt(markArea.getText()));
                 subSection.addQuestion(fibquestion);
+                subsectionPanel.questionList.clearSelection();
+                
+                
                 
 //                subsectionPanel.listModel.addElement(fibquestion.getQuestion());
-               
+                
                 }
                 });
                 
@@ -297,7 +300,7 @@ public final class FIBQPanel extends JPanel {
                     fibquestion.setMark(Integer.parseInt(markArea.getText()));
                     subSection.addQuestion(fibquestion);
                     subsectionPanel.listModel.addElement(fibquestion.getQuestion());
-               
+               subsectionPanel.questionList.clearSelection();
                     }
                        
                 else{pop.setText("Need the question!");pop.show();}

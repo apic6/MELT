@@ -440,6 +440,9 @@ public class SubsectionEditor extends JPanel{
                 public void actionPerformed(ActionEvent e){
                 mcquestion.setMark(Integer.parseInt(markArea.getText()));
                 subSection.addQuestion(mcquestion);
+                
+                subsectionPanel.questionList.clearSelection();
+                
                 //revalidate();
                 }
                 });
@@ -454,6 +457,7 @@ public class SubsectionEditor extends JPanel{
                         subSection.addQuestion(mcquestion);
                         //revalidate();
                         subsectionPanel.listModel.addElement(mcquestion.getQuestion());
+                        subsectionPanel.questionList.clearSelection();
                        }
                     else if(mcquestion.getNumberOfAnswers()<=1){pop.setText("You should create two or more answers!");pop.show();}
                     else if("".equals(mcquestion.getQuestion())){pop.setText("Question Title should not be blank!");pop.show();}
@@ -576,6 +580,7 @@ public class SubsectionEditor extends JPanel{
                 essayQuestion.setWordLimit(Integer.valueOf(essay_wordlimit.getText()));
                 subSection.addQuestion(essayQuestion);
                 subsectionPanel.listModel.addElement(essayQuestion.getQuestion());
+                subsectionPanel.questionList.clearSelection();
                 //revalidate();
                 }
                 });
@@ -755,6 +760,7 @@ public class SubsectionEditor extends JPanel{
                   mbquestion.setMark(Integer.valueOf(mb_markArea.getText()));
                   mbquestion.setInstructions(mb_instructions.getText());
                   subsectionPanel.listModel.setElementAt( mbquestion.getQuestion(),subsectionPanel.questionList.getSelectedIndex());
+                  subsectionPanel.questionList.clearSelection();
               }
           });
           
@@ -788,6 +794,7 @@ public class SubsectionEditor extends JPanel{
                   mbquestion.setInstructions(mb_instructions.getText());
                   subSection.addQuestion(mbquestion);
                   subsectionPanel.listModel.addElement(mbquestion.getQuestion());
+                  subsectionPanel.questionList.clearSelection();
               }
           });
       }
