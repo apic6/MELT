@@ -45,7 +45,7 @@ public class QuestionPaperTaker {
                 
                 ArrayList<Integer> subSectionIDs = new ArrayList<>();
                 subSectionIDs.add(j);
-                populateSubmissionSubSection(submSubSection, subSection, studentID, subSectionIDs);
+                populateSubmissionSubSection(submSubSection, subSection, i, subSectionIDs);
                 
                 submSection.addSubSection(submSubSection);
                 

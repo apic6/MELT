@@ -12,7 +12,7 @@ package Model.StudentSubmission;
 public class Answer {
     protected int id;
     protected boolean marked;
-    private int mark;
+    protected int mark;
     protected String answer;
     
     public String getAnswerString(){

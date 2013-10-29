@@ -13,7 +13,8 @@ import Model.Modeller;
 import Model.StudentSubmission.Submission;
 import Model.questionPaper.QuestionPaper;
 import Viewer.LoginScreen;
-import Viewer.Marker;
+import Viewer.MarkerView;
+import Model.Marker;
 import Viewer.PaperViews.PaperView;
 
 import Viewer.Student;
@@ -109,12 +110,14 @@ public class Controller {
                 break;
 
                 case "markTrigger": {
-                    Marker.addListeners(new Mouse());
+                    MarkerView.addListeners(new Mouse());
                     Timer timer = new Timer(true);
                     timer.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
-                            saveSubmission(Marker.getSubmission());
+                            Submission sub = MarkerView.getSubmission();
+                            // sub.normalise();
+                            saveSubmission(sub);
                         }
                     }, 0, 2000);
                 }
@@ -132,7 +135,7 @@ public class Controller {
                     timer.scheduleAtFixedRate(new TimerTask() {
                         @Override
                         public void run() {
-                        
+
                             saveOldTest();
                         }
                     }, 0, 2000);
@@ -140,11 +143,12 @@ public class Controller {
                 break;
 
                 case "startTrigger": {
-                    // PaperView.addListeners(new Mouse());
+                    PaperView.addListener(new ViewerEventListener());
+                    System.out.println("Something");
                     /* Needed to comment out to fix some code, this may not work though.
                      * I'll analyse this code and mine when Im more awake but right now having this code as-is prevents my code from working.
                      * I think it pulls thje submission a little too early and causes errors, I might be wrong though. */
-                    
+
                     Submission newsub;
                     newsub = PaperView.getSubmission();
                     amodel.loadSubmissions();
@@ -160,7 +164,19 @@ public class Controller {
                             saveSubmission(PaperView.getSubmission());
                             System.err.println("jkhdfhjkshfkjds");
                         }
-                    }, 0, 2000); 
+                    }, 0, 2000);
+                }
+                break;
+                case "markerTrigger": {
+
+
+                    Marker marker = new Marker();
+                    Submission sub = PaperView.getSubmission();
+                    sub.normalise();
+                    marker.markTest(sub, PaperView.getPaper());
+                    sub = marker.getSubmission();
+                    saveSubmission(sub);
+                    System.err.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 }
                 break;
 
@@ -209,7 +225,6 @@ public class Controller {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-         
         }
 
         @Override
@@ -230,6 +245,7 @@ public class Controller {
     }
 
     private void saveNewTest() {
+        System.out.println("saving");
         QuestionPaper p;
         p = TestWizard.getQuestionPaper();
         //  System.out.println(p.getPaperID());
@@ -252,13 +268,14 @@ public class Controller {
     }
 
     private void saveOldTest() {
+        System.out.println("saving");
         QuestionPaper p;
         p = TestWizard.getQuestionPaper();
-      
+
         amodel.loadPapers();
 
         try {
-            
+
 
             amodel.removePaper(p.getPaperID() - 1);
             amodel.addPaper(p.getPaperID() - 1, p);             //it always adds at the end of the list...
@@ -270,12 +287,10 @@ public class Controller {
         }
     }
 
- 
-
     private void saveSubmission(Submission submission) {
         Submission sub = submission;
-        
 
+        System.out.println("SAVING");
 
         ArrayList<Submission> allsubs;
         try {
@@ -283,7 +298,7 @@ public class Controller {
             allsubs = amodel.getSubmissions();
             for (int i = 0; i < allsubs.size(); i++) {
                 if (allsubs.get(i).getPaperID() == sub.getPaperID() && allsubs.get(i).getStudentID() == sub.getStudentID()) {
-                    
+
                     amodel.removeSubmission(i);
                     amodel.addSubmission(sub, i);
                 }

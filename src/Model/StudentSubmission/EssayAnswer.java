@@ -66,15 +66,11 @@ public class EssayAnswer extends Answer {
         XML += "<SubSectionID>" + subSectionID + "</SubSectionID>\n";
         XML += "<AnswerID>" + id + "</AnswerID>\n";
         XML += "<Answer>" + answer + "</Answer>\n";
-//        XML += "<Marked>";
-//        if (super.isMarked()) {
-//            XML += "TRUE";
-//        } else {
-//            XML += "FALSE";
-//        }
-//        XML += "</Marked>";
-        if (super.isMarked()) {
-            XML += "<Mark>" + super.getMark() + "</Mark>";
+        if (marked) {
+            XML += "<Marked>TRUE</Marked>";
+            XML += "<Mark>" + mark+ "</Mark>";
+        } else {
+            XML += "<Marked>FALSE</Marked>";
         }
         XML += "</EssayAnswer>\n";
         return XML;

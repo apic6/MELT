@@ -69,11 +69,12 @@ public class SubmissionLoader {
             for (int j = 0; j < submissionSectionList.getLength(); j++) {
                 Element ssElement = (Element) submissionSectionList.item(j);
                 SubmissionSection submSection = readSubmSection(ssElement);
-                submission.normalise();
+               // submission.normalise();
                 submission.addSection(submSection);
             }
 
             // add submission
+           submission.normalise();
             submissions.add(submission);
         }
 
@@ -93,18 +94,37 @@ public class SubmissionLoader {
 
         if (sssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("SUBSECTIONS")) {
             NodeList subSectionListN = sssElement.getElementsByTagName("SubmissionSubSection");
-            for (int k = 0; k < subSectionListN.getLength(); k++) {
+            int i = 0;
+            int j = 0;
+            while (i<subSectionListN.getLength()) {
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int l = 0; l < subsectionIDList.size(); l++) {
-                    list.add(subsectionIDList.get(l));
+                for (int k = 0; k < subsectionIDList.size(); k++) {
+                    list.add(subsectionIDList.get(k));
                 }
-                Element ssElement = (Element) subSectionListN.item(k);
+                Element ssElement = (Element) subSectionListN.item(i);
                 if (ssElement.getParentNode() == sssElement) {
+                    list.add(j);
                     SubmissionSubSection submSubSectionN = readSubmSubSection(ssElement, list);
 
                     submSubSection.addSubSection(submSubSectionN);
+                    j++;
                 }
+                i++;
             }
+
+//            for (int k = 0; k < subSectionListN.getLength(); k++) {
+//                ArrayList<Integer> list = new ArrayList<>();
+//                for (int l = 0; l < subsectionIDList.size(); l++) {
+//                    list.add(subsectionIDList.get(l));
+//                }
+//                Element ssElement = (Element) subSectionListN.item(k);
+//                if (ssElement.getParentNode() == sssElement) {
+//                    list.add(k);
+//                    SubmissionSubSection submSubSectionN = readSubmSubSection(ssElement, list);
+//
+//                    submSubSection.addSubSection(submSubSectionN);
+//                }
+//            }
         } else if (sssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("ANSWERS")) {
             NodeList submissionAnswerList1 = sssElement.getElementsByTagName("MCQAnswer");
             NodeList submissionAnswerList2 = sssElement.getElementsByTagName("FITBAnswer");
@@ -138,7 +158,7 @@ public class SubmissionLoader {
             // parse MFITB Answers
             for (int l = 0; l < submissionAnswerList3.getLength(); l++) {
                 Element sMFITBAnswer = (Element) submissionAnswerList3.item(l);
-                ArrayList<String> strings = new ArrayList<String>();
+                ArrayList<String> strings = new ArrayList<>();
                 NodeList answers = sMFITBAnswer.getElementsByTagName("Answer");
                 for (int m = 0; m < answers.getLength(); m++) {
                     strings.add(answers.item(m).getTextContent());
@@ -154,7 +174,7 @@ public class SubmissionLoader {
 //                    answer.setMarked(false);
 //                }
 
-                if (sMFITBAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                if (sMFITBAnswer.getElementsByTagName("Marked").item(0).getTextContent().equals("TRUE")) {
                     answer.setMark(Integer.parseInt(sMFITBAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
                 }
 
@@ -173,7 +193,7 @@ public class SubmissionLoader {
 //                    answer.setMarked(false);
 //                }
 
-                if (sEssayAnswer.getElementsByTagName("Mark").getLength() != 0) {
+                if (sEssayAnswer.getElementsByTagName("Marked").item(0).getTextContent().equals("TRUE")) {
                     answer.setMark(Integer.parseInt(sEssayAnswer.getElementsByTagName("Mark").item(0).getTextContent()));
                 }
 
@@ -190,12 +210,14 @@ public class SubmissionLoader {
         for (int k = 0; k < submissionSubSectionList.getLength(); k++) {
             Element sssElement = (Element) submissionSubSectionList.item(k);
 
-            ArrayList<Integer> subsectionIDList = new ArrayList<>();
-            subsectionIDList.add(k);
+            if (sssElement.getParentNode() == ssElement) {
+                ArrayList<Integer> subsectionIDList = new ArrayList<>();
+                subsectionIDList.add(k);
 
-            SubmissionSubSection submSubSection = readSubmSubSection(sssElement, subsectionIDList);
+                SubmissionSubSection submSubSection = readSubmSubSection(sssElement, subsectionIDList);
 
-            submSection.addSubSection(submSubSection);
+                submSection.addSubSection(submSubSection);
+            }
         }
 
         return submSection;
