@@ -69,11 +69,12 @@ public class SubmissionLoader {
             for (int j = 0; j < submissionSectionList.getLength(); j++) {
                 Element ssElement = (Element) submissionSectionList.item(j);
                 SubmissionSection submSection = readSubmSection(ssElement);
-                submission.normalise();
+               // submission.normalise();
                 submission.addSection(submSection);
             }
 
             // add submission
+           submission.normalise();
             submissions.add(submission);
         }
 
