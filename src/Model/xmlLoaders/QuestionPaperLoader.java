@@ -118,7 +118,7 @@ public class QuestionPaperLoader {
                 ssElement.getElementsByTagName("Instructions").item(0).getTextContent());
 
         // if it is a recursive subsection
-        if (ssElement.getElementsByTagName("SubSection").getLength() != 0) {
+        if (ssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("SUBSECTIONS")) {
             // add the subsections using this function recursively
             NodeList subSectionList = ssElement.getElementsByTagName("SubSection");
             for (int i = 0; i < subSectionList.getLength(); i++) {
@@ -132,8 +132,9 @@ public class QuestionPaperLoader {
                 }
 
             }
-        } else { // if it is composed of questions
+        } if (ssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("QUESTIONS")) { // if it is composed of questions
             // add the questions to this subsection
+            System.out.println("Questions");
             NodeList QuestionList = ssElement.getElementsByTagName("Question");
 
             for (int i = 0; i < QuestionList.getLength(); i++) {

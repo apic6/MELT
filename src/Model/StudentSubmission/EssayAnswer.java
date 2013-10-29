@@ -49,11 +49,11 @@ public class EssayAnswer extends Answer {
     public int getSubSectionID() {
         return subSectionID;
     }
-    
+
     public int getSizeOfSubSectionList() {
         return subSectionIDs.size();
     }
-    
+
     public int getSubSectionAtIndex(int i) {
         return subSectionIDs.get(i);
     }
@@ -66,6 +66,13 @@ public class EssayAnswer extends Answer {
         XML += "<SubSectionID>" + subSectionID + "</SubSectionID>\n";
         XML += "<AnswerID>" + id + "</AnswerID>\n";
         XML += "<Answer>" + answer + "</Answer>\n";
+//        XML += "<Marked>";
+//        if (super.isMarked()) {
+//            XML += "TRUE";
+//        } else {
+//            XML += "FALSE";
+//        }
+//        XML += "</Marked>";
         if (super.isMarked()) {
             XML += "<Mark>" + super.getMark() + "</Mark>";
         }

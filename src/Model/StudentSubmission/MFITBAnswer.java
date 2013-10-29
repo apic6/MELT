@@ -84,6 +84,13 @@ public class MFITBAnswer extends Answer {
         for (int i = 0; i < answers.size(); i++) {
             XML += "<Answer>" + answers.get(i) + "</Answer>\n";
         }
+//        XML += "<Marked>";
+//        if (super.isMarked()) {
+//            XML += "TRUE";
+//        } else {
+//            XML += "FALSE";
+//        }
+//        XML += "</Marked>";
         if (super.isMarked()) {
             XML += "<Mark>" + super.getMark() + "</Mark>";
         }

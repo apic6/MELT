@@ -1,116 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Submissions><StudentSubmission id="112301230">
-<PaperID>1</PaperID>
-<StudentID>12301230</StudentID>
-<SubmissionSection>
-<SectionID>0</SectionID>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>SUBSECTIONS</CollectionType>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>SUBSECTIONS</CollectionType>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>ANSWERS</CollectionType>
-<MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-</MCQAnswer>
-<FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-</FITBAnswer>
-<MFITBAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-</MFITBAnswer>
-<EssayAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-</EssayAnswer>
-</SubmissionSubSection>
-<SubmissionSubSection>
-<SubSectionID>1</SubSectionID>
-<CollectionType>ANSWERS</CollectionType>
-<MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-</MCQAnswer>
-<FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-</FITBAnswer>
-<MFITBAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-</MFITBAnswer>
-<EssayAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-</EssayAnswer>
-</SubmissionSubSection>
-</SubmissionSubSection>
-<SubmissionSubSection>
-<SubSectionID>1</SubSectionID>
-<CollectionType>ANSWERS</CollectionType>
-<MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-</MCQAnswer>
-<FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-</FITBAnswer>
-<MFITBAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-</MFITBAnswer>
-<EssayAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-</EssayAnswer>
-</SubmissionSubSection>
-</SubmissionSubSection>
+<Submissions>
+    <StudentSubmission id="112301230">
+        <PaperID>1</PaperID>
+        <StudentID>12301230</StudentID>
+        <FullyMarked>TRUE</FullyMarked>";
+        <Mark>0</Mark>
+        <TotalMark>20</TotalMark>
+        <SubmissionSection>
+            <SectionID>0</SectionID>
+            <SubmissionSubSection>
+                <SubSectionID>0</SubSectionID>
+                <CollectionType>SUBSECTIONS</CollectionType>
+                <SubmissionSubSection>
+                    <SubSectionID>0</SubSectionID>
+                    <CollectionType>SUBSECTIONS</CollectionType>
+                    <SubmissionSubSection>
+                        <SubSectionID>0</SubSectionID>
+                        <CollectionType>ANSWERS</CollectionType>
+                        <MCQAnswer>
+                            <AnswerID>0</AnswerID>
+                            <Answer>-1</Answer>
+                        </MCQAnswer>
+                        <FITBAnswer>
+                            <AnswerID>1</AnswerID>
+                            <Answer>null</Answer>
+                        </FITBAnswer>
+                        <MFITBAnswer>
+                            <SectionID>12301230</SectionID>
+                            <SubSectionID>0</SubSectionID>
+                            <AnswerID>2</AnswerID>
+                        </MFITBAnswer>
+                        <EssayAnswer>
+                            <SectionID>12301230</SectionID>
+                            <SubSectionID>0</SubSectionID>
+                            <AnswerID>3</AnswerID>
+                            <Answer>Student didn't answer</Answer>
+                        </EssayAnswer>
+                    </SubmissionSubSection>
+                    <SubmissionSubSection>
+                        <SubSectionID>1</SubSectionID>
+                        <CollectionType>ANSWERS</CollectionType>
+                        <MCQAnswer>
+                            <AnswerID>0</AnswerID>
+                            <Answer>-1</Answer>
+                        </MCQAnswer>
+                        <FITBAnswer>
+                            <AnswerID>1</AnswerID>
+                            <Answer>null</Answer>
+                        </FITBAnswer>
+                        <MFITBAnswer>
+                            <SectionID>12301230</SectionID>
+                            <SubSectionID>0</SubSectionID>
+                            <AnswerID>2</AnswerID>
+                        </MFITBAnswer>
+                        <EssayAnswer>
+                            <SectionID>12301230</SectionID>
+                            <SubSectionID>0</SubSectionID>
+                            <AnswerID>3</AnswerID>
+                            <Answer>Student didn't answer</Answer>
+                        </EssayAnswer>
+                    </SubmissionSubSection>
+                </SubmissionSubSection>
+                <SubmissionSubSection>
+                    <SubSectionID>1</SubSectionID>
+                    <CollectionType>ANSWERS</CollectionType>
+                    <MCQAnswer>
+                        <AnswerID>0</AnswerID>
+                        <Answer>-1</Answer>
+                    </MCQAnswer>
+                    <FITBAnswer>
+                        <AnswerID>1</AnswerID>
+                        <Answer>null</Answer>
+                    </FITBAnswer>
+                    <MFITBAnswer>
+                        <SectionID>12301230</SectionID>
+                        <SubSectionID>0</SubSectionID>
+                        <AnswerID>2</AnswerID>
+                    </MFITBAnswer>
+                    <EssayAnswer>
+                        <SectionID>12301230</SectionID>
+                        <SubSectionID>0</SubSectionID>
+                        <AnswerID>3</AnswerID>
+                        <Answer>Student didn't answer</Answer>
+                    </EssayAnswer>
+                </SubmissionSubSection>
+            </SubmissionSubSection>
 
-</SubmissionSection>
+        </SubmissionSection>
 
-<SubmissionSection>
-<SectionID>1</SectionID>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>ANSWERS</CollectionType>
-<MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-</MCQAnswer>
-<FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-</FITBAnswer>
-<MFITBAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-</MFITBAnswer>
-<EssayAnswer>
-<SectionID>12301230</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-</EssayAnswer>
-</SubmissionSubSection>
+        <SubmissionSection>
+            <SectionID>1</SectionID>
+            <SubmissionSubSection>
+                <SubSectionID>0</SubSectionID>
+                <CollectionType>ANSWERS</CollectionType>
+                <MCQAnswer>
+                    <AnswerID>0</AnswerID>
+                    <Answer>-1</Answer>
+                </MCQAnswer>
+                <FITBAnswer>
+                    <AnswerID>1</AnswerID>
+                    <Answer>null</Answer>
+                </FITBAnswer>
+                <MFITBAnswer>
+                    <SectionID>12301230</SectionID>
+                    <SubSectionID>0</SubSectionID>
+                    <AnswerID>2</AnswerID>
+                </MFITBAnswer>
+                <EssayAnswer>
+                    <SectionID>12301230</SectionID>
+                    <SubSectionID>0</SubSectionID>
+                    <AnswerID>3</AnswerID>
+                    <Answer>Student didn't answer</Answer>
+                </EssayAnswer>
+            </SubmissionSubSection>
 
-</SubmissionSection>
+        </SubmissionSection>
 
-</StudentSubmission>
+    </StudentSubmission>
 </Submissions>
