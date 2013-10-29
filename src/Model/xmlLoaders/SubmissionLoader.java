@@ -93,19 +93,37 @@ public class SubmissionLoader {
 
         if (sssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("SUBSECTIONS")) {
             NodeList subSectionListN = sssElement.getElementsByTagName("SubmissionSubSection");
-            for (int k = 0; k < subSectionListN.getLength(); k++) {
+            int i = 0;
+            int j = 0;
+            while (i<subSectionListN.getLength()) {
                 ArrayList<Integer> list = new ArrayList<>();
-                for (int l = 0; l < subsectionIDList.size(); l++) {
-                    list.add(subsectionIDList.get(l));
+                for (int k = 0; k < subsectionIDList.size(); k++) {
+                    list.add(subsectionIDList.get(k));
                 }
-                list.add(k);
-                Element ssElement = (Element) subSectionListN.item(k);
+                Element ssElement = (Element) subSectionListN.item(i);
                 if (ssElement.getParentNode() == sssElement) {
+                    list.add(j);
                     SubmissionSubSection submSubSectionN = readSubmSubSection(ssElement, list);
 
                     submSubSection.addSubSection(submSubSectionN);
+                    j++;
                 }
+                i++;
             }
+
+//            for (int k = 0; k < subSectionListN.getLength(); k++) {
+//                ArrayList<Integer> list = new ArrayList<>();
+//                for (int l = 0; l < subsectionIDList.size(); l++) {
+//                    list.add(subsectionIDList.get(l));
+//                }
+//                Element ssElement = (Element) subSectionListN.item(k);
+//                if (ssElement.getParentNode() == sssElement) {
+//                    list.add(k);
+//                    SubmissionSubSection submSubSectionN = readSubmSubSection(ssElement, list);
+//
+//                    submSubSection.addSubSection(submSubSectionN);
+//                }
+//            }
         } else if (sssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("ANSWERS")) {
             NodeList submissionAnswerList1 = sssElement.getElementsByTagName("MCQAnswer");
             NodeList submissionAnswerList2 = sssElement.getElementsByTagName("FITBAnswer");

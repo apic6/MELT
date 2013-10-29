@@ -134,7 +134,6 @@ public class QuestionPaperLoader {
             }
         } if (ssElement.getElementsByTagName("CollectionType").item(0).getTextContent().equals("QUESTIONS")) { // if it is composed of questions
             // add the questions to this subsection
-            System.out.println("Questions");
             NodeList QuestionList = ssElement.getElementsByTagName("Question");
 
             for (int i = 0; i < QuestionList.getLength(); i++) {

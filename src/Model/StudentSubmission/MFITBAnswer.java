@@ -34,7 +34,7 @@ public class MFITBAnswer extends Answer {
         this.sectionID = sectionID;
         this.subSectionIDs = subSectionIDs;
         if (answers == null) {
-            answers = new ArrayList<String>();
+            answers = new ArrayList<>();
         }
         this.answers = answers;
     }
