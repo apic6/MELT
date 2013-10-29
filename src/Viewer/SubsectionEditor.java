@@ -20,15 +20,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.NumberFormatter;
+import javax.swing.text.PlainDocument;
 /**
 *
 * @author Daniel
@@ -367,6 +373,10 @@ public class SubsectionEditor extends JPanel{
             c3.gridy = 3;
             c3.weighty = 0.2;
             c3.ipady = 20 ;
+            c3.ipady = 20 ;
+          
+            c3.fill = GridBagConstraints.HORIZONTAL;
+            c3.anchor = GridBagConstraints.PAGE_END ;
             MCQ.add(submit,c3);
 
             answerPanel.setLayout(new GridBagLayout());
@@ -440,6 +450,9 @@ public class SubsectionEditor extends JPanel{
                 public void actionPerformed(ActionEvent e){
                 mcquestion.setMark(Integer.parseInt(markArea.getText()));
                 subSection.addQuestion(mcquestion);
+                
+                subsectionPanel.questionList.clearSelection();
+                
                 //revalidate();
                 }
                 });
@@ -454,6 +467,7 @@ public class SubsectionEditor extends JPanel{
                         subSection.addQuestion(mcquestion);
                         //revalidate();
                         subsectionPanel.listModel.addElement(mcquestion.getQuestion());
+                        subsectionPanel.questionList.clearSelection();
                        }
                     else if(mcquestion.getNumberOfAnswers()<=1){pop.setText("You should create two or more answers!");pop.show();}
                     else if("".equals(mcquestion.getQuestion())){pop.setText("Question Title should not be blank!");pop.show();}
@@ -503,10 +517,25 @@ public class SubsectionEditor extends JPanel{
             gbc_essay.gridy = 2;
             Essay.add(essay_wordlimit_label,gbc_essay);
             
+            
             final JTextArea essay_wordlimit = new JTextArea(1,5);
             gbc_essay.gridx = 1;
             Essay.add(essay_wordlimit,gbc_essay);
-            
+           
+             essay_wordlimit.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                  char c = e.getKeyChar();
+                  if (!((c >= '0') && (c <= '9') ||
+                     (c == KeyEvent.VK_BACK_SPACE) ||
+                     (c == KeyEvent.VK_DELETE))) {
+                    getToolkit().beep();
+                    e.consume();
+                  }
+                }
+              });
+                  
+      
             JLabel essay_marks_label = new JLabel("Marks: ");
             gbc_essay.gridx = 0;
             gbc_essay.gridy = 3;
@@ -557,6 +586,10 @@ public class SubsectionEditor extends JPanel{
             gbc_essay.gridwidth = 2;
             gbc_essay.weighty = 1.0;
             JButton submitEssay = new JButton("submit");
+             gbc_essay.ipady = 20 ;
+          
+            gbc_essay.fill = GridBagConstraints.HORIZONTAL;
+            gbc_essay.anchor = GridBagConstraints.PAGE_END ;
             Essay.add(submitEssay,gbc_essay);
             
             if(essayQuestion.getQuestion() != null){
@@ -576,6 +609,7 @@ public class SubsectionEditor extends JPanel{
                 essayQuestion.setWordLimit(Integer.valueOf(essay_wordlimit.getText()));
                 subSection.addQuestion(essayQuestion);
                 subsectionPanel.listModel.addElement(essayQuestion.getQuestion());
+                subsectionPanel.questionList.clearSelection();
                 //revalidate();
                 }
                 });
@@ -697,6 +731,9 @@ public class SubsectionEditor extends JPanel{
       gbc_mb.gridy++;
       gbc_mb.gridwidth = 2;
       gbc_mb.weighty = 0;
+      gbc_mb.ipady = 20 ;
+      gbc_mb.fill = GridBagConstraints.HORIZONTAL;
+      gbc_mb.anchor = GridBagConstraints.PAGE_END ;
       MBQ.add(mb_submit,gbc_mb);
       
       if(question!=null && question instanceof MBQuestion){
@@ -755,6 +792,7 @@ public class SubsectionEditor extends JPanel{
                   mbquestion.setMark(Integer.valueOf(mb_markArea.getText()));
                   mbquestion.setInstructions(mb_instructions.getText());
                   subsectionPanel.listModel.setElementAt( mbquestion.getQuestion(),subsectionPanel.questionList.getSelectedIndex());
+                  subsectionPanel.questionList.clearSelection();
               }
           });
           
@@ -788,6 +826,7 @@ public class SubsectionEditor extends JPanel{
                   mbquestion.setInstructions(mb_instructions.getText());
                   subSection.addQuestion(mbquestion);
                   subsectionPanel.listModel.addElement(mbquestion.getQuestion());
+                  subsectionPanel.questionList.clearSelection();
               }
           });
       }
