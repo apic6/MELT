@@ -1,12 +1,7 @@
 Features Added recently and may not be 100%
-1. Auto saving and submission creation of all question types.
-2. UI representation.
-3. Marking of Both MCQ and FITB
-4. added getUnmarkedQuestions()
-5. Added manual marking support to marker.
-6. Populated submission with blank answers.
-7, Offer alternative constructors for PaperView that allow for different "start points"
+
 
 TODO:
 
-3. Student right panel -> submission.isFullyMarked() -> shows there
+1. FINISH SHOULD CLOSE TAKE TEST
+2. Instructions on questions maybe whatever

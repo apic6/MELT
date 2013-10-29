@@ -48,7 +48,7 @@ public class Marker {
         if (ans instanceof EssayAnswer) {
             EssayAnswer answer = (EssayAnswer) ans;
             SubmissionSubSection submSubSection = subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionAtIndex(0));
-            for (int i = 1; i<answer.getSizeOfSubSectionList(); i++) {
+            for (int i = 1; i < answer.getSizeOfSubSectionList(); i++) {
                 submSubSection = submSubSection.getSubSection(answer.getSubSectionAtIndex(i));
             }
             submSubSection.getAnswer(answer.getID()).setMarked(true);
@@ -57,7 +57,7 @@ public class Marker {
         } else if (ans instanceof MFITBAnswer) {
             MFITBAnswer answer = (MFITBAnswer) ans;
             SubmissionSubSection submSubSection = subm.getSection(answer.getSectionID()).getSubSection(answer.getSubSectionAtIndex(0));
-            for (int i = 1; i<answer.getSizeOfSubSectionList(); i++) {
+            for (int i = 1; i < answer.getSizeOfSubSectionList(); i++) {
                 submSubSection = submSubSection.getSubSection(answer.getSubSectionAtIndex(i));
             }
             submSubSection.getAnswer(answer.getID()).setMarked(true);
@@ -83,6 +83,7 @@ public class Marker {
                             mark += question.getMark(); //question.getMark();
                             break;
                         }
+                        submAnswer.setMark(0);
                     }
                     // right or wrong increase total mark
 
@@ -98,6 +99,7 @@ public class Marker {
                             mark += question.getMark();
                             break;
                         }
+                        submAnswer.setMark(0);
                     }
                 } // else FITBQ 
                 totalMark += subSection.getQuestion(i).getMark();

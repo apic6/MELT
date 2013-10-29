@@ -1,305 +1,323 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QuestionPapers>
-    <QuestionPaper id="1">
-        <Title>Very nice titeeeeee</Title>
-        <Description>adsdad</Description>
-        <Instructions>null</Instructions>
-        <EligibleStudent>12301230</EligibleStudent>
-        <EligibleStudent>12301239</EligibleStudent>
-        <Section id="0">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>120</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>UNDEFINED</CollectionType>
-            </SubSection>
-        </Section>
-        <Section id="1">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>10</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>QUESTIONS</CollectionType>
-                <Question type="MCQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>a</QuestionText>
-                    <Answer>1</Answer>
-                    <Answer>2</Answer>
-                    <Answer>3</Answer>
-                    <PossibleAnswer>1</PossibleAnswer>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="FITBQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <PossibleAnswer>asdasd</PossibleAnswer>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="MBQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>is a sensible representation of how this question should</QuestionText>
-                    <QuestionText>to a student taking the test</QuestionText>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="EssayQuestion">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <Mark>10</Mark>
-                </Question>
-            </SubSection>
-        </Section>
-    </QuestionPaper>
-    <QuestionPaper id="2">
-        <Title>Very nice titeeeeee</Title>
-        <Description>adsdad</Description>
-        <Instructions>null</Instructions>
-        <EligibleStudent>12301230</EligibleStudent>
-        <EligibleStudent>12301239</EligibleStudent>
-        <Section id="0">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>120</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>UNDEFINED</CollectionType>
-            </SubSection>
-        </Section>
-        <Section id="1">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>10</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>QUESTIONS</CollectionType>
-                <Question type="MCQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>a</QuestionText>
-                    <Answer>1</Answer>
-                    <Answer>2</Answer>
-                    <Answer>3</Answer>
-                    <PossibleAnswer>1</PossibleAnswer>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="FITBQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <PossibleAnswer>asdasd</PossibleAnswer>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="MBQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>is a sensible representation of how this question should</QuestionText>
-                    <QuestionText>to a student taking the test</QuestionText>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="EssayQuestion">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <Mark>10</Mark>
-                </Question>
-            </SubSection>
-        </Section>
-    </QuestionPaper>
-    <QuestionPaper id="3">
-        <Title>null</Title>
-        <Description>null</Description>
-        <Instructions>null</Instructions>
-        <Section id="0">
-            <Title>null</Title>
-            <Description>null</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>0</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>null</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>QUESTIONS</CollectionType>
-            </SubSection>
-        </Section>
-    </QuestionPaper>
-    <QuestionPaper id="5">
-        <Title>Very nice titeeeeee</Title>
-        <Description>adsdad</Description>
-        <Instructions>null</Instructions>
-        <EligibleStudent>12301230</EligibleStudent>
-        <EligibleStudent>12301239</EligibleStudent>
-        <Section id="0">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>120</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>SUBSECTIONS</CollectionType>
-                <SubSection>
-                    <Title>null</Title>
-                    <Description>guhhjg</Description>
-                    <Instructions>null</Instructions>
-                    <CollectionType>SUBSECTIONS</CollectionType>
-                    <SubSection>
-                        <Title>SubSubSection 1</Title>
-                        <Description>guhhjg</Description>
-                        <Instructions>null</Instructions>
-                        <CollectionType>QUESTIONS</CollectionType>
-                        <Question type="MCQ">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>a</QuestionText>
-                            <Answer>1</Answer>
-                            <Answer>2</Answer>
-                            <Answer>3</Answer>
-                            <PossibleAnswer>1</PossibleAnswer>
-                            <Mark>10</Mark>
-                        </Question>
-                        <Question type="FITBQ">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <PossibleAnswer>asdasd</PossibleAnswer>
-                            <Mark>10</Mark>
-                        </Question>
-                        <Question type="MBQ">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <QuestionText>is a sensible representation of how this question should</QuestionText>
-                            <QuestionText>to a student taking the test</QuestionText>
-                            <Mark>10</Mark>
-                        </Question>
-                        <Question type="EssayQuestion">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <Mark>10</Mark>
-                        </Question>
-                    </SubSection>
-                    <SubSection>
-                        <Title>SubSubSection 2</Title>
-                        <Description>guhhjg</Description>
-                        <Instructions>null</Instructions>
-                        <CollectionType>QUESTIONS</CollectionType>
-                        <Question type="MCQ">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>a</QuestionText>
-                            <Answer>1</Answer>
-                            <Answer>2</Answer>
-                            <Answer>3</Answer>
-                            <PossibleAnswer>1</PossibleAnswer>
-                            <Mark>10</Mark>
-                        </Question>
-                        <Question type="FITBQ">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <PossibleAnswer>asdasd</PossibleAnswer>
-                            <Mark>10</Mark>
-                        </Question>
-                        <Question type="MBQ">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <QuestionText>is a sensible representation of how this question should</QuestionText>
-                            <QuestionText>to a student taking the test</QuestionText>
-                            <Mark>10</Mark>
-                        </Question>
-                        <Question type="EssayQuestion">
-                            <Instructions>asd</Instructions>
-                            <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                            <Mark>10</Mark>
-                        </Question>
-                    </SubSection>                
-                </SubSection>
-                <SubSection>
-                    <Title>SubSubSection 2</Title>
-                    <Description>guhhjg</Description>
-                    <Instructions>null</Instructions>
-                    <CollectionType>QUESTIONS</CollectionType>
-                    <Question type="MCQ">
-                        <Instructions>asd</Instructions>
-                        <QuestionText>a</QuestionText>
-                        <Answer>1</Answer>
-                        <Answer>2</Answer>
-                        <Answer>3</Answer>
-                        <PossibleAnswer>1</PossibleAnswer>
-                        <Mark>10</Mark>
-                    </Question>
-                    <Question type="FITBQ">
-                        <Instructions>asd</Instructions>
-                        <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                        <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                        <PossibleAnswer>asdasd</PossibleAnswer>
-                        <Mark>10</Mark>
-                    </Question>
-                    <Question type="MBQ">
-                        <Instructions>asd</Instructions>
-                        <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                        <QuestionText>is a sensible representation of how this question should</QuestionText>
-                        <QuestionText>to a student taking the test</QuestionText>
-                        <Mark>10</Mark>
-                    </Question>
-                    <Question type="EssayQuestion">
-                        <Instructions>asd</Instructions>
-                        <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                        <Mark>10</Mark>
-                    </Question>
-                </SubSection>                
-            </SubSection>
-        </Section>
-        <Section id="1">
-            <Title>null</Title>
-            <Description>guhhjg</Description>
-            <Instructions>null</Instructions>
-            <TimeLimit>10</TimeLimit>
-            <SubSection>
-                <Title>null</Title>
-                <Description>guhhjg</Description>
-                <Instructions>null</Instructions>
-                <CollectionType>QUESTIONS</CollectionType>
-                <Question type="MCQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>a</QuestionText>
-                    <Answer>1</Answer>
-                    <Answer>2</Answer>
-                    <Answer>3</Answer>
-                    <PossibleAnswer>1</PossibleAnswer>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="FITBQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <PossibleAnswer>asdasd</PossibleAnswer>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="MBQ">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <QuestionText>is a sensible representation of how this question should</QuestionText>
-                    <QuestionText>to a student taking the test</QuestionText>
-                    <Mark>10</Mark>
-                </Question>
-                <Question type="EssayQuestion">
-                    <Instructions>asd</Instructions>
-                    <QuestionText>This is a simple question to determine whether or not the</QuestionText>
-                    <Mark>10</Mark>
-                </Question>
-            </SubSection>
-        </Section>
-    </QuestionPaper>
+<QuestionPapers><QuestionPaper id="1">
+<Title>Very nice titeeeeee</Title>
+<Description>adsdad</Description>
+<Instructions>null</Instructions>
+<EligibleStudent>12301230</EligibleStudent>
+<EligibleStudent>12301239</EligibleStudent>
+<Section id="0">
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<TimeLimit>120</TimeLimit>
+<SubSection>
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<CollectionType>SUBSECTIONS</CollectionType>
+<SubSection>
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<CollectionType>SUBSECTIONS</CollectionType>
+<SubSection>
+<Title>SubSubSection 1</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="MCQ">
+<Instructions>asd</Instructions>
+<QuestionText>a</QuestionText>
+<Answer>1</Answer>
+<Answer>2</Answer>
+<Answer>3</Answer>
+<PossibleAnswer>1</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<PossibleAnswer>asdasd</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="MBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>is a sensible representation of how this question should</QuestionText>
+<QuestionText>to a student taking the test</QuestionText>
+<Mark>10</Mark>
+</Question>
+<Question type="EssayQuestion">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<Mark>10</Mark>
+</Question>
+</SubSection>
+<SubSection>
+<Title>SubSubSection 2</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="MCQ">
+<Instructions>asd</Instructions>
+<QuestionText>a</QuestionText>
+<Answer>1</Answer>
+<Answer>2</Answer>
+<Answer>3</Answer>
+<PossibleAnswer>1</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<PossibleAnswer>asdasd</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="MBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>is a sensible representation of how this question should</QuestionText>
+<QuestionText>to a student taking the test</QuestionText>
+<Mark>10</Mark>
+</Question>
+<Question type="EssayQuestion">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<Mark>10</Mark>
+</Question>
+</SubSection>
+</SubSection>
+<SubSection>
+<Title>SubSubSection 2</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="MCQ">
+<Instructions>asd</Instructions>
+<QuestionText>a</QuestionText>
+<Answer>1</Answer>
+<Answer>2</Answer>
+<Answer>3</Answer>
+<PossibleAnswer>1</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<PossibleAnswer>asdasd</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="MBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>is a sensible representation of how this question should</QuestionText>
+<QuestionText>to a student taking the test</QuestionText>
+<Mark>10</Mark>
+</Question>
+<Question type="EssayQuestion">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<Mark>10</Mark>
+</Question>
+</SubSection>
+</SubSection>
+</Section>
+<Section id="1">
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<TimeLimit>10</TimeLimit>
+<SubSection>
+<Title>null</Title>
+<Description>guhhjg</Description>
+<Instructions>null</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="MCQ">
+<Instructions>asd</Instructions>
+<QuestionText>a</QuestionText>
+<Answer>1</Answer>
+<Answer>2</Answer>
+<Answer>3</Answer>
+<PossibleAnswer>1</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<PossibleAnswer>asdasd</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="MBQ">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<QuestionText>is a sensible representation of how this question should</QuestionText>
+<QuestionText>to a student taking the test</QuestionText>
+<Mark>10</Mark>
+</Question>
+<Question type="EssayQuestion">
+<Instructions>asd</Instructions>
+<QuestionText>This is a simple question to determine whether or not the</QuestionText>
+<Mark>10</Mark>
+</Question>
+</SubSection>
+</Section>
+</QuestionPaper>
+<QuestionPaper id="7">
+<Title>super wow hard </Title>
+<Description>fu</Description>
+<Instructions>fu </Instructions>
+<EligibleStudent>12301231</EligibleStudent>
+<EligibleStudent>12301235</EligibleStudent>
+<Section id="0">
+<Title>hjgadshjkgdsakjhdsaahkjsd</Title>
+<Description>be fast or fu</Description>
+<Instructions>null</Instructions>
+<TimeLimit>27</TimeLimit>
+<SubSection>
+<Title>null</Title>
+<Description>jhgwsadghjdsd</Description>
+<Instructions>null</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="EssayQuestion">
+<Instructions>be nice or i will fu</Instructions>
+<QuestionText>Write about me </QuestionText>
+<Mark>20</Mark>
+</Question>
+<Question type="MCQ">
+<Instructions>null</Instructions>
+<QuestionText>what is what?</QuestionText>
+<Answer>what</Answer>
+<Answer>What</Answer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>1</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+</SubSection>
+</Section>
+</QuestionPaper>
+<QuestionPaper id="9">
+<Title>hulk,hjkhkhj</Title>
+<Description>kjhgk</Description>
+<Instructions>hjkjhg</Instructions>
+<Section id="0">
+<Title>null</Title>
+<Description>null</Description>
+<Instructions>null</Instructions>
+<TimeLimit>0</TimeLimit>
+<SubSection>
+<Title>null</Title>
+<Description>null</Description>
+<Instructions>null</Instructions>
+<CollectionType>UNDEFINED</CollectionType>
+</SubSection>
+</Section>
+</QuestionPaper>
+<QuestionPaper id="6">
+<Title>Super Test 1</Title>
+<Description>Does this test work? This is a test test</Description>
+<Instructions>Make test , take test, ????, profit</Instructions>
+<EligibleStudent>12301230</EligibleStudent>
+<Section id="0">
+<Title>Section 1 - Testing part 1</Title>
+<Description>ghijkl</Description>
+<Instructions>Click buttons</Instructions>
+<TimeLimit>31</TimeLimit>
+<SubSection>
+<Title></Title>
+<Description>asdasd</Description>
+<Instructions>asdasd</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="EssayQuestion">
+<Instructions>You may find this hard.</Instructions>
+<QuestionText>What is the meaning of life?</QuestionText>
+<Mark>30</Mark>
+</Question>
+<Question type="MCQ">
+<Instructions>null</Instructions>
+<QuestionText>A B C or D?</QuestionText>
+<Answer>a</Answer>
+<Answer>b</Answer>
+<Answer>c</Answer>
+<Answer>d</Answer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>1</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<Mark>5</Mark>
+</Question>
+</SubSection>
+<SubSection>
+<Title></Title>
+<Description>null</Description>
+<Instructions>null</Instructions>
+<CollectionType>QUESTIONS</CollectionType>
+<Question type="MBQ">
+<Instructions>Fill in the blanks</Instructions>
+<QuestionText>a</QuestionText>
+<QuestionText>b</QuestionText>
+<QuestionText>c</QuestionText>
+<QuestionText>d</QuestionText>
+<QuestionText>e</QuestionText>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>part1</QuestionText>
+<QuestionText>part2</QuestionText>
+<PossibleAnswer>?????</PossibleAnswer>
+<PossibleAnswer>??????</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>part1</QuestionText>
+<QuestionText>part2</QuestionText>
+<PossibleAnswer>?????</PossibleAnswer>
+<PossibleAnswer>??????</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>part1</QuestionText>
+<QuestionText>part2</QuestionText>
+<PossibleAnswer>?????</PossibleAnswer>
+<PossibleAnswer>??????</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>part1</QuestionText>
+<QuestionText>part2</QuestionText>
+<PossibleAnswer>?????</PossibleAnswer>
+<PossibleAnswer>??????</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>part1</QuestionText>
+<QuestionText>part2</QuestionText>
+<PossibleAnswer>?????</PossibleAnswer>
+<PossibleAnswer>??????</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>dasdsa</QuestionText>
+<QuestionText>dasd</QuestionText>
+<PossibleAnswer>asdad</PossibleAnswer>
+<Mark>3</Mark>
+</Question>
+</SubSection>
+</Section>
+<Section id="0">
+<Title>Section 2 - Testing part 2</Title>
+<Description>abcdef</Description>
+<Instructions>do test</Instructions>
+<TimeLimit>30</TimeLimit>
+</Section>
+</QuestionPaper>
 </QuestionPapers>

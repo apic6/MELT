@@ -18,6 +18,7 @@ public class SubmissionSection {
     int sectionID;
     boolean fullyMarked;
     ArrayList<SubmissionSubSection> subSectionList;
+    int mark;
 
     public SubmissionSection(int id) {
         this.sectionID = id;
@@ -44,6 +45,10 @@ public class SubmissionSection {
     public SubmissionSubSection getSubSection(int id) {
         return subSectionList.get(id);
     }
+    
+    public int getMark() {
+        return mark;
+    }
 
     public void normalise() {
         Collections.sort(subSectionList, new Comparator<SubmissionSubSection>() {
@@ -52,8 +57,10 @@ public class SubmissionSection {
             }
         });
         this.fullyMarked = true;
+        this.mark = 0;
         for (int i = 0; i < subSectionList.size(); i++) {
             subSectionList.get(i).normalise();
+            this.mark += subSectionList.get(i).getMark();
             if (!subSectionList.get(i).isFullyMarked()) {
                 this.fullyMarked = false;
             }

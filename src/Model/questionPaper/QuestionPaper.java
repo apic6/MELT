@@ -80,6 +80,14 @@ public class QuestionPaper {
     public String getInstructions() {
         return instructions;
     }
+    
+    public int getMaximumMark() {
+        int maxMark = 0;
+        for (int i = 0; i<sectionList.size(); i++) {
+            maxMark += sectionList.get(i).getMaximumMark();
+        }
+        return maxMark;
+    }
 
     public boolean isStudentEligible(int StudentID) {
         for (int ID : eligibleStudents) {

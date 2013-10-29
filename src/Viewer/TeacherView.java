@@ -28,54 +28,53 @@ import javax.swing.JScrollPane;
  * @author mbaxkak4
  */
 public class TeacherView extends JPanel {
-   // private static JButton markButton;
-   // private static JButton editButton;
+    // private static JButton markButton;
+    // private static JButton editButton;
+
     private int j;
     private static QuestionPaper paper;
     private static JFrame mainFrame;
     private Modeller amodel;
-    private static JButton markTrigger=new JButton("markTrigger");
-    private static JButton editTrigger=new JButton("editTrigger");
-    
-    public TeacherView(JFrame frame,Modeller model){
-        
+    private static JButton markTrigger = new JButton("markTrigger");
+    private static JButton editTrigger = new JButton("editTrigger");
+
+    public TeacherView(JFrame frame, Modeller model) {
+
         mainFrame = frame;
         amodel = model;
         initComponents();
-        
+
     }
-    
-    
-       private static JButton createTest;
-       private java.awt.Label previousLabel;
-      // private static JButton markButton;
-   
-    private void initComponents()  {
-        
-        previousLabel=new Label();
-        createTest=new JButton() ;
-        final TeacherView tView=this;
-        
-        
+    private static JButton createTest;
+    private java.awt.Label previousLabel;
+    // private static JButton markButton;
+
+    private void initComponents() {
+
+        previousLabel = new Label();
+        createTest = new JButton();
+        final TeacherView tView = this;
+
+
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        
-       
-        
+
+
+
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.gridy = 0;
         c.ipady = 50;
         c.ipadx = 30;
-        c.weightx=1.0;
-        c.insets = new Insets(20,20,20,20);
+        c.weightx = 1.0;
+        c.insets = new Insets(20, 20, 20, 20);
         c.weighty = 10;
         createTest.setText("Create a New Test");
         createTest.setPreferredSize(new Dimension(200, 40));
-     
-        this.add(createTest,c);
-        
+
+        this.add(createTest, c);
+
         GridBagConstraints c1 = new GridBagConstraints();
         c1.fill = GridBagConstraints.BOTH;
         c1.weightx = 1;
@@ -90,132 +89,138 @@ public class TeacherView extends JPanel {
         previousLabel.setBackground(new java.awt.Color(245, 245, 245));
         previousLabel.setFont(new java.awt.Font("Monospaced", 3, 16)); // NOI18N
         previousLabel.setText("List of older English Language tests ");
-        this.add(previousLabel,c1);
-        
-        
-        
-        
-        
-        
-        
-        
-       
-        c.gridy=2;
-        c.weightx=1.0;
+        this.add(previousLabel, c1);
+
+
+
+
+
+
+
+
+
+        c.gridy = 2;
+        c.weightx = 1.0;
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridwidth = GridBagConstraints.REMAINDER;
-        c.gridheight=GridBagConstraints.REMAINDER;
-        c.fill=GridBagConstraints.BOTH;
+        c.gridheight = GridBagConstraints.REMAINDER;
+        c.fill = GridBagConstraints.BOTH;
         c.weighty = 20;
-        
-        
-       JPanel BottomPanel=new JPanel();
-       BottomPanel.setLayout(new GridBagLayout()); //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
-       JScrollPane Scroll=new JScrollPane(BottomPanel) ;
-       
-      
-      
-        
-      
-        
+
+
+        JPanel BottomPanel = new JPanel();
+        BottomPanel.setLayout(new GridBagLayout()); //////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        JScrollPane Scroll = new JScrollPane(BottomPanel);
+
+
+
+
+
+
         GridBagConstraints c2 = new GridBagConstraints();
         c2.anchor = GridBagConstraints.SOUTH;
         c2.gridx = GridBagConstraints.RELATIVE;
         c2.fill = GridBagConstraints.BOTH;
-        c2.weighty=1;
+        c2.weighty = 1;
         c2.ipadx = 10;
         c2.ipady = 10;
         c2.insets = new Insets(50, 0, 30, 20);
         c2.weightx = 0.5;
         c2.insets = new Insets(50, 20, 30, 0);
         c2.anchor = GridBagConstraints.SOUTH;
-       
+
         c2.gridy = 2;
-        
-       
-        
+
+
+
         final ArrayList<QuestionPaper> papers = amodel.getPapers();
-        
-        for(int i=0;i<papers.size();++i){
-            
-            
+
+        for (int i = 0; i < papers.size(); ++i) {
+
+
             //paper=papers.get(i);
-            final int j=i;
-            c2.gridy=c2.gridy+i;
+            final int j = i;
+            c2.gridy = c2.gridy + i;
             c2.gridx = 0;
-            BottomPanel.add(new PaperPreviewer(papers.get(j)),c2);
-            
-            c2.gridx=1;
-            JButton previewButton=new JButton("Preview Test");
-            previewButton.addActionListener(new ActionListener(){
-              @Override
-           public void actionPerformed(ActionEvent evt){
-           mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, tView));
-           mainFrame.setVisible(true);
-        
-        }
-            
+            BottomPanel.add(new PaperPreviewer(papers.get(j)), c2);
+
+            c2.gridx = 1;
+            JButton previewButton = new JButton("Preview Test");
+            previewButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, tView));
+                    mainFrame.setVisible(true);
+
+                }
             });
-            BottomPanel.add(previewButton,c2);
-            
-            c2.gridx=2;
-            JButton editButton=new JButton("Edit Test");
-            editButton.addActionListener(new ActionListener(){
-              
-            @Override
-            public void actionPerformed(ActionEvent evt){
+            BottomPanel.add(previewButton, c2);
+
+            c2.gridx = 2;
+            JButton editButton = new JButton("Edit Test");
+            editButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
 //            mainFrame.setContentPane(new TestWizard(mainFrame,amodel,papers.get(j)));
 //            mainFrame.setVisible(true);
-            paper=papers.get(j);
-            editTrigger.doClick();
-                
-            
-        }});
-            BottomPanel.add(editButton,c2);
-            
-            c2.gridx=3;
-            
+                    paper = papers.get(j);
+                    editTrigger.doClick();
+
+
+                }
+            });
+            BottomPanel.add(editButton, c2);
+
+            c2.gridx = 3;
+
             //JButton soome=new JButton();
-            
-            
-            JButton markButton=new JButton ("Mark Test");
-           
-            markButton.addActionListener(new ActionListener(){
-            
+
+
+            JButton markButton = new JButton("Mark Test");
+
+            markButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                mainFrame.setContentPane(new MarkerView(amodel,mainFrame,papers.get(j)));
-                mainFrame.setVisible(true);  
-                markTrigger.doClick();
-                  }
-             
+                    mainFrame.setContentPane(new MarkerView(amodel, mainFrame, papers.get(j)));
+                    mainFrame.setVisible(true);
+                    markTrigger.doClick();
+                }
             });
-            final ArrayList<Submission> submissions=amodel.getSubmissions();
-            for(int k=0;k<submissions.size();++k)  {
-                if(papers.get(j).getPaperID()==submissions.get(k).getPaperID()){
-                  BottomPanel.add(markButton,c2);}
-                else{
-                    JLabel noMarksLabel=new JLabel("No submissions");
-                    JButton noSubs=new JButton("No submissions to mark");
-                   noSubs.setEnabled(false);
-                   BottomPanel.add(noSubs,c2);
+            final ArrayList<Submission> submissions = amodel.getSubmissions();
+            markButton.setEnabled(false);
+            markButton.setText("No submissions to mark");
+            BottomPanel.add(markButton, c2);
+            
+            for (int k = 0; k < submissions.size(); ++k) {
+                
+                if (papers.get(j).getPaperID() == submissions.get(k).getPaperID()) {
+                    System.out.println("Paper ID: " + papers.get(j).getPaperID());
+                    markButton.setText("Mark Test");
+                    markButton.setEnabled(true);
+                } else {
+//                    System.out.println("Paper ID2: " + papers.get(j).getPaperID());
+//                    JLabel noMarksLabel = new JLabel("No submissions");
+//                    JButton noSubs = new JButton("No submissions to mark");
+//                    noSubs.setEnabled(false);
+//                    BottomPanel.add(noSubs, c2);
                 }
             }
-            }
-        this.add(Scroll,c);
+        }
+        this.add(Scroll, c);
     }
 
-   
-  public static void addListener(ActionListener mal){
-  createTest.addActionListener(mal);
-  markTrigger.addActionListener(mal);
-  editTrigger.addActionListener(mal); 
-  
-   }
-   public static JFrame getFrame(){
-   return mainFrame;}
-  
-   public static QuestionPaper getPaper(){
-   return paper;}
+    public static void addListener(ActionListener mal) {
+        createTest.addActionListener(mal);
+        markTrigger.addActionListener(mal);
+        editTrigger.addActionListener(mal);
 
+    }
+
+    public static JFrame getFrame() {
+        return mainFrame;
+    }
+
+    public static QuestionPaper getPaper() {
+        return paper;
+    }
 }

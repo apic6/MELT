@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class SubSection {
 
     public enum CollectionType {
+
         QUESTIONS,
         SUBSECTIONS,
         UNDEFINED
@@ -82,7 +83,7 @@ public class SubSection {
         if (type == CollectionType.QUESTIONS) {
             return questionList.size();
         } else {
-            return -1;
+            return 0;
         }
 
     }
@@ -147,6 +148,20 @@ public class SubSection {
         moveQuestionUp(QuestionToMove + 1);
     }
 
+    public int getMaximumMark() {
+        int maxMark = 0;
+        if (type == CollectionType.QUESTIONS) {
+            for (int i = 0; i < questionList.size(); i++) {
+                maxMark += questionList.get(i).getMark();
+            }
+        } else if (type == CollectionType.SUBSECTIONS) {
+            for (int i = 0; i < subSectionList.size(); i++) {
+                maxMark += subSectionList.get(i).getMaximumMark();
+            }
+        }
+        return maxMark;
+    }
+
     public SubSection getSubSection(int ID) {
         if (type == CollectionType.SUBSECTIONS) {
             return subSectionList.get(ID);
@@ -159,7 +174,7 @@ public class SubSection {
         if (type == CollectionType.SUBSECTIONS) {
             return subSectionList.size();
         } else {
-            return -1;
+            return 0;
         }
     }
 
@@ -252,7 +267,7 @@ public class SubSection {
                 XML += "UNDEFINED</CollectionType>\n";
                 break;
         }
-        
+
 
 
 

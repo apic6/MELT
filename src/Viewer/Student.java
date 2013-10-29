@@ -31,7 +31,8 @@ class MarkedSubmission extends JPanel {
         if (paper != null) {
             setLayout(new FlowLayout());
             JLabel title = new JLabel("Paper: " + paper.getTitle());
-            JLabel mark = new JLabel("Marks: " + sub.getMark() + "/" + sub.getTotalMark());
+            
+            JLabel mark = new JLabel("Marks: " + sub.getMark() + "/" + paper.getMaximumMark());
             add(title);
             add(mark);
         } else {

@@ -253,8 +253,8 @@ public class Controller {
 
         try {
             // p.getPaperID();
-            if (amodel.getPaper(p.getPaperID() - 1) != null) {
-                amodel.removePaper(p.getPaperID() - 1);
+            if (amodel.getPaperByPaperID(p.getPaperID()) != null) {
+                amodel.removePaperByPaperID(p.getPaperID());
                 amodel.addPaper(p);
 
             } else {
@@ -277,8 +277,8 @@ public class Controller {
         try {
 
 
-            amodel.removePaper(p.getPaperID() - 1);
-            amodel.addPaper(p.getPaperID() - 1, p);             //it always adds at the end of the list...
+            amodel.removePaperByPaperID(p.getPaperID());
+            amodel.addPaper(p);             //it always adds at the end of the list...
 
 
             amodel.savePapers(null);

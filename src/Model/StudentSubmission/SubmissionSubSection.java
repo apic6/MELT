@@ -29,6 +29,7 @@ public class SubmissionSubSection {
     ArrayList<Answer> answerList;
     ArrayList<SubmissionSubSection> subsectionList;
     CollectionType type;
+    int mark;
 
     public SubmissionSubSection(int id) {
         type = CollectionType.UNDEFINED;
@@ -102,6 +103,10 @@ public class SubmissionSubSection {
         return subsectionList.get(id);
     }
 
+    public int getMark() {
+        return mark;
+    }
+
     public void normalise() {
         if (type == CollectionType.ANSWERS) {
             Collections.sort(answerList, new Comparator<Answer>() {
@@ -110,15 +115,22 @@ public class SubmissionSubSection {
                 }
             });
             fullyMarked = true;
+
+            this.mark = 0;
             for (int i = 0; i < answerList.size(); i++) {
+                this.mark += answerList.get(i).getMark();
                 if (!answerList.get(i).isMarked()) {
                     fullyMarked = false;
                 }
             }
         } else if (type == CollectionType.SUBSECTIONS) {
             fullyMarked = true;
+
+            this.mark = 0;
             for (int i = 0; i < subsectionList.size(); i++) {
+
                 subsectionList.get(i).normalise();
+                this.mark += subsectionList.get(i).getMark();
                 if (!subsectionList.get(i).isFullyMarked()) {
                     fullyMarked = false;
                 }

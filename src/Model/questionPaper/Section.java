@@ -76,8 +76,8 @@ public class Section {
     public int getTimeLimit() {
         return timeLimit;
     }
-    
-    public void setupTimer () {
+
+    public void setupTimer() {
         remainingTime = timeLimit * 1000;
     }
 
@@ -90,32 +90,39 @@ public class Section {
         timer.setRepeats(true);
         timer.start();
     }
-    
-    public void updateListener (ActionListener aListener) {
+
+    public void updateListener(ActionListener aListener) {
         timer.removeActionListener(timerListener);
         timerListener = aListener;
         timer = new Timer(1000, aListener);
         timer.setRepeats(true);
         timer.start();
     }
-    
+
     public void stopTimer() {
         timer.removeActionListener(timerListener);
         timer.stop();
     }
-    
+
     public void resumeTimer() {
         timer.start();
     }
-    
+
     public void timerTick() {
         remainingTime -= 1000;
     }
-    
+
     public int getRemainingTime() {
         return remainingTime;
     }
-        
+
+    public int getMaximumMark() {
+        int maxMark = 0;
+        for (int i = 0; i < SubSectionList.size(); i++) {
+            maxMark += SubSectionList.get(i).getMaximumMark();
+        }
+        return maxMark;
+    }
 
     public int getNumberOfSubSections() {
         return SubSectionList.size();

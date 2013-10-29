@@ -230,4 +230,12 @@ public class Modeller {
         loadSubmissions();
         return submissions;
     }
+
+    public void removePaperByPaperID(int paperID) {
+        for (int i = 0; i < questionPapers.size(); i++) {
+            if (questionPapers.get(i).getPaperID() == paperID) {
+                questionPapers.remove(i);
+            }
+        }
+    }
 }
