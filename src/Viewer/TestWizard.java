@@ -101,7 +101,7 @@ public class TestWizard extends JPanel{
         
         leftPanel.add(tabs,con);
         
-        JButton addSection = new JButton("addSection");
+        JButton addSection = new JButton("Add Section");
         addSection.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +122,23 @@ public class TestWizard extends JPanel{
             }
         });
         
+        JButton deleteSection = new JButton("Delete Section");
+         deleteSection.addActionListener(new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tabs.remove(tabs.getSelectedComponent());
+                sectionList.remove(tabs.getSelectedIndex());
+                paper.removeSection(tabs.getSelectedIndex());
+//                subsections.remove(subsections.getSelectedComponent());
+////                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
+////                subsections.setSelectedIndex(subsections.getTabCount()-1);
+//                subsections.revalidate();
+//                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard,subsection));
+            }
+        });
+         
+         
         tabs.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -159,6 +176,8 @@ public class TestWizard extends JPanel{
         con.gridwidth = 1;
         leftPanel.add(addSection,con);
         
+        con.gridy++ ;
+        leftPanel.add(deleteSection, con);
         con.gridy = 0;
         con.weightx = 0;
         con.weighty = 0;

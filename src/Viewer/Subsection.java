@@ -170,7 +170,7 @@ public class Subsection extends JPanel{
         * 
         add(createQuestion,gbc);
         * */
-        JButton delete = new JButton("delete");
+        JButton delete = new JButton("Delete Question");
             delete.addActionListener(new ActionListener() {
 
             @Override
