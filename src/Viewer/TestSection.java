@@ -107,11 +107,14 @@ public class TestSection extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                if (subsections.getTabCount() != 0){
                 section.RemoveSubSection(subsections.getSelectedIndex());
                 subsections.remove(subsections.getSelectedComponent());
 //                subsections.addTab("subsection"+(subsections.getTabCount()+1),subsection );
 //                subsections.setSelectedIndex(subsections.getTabCount()-1);
                 subsections.revalidate();
+                }
 //                wizard.repainRightPanel("SubSection information", new SubsectionEditor(section.getSubSection(section.getNumberOfSubSections()-1),wizard,subsection));
             }
         });
