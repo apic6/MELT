@@ -73,12 +73,7 @@ public class TeacherView extends JPanel {
         c.weighty = 10;
         createTest.setText("Create a New Test");
         createTest.setPreferredSize(new Dimension(200, 40));
-//        createTest.addActionListener(new java.awt.event.ActionListener() {
-//            @Override
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                  ((Viewer)mainFrame).guiChanger(new TestWizard(mainFrame,amodel));
-//            }
-//        });
+     
         this.add(createTest,c);
         
         GridBagConstraints c1 = new GridBagConstraints();
@@ -201,8 +196,9 @@ public class TeacherView extends JPanel {
                   BottomPanel.add(markButton,c2);}
                 else{
                     JLabel noMarksLabel=new JLabel("No submissions");
-               // markButton.setEnabled(false);
-                //BottomPanel.add(markButton,c2);
+                    JButton noSubs=new JButton("No submissions to mark");
+                   noSubs.setEnabled(false);
+                   BottomPanel.add(noSubs,c2);
                 }
             }
             }

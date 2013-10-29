@@ -158,6 +158,7 @@ public class Controller {
                         @Override
                         public void run() {
                             saveSubmission(PaperView.getSubmission());
+                            System.err.println("jkhdfhjkshfkjds");
                         }
                     }, 0, 2000); 
                 }
@@ -282,6 +283,7 @@ public class Controller {
             allsubs = amodel.getSubmissions();
             for (int i = 0; i < allsubs.size(); i++) {
                 if (allsubs.get(i).getPaperID() == sub.getPaperID() && allsubs.get(i).getStudentID() == sub.getStudentID()) {
+                    
                     amodel.removeSubmission(i);
                     amodel.addSubmission(sub, i);
                 }
