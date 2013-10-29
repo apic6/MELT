@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -89,7 +90,7 @@ public final class FIBQPanel extends JPanel {
       this.add(title,c);
       c.gridx=1;
       c.gridy=0;
-      
+      c.ipadx = 200 ;
       this.add(firstPart,c);
       firstPart.getDocument().addDocumentListener(new DocumentListener (){
        @Override
@@ -106,12 +107,14 @@ public final class FIBQPanel extends JPanel {
                  fibquestion.setQuestionParts(firstPart.getText(), 0);
             }
    });
-      c.gridx=2;
-      c.gridy=0;
+      c.ipadx = 0 ;
+      c.gridx=0;
+      c.gridy=1;
       JLabel blank=new JLabel("Blank");
       this.add(blank,c);
-      c.gridx=3;
-      c.gridy=0;
+      c.ipadx = 200 ;
+      c.gridx=1;
+      c.gridy=1;
       
       this.add(secondPart,c);
       secondPart.getDocument().addDocumentListener(new DocumentListener (){
@@ -171,9 +174,9 @@ public final class FIBQPanel extends JPanel {
       c4.gridx++;
       markPane.add(lessTime,c4);
       
-      
+      c.ipadx = 0 ;
       c.gridx=0;
-      c.gridy=1;
+      c.gridy=2;
       c.ipady = 0 ;
       c.weighty = 1.0 ;
       c.weightx = 1.0 ;
@@ -190,7 +193,7 @@ public final class FIBQPanel extends JPanel {
       apc.gridy = 0;
       
       c.gridx=1;
-      c.gridy=1;
+      c.gridy=2;
       c.ipady = 0 ;
       c.weighty = 1.0 ;
       c.weightx = 1.0 ;
@@ -203,15 +206,16 @@ public final class FIBQPanel extends JPanel {
       answerPanel.setLayout(new GridBagLayout());
       
       c.gridx = 0 ;
-      c.gridy=2;
+      c.gridy=3;
     
       this.add(answerPanel, c) ;
       
        JButton submit = new JButton("submit");
        c.gridx = 0 ;
        c.ipady = 20 ;
-       c.gridy = 3 ;
+       c.gridy = 4 ;
        c.fill = GridBagConstraints.HORIZONTAL;
+       c.anchor = GridBagConstraints.PAGE_END ;
        this.add(submit, c);
       
        
@@ -346,6 +350,7 @@ public final class FIBQPanel extends JPanel {
             JLabel answer_label = new JLabel("answer"+num+": ");
             tempPanel.setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5,0,0,0);
             gbc.anchor= GridBagConstraints.FIRST_LINE_START ;
             gbc.weighty=1.0;
             gbc.gridx = 0;
