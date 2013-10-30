@@ -28,6 +28,7 @@ public class QuestionPaperTest {
     @BeforeClass
     public static void setUpClass() {
         instance = new QuestionPaper(1);
+        instance.setTitle("Title");
     }
 
     @AfterClass

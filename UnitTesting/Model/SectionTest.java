@@ -275,6 +275,8 @@ public class SectionTest {
         instance.AddSubSection(S2);
 
         assertNotNull("Incorrectly added subsections", instance.getSubSection(1));
+        
+        
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
     }
