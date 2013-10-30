@@ -4,6 +4,7 @@
  */
 package Viewer;
 
+import Controller.Controller;
 import Viewer.PaperViews.PaperView;
 import Model.Modeller;
 import Model.questionPaper.QuestionPaper;
@@ -50,29 +51,20 @@ public class TestWizard extends JPanel{
     private JPanel FIBQ;
     final JPanel questionCreator = new JPanel() ;
     public TestWizard wizard;
+    public Controller controller;
     
-    ///New Test Constructor
-    public TestWizard(JFrame frame,Modeller model){
-        this.model = model;
-        mainFrame = frame;
-        
-        sectionList = new ArrayList();
-        int ID=model.getNextID();
-        paper = new QuestionPaper(ID);
-        wizard = this;
-        initComponents();
-        
-        answerAreas = new ArrayList();
-    
-}
-    
-    //Edit an old Test Constructor
-   public TestWizard(JFrame frame,Modeller model,QuestionPaper apaper){
+   public TestWizard(Controller controller,JFrame frame,Modeller model,QuestionPaper apaper){
    this.model=model;
    mainFrame=frame;
-   paper=apaper;
+   if(apaper!=null)
+    paper=apaper;
+   else{
+        int ID=model.getNextID();
+        paper = new QuestionPaper(ID);
+   }
    sectionList=new ArrayList();
    wizard=this;
+   this.controller = controller;
    initComponents();
    
    answerAreas= new ArrayList();
@@ -239,7 +231,19 @@ public class TestWizard extends JPanel{
             c4.gridy = 1 ;
            // c4.anchor=GridBagConstraints.EAST;
             add(editButton,c4);
-
+ 
+             JButton backButton=new JButton("Back");
+            backButton.addActionListener(new ActionListener(){
+              @Override
+           public void actionPerformed(ActionEvent evt){
+                  mainFrame.setContentPane(new TeacherView(mainFrame,model));
+                  TeacherView.addListener(controller.lel);
+                  mainFrame.setVisible(true);
+              }
+        
+        });
+            c4.gridx = 2;
+            add(backButton,c4);
     }
     
     public static  QuestionPaper getQuestionPaper(){
