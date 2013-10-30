@@ -166,158 +166,79 @@
 </SubSection>
 </Section>
 </QuestionPaper>
-<QuestionPaper id="7">
-<Title>super wow hard </Title>
-<Description>fu</Description>
-<Instructions>fu </Instructions>
-<EligibleStudent>12301231</EligibleStudent>
-<EligibleStudent>12301235</EligibleStudent>
-<Section id="0">
-<Title>hjgadshjkgdsakjhdsaahkjsd</Title>
-<Description>be fast or fu</Description>
-<Instructions>null</Instructions>
-<TimeLimit>27</TimeLimit>
-<SubSection>
-<Title>null</Title>
-<Description>jhgwsadghjdsd</Description>
-<Instructions>null</Instructions>
-<CollectionType>QUESTIONS</CollectionType>
-<Question type="EssayQuestion">
-<Instructions>be nice or i will fu</Instructions>
-<QuestionText>Write about me </QuestionText>
-<Mark>20</Mark>
-</Question>
-<Question type="MCQ">
-<Instructions>null</Instructions>
-<QuestionText>what is what?</QuestionText>
-<Answer>what</Answer>
-<Answer>What</Answer>
-<PossibleAnswer>0</PossibleAnswer>
-<PossibleAnswer>1</PossibleAnswer>
-<Mark>10</Mark>
-</Question>
-</SubSection>
-</Section>
-</QuestionPaper>
-<QuestionPaper id="9">
-<Title>hulk,hjkhkhj</Title>
-<Description>kjhgk</Description>
-<Instructions>hjkjhg</Instructions>
-<Section id="0">
-<Title>null</Title>
-<Description>null</Description>
-<Instructions>null</Instructions>
-<TimeLimit>0</TimeLimit>
-<SubSection>
-<Title>null</Title>
-<Description>null</Description>
-<Instructions>null</Instructions>
-<CollectionType>UNDEFINED</CollectionType>
-</SubSection>
-</Section>
-</QuestionPaper>
-<QuestionPaper id="6">
-<Title>Super Test 1</Title>
-<Description>Does this test work? This is a test test</Description>
-<Instructions>Make test , take test, ????, profit</Instructions>
+<QuestionPaper id="2">
+<Title>This THE TEST BOUHAHAHAHAHAHA</Title>
+<Description>tRY YOUR BEST NOT TO FAIL</Description>
+<Instructions>nothing will help you</Instructions>
 <EligibleStudent>12301230</EligibleStudent>
+<EligibleStudent>12301231</EligibleStudent>
 <Section id="0">
-<Title>Section 1 - Testing part 1</Title>
-<Description>ghijkl</Description>
-<Instructions>Click buttons</Instructions>
-<TimeLimit>31</TimeLimit>
+<Title>Sec1</Title>
+<Description>descr1</Description>
+<Instructions>inst1</Instructions>
+<TimeLimit>50</TimeLimit>
 <SubSection>
-<Title></Title>
-<Description>asdasd</Description>
-<Instructions>asdasd</Instructions>
+<Title>Sub1-Essays</Title>
+<Description>aaaaaaaaaaaaaaa</Description>
+<Instructions>ffffffffffffffffffffffffff</Instructions>
 <CollectionType>QUESTIONS</CollectionType>
 <Question type="EssayQuestion">
-<Instructions>You may find this hard.</Instructions>
-<QuestionText>What is the meaning of life?</QuestionText>
+<Instructions>none</Instructions>
+<QuestionText>Essay 1</QuestionText>
 <Mark>30</Mark>
 </Question>
-<Question type="MCQ">
-<Instructions>null</Instructions>
-<QuestionText>A B C or D?</QuestionText>
-<Answer>a</Answer>
-<Answer>b</Answer>
-<Answer>c</Answer>
-<Answer>d</Answer>
-<PossibleAnswer>0</PossibleAnswer>
-<PossibleAnswer>1</PossibleAnswer>
-<PossibleAnswer>0</PossibleAnswer>
-<PossibleAnswer>0</PossibleAnswer>
-<Mark>5</Mark>
+<Question type="EssayQuestion">
+<Instructions>a lot</Instructions>
+<QuestionText>Essay2</QuestionText>
+<Mark>40</Mark>
 </Question>
 </SubSection>
 <SubSection>
-<Title></Title>
-<Description>null</Description>
-<Instructions>null</Instructions>
+<Title>SubSection2</Title>
+<Description>fatal</Description>
+<Instructions>none</Instructions>
 <CollectionType>QUESTIONS</CollectionType>
-<Question type="MBQ">
-<Instructions>Fill in the blanks</Instructions>
-<QuestionText>a</QuestionText>
-<QuestionText>b</QuestionText>
-<QuestionText>c</QuestionText>
-<QuestionText>d</QuestionText>
-<QuestionText>e</QuestionText>
-<Mark>10</Mark>
-</Question>
-<Question type="FITBQ">
+<Question type="MCQ">
 <Instructions>null</Instructions>
-<QuestionText>part1</QuestionText>
-<QuestionText>part2</QuestionText>
-<PossibleAnswer>?????</PossibleAnswer>
-<PossibleAnswer>??????</PossibleAnswer>
-<Mark>10</Mark>
-</Question>
-<Question type="FITBQ">
-<Instructions>null</Instructions>
-<QuestionText>part1</QuestionText>
-<QuestionText>part2</QuestionText>
-<PossibleAnswer>?????</PossibleAnswer>
-<PossibleAnswer>??????</PossibleAnswer>
-<Mark>10</Mark>
-</Question>
-<Question type="FITBQ">
-<Instructions>null</Instructions>
-<QuestionText>part1</QuestionText>
-<QuestionText>part2</QuestionText>
-<PossibleAnswer>?????</PossibleAnswer>
-<PossibleAnswer>??????</PossibleAnswer>
-<Mark>10</Mark>
-</Question>
-<Question type="FITBQ">
-<Instructions>null</Instructions>
-<QuestionText>part1</QuestionText>
-<QuestionText>part2</QuestionText>
-<PossibleAnswer>?????</PossibleAnswer>
-<PossibleAnswer>??????</PossibleAnswer>
-<Mark>10</Mark>
-</Question>
-<Question type="FITBQ">
-<Instructions>null</Instructions>
-<QuestionText>part1</QuestionText>
-<QuestionText>part2</QuestionText>
-<PossibleAnswer>?????</PossibleAnswer>
-<PossibleAnswer>??????</PossibleAnswer>
-<Mark>10</Mark>
-</Question>
-<Question type="FITBQ">
-<Instructions>null</Instructions>
-<QuestionText>dasdsa</QuestionText>
-<QuestionText>dasd</QuestionText>
-<PossibleAnswer>asdad</PossibleAnswer>
+<QuestionText>aaaa?</QuestionText>
+<Answer>aa</Answer>
+<Answer>bb</Answer>
+<Answer>cc</Answer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>1</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
 <Mark>3</Mark>
 </Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>Wara waga waga wara</QuestionText>
+<QuestionText>bam bam biri koukou.</QuestionText>
+<PossibleAnswer>asd</PossibleAnswer>
+<PossibleAnswer>asdf</PossibleAnswer>
+<Mark>3</Mark>
+</Question>
+<Question type="MCQ">
+<Instructions>null</Instructions>
+<QuestionText>amamamamamamam?</QuestionText>
+<Answer>a</Answer>
+<Answer>s</Answer>
+<Answer>d</Answer>
+<Answer>f</Answer>
+<PossibleAnswer>1</PossibleAnswer>
+<PossibleAnswer>1</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<PossibleAnswer>0</PossibleAnswer>
+<Mark>10</Mark>
+</Question>
+<Question type="FITBQ">
+<Instructions>null</Instructions>
+<QuestionText>Whdhasd  asd</QuestionText>
+<QuestionText>asd asdd adas.</QuestionText>
+<PossibleAnswer>qwer</PossibleAnswer>
+<PossibleAnswer>qwert</PossibleAnswer>
+<Mark>2</Mark>
+</Question>
 </SubSection>
-</Section>
-<Section id="0">
-<Title>Section 2 - Testing part 2</Title>
-<Description>abcdef</Description>
-<Instructions>do test</Instructions>
-<TimeLimit>30</TimeLimit>
 </Section>
 </QuestionPaper>
 </QuestionPapers>

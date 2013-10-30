@@ -40,11 +40,18 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JComponent;
 import javax.swing.JPopupMenu.Separator;
 import javax.swing.JSeparator;
+import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.TabbedPaneUI;
 
 public class MarkerView extends JPanel {
 
@@ -53,13 +60,18 @@ public class MarkerView extends JPanel {
     private int counter = 0;
     private Modeller model;
     private QuestionPaper paper;
-    private static Submission submission;
+    private static Submission submission=null;
     private JList submissionList;
     private DefaultListModel listModel;
     private GridBagConstraints c2 = new GridBagConstraints();
+    GridBagConstraints c1 = new GridBagConstraints();
+    GridBagConstraints c3 = new GridBagConstraints();
     private ListSelectionModel listSelectionModel;
     private JPanel rightPanel = new JPanel();
     private Marker marker;
+    JPanel rightMarked=new JPanel();
+    JPanel rightUnmarked=new JPanel();
+    JTabbedPane jtab=new JTabbedPane();
 
     public MarkerView(Modeller model, JFrame frame, QuestionPaper paper) {
         this.mainFrame = frame;
@@ -130,12 +142,13 @@ public class MarkerView extends JPanel {
                     rightPanel.setLayout(new GridBagLayout());
                     int f = submissionList.getSelectedIndex();
                     submission = listSubm.get(f);
+                   // marker.markTest(submission, paper);
                     c2.gridx = 0;
                     c2.gridy = 0;
                     c2.anchor = GridBagConstraints.FIRST_LINE_START;
                     // c2.weightx =  ;
-                    c2.weighty = 2;
-                    displaySubmission(submission, c2);
+                    c2.weighty = 1;
+                    updateGUI();
 
                     rightPanel.revalidate();
                     rightPanel.repaint();
@@ -146,24 +159,62 @@ public class MarkerView extends JPanel {
 
 
 
-
+       
 
         JScrollPane listScroller = new JScrollPane(submissionList);
         leftPanel.add(listScroller, c1);
         this.add(leftScroll, con);
         ///////////////////////////////////////////////////
-
-
+         
+         
+       
+ 
         con.gridx = 1;
         con.weightx = 5.0;
 
         JScrollPane rightScroll = new JScrollPane(rightPanel);
-
+       
+//        jtab.addMouseListener(new MouseAdapter() {
+//
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                int tabNr = ((TabbedPaneUI)jtab.getUI()).tabForCoordinate(jtab, e.getX(), e.getY());
+//                
+//                if(tabNr==0){
+//                    
+//                   // updateGUI();
+//                }
+//                    
+//                else{
+//                    
+//                //    updateGUI(); 
+//                }
+//            }
+//        });
+        
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
-
-
-
+         
+         
+        
+        rightMarked.setLayout(new GridBagLayout());
+       // displaySubmission(submission, c2, true, rightMarked);
+        
+         rightUnmarked.setLayout(new GridBagLayout());
+      //  displaySubmission(submission, c2, true, rightUnmarked);
+         jtab.addTab("Unmarked Questions", rightUnmarked
+                     );
+         
+        
+         
+         jtab.addTab("Override marked questions",rightMarked);
+         c3.gridx=0;
+         c3.gridy=0;
+         c3.weightx=1.0;
+         c3.weighty=1.0;
+         c3.anchor = GridBagConstraints.FIRST_LINE_START;
+         c3.fill = GridBagConstraints.BOTH;
+         rightPanel.add(jtab,c3);
 
         // con.fill = GridBagConstraints.BOTH ;
         //displaySubmission(submission,c2);
@@ -176,9 +227,24 @@ public class MarkerView extends JPanel {
     public static void addListeners(MouseListener mouse) {
         mainFrame.addMouseListener(mouse);
     }
+    
+    void updateGUI(){
+     
+    displaySubmission(submission, c2, true, rightMarked);
+    
+    displaySubmission(submission, c2, false, rightUnmarked); 
+    jtab.addTab("Unmarked Questions", rightUnmarked
+                     );
+         
+        
+         
+         jtab.addTab("Override marked questions",rightMarked);
+        
+         rightPanel.add(jtab,c3);
+    }
 
-    void displaySubmission(Submission sub, GridBagConstraints c2) {
-
+    void displaySubmission(Submission sub, GridBagConstraints c2,boolean marked,JPanel localPanel) {
+        localPanel.removeAll();
         System.out.println("unmarked: " + sub.getUnmarkedQuestions().size());
 
         counter = 0;
@@ -193,12 +259,12 @@ public class MarkerView extends JPanel {
             sectitle.setFont(newLabelFont1);
             c2.gridx = 0;
             c2.gridy = counter;
-            rightPanel.add(sectitle, c2);
+            localPanel.add(sectitle, c2);
 
             // rightPanel.add((new Separator()).setPreferredSize(1000,1000));
             counter++;
 
-            marker.markTest(submission, paper);
+           // marker.markTest(submission, paper);
             
             for (int l = 0; l < sec.getSize(); ++l) {
                 SubmissionSubSection subsec = sec.getSubSection(l);
@@ -209,11 +275,12 @@ public class MarkerView extends JPanel {
 
                 c2.gridx = 0;
                 c2.gridy = counter;
-                rightPanel.add(subsecTitle, c2);
-                rightPanel.add(new Separator());
+                localPanel.add(subsecTitle, c2);
+                
                 counter++;
-                populateSubmissionSubSection(subsec, paperSubsec, sec.getID(), null);
-
+                if(marked){populateSubmissionSubSectionMarked(subsec, paperSubsec, sec.getID(), null,localPanel);}
+                else{
+                    populateSubmissionSubSectionUnmarked(subsec, paperSubsec, sec.getID(), null,localPanel);}
 
             }
 
@@ -223,7 +290,8 @@ public class MarkerView extends JPanel {
 
     }
 
-    private void populateSubmissionSubSection(SubmissionSubSection submSubSection, SubSection subSection, int sectionID, ArrayList<Integer> subSectionIDs) {
+    private void populateSubmissionSubSectionUnmarked(SubmissionSubSection submSubSection, SubSection subSection, int sectionID, ArrayList<Integer> subSectionIDs,JPanel localPanel) {
+           
         if (submSubSection.getType() == SubmissionSubSection.CollectionType.SUBSECTIONS) {
             for (int i = 0; i < subSection.getNumberOfSubSections(); i++) {
                 JLabel subsecTitle = new JLabel("Subsection: " + subSection.getTitle());
@@ -231,8 +299,8 @@ public class MarkerView extends JPanel {
 
                 c2.gridx = 0;
                 c2.gridy = counter;
-                rightPanel.add(subsecTitle, c2);
-                rightPanel.add(new Separator());
+                localPanel.add(subsecTitle, c2);
+                localPanel.add(new Separator());
                 counter++;
 
 //                ArrayList<Integer> list = new ArrayList<>();
@@ -240,7 +308,7 @@ public class MarkerView extends JPanel {
 //                    list.add(subSectionIDs.get(j));
 //                }
 //                list.add(i);
-                populateSubmissionSubSection(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, null);
+                populateSubmissionSubSectionUnmarked(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, null,localPanel);
 
             }
         } else if (submSubSection.getType() == SubmissionSubSection.CollectionType.ANSWERS) {
@@ -250,7 +318,7 @@ public class MarkerView extends JPanel {
                 c2.gridx = 0;
 
                 JLabel emptyLabel = new JLabel("There are no unmarked questions in this subsection!");
-                rightPanel.add(emptyLabel, c2);
+                localPanel.add(emptyLabel, c2);
                 counter++;
             }
             for (int m = 0; m < unMarked.size(); m++) {
@@ -259,12 +327,12 @@ public class MarkerView extends JPanel {
 
                 final Answer ans = unMarked.get(m);//submSubSection.getAnswer(m);
                 final Question ques = subSection.getQuestion(ans.getID());
-
+                
                 c2.gridy = counter;
                 c2.gridx = 0;
 
                 JLabel questionLabel = new JLabel("Question   " + m);
-                rightPanel.add(questionLabel, c2);
+                localPanel.add(questionLabel, c2);
                 c2.gridx = 1;
 
                 JLabel question = new JLabel("<html>" + "  " + ques.getQuestion() + "</html>") {
@@ -275,7 +343,7 @@ public class MarkerView extends JPanel {
                         return d;
                     }
                 };
-                rightPanel.add(question, c2);
+                localPanel.add(question, c2);
                 c2.gridx = 2;
 
                 JButton plusMark = new JButton("+");
@@ -284,13 +352,13 @@ public class MarkerView extends JPanel {
                     public void actionPerformed(ActionEvent e) {
                         if (ans.getMark() < ques.getMark()) {
                             ans.setMark(ans.getMark() + 1);
-                            marker.markQuestion(ans, ans.getMark());
+                            //marker.markQuestion(ans, ans.getMark());
                         }
                         marksGiven.setText("" + ans.getMark());
                         //marksGiven.repaint();
                     }
                 });
-                rightPanel.add(plusMark, c2);
+                localPanel.add(plusMark, c2);
                 c2.gridx = 3;
 
                 JButton minusMark = new JButton("-");
@@ -299,20 +367,20 @@ public class MarkerView extends JPanel {
                     public void actionPerformed(ActionEvent e) {
                         if (ans.getMark() > 0) {
                             ans.setMark(ans.getMark() - 1);
-                            marker.markQuestion(ans, ans.getMark());                            
+                            //marker.markQuestion(ans, ans.getMark());                            
                             marksGiven.setText("     " + ans.getMark());
 
                         }
                     }
                 });
-                rightPanel.add(minusMark, c2);
+                localPanel.add(minusMark, c2);
                 c2.ipadx = 0;
                 counter++;
                 c2.gridy = counter;
                 c2.gridx = 0;
 
                 JLabel answerLabel = new JLabel("Answer   " + m);
-                rightPanel.add(answerLabel, c2);
+                localPanel.add(answerLabel, c2);
                 c2.gridx = 1;
                 c2.ipady = 10;
                 c2.ipadx = 10;
@@ -325,13 +393,13 @@ public class MarkerView extends JPanel {
                         return d;
                     }
                 };
-                rightPanel.add(Answer, c2);
+                localPanel.add(Answer, c2);
                 c2.gridx = 2;
                 marksGiven.setText("     " + ans.getMark() + "");
-                rightPanel.add(marksGiven, c2);
+                localPanel.add(marksGiven, c2);
                 c2.gridx = 3;
                 JLabel markTotal = new JLabel("out of " + ques.getMark() + " total marks");
-                rightPanel.add(markTotal, c2);
+                localPanel.add(markTotal, c2);
                 c2.ipadx = 0;
 
                 counter++;
@@ -340,6 +408,115 @@ public class MarkerView extends JPanel {
         }
     }
 
+     private void populateSubmissionSubSectionMarked(SubmissionSubSection submSubSection, SubSection subSection, int sectionID, ArrayList<Integer> subSectionIDs,JPanel localPanel) {
+           
+         if (submSubSection.getType() == SubmissionSubSection.CollectionType.SUBSECTIONS) {
+            for (int i = 0; i < subSection.getNumberOfSubSections(); i++) {
+                JLabel subsecTitle = new JLabel("Subsection: " + subSection.getTitle());
+
+
+                c2.gridx = 0;
+                c2.gridy = counter;
+                localPanel.add(subsecTitle, c2);
+                localPanel.add(new Separator());
+                counter++;
+
+                populateSubmissionSubSectionMarked(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, null,localPanel);
+
+            }
+        } else if (submSubSection.getType() == SubmissionSubSection.CollectionType.ANSWERS) {
+
+            for (int m = 0; m < submSubSection.getSize(); m++) {
+
+                final JLabel marksGiven = new JLabel();
+
+                final Answer ans = submSubSection.getAnswer(m);//submSubSection.getAnswer(m);
+                final Question ques = subSection.getQuestion(ans.getID());
+                if(ans.isMarked()){
+                c2.gridy = counter;
+                c2.gridx = 0;
+
+                JLabel questionLabel = new JLabel("Question   " + m);
+                localPanel.add(questionLabel, c2);
+                c2.gridx = 1;
+
+                JLabel question = new JLabel("<html>" + "  " + ques.getQuestion() + "</html>") {
+                    @Override
+                    public Dimension getPreferredSize() {
+                        Dimension d = super.getPreferredSize();
+                        d.width = 400;
+                        return d;
+                    }
+                };
+                localPanel.add(question, c2);
+                c2.gridx = 2;
+
+                JButton plusMark = new JButton("+");
+                plusMark.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (ans.getMark() < ques.getMark()) {
+                            ans.setMark(ans.getMark() + 1);
+                           //marker.markQuestion(ans, ans.getMark());
+                        }
+                        marksGiven.setText("" + ans.getMark());
+                        //marksGiven.repaint();
+                    }
+                });
+                localPanel.add(plusMark, c2);
+                c2.gridx = 3;
+
+                JButton minusMark = new JButton("-");
+                minusMark.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (ans.getMark() > 0) {
+                            ans.setMark(ans.getMark() - 1);
+                           // marker.markQuestion(ans, ans.getMark());                            
+                            marksGiven.setText("     " + ans.getMark());
+
+                        }
+                    }
+                });
+                localPanel.add(minusMark, c2);
+                c2.ipadx = 0;
+                counter++;
+                c2.gridy = counter;
+                c2.gridx = 0;
+
+                JLabel answerLabel = new JLabel("Answer   " + m);
+                localPanel.add(answerLabel, c2);
+                c2.gridx = 1;
+                c2.ipady = 10;
+                c2.ipadx = 10;
+
+                JLabel Answer = new JLabel("<html>" + ans.getAnswerString() + "</html>") {
+                    @Override
+                    public Dimension getPreferredSize() {
+                        Dimension d = super.getPreferredSize();
+                        d.width = 400;
+                        return d;
+                    }
+                };
+                localPanel.add(Answer, c2);
+                c2.gridx = 2;
+                marksGiven.setText("     " + ans.getMark() + "");
+                localPanel.add(marksGiven, c2);
+                c2.gridx = 3;
+                JLabel markTotal = new JLabel("out of " + ques.getMark() + " total marks");
+                localPanel.add(markTotal, c2);
+                c2.ipadx = 0;
+
+                counter++;
+            }}
+
+        }
+    }
+     
+     
+     
+     
+     
     public static Submission getSubmission() {
 
         return submission;
