@@ -177,8 +177,8 @@ public class Subsection extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 if (questionList.isSelectionEmpty() == false)
                 if (questionList.getSelectedIndex() !=0){
-                listModel.remove(questionList.getSelectedIndex());
-                
+                    subSection.removeQuestion(questionList.getSelectedIndex()-1);
+                    listModel.remove(questionList.getSelectedIndex());
                 }
             }
         });
