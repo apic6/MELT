@@ -36,6 +36,7 @@ import Model.questionPaper.MultipleChoiceQuestion;
 import Model.questionPaper.Question;
 import Model.questionPaper.Section;
 import Model.questionPaper.SubSection;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -316,7 +317,7 @@ public class MarkerView extends JPanel {
             if (unMarked.isEmpty()) {
                 c2.gridy = counter;
                 c2.gridx = 0;
-
+                c2.weightx=2;
                 JLabel emptyLabel = new JLabel("There are no unmarked questions in this subsection!");
                 localPanel.add(emptyLabel, c2);
                 counter++;
@@ -332,6 +333,7 @@ public class MarkerView extends JPanel {
                 c2.gridx = 0;
 
                 JLabel questionLabel = new JLabel("Question   " + m);
+                questionLabel.setBackground(Color.lightGray);
                 localPanel.add(questionLabel, c2);
                 c2.gridx = 1;
 
@@ -384,8 +386,11 @@ public class MarkerView extends JPanel {
                 c2.gridx = 1;
                 c2.ipady = 10;
                 c2.ipadx = 10;
-
-                JLabel Answer = new JLabel("<html>" + ans.getAnswerString() + "</html>") {
+                String count;
+                if(ques instanceof EssayQuestion){
+                    count="   ("+String.valueOf(getCount(ans.getAnswerString()))+" words in total)";
+                }else {count="";}
+                JLabel Answer = new JLabel("<html>" + ans.getAnswerString() +count+ "</html>") {
                     @Override
                     public Dimension getPreferredSize() {
                         Dimension d = super.getPreferredSize();
@@ -437,9 +442,12 @@ public class MarkerView extends JPanel {
                 c2.gridx = 0;
 
                 JLabel questionLabel = new JLabel("Question   " + m);
+                questionLabel.setBackground(Color.white);
+                questionLabel.setOpaque(true);
                 localPanel.add(questionLabel, c2);
                 c2.gridx = 1;
-
+                
+                
                 JLabel question = new JLabel("<html>" + "  " + ques.getQuestion() + "</html>") {
                     @Override
                     public Dimension getPreferredSize() {
@@ -448,6 +456,8 @@ public class MarkerView extends JPanel {
                         return d;
                     }
                 };
+                question.setBackground(Color.white);
+                question.setOpaque(true);
                 localPanel.add(question, c2);
                 c2.gridx = 2;
 
@@ -489,8 +499,11 @@ public class MarkerView extends JPanel {
                 c2.gridx = 1;
                 c2.ipady = 10;
                 c2.ipadx = 10;
-
-                JLabel Answer = new JLabel("<html>" + ans.getAnswerString() + "</html>") {
+                String count;
+                if(ques instanceof EssayQuestion){
+                    count="   ("+String.valueOf(getCount(ans.getAnswerString()))+" words in total)";
+                }else {count="";}
+                JLabel Answer = new JLabel("<html>" + ans.getAnswerString() +count+ "</html>") {
                     @Override
                     public Dimension getPreferredSize() {
                         Dimension d = super.getPreferredSize();
@@ -521,4 +534,16 @@ public class MarkerView extends JPanel {
 
         return submission;
     }
+
+
+int getCount(String string ){
+     int count=0;
+       String[] words = string.split(" |\\.|,|\\;");  // split input string on space
+         for (String word : words) {
+             // iterate over array
+             
+             count++;
+         }
+ 
+ return count;}   
 }
