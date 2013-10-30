@@ -47,36 +47,43 @@ public class SubmissionSubSection {
         return fullyMarked;
     }
 
-    public void addAnswer(Answer answer) {
+    public boolean addAnswer(Answer answer) {
         if (type == CollectionType.UNDEFINED) {
             type = CollectionType.ANSWERS;
             for (int i = 0; i < answerList.size(); i++) {
                 if (answerList.get(i).getID() == answer.getID()) {
                     answerList.remove(i);
                     answerList.add(answer);
-                    return;
+                    return true;
                 }
             }
             answerList.add(answer);
+            return true;
         } else if (type == CollectionType.ANSWERS) {
             for (int i = 0; i < answerList.size(); i++) {
                 if (answerList.get(i).getID() == answer.getID()) {
                     answerList.remove(i);
                     answerList.add(answer);
-                    return;
+                    return true;
                 }
             }
             answerList.add(answer);
+            return true;
+        } else {
+            return false;
         }
-
     }
-
-    public void addSubSection(SubmissionSubSection subSection) {
+    
+    public boolean addSubSection(SubmissionSubSection subSection) {
         if (type == CollectionType.UNDEFINED) {
             type = CollectionType.SUBSECTIONS;
             subsectionList.add(subSection);
+            return true;
         } else if (type == CollectionType.SUBSECTIONS) {
             subsectionList.add(subSection);
+            return true;
+        } else {
+            return false;
         }
 
     }
@@ -96,11 +103,20 @@ public class SubmissionSubSection {
     }
 
     public Answer getAnswer(int id) {
-        return answerList.get(id);
+        if (type == CollectionType.ANSWERS) {
+            return answerList.get(id);
+        } else {
+            return null;
+        }
+
     }
 
     public SubmissionSubSection getSubSection(int id) {
-        return subsectionList.get(id);
+        if (type == CollectionType.SUBSECTIONS) {
+            return subsectionList.get(id);
+        } else {
+            return null;
+        }
     }
 
     public int getMark() {

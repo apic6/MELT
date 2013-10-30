@@ -147,13 +147,6 @@ public class QuestionPaper {
         moveSectionUp(SectionToMove + 1);
     }
 
-    // produces an XML for students submission
-    public void createSubmissionDocument() {
-        /* 
-         * 
-         */
-    }
-
     // TODO: CHANGE THIS
     public String toXML() {
         String XML = "<QuestionPaper id=\"" + paperID + "\">\n";          /////////////model.getNextID()
