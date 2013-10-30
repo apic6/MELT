@@ -3,5 +3,5 @@ Features Added recently and may not be 100%
 
 TODO:
 
-1. FINISH SHOULD CLOSE TAKE TEST
+
 2. Instructions on questions maybe whatever

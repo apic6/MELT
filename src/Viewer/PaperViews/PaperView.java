@@ -185,13 +185,14 @@ class SectionPanel extends JPanel {
 }
 
 public class PaperView extends JPanel {
-    private static JButton markerTrigger=new JButton("markerTrigger");
+
+    private static JButton markerTrigger = new JButton("markerTrigger");
     static QuestionPaper paper;
     static QuestionPaperTaker taker;
     SectionPanel[] sPanels;
 
     public PaperView(final QuestionPaper paper, final JFrame mainFrame, final Student studentView, int studentID) {
-        
+
         this.paper = paper;
 
         if (studentID >= 0) {
@@ -228,21 +229,21 @@ public class PaperView extends JPanel {
         JLabel title = new JLabel("Paper Title: " + paper.getTitle());
         JLabel description = new JLabel("Paper Description: " + paper.getDescription());
         JLabel instructions = new JLabel("Paper Instructions: " + paper.getTitle());
-        
+
         paperInfo.setLayout(new GridBagLayout());
         GridBagConstraints con2 = new GridBagConstraints();
         con2.gridx = 0;
         con2.gridy = 0;
-        
+
         paperInfo.add(title, con2);
         con2.gridy++;
         paperInfo.add(description, con2);
         con2.gridy++;
         paperInfo.add(instructions, con2);
-        
+
         this.add(paperInfo, con);
-        con.gridy++;        
-        
+        con.gridy++;
+
         for (int i = 0; i < paper.getNumberOfSections(); i++) {
             sPanels[i] = new SectionPanel(paper.getSection(i), mainFrame, this, taker, i);
             this.add(sPanels[i], con);
@@ -260,7 +261,11 @@ public class PaperView extends JPanel {
 //
 //                Marker marker = new Marker();
 //                marker.markTest(taker.getSubmission(), paper);
-                      markerTrigger.doClick();
+                markerTrigger.doClick();
+                studentView.repopulateLeftPanel();
+                mainFrame.setContentPane(studentView);
+                mainFrame.setVisible(true);
+
                 // System.out.println("Mark = " + marker.getMark() + "/" + marker.getTotalMark());
             }
         });
@@ -382,9 +387,11 @@ public class PaperView extends JPanel {
     public static Submission getSubmission() {
         return taker.getSubmission();
     }
-    public static QuestionPaper getPaper(){
-    
-    return paper;}
+
+    public static QuestionPaper getPaper() {
+
+        return paper;
+    }
 
     @Override
     public Dimension getPreferredSize() {

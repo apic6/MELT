@@ -31,7 +31,7 @@ class MarkedSubmission extends JPanel {
         if (paper != null) {
             setLayout(new FlowLayout());
             JLabel title = new JLabel("Paper: " + paper.getTitle());
-            
+
             JLabel mark = new JLabel("Marks: " + sub.getMark() + "/" + paper.getMaximumMark());
             add(title);
             add(mark);
@@ -125,53 +125,51 @@ public class Student extends JPanel {
         amodel.loadPapers("papers/Papers.xml");
         final ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(intID);
         for (int i = 0; i < papers.size(); ++i) {
-              boolean bool=true;
-             ArrayList<Submission> allsubs=amodel.getSubmissionsByStudentID(intID);
-            for (int y=0;y<allsubs.size();y++){
-            if(allsubs.get(y).getPaperID()==papers.get(i).getPaperID()){
-                bool=false;
-        }}
-            
-            if(bool){
-            c1.gridy = i;
-
-            c1.gridx = 1;
-
-            leftPanel.add(new PaperPreviewer(papers.get(i)), c1);
-
-            c1.gridx = 2;
-            //  c1.gridy=i;
-            c1.fill = GridBagConstraints.HORIZONTAL;
-            c1.weighty = 0.1;   //request any extra vertical space
-
-            //c1.gridwidth = 1;   //2 columns wide
-            //c1.weightx=0.1;
-            JButton startButton = new JButton("Start this Test");
-           
-            //startButton    
-            
-            
-            
-            final Student sView = this;
-            // TODO remove
-            final int j = i;
-            startButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView, Integer.parseInt(ID)));
-                    mainFrame.setVisible(true);
-                    startTrigger.doClick();
+            boolean bool = true;
+            ArrayList<Submission> allsubs = amodel.getSubmissionsByStudentID(intID);
+            for (int y = 0; y < allsubs.size(); y++) {
+                if (allsubs.get(y).getPaperID() == papers.get(i).getPaperID()) {
+                    bool = false;
                 }
-            });
+            }
 
-            startButton.setPreferredSize(new Dimension(50, 50));
-            startButton.addActionListener(new StartListener());
-            leftPanel.add(startButton, c1);
-        } }
+            if (bool) {
+                c1.gridy = i;
 
-        
+                c1.gridx = 1;
+
+                leftPanel.add(new PaperPreviewer(papers.get(i)), c1);
+
+                c1.gridx = 2;
+                //  c1.gridy=i;
+                c1.fill = GridBagConstraints.HORIZONTAL;
+                c1.weighty = 0.1;   //request any extra vertical space
+
+                //c1.gridwidth = 1;   //2 columns wide
+                //c1.weightx=0.1;
+                JButton startButton = new JButton("Start this Test");
+
+                //startButton    
 
 
+
+                final Student sView = this;
+                // TODO remove
+                final int j = i;
+                startButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView, Integer.parseInt(ID)));
+                        mainFrame.setVisible(true);
+                        startTrigger.doClick();
+                    }
+                });
+
+                startButton.setPreferredSize(new Dimension(50, 50));
+                startButton.addActionListener(new StartListener());
+                leftPanel.add(startButton, c1);
+            }
+        }
     }
 
     public class StartListener implements ActionListener {
@@ -184,6 +182,65 @@ public class Student extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(1100, 800);
+    }
+
+    public void repopulateLeftPanel() {
+        leftPanel.removeAll();
+        
+        GridBagConstraints c1 = new GridBagConstraints();
+        c1.fill = GridBagConstraints.BOTH;
+        c1.weightx = 0.5;
+        c1.weighty = 0.5;
+        final ArrayList<QuestionPaper> papers = amodel.getPapersByStudentID(intID);
+        for (int i = 0; i < papers.size(); ++i) {
+            boolean bool = true;
+            ArrayList<Submission> allsubs = amodel.getSubmissionsByStudentID(intID);
+            for (int y = 0; y < allsubs.size(); y++) {
+                if (allsubs.get(y).getPaperID() == papers.get(i).getPaperID()) {
+                    bool = false;
+                }
+            }
+
+            if (bool) {
+                c1.gridy = i;
+
+                c1.gridx = 1;
+
+                leftPanel.add(new PaperPreviewer(papers.get(i)), c1);
+
+                c1.gridx = 2;
+                //  c1.gridy=i;
+                c1.fill = GridBagConstraints.HORIZONTAL;
+                c1.weighty = 0.1;   //request any extra vertical space
+
+                //c1.gridwidth = 1;   //2 columns wide
+                //c1.weightx=0.1;
+                JButton startButton = new JButton("Start this Test");
+
+                //startButton    
+
+
+
+                final Student sView = this;
+                // TODO remove
+                final int j = i;
+                startButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        mainFrame.setContentPane(new PaperView(papers.get(j), mainFrame, sView, Integer.parseInt(ID)));
+                        mainFrame.setVisible(true);
+                        startTrigger.doClick();
+                    }
+                });
+
+                startButton.setPreferredSize(new Dimension(50, 50));
+                startButton.addActionListener(new StartListener());
+                leftPanel.add(startButton, c1);
+            }
+        }
+        
+        this.repaint();
+        this.revalidate();
     }
 
     public JFrame getFrame() {

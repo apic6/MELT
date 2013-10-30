@@ -175,6 +175,7 @@ public class Controller {
                     sub.normalise();
                     marker.markTest(sub, PaperView.getPaper());
                     sub = marker.getSubmission();
+                    sub.setSubmitted();
                     saveSubmission(sub);
                     System.err.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 }
