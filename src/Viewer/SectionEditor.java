@@ -34,7 +34,7 @@ public class SectionEditor extends JPanel{
     private  JTextArea description = new JTextArea(3,30);
     private JLabel instruction_label = new JLabel("instruction:");
     private  JTextArea instruction = new JTextArea(3,30);
-    private JLabel time_label = new JLabel("time limit:");
+    private JLabel time_label = new JLabel("time limit(sec):");
    // private JTextArea timeLimit = new JTextArea(1,10);
     private JLabel timeLimit=new JLabel();
     private Section section;
@@ -192,9 +192,32 @@ public class SectionEditor extends JPanel{
                 section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
             }
         });
+      JButton moreMoreTime = new JButton("+10");
+      moreMoreTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeLimit.setText(String.valueOf(Integer.parseInt(timeLimit.getText())+10));
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+            }
+        });
+      JButton lessLessTime = new JButton("-10");
+      lessLessTime.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Integer.parseInt(timeLimit.getText())>10)
+                timeLimit.setText(String.valueOf(Integer.parseInt(timeLimit.getText())-10));
+                section.setTimeLimit(Integer.parseInt(timeLimit.getText()));
+            }
+        });
+      add(moreMoreTime,gbc);
+      gbc.gridx++;
       add(moreTime,gbc);
       gbc.gridx++;
       add(lessTime,gbc);
+      gbc.gridx++;
+      add(lessLessTime,gbc);
             
         JPanel subsectionPanel = new JPanel();
         subsectionPanel.setBorder(new TitledBorder("SubSections"));

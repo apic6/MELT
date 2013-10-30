@@ -1,122 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Submissions><StudentSubmission id="112301230">
-<PaperID>1</PaperID>
+<Submissions><StudentSubmission id="212301230">
+<PaperID>2</PaperID>
 <StudentID>12301230</StudentID>
-<FullyMarked>FALSE</FullyMarked><Mark>0</Mark><TotalMark>0</TotalMark><SubmissionSection>
+<FullyMarked>TRUE</FullyMarked><Mark>35</Mark><TotalMark>35</TotalMark><SubmissionSection>
 <SectionID>0</SectionID>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>SUBSECTIONS</CollectionType>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>SUBSECTIONS</CollectionType>
 <SubmissionSubSection>
 <SubSectionID>0</SubSectionID>
 <CollectionType>ANSWERS</CollectionType>
-<MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-<Mark>0</Mark></MCQAnswer>
-<FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<MFITBAnswer>
-<SectionID>0</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-<Marked>FALSE</Marked></MFITBAnswer>
 <EssayAnswer>
 <SectionID>0</SectionID>
 <SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-<Marked>FALSE</Marked></EssayAnswer>
+<AnswerID>0</AnswerID>
+<Answer>aRIS KAKSKSDK A DASDADADSD ASDSAAAAAAAAAAAAA SA   FF F F F F F F F  F F F FFFFFFFFFFFFF    FFFFFFFFFFFFF    FFFFFFFFFFFF    FFFFFFFFFFFF</Answer>
+<Marked>TRUE</Marked><Mark>3</Mark></EssayAnswer>
+<EssayAnswer>
+<SectionID>0</SectionID>
+<SubSectionID>0</SubSectionID>
+<AnswerID>1</AnswerID>
+<Answer>SDadasDSAD DAsdasDASdaSD SD ASd ASD   </Answer>
+<Marked>TRUE</Marked><Mark>14</Mark></EssayAnswer>
 </SubmissionSubSection>
+
 <SubmissionSubSection>
 <SubSectionID>1</SubSectionID>
 <CollectionType>ANSWERS</CollectionType>
 <MCQAnswer>
 <AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-<Mark>0</Mark></MCQAnswer>
+<Answer>0</Answer>
+<Mark>3</Mark></MCQAnswer>
 <FITBAnswer>
 <AnswerID>1</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<MFITBAnswer>
-<SectionID>0</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-<Marked>FALSE</Marked></MFITBAnswer>
-<EssayAnswer>
-<SectionID>0</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-<Marked>FALSE</Marked></EssayAnswer>
-</SubmissionSubSection>
-</SubmissionSubSection>
-<SubmissionSubSection>
-<SubSectionID>1</SubSectionID>
-<CollectionType>ANSWERS</CollectionType>
+<Answer>YUIO</Answer>
+<Mark>3</Mark></FITBAnswer>
 <MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-<Mark>0</Mark></MCQAnswer>
-<FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<MFITBAnswer>
-<SectionID>0</SectionID>
-<SubSectionID>0</SubSectionID>
 <AnswerID>2</AnswerID>
-<Marked>FALSE</Marked></MFITBAnswer>
-<EssayAnswer>
-<SectionID>0</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-<Marked>FALSE</Marked></EssayAnswer>
-</SubmissionSubSection>
-</SubmissionSubSection>
-
-</SubmissionSection>
-
-<SubmissionSection>
-<SectionID>1</SectionID>
-<SubmissionSubSection>
-<SubSectionID>0</SubSectionID>
-<CollectionType>ANSWERS</CollectionType>
-<MCQAnswer>
-<AnswerID>0</AnswerID>
-<Answer>-1</Answer>
-<Mark>0</Mark></MCQAnswer>
+<Answer>1</Answer>
+<Mark>10</Mark></MCQAnswer>
 <FITBAnswer>
-<AnswerID>1</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<MFITBAnswer>
-<SectionID>1</SectionID>
-<SubSectionID>0</SubSectionID>
-<AnswerID>2</AnswerID>
-<Marked>FALSE</Marked></MFITBAnswer>
-<EssayAnswer>
-<SectionID>1</SectionID>
-<SubSectionID>0</SubSectionID>
 <AnswerID>3</AnswerID>
-<Answer>Student didn't answer</Answer>
-<Marked>FALSE</Marked></EssayAnswer>
+<Answer>FGGGFGFGFGFGFGFGF</Answer>
+<Mark>2</Mark></FITBAnswer>
 </SubmissionSubSection>
 
 </SubmissionSection>
 
 </StudentSubmission>
-<StudentSubmission id="612301230">
-<PaperID>6</PaperID>
-<StudentID>12301230</StudentID>
-<FullyMarked>FALSE</FullyMarked><Mark>0</Mark><TotalMark>0</TotalMark><SubmissionSection>
+<StudentSubmission id="212301231">
+<PaperID>2</PaperID>
+<StudentID>12301231</StudentID>
+<FullyMarked>TRUE</FullyMarked><Mark>20</Mark><TotalMark>20</TotalMark><SubmissionSection>
 <SectionID>0</SectionID>
 <SubmissionSubSection>
 <SubSectionID>0</SubSectionID>
@@ -125,52 +57,37 @@
 <SectionID>0</SectionID>
 <SubSectionID>0</SubSectionID>
 <AnswerID>0</AnswerID>
-<Answer>Student didn't answer</Answer>
-<Marked>FALSE</Marked></EssayAnswer>
-<MCQAnswer>
+<Answer>ASDADSDA dasdaf </Answer>
+<Marked>TRUE</Marked><Mark>5</Mark></EssayAnswer>
+<EssayAnswer>
+<SectionID>0</SectionID>
+<SubSectionID>0</SubSectionID>
 <AnswerID>1</AnswerID>
-<Answer>-1</Answer>
-<Mark>0</Mark></MCQAnswer>
+<Answer>ASAsdaD DAsdaDAd daDASd aSDSAd ASDAs</Answer>
+<Marked>TRUE</Marked><Mark>5</Mark></EssayAnswer>
 </SubmissionSubSection>
 
 <SubmissionSubSection>
 <SubSectionID>1</SubSectionID>
 <CollectionType>ANSWERS</CollectionType>
-<MFITBAnswer>
-<SectionID>0</SectionID>
-<SubSectionID>0</SubSectionID>
+<MCQAnswer>
 <AnswerID>0</AnswerID>
-<Marked>FALSE</Marked></MFITBAnswer>
+<Answer>1</Answer>
+<Mark>3</Mark></MCQAnswer>
 <FITBAnswer>
 <AnswerID>1</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<FITBAnswer>
+<Answer>waka</Answer>
+<Mark>2</Mark></FITBAnswer>
+<MCQAnswer>
 <AnswerID>2</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
+<Answer>0</Answer>
+<Mark>5</Mark></MCQAnswer>
 <FITBAnswer>
 <AnswerID>3</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<FITBAnswer>
-<AnswerID>4</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<FITBAnswer>
-<AnswerID>5</AnswerID>
-<Answer>null</Answer>
-<Mark>0</Mark></FITBAnswer>
-<FITBAnswer>
-<AnswerID>6</AnswerID>
-<Answer>null</Answer>
+<Answer>ddd</Answer>
 <Mark>0</Mark></FITBAnswer>
 </SubmissionSubSection>
 
-</SubmissionSection>
-
-<SubmissionSection>
-<SectionID>1</SectionID>
 </SubmissionSection>
 
 </StudentSubmission>
