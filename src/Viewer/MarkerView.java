@@ -87,7 +87,7 @@ public class MarkerView extends JPanel {
     void initComponents() {
 
 
-
+        mainFrame.setTitle("Student submission for: "+paper.getTitle());
 
 
         System.err.println(paper.getPaperID());
@@ -106,7 +106,7 @@ public class MarkerView extends JPanel {
 
 
         leftPanel.setLayout(new GridBagLayout());
-        leftPanel.setBorder(new TitledBorder("Student Submissions for " + paper.getTitle()));
+        leftPanel.setBorder(new TitledBorder("Student ID"));
         final ArrayList<Submission> submissions = model.getSubmissions();
         final ArrayList<Submission> listSubm = new ArrayList<>();
 
@@ -175,24 +175,7 @@ public class MarkerView extends JPanel {
 
         JScrollPane rightScroll = new JScrollPane(rightPanel);
        
-//        jtab.addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                int tabNr = ((TabbedPaneUI)jtab.getUI()).tabForCoordinate(jtab, e.getX(), e.getY());
-//                
-//                if(tabNr==0){
-//                    
-//                   // updateGUI();
-//                }
-//                    
-//                else{
-//                    
-//                //    updateGUI(); 
-//                }
-//            }
-//        });
-        
+
         rightPanel.setLayout(new GridBagLayout());
         rightPanel.setBorder(new TitledBorder("Submission Marker"));
          
