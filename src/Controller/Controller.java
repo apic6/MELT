@@ -46,16 +46,17 @@ import javax.swing.event.DocumentListener;
 public class Controller {
 
     private Modeller amodel;
-
+    private Controller controller;
+    public ViewerEventListener lel;
     public Controller(Viewer view, Modeller model) {   //constructor of controller class
 
         Welcome.addListener(new ViewerEventListener());
         amodel = model;
-
-
+        controller = this;
+        lel = new ViewerEventListener();
     }
 
-    class ViewerEventListener implements ActionListener {
+   public class ViewerEventListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -78,7 +79,7 @@ public class Controller {
                 case "Create a New Test": {
                     JFrame frame;
                     frame = TeacherView.getFrame();
-                    frame.setContentPane(new TestWizard(frame, amodel));
+                    frame.setContentPane(new TestWizard(controller,frame, amodel,null));
                     frame.setVisible(true);
                     TestWizard.addListener(new Mouse());
                     Timer timer = new Timer(true);
@@ -128,7 +129,7 @@ public class Controller {
                     JFrame frame;
                     QuestionPaper paper;
                     frame = TeacherView.getFrame();
-                    frame.setContentPane(new TestWizard(frame, amodel, TeacherView.getPaper()));
+                    frame.setContentPane(new TestWizard(controller,frame, amodel, TeacherView.getPaper()));
                     frame.setVisible(true);
                     TestWizard.addListener(new Mouse());
                     Timer timer = new Timer(true);
