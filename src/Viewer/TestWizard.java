@@ -175,6 +175,7 @@ public class TestWizard extends JPanel{
         con.gridy = 0;
         con.weightx = 0;
         con.weighty = 0;
+        con.gridheight = 2;
         leftPanel.setPreferredSize(new Dimension(480,720));
         add(leftPanel,con);
         
@@ -195,8 +196,10 @@ public class TestWizard extends JPanel{
         rightPanel.setBorder(new TitledBorder("QuestionPaper information"));
         con.gridx = 1;
         con.gridy = 0;
+        con.gridwidth = 2;
         con.weightx = 0;
         con.weighty = 0;
+        con.gridheight = 1;
         rightPanel.setPreferredSize(new Dimension(600,700));
         add(rightPanel,con);
         
@@ -224,14 +227,14 @@ public class TestWizard extends JPanel{
         
         });
             GridBagConstraints c4=new GridBagConstraints();
-            c4.anchor=GridBagConstraints.LAST_LINE_END;
-//            c4.ipady=10;
-//            c4.insets = new Insets(31,31,31,31);
+            c4.anchor=GridBagConstraints.EAST;
+            c4.weightx = 1.0;
             c4.gridx = 1 ;
             c4.gridy = 1 ;
-           // c4.anchor=GridBagConstraints.EAST;
-            add(editButton,c4);
- 
+            JPanel operations = new JPanel();
+            
+            add(operations,c4);
+            operations.add(editButton);
              JButton backButton=new JButton("Back");
             backButton.addActionListener(new ActionListener(){
               @Override
@@ -242,8 +245,7 @@ public class TestWizard extends JPanel{
               }
         
         });
-            c4.gridx = 2;
-            add(backButton,c4);
+            operations.add(backButton);
     }
     
     public static  QuestionPaper getQuestionPaper(){
