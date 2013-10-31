@@ -159,7 +159,10 @@ public class MarkerView extends JPanel {
         });
 
 
-
+//        GridBagConstraints cb= new GridBagConstraints();
+//        cb.anchor=GridBagConstraints.LAST_LINE_END;
+//        JButton back= new JButton("Back");
+//        add(back,cb);
        
 
         JScrollPane listScroller = new JScrollPane(submissionList);
