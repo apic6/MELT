@@ -97,7 +97,7 @@ public class Controller {
                     frame = Welcome.getFrame();
                     frame.setContentPane(new TeacherView(frame, amodel));
                     frame.setVisible(true);
-                    TeacherView.addListener(new ViewerEventListener());
+                    TeacherView.addListener(lel);
                 }
                 break;
                 case "I am a Student": {

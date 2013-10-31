@@ -62,6 +62,7 @@ public class TestWizard extends JPanel{
         int ID=model.getNextID();
         paper = new QuestionPaper(ID);
    }
+   rightPanel.removeAll();
    sectionList=new ArrayList();
    wizard=this;
    this.controller = controller;
@@ -241,6 +242,7 @@ public class TestWizard extends JPanel{
            public void actionPerformed(ActionEvent evt){
                   mainFrame.setContentPane(new TeacherView(mainFrame,model));
                   TeacherView.addListener(controller.lel);
+                  mainFrame.repaint();
                   mainFrame.setVisible(true);
               }
         

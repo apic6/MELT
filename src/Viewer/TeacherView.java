@@ -210,8 +210,10 @@ public class TeacherView extends JPanel {
     }
 
     public static void addListener(ActionListener mal) {
+        createTest.removeActionListener(mal);
         createTest.addActionListener(mal);
         markTrigger.addActionListener(mal);
+        editTrigger.removeActionListener(mal);
         editTrigger.addActionListener(mal);
 
     }
