@@ -287,11 +287,6 @@ public class MarkerView extends JPanel {
                 localPanel.add(new Separator());
                 counter++;
 
-//                ArrayList<Integer> list = new ArrayList<>();
-//                for (int j = 0; j<subSectionIDs.size(); j++) {
-//                    list.add(subSectionIDs.get(j));
-//                }
-//                list.add(i);
                 populateSubmissionSubSectionUnmarked(submSubSection.getSubSection(i), subSection.getSubSection(i), sectionID, null,localPanel);
 
             }
@@ -316,7 +311,8 @@ public class MarkerView extends JPanel {
                 c2.gridx = 0;
 
                 JLabel questionLabel = new JLabel("Question   " + m);
-                questionLabel.setBackground(Color.lightGray);
+                questionLabel.setBackground(Color.white);
+                questionLabel.setOpaque(true);
                 localPanel.add(questionLabel, c2);
                 c2.gridx = 1;
 
@@ -328,6 +324,8 @@ public class MarkerView extends JPanel {
                         return d;
                     }
                 };
+                question.setBackground(Color.white);
+                question.setOpaque(true);
                 localPanel.add(question, c2);
                 c2.gridx = 2;
 
